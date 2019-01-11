@@ -46,12 +46,15 @@ body {
 .blue{
   background : blue;
   color : white;
+  border : 1px black solid;
+  width : 100%;
 }
-.class {
+.time{
   border : 1px solid black;
   height: 15%; /*90min*/
   font-size: 10px;
-  padding-left: 10px;
+  display : flex;
+ 
 }
 
 
