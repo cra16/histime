@@ -1,3 +1,4 @@
+<!--여기 정말 대충 수정했어요...-->
 <template>
     <section>
     </section>
@@ -16,9 +17,4 @@
     
 </script>
 
-<<<<<<< HEAD
-
-=======
-<style>
->>>>>>> master
 </style>
