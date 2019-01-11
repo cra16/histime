@@ -68,16 +68,18 @@
                   subject : {
                        name : ""
                   },
-                  mon:[],
+                  filltedSub :{
+
+                  }
               }
             
           },
           computed : {
-                filter:function(){
+                filter:function(day){
+                    for (var i in subjects) 
                     
-                    return this.mon.filter((mon)=>{
-
-                        return mon;
+                    return this.subject.filter((mon)=>{
+                        return ;
                     })
                 }
               }
