@@ -18,10 +18,8 @@
 
         <div class="day monday">
             <div class="day_title">Monday</div>
-            <p v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</p>
-
             <div v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</div>
-    </div>
+        </div>
 
         <div class="day tuesday">
             <div class="day_title">Tuesday</div>
@@ -30,10 +28,12 @@
 
         <div class="day wednesday">
             <div class="day_title">Wednesday</div>
+             <div v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</div>
         </div>
 
         <div class="day thursday">
             <div class="day_title">Thursday</div>
+             <div v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</div>
         </div>
 
         <div class="day friday">
