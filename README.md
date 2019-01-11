@@ -5,3 +5,5 @@
 > 두개의 서버가 돌아가고 있어야 작동
 
 # histime
+set DEBUG=myapp:* & npm start
+> window
