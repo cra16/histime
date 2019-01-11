@@ -2,18 +2,24 @@
     <div id="Make">
         <h1>TimeTable Make</h1>
         <div id='container'>
-            <div id='search'></div>
-            <div id='timetable'></div>
-            <div id='save'>
+            <Search id='search'></Search>
+            <Timetable id='timetable'></Timetable>
+            <Save id='save'>
                 <button v-on:click="go()">저장하기</button>
-            </div>
+            </Save>
         </div>
     </div>
 </template>
 
 <script>
+import Search from '../components/makepage/Search.vue'
+import Timetable from '../components/makepage/Timetable.vue'
+import Save from '../components/makepage/Save.vue'
     export default {
         name: 'make',
+        components: {
+            Search,Timetable,Save
+        },
         data() {
             return {};
         },
