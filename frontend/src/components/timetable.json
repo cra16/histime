@@ -3,14 +3,14 @@
     {
     "name" : "식빵",
     "day" : "wed",
-    "time" : 3,
+    "time" : 1,
     "code" : "aaa"
     },
     {
-    "name" : "식빵",
-    "day" : "Thur",
-    "time" : 3,
-    "code" : "bbb"
+        "name" : "치즈",
+        "day" : "wed",
+        "time" : 1,
+        "code" : "aaa"
     },
     {
     "name" : "누텔라",

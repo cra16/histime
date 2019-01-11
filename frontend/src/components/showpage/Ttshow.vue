@@ -18,7 +18,19 @@
 
         <div class="day monday">
             <div class="day_title">Monday</div>
-            <div v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</div>
+            <div v-for="n in 10" :key="n" class="time ">
+                <div v-for="subject in subjects" :key ="subject.time" v-if="subject.day==='mon'" class ="blue">
+                    <div >
+                        <div v-if="subject.time===1">{{ subject.name }}</div>
+                        <div v-if="subject.time===2">{{ subject.name }}</div>
+                        <div v-if="subject.time===3">{{ subject.name }}</div>
+                        <div v-if="subject.time===4">{{ subject.name }}</div>
+                        <div v-if="subject.time===5">{{ subject.name }}</div>
+                        <div v-if="subject.time===6">{{ subject.name }}</div>
+                        <div v-if="subject.time===7">{{ subject.name }}</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="day tuesday">
@@ -55,12 +67,22 @@
                   subjects: subjects,
                   subject : {
                        name : ""
-                  }
-                     
-                  
+                  },
+                  filltedSub :{
 
+                  }
               }
-          }
+            
+          },
+          computed : {
+                filter:function(day){
+                    for (var i in subjects) 
+                    
+                    return this.subject.filter((mon)=>{
+                        return ;
+                    })
+                }
+              }
       }
     
 </script>
