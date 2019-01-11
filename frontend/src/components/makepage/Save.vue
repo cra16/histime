@@ -16,5 +16,9 @@
     
 </script>
 
+<<<<<<< HEAD
 
+=======
+<style>
+>>>>>>> master
 </style>
