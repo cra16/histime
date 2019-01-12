@@ -25,19 +25,35 @@ export default {
     }
   },
   methods: {
-    login() {
-        if(this.input.username != "" && this.input.password != "") {//no space
-            if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {//correct
-                this.$emit("authenticated", true);
-                this.$router.replace({ name: "show" });
-            } else {
-                console.log("The username and / or password is incorrect");//incorrect-error
-            }
-        } else {
-            console.log("A username and password must be present");//space-error
-            
-        }
+    login(){
+      this.$http.post('/api/login', {
+        id : this.input.username,
+        password : this.input.password
+      }).then((response) => {
+        console.log(response.data);
+      });
     }
+    
+
+    // login(){
+    //   this.$http.get('/api/login').then((response) => {
+    //     console.log(response.data);
+    // })}
+    
+
+    // login() {
+    //     if(this.input.username != "" && this.input.password != "") {//no space
+    //         if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {//correct
+    //             this.$emit("authenticated", true);
+    //             this.$router.replace({ name: "show" });
+    //         } else {
+    //             console.log("The username and / or password is incorrect");//incorrect-error
+    //         }
+    //     } else {
+    //         console.log("A username and password must be present");//space-error
+            
+    //     }
+    // }
     
   }
   }
