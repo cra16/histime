@@ -22,6 +22,10 @@ export default {
           username : "",
           password : "",
       },
+      student : {
+          student_id : "",
+          name : "",
+      }
     }
   },
   methods: {
@@ -30,7 +34,17 @@ export default {
         id : this.input.username,
         password : this.input.password
       }).then((response) => {
-        console.log(response.data);
+        if(response.data.student_id != -1){
+          this.student.student_id = response.data.student_id;
+          this.student.name = response.data.name; 
+          this.$emit("authenticated", true);
+          this.$router.replace({ name: "show" });
+        }
+        else{
+          console.log("The username and / or password is incorrect");//incorrect-error
+
+        }
+        
       });
     }
     
