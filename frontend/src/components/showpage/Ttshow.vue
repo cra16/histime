@@ -75,18 +75,19 @@
             
           },
           computed : {
-                filter:function(day){
-                    for (var i in subjects) 
+                // filter:function(day){
+                //     for (var i in subjects) 
                     
-                    return this.subject.filter((mon)=>{
-                        return ;
-                    })
-                }
+                //     return this.subject.filter((mon)=>{
+                //         return ;
+                //     })
+                // }
+                // 만들다가 실패.. 나중에 다시하기(지현)
               }
       }
     
 </script>
 
-<style src = '../../assets/ttshow.css' scoped>
+<style src = '../../assets/showpage/ttshow.css' scoped>
 
 </style>

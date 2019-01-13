@@ -87,6 +87,6 @@
 
 
 
-<style  src = '../../assets/ttlist.css' scoped>
+<style  src = '../../assets/showpage/ttlist.css' scoped>
 
 </style>
