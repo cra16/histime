@@ -63,7 +63,6 @@
                 }
                 this.$router.replace({ name: "make" });  
             },
-
             ttdelete(){
                 if(confirm("시간표를 삭제하시겠습니까?")){
                     alert("삭제");
@@ -79,7 +78,6 @@
                 }    
                 }
             }    
-
             
         }
     
@@ -87,6 +85,5 @@
 
 
 
-<style  src = '../../assets/ttlist.css' scoped>
-
+<style  src = '../../assets/showpage/list.css' scoped>
 </style>
