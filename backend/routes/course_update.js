@@ -1,9 +1,26 @@
 
 
 var express = require('express');
-var Iconv = require('iconv').Iconv;
 var router = express.Router();
+var Iconv = require('iconv').Iconv;
+var fs = require('fs');
+var mysql = require('mysql');
+var tabletojson = require('tabletojson');
+
 var html; 
+
+// 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'h010638847',
+    database : 'histime'
+});
+
+connection.connect(function(err) {
+    if(err) console.log(err);
+    console.log('You are now connected...');
+});
 
 router.get('/', function (req, res, next) {
     try {
@@ -37,30 +54,78 @@ router.get('/', function (req, res, next) {
             });
 
             spooky.then(function () {
-                this.emit('hello', 'in') ;
+                this.emit('hello', 'start') ;
             }); 
 
-            spooky.thenOpen('https://hisnet.handong.edu/for_student/course/PLES330M.php?hak_year=2019&hak_term=1&hakbu=%C0%FC%C3%BC&isugbn=2&injung=%C0%FC%C3%BC&eng=%C0%FC%C3%BC&prof_name=&gwamok=&gwamok_code=&ksearch=search');
-                
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0001&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0007&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0008&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0009&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0011&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0012&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0021&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0022&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0024&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0033&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0041&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0071&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0077&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0078&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0079&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
+            spooky.then(function () {
+                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=0090&isugbn=%C0%FC%C3%BC&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
+                this.emit('sendtoDB', '');
+            }); 
             
+                
             spooky.then(function () {
-                this.emit('hello', 'out') ;
-            }); 
-
-            spooky.then(function () {
-                this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=%C0%FC%C3%BC&isugbn=2&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
-            }); 
-
-            // spooky.then(function () {
-            //     this.emit('hello', 'downloaded') ;
-            // }); 
-
-            spooky.then(function () {
-                this.emit('conv_encoding', './data/courses') ;
-            }); 
-            spooky.then(function () {
-                this.emit('parse', './data/courses') ;
-            }); 
+                this.emit('hello', 'end') ;
+            });         
 
             spooky.then(function () {
                 this.exit();
@@ -90,53 +155,113 @@ router.get('/', function (req, res, next) {
         console.log(greeting);
     });
     
-    spooky.on('conv_encoding', function (file) {
+    spooky.on('sendtoDB', function (input) {
+        'use strict';
 
-        var fs = require('fs');
-        //euc-kr 파일을 utf-8 파일로 변환하는 설정
-        var encode = new Iconv('euc-kr', 'utf-8');
+        //html변수에 encoding 변환 html 저장        
+        conv_encoding();
 
-        //버퍼형식으로 나옴 content = '<Buffer 0d 0a 0d 0a 0d 0a ... >'
-        var content = fs.readFileSync(file);
+        //자동으로 파씽된 데이터를 json형식으로 저장        
+        var converted = tabletojson.convert(html);
         
-        //enconding 형식을 content에 적용하기
-        var content2 = encode.convert(content);
+        console.log(converted);
+
+        //디비 넣기
+        addtoDB(converted);
+
         
-        //버퍼를 문자열로 변환하기
-        html =content2.toString('utf-8');
-        
-        console.log(html);
-        
-        //파일 입출력 변환해주기 
-        fs.writeFileSync('./data/courses', html, 'utf-8');
   
     });
 
-    spooky.on('parse', function(file){
-        'use strict';
-        //tabletojson 모듈을 사용
-        var tabletojson = require('tabletojson');
-        //자동으로 파씽된 데이터를 json형식으로 저장
-        var converted = tabletojson.convert(html);
-        console.log(converted);
-
-        // var el = document.createElement( 'html' );
-        // el.innerHTML = "<html><head><title>titleTest</title></head><body><a href='test0'>test01</a><a href='test1'>test02</a><a href='test2'>test03</a></body></html>";
-        
-
-        // el.getElementsByTagName( 'a' );
-        // var table = document.querySelector("table");
-        // var data  = parseTable(table);
-        // console.log(data);   
-    });
-    
 
 
 });
 
+//html변수에 encoding 변환 html 저장
+function conv_encoding(){
+    //euc-kr 파일을 utf-8 파일로 변환하는 설정
+    var encode = new Iconv('euc-kr', 'utf-8');
+
+    //버퍼형식으로 나옴 content = '<Buffer 0d 0a 0d 0a 0d 0a ... >'
+    var content = fs.readFileSync('./data/courses');
+
+    //enconding 형식을 content에 적용하기
+    var content2 = encode.convert(content);
+
+    //버퍼를 문자열로 변환하기
+    html =content2.toString('utf-8');
+
+    console.log(html);
+
+}
+
+
+// create table courses(
+//     idx INT PRIMARY KEY AUTO_INCREMENT,
+//     gubun VARCHAR(5),
+//     code VARCHAR(40),
+//     name VARCHAR(40),
+//     credit INT,
+//     professor VARCHAR(40),
+//     time VARCHAR(40),
+//     room VARCHAR(40),
+//     max_num INT,
+//     cur_num INT,
+//     english VARCHAR(10),
+//     gyoyang VARCHAR(10),
+//     grade_type VARCHAR(10),
+//     pf_avail VARCHAR(10)
+//     );
+
+
+//   '0': '구      분',
+//   '1': '과목코드',
+//   '2': '분      반',
+//   '3': '과목명\n      (CourseName)',
+//   '4': '학점',
+//   '5': '교수',
+//   '6': '시간\n      (Period)',
+//   '7': '강의실',
+//   '8': '정원',
+//   '9': '인원',
+//   '10': '영어',
+//   '11': '교양\n      실무',
+//   '12': '성적유형',
+//   '13': 'PF병행',
+//   '14': '강의\n\t  계획서',
+//   '15': '비고' 
 
 
 
+function addtoDB(json){
+    for(var i = 1; i < json[0].length; i++) {
+        var obj = json[0][i];
+        var gubun = obj[0];
+        var code = obj[1] + "-" + obj[2];
+        var name = obj[3];
+        var credit = obj[4];
+        var professor = obj[5];
+        var time = obj[6];
+        var room = obj[7];
+        var max_num = obj[8];
+        var cur_num = obj[9];
+        var english = obj[10];
+        var gyoyang = obj[11];
+        var grade_type = obj[12];
+        var pf_avail = obj[13];
+        //     1, 교필, GEE10001-01, English Chapel 1(English Chapel 1), 0, 글로벌 주간Gregory T. Brown, 수7
+        // Wed7, ANH Auditorium, 999, , 100%, 신앙1, PF, N);
+        var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
+        console.log(insert);
+        connection.query(insert , function (error, results, fields) {
+            if (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    
+}
 
 
 module.exports = router;
