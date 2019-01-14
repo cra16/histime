@@ -2,7 +2,7 @@
 <template>
     <div id="show">
         <div class=user>안녕하세요 :) {{ student.name }}  </div>
-        
+        <div class=user>안녕하세요 :) {{ }}  </div>
         <h1>TimeTable show</h1>
         <div class="container">
             <!--시간표 리스트-->
@@ -21,42 +21,35 @@ import { bus } from '../main.js'
 
     export default {
         name: 'show',
-        
+        auth : false,
         components: {
             Ttshow,
             Ttlist
         },
         data() {
             return {
+                auth : false,
+                authenticated : false,
                 student : {
-                    name : this.$route.params.name,
-                    student_id : this.$route.params.student_id 
+                    name : "",
+                    student_id : ""
                 }
                
             };
         },
-   
-        
-     
-
-
 
     methods: {
         go() { //시간표를 추가하는 웹 페이지로 전환
             this.$router.replace({ name: "make" });
-            },
-       username: function(value) {
-           var name ='aa';
-             bus.$on('name', function(data){
-                 name = data;
-                 console.log(name);
-             })
-            console.log(name);
-            return name
-        }, 
-    }
+        }
+    },
+    mounted() {
+    if (localStorage.name) {
+        this.student.name = localStorage.name;
+        }
+    }    
+}
    
-  }
     
 </script>
 

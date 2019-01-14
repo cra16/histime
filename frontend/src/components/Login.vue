@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { bus } from '../main.js'
+
+
 export default {
   name: 'Login', 
   data() {
@@ -23,33 +24,36 @@ export default {
           id : "",
           password : "",
       },
-      student : {
-          student_id : "",
-          name : "",
-      }
     }
   },
   methods: {
+    //로그인 함수
+    //로그인 성공 => 히즈넷에서 크롤링한 사용자 정보를(이름, 학번) localStorage에 저장, 사용자가 검증되었다고 저장.
+    //로그인 실패 =>  에러가 발생함 : 백엔드에서 문제가 생김 , 고쳐야함
     login(){
       this.$http.post('/api/login', {
         id : this.input.id,
         password : this.input.password
       }).then((response) => {
+        console.log('로그' + response.data.student_id)
         if(response.data.student_id != -1){
-          this.student.student_id = response.data.student_id;
-          this.student.name = response.data.name; 
-          //this.$emit("authenticated", true);
-          //this.$emit("user.student_id", this.student_id);
-          this.$router.replace({ name: "show", params: {student_id:this.student.student_id ,name:this.student.name}})
+          localStorage.name = response.data.name;
+          localStorage.studetn_id = response.data.student_id;
+          localStorage.auth = true
+          this.$router.replace({ name: "show"})
         }
         else{
           console.log("The username and / or password is incorrect");//incorrect-error
-
         }
         
       });
-    }
-    
+    },
+
+  },
+
+}
+
+
 
     // login(){
     //   this.$http.get('/api/login').then((response) => {
@@ -70,11 +74,6 @@ export default {
             
     //     }
     // }
-    
-  },
-
-}
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -155,3 +154,6 @@ export default {
 }
 
 </style>
+
+
+

@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <!--웹이 처음 시작될 때, 사용자가 검증되지 않았다고 초기화 해 줍니다.-->
+   
     <router-view/>
   </div>
 </template>
@@ -17,20 +19,18 @@ export default {
   },
   data() {
     return {
-      authenticated: false,
     }
   },
   mounted() {
-    if(!this.authenticated) {
-    this.$router.replace({ name: "login" });
-            }
-        },
+    //웹이 처음 시작될 때 사용자가 검증되지 않은것으로 초기화 해줍니다.
+    this.setAuth(false)
+  },
   methods: {
-    setAuthenticated(status) {
-      this.authenticated = status;
+    setAuth(status) {
+      localStorage.auth = status;
       },
     logout() {
-      this.authenticated = false;
+      localStorage.auth = false;
     },
     
   }
