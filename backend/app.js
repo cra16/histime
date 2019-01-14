@@ -29,6 +29,9 @@ var course_update = require('./routes/course_update');
 app.use('/api/login', login);
 app.use('/api/course_update', course_update);
 
+//mysql tester
+var mysql = require('./routes/mysql');
+// app.use('/api/mysql', mysql);
 
 ////////////////////////////////////////
 app.use(logger('dev'));
