@@ -3,6 +3,10 @@
   overflow: scroll;
   height: 100%;
 }
+.tt_name{
+  text-align : center;
+
+}
 .days, .day.time {
     height : 100%;
     margin: 0; }
@@ -14,6 +18,7 @@ body {
 .days{
   display : flex;
   display : -webkit-flex;
+  
 
 }
 .day {
@@ -27,7 +32,7 @@ body {
   
 
 .day_title {
-  border : 1px solid black;
+
   height: 10%;
   font-size: 12px;
   font-weight: 600;
@@ -41,7 +46,7 @@ body {
   font-size: 12px;
   text-align: center;
   line-height: 10vh;
-  border : 1px solid black;
+ 
 }
 .blue{
   background : blue;
@@ -50,7 +55,7 @@ body {
   width : 100%;
 }
 .time{
-  border : 1px solid black;
+ 
   height: 15%; /*90min*/
   font-size: 10px;
   display : flex;

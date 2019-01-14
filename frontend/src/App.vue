@@ -4,24 +4,20 @@
   </div>
 </template>
 
-
-
 <script>
-
+import login from './components/Login.vue'
+import make from './components/Make.vue'
+import show from './components/Show.vue'
 
 export default {
+
   name: 'app',
   components: {
-    //login import 하기
+
   },
   data() {
     return {
       authenticated: false,
-      mockAccount: {
-      username: "cra",
-      password: "cra"
-      //여기에 로그인 정보 불러오기 from backend
-      }
     }
   },
   mounted() {

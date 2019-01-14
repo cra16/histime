@@ -3,9 +3,9 @@
     <h1>{{ name }} </h1>
     <form @submit.prevent ="addSkill">
       <h3>Enter your email : </h3>
-      <input type = "text" placeholder="username" v-model="input.username">
+      <input type = "text" placeholder="hisent id" v-model="input.id">
       <h3>Enter your password :</h3>
-      <input type = "password" placeholder="password" v-model="input.password">
+      <input type = "password" placeholder="hisnet password" v-model="input.password">
       <button type="button" class="btn blue" v-on:click="login()">Login</button>
     </form>
      
@@ -13,13 +13,14 @@
 </template>
 
 <script>
+import { bus } from '../main.js'
 export default {
   name: 'Login', 
   data() {
     return{
-      name : '로그인을 해봐라',
+      name : 'login page',
       input :  {
-          username : "",
+          id : "",
           password : "",
       },
       student : {
@@ -31,14 +32,15 @@ export default {
   methods: {
     login(){
       this.$http.post('/api/login', {
-        id : this.input.username,
+        id : this.input.id,
         password : this.input.password
       }).then((response) => {
         if(response.data.student_id != -1){
           this.student.student_id = response.data.student_id;
           this.student.name = response.data.name; 
-          this.$emit("authenticated", true);
-          this.$router.replace({ name: "show" });
+          //this.$emit("authenticated", true);
+          //this.$emit("user.student_id", this.student_id);
+          this.$router.replace({ name: "show", params: {student_id:this.student.student_id ,name:this.student.name}})
         }
         else{
           console.log("The username and / or password is incorrect");//incorrect-error
@@ -69,8 +71,9 @@ export default {
     //     }
     // }
     
-  }
-  }
+  },
+
+}
 
 </script>
 

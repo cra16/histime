@@ -9,10 +9,13 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
+ 
   routes: [
     
-    { path: '/', name: 'show', component: Show, meta: { requiresAuth: true }},
-    { path: '/make', name: 'make', component: Make, meta: { requiresAuth: true} },
+    //{ path: '/', name: 'show', component: Show, meta: { requiresAuth: true }},
+    //{ path: '/make', name: 'make', component: Make, meta: { requiresAuth: true} },
+    { path: '/', name: 'show', component: Show},
+    { path: '/make', name: 'make', component: Make,  },
     { path: '/login', name: 'login', component: Login },
     
 

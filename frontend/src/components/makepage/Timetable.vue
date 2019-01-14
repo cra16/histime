@@ -1,6 +1,7 @@
 <template>
 <!-- show page에서 시간표를 보여주는 부분 -->
 <div class = "Ttshow">
+    <h3 class ="tt_name">{{ tt_name }}</h3>
     <div class="days">
         <div class="day time">
             <div class="day_title">Time</div>
@@ -17,7 +18,7 @@
         </div>
 
         <div class="day monday">
-            <div class="day_title">Monday</div>
+            <div class="day_title">Mon</div>
             <div v-for="n in 10" :key="n" class="time ">
                 <div v-for="subject in subjects" :key ="subject.time" class ="blue">
                     <div >
@@ -56,7 +57,9 @@
             <div class="day_title">Saturday</div>	
         </div>
     </div>
+    <button v-on:click = go()>완성!</button>
 </div>
+
 </template>
 
 <script >
@@ -64,6 +67,7 @@
     export default{
           data(){
               return{
+                  tt_name : "aa",
                   subjects: subjects,
                   subject : {
                        name : ""
@@ -83,7 +87,12 @@
                 //     })
                 // }
                 // 만들다가 실패.. 나중에 다시하기(지현)
-              }
+              },
+            methods : {
+                go(){
+                    this.$router.replace({ name: "show" });
+                }
+            }
       }
     
 </script>
