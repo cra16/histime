@@ -5,7 +5,11 @@
 }
 .tt_name{
   text-align : center;
-
+  background-color:#225B95;
+  margin-top:0px;
+  color:#E6F1FC;
+  text-align:left;
+  
 }
 .days, .day.time {
     height : 100%;
@@ -61,6 +65,7 @@ body {
   display : flex;
  
 }
+
 
 
 

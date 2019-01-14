@@ -1,7 +1,7 @@
 <template>
 <!-- show page에서 시간표를 보여주는 부분 -->
 <div class = "Ttshow">
-    <h3 class ="tt_name">{{ tt_name }}</h3>
+    <h1 class ="tt_name">{{ tt_name }}</h1>
     <div class="days">
         <div class="day time">
             <div class="day_title">Time</div>
