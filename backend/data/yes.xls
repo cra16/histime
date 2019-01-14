@@ -1,0 +1,449 @@
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ks_c_5601-1987">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>교직원정보시스템</title>
+
+
+Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home/export/var_www/html/config/config.php on line 378
+</head>
+
+<table border="1" width="750" bordercolorlight="#000000" cellspacing="0" cellpadding="0" bordercolordark="#FFFFFF">
+  <tr>
+    <td width="20" height="30" bgcolor="#eaebef" align="center">구<br>      분</td>
+    <td width="60" bgcolor="#eaebef" align="center">과목코드</td>
+    <td width="20" bgcolor="#eaebef" align="center">분<br>      반</td>
+    <td width="120" bgcolor="#eaebef" align="center">과목명<br>
+      (CourseName)</td>
+    <td width="30" bgcolor="#eaebef" align="center">학<br>점</td>
+    <td width="100" bgcolor="#eaebef" align="center">개설정보</td>
+    <td width="80" bgcolor="#eaebef" align="center">시간<br>
+      (Period)</td>
+	<td width="50" bgcolor="#eaebef" align="center">강의실</td>
+    <td width="40" bgcolor="#eaebef" align="center">정원</td>
+	<td width="40" bgcolor="#eaebef" align="center">인원</td>
+    <td width="60" bgcolor="#eaebef" align="center">영어</td>
+    <td width="80" bgcolor="#eaebef" align="center">교양<br>
+      실무</td>
+    <td width="40" bgcolor="#eaebef" align="center">성적<br>유형</td>
+    <td width="40" bgcolor="#eaebef" align="center">PF<br>병행</td>
+	<td width="60" bgcolor="#eaebef" align="center">강의<br>
+	  계획서</td>
+	<td width="30" bgcolor="#eaebef" align="center">비고</td>
+  </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEE10001</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">English Chapel 1<br>(English Chapel 1)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Gregory T. Brown</font></td>
+    <td bgcolor="#F9F9F9" align="center">수7<br>
+	Wed7<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">ANH Auditorium&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEE10001&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEE10002</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">English Chapel 2<br>(English Chapel 2)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Gregory T. Brown</font></td>
+    <td bgcolor="#F9F9F9" align="center">수7<br>
+	Wed7<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">ANH Auditorium&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEE10002&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEE20001</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">English Chapel 3<br>(English Chapel 3)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Gregory T. Brown</font></td>
+    <td bgcolor="#F9F9F9" align="center">수7<br>
+	Wed7<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">ANH Auditorium&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEE20001&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEE20002</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">English Chapel 4<br>(English Chapel 4)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Gregory T. Brown</font></td>
+    <td bgcolor="#F9F9F9" align="center">수7<br>
+	Wed7<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">ANH Auditorium&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEE20002&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEE30001</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">English Chapel 5<br>(English Chapel 5)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Gregory T. Brown</font></td>
+    <td bgcolor="#F9F9F9" align="center">수7<br>
+	Wed7<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">ANH Auditorium&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEE30001&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEE30002</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">English Chapel 6<br>(English Chapel 6)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Gregory T. Brown</font></td>
+    <td bgcolor="#F9F9F9" align="center">수7<br>
+	Wed7<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">ANH Auditorium&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEE30002&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK10001</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">채플(한국어) 1<br>(Chapel(Korean) 1)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>최정훈외 4명</font></td>
+    <td bgcolor="#F9F9F9" align="center">수5,수6,수7<br>
+	Wed5,Wed6,<br>ed7<br><br></td>
+	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEK10001&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK10002</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">채플(한국어) 2<br>(Chapel(Korean) 2)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>최정훈외 4명</font></td>
+    <td bgcolor="#F9F9F9" align="center">수5,수6,수7<br>
+	Wed5,Wed6,<br>ed7<br><br></td>
+	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEK10002&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK10008</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">공동체리더십훈련1<br>(Community & Leadership Training 1)</td>
+    <td bgcolor="#F9F9F9" align="center">.5</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Unconfirmed</font></td>
+    <td bgcolor="#F9F9F9" align="center"><br>
+	<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">950</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK10009</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">공동체리더십훈련2<br>(Community & Leadership Training 2)</td>
+    <td bgcolor="#F9F9F9" align="center">.5</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Unconfirmed</font></td>
+    <td bgcolor="#F9F9F9" align="center"><br>
+	<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">950</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK10015</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">한동인성교육<br>(Handong Character-Building)</td>
+    <td bgcolor="#F9F9F9" align="center">1</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Richard M. Hamm</font></td>
+    <td bgcolor="#F9F9F9" align="center">수4<br>
+	Wed4<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">HDH 303A&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">40</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">100%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK20001</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">채플(한국어) 3<br>(Chapel(Korean) 3)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>최정훈외 4명</font></td>
+    <td bgcolor="#F9F9F9" align="center">수5,수6,수7<br>
+	Wed5,Wed6,<br>ed7<br><br></td>
+	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEK20001&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK20002</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">채플(한국어) 4<br>(Chapel(Korean) 4)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>최정훈외 4명</font></td>
+    <td bgcolor="#F9F9F9" align="center">수5,수6,수7<br>
+	Wed5,Wed6,<br>ed7<br><br></td>
+	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEK20002&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK20008</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">공동체리더십훈련3<br>(Community & Leadership Training 3)</td>
+    <td bgcolor="#F9F9F9" align="center">.5</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Unconfirmed</font></td>
+    <td bgcolor="#F9F9F9" align="center"><br>
+	<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">950</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK20009</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">공동체리더십훈련4<br>(Community & Leadership Training 4)</td>
+    <td bgcolor="#F9F9F9" align="center">.5</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Unconfirmed</font></td>
+    <td bgcolor="#F9F9F9" align="center"><br>
+	<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">950</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK30001</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">채플(한국어) 5<br>(Chapel(Korean) 5)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>최정훈외 4명</font></td>
+    <td bgcolor="#F9F9F9" align="center">수5,수6,수7<br>
+	Wed5,Wed6,<br>ed7<br><br></td>
+	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEK30001&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK30002</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">채플(한국어) 6<br>(Chapel(Korean) 6)</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>최정훈외 4명</font></td>
+    <td bgcolor="#F9F9F9" align="center">수5,수6,수7<br>
+	Wed5,Wed6,<br>ed7<br><br></td>
+	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">999</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	    <td width="20" height="20" bgcolor="#F9F9F9" align="center">
+    <a href="javascript:senditpop('PLES330M_POP.php?kang_gwamok_code=GEK30002&kang_bunban=01&kang_yy=2019&kang_hakgi=1')"> 조회</a>    
+	</td> 
+       </tr>
+  <tr  bgcolor="#F7F7F7" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK30008</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">공동체리더십훈련5<br>(Community & Leadership Training 5)</td>
+    <td bgcolor="#F9F9F9" align="center">.5</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Unconfirmed</font></td>
+    <td bgcolor="#F9F9F9" align="center"><br>
+	<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">950</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+  <tr bgcolor="#FFFFFF" >
+    <td height="30" bgcolor="#F9F9F9" align="center">교필</td>
+    <td bgcolor="#F9F9F9" align="center">GEK30009</td>
+    <td bgcolor="#F9F9F9" align="center">01</td>
+    <td bgcolor="#F9F9F9" align="center">공동체리더십훈련6<br>(Community & Leadership Training 6)</td>
+    <td bgcolor="#F9F9F9" align="center">.5</td>
+    <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Unconfirmed</font></td>
+    <td bgcolor="#F9F9F9" align="center"><br>
+	<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">950</td>
+	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">0%</td>
+    <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
+    <td bgcolor="#F9F9F9" align="center">N&nbsp;</td>	
+	 
+    <td height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+    	 
+    <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
+       </tr>
+</table>

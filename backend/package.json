@@ -11,13 +11,17 @@
     "casperjs": "^1.1.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "detect-character-encoding": "^0.7.0",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "path": "^0.12.7",
     "phantomjs": "^2.1.7",
     "phantomjs-prebuilt": "^2.1.16",
     "spooky": "^0.2.5",
-    "spooky2": "^2.0.0"
+    "spooky2": "^2.0.0",
+    "tiny-jsonrpc": "^2.0.1",
+    "utils": "^0.3.1"
   }
 }

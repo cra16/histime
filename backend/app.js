@@ -25,7 +25,10 @@ app.set('view engine', 'jade');
 
 //내가 추가한 부분
 var login = require('./routes/login');
+var course_update = require('./routes/course_update');
 app.use('/api/login', login);
+app.use('/api/course_update', course_update);
+
 
 ////////////////////////////////////////
 app.use(logger('dev'));
