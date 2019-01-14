@@ -1,9 +1,9 @@
+
+
 var express = require('express');
 var Iconv = require('iconv').Iconv;
 var router = express.Router();
-
-var student_id = 0;
-var name = '';
+var html; 
 
 router.get('/', function (req, res, next) {
     try {
@@ -59,7 +59,7 @@ router.get('/', function (req, res, next) {
                 this.emit('conv_encoding', './data/courses') ;
             }); 
             spooky.then(function () {
-                this.emit('conv_encoding', './data/courses') ;
+                this.emit('parse', './data/courses') ;
             }); 
 
             spooky.then(function () {
@@ -103,15 +103,32 @@ router.get('/', function (req, res, next) {
         var content2 = encode.convert(content);
         
         //버퍼를 문자열로 변환하기
-        var utf8Text =content2.toString('utf-8');
+        html =content2.toString('utf-8');
         
-        console.log(utf8Text);
+        console.log(html);
         
         //파일 입출력 변환해주기 
-        fs.writeFileSync('./data/courses', utf8Text, 'utf-8');
+        fs.writeFileSync('./data/courses', html, 'utf-8');
   
     });
 
+    spooky.on('parse', function(file){
+        'use strict';
+        //tabletojson 모듈을 사용
+        var tabletojson = require('tabletojson');
+        //자동으로 파씽된 데이터를 json형식으로 저장
+        var converted = tabletojson.convert(html);
+        console.log(converted);
+
+        // var el = document.createElement( 'html' );
+        // el.innerHTML = "<html><head><title>titleTest</title></head><body><a href='test0'>test01</a><a href='test1'>test02</a><a href='test2'>test03</a></body></html>";
+        
+
+        // el.getElementsByTagName( 'a' );
+        // var table = document.querySelector("table");
+        // var data  = parseTable(table);
+        // console.log(data);   
+    });
     
 
 

@@ -25,6 +25,7 @@
     "phantomjs-prebuilt": "^2.1.16",
     "spooky": "^0.2.5",
     "spooky2": "^2.0.0",
+    "tabletojson": "^1.0.1",
     "tiny-jsonrpc": "^2.0.1",
     "utils": "^0.3.1"
   }
