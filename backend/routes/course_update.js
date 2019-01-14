@@ -1,5 +1,5 @@
 var express = require('express');
-
+var Iconv = require('iconv').Iconv;
 var router = express.Router();
 
 var student_id = 0;
@@ -56,7 +56,7 @@ router.get('/', function (req, res, next) {
             }); 
 
             spooky.then(function () {
-                this.emit('dataread', './data/courses') ;
+                this.emit('conv_encoding', './data/courses') ;
             }); 
 
             spooky.then(function () {
@@ -87,25 +87,27 @@ router.get('/', function (req, res, next) {
         console.log(greeting);
     });
     
-    spooky.on('decode', function (filename) {
-        var fs = require('fs'); 
-        const detectCharacterEncoding = require('detect-character-encoding'); //npm install detect-character-encoding 
-        var buffer = fs.readFileSync('./data/' + filename); 
-        var originalEncoding = detectCharacterEncoding(buffer); 
-        var file = fs.readFileSync('./data/' + filename, originalEncoding.encoding); 
-        fs.writeFileSync('./data/' + filename, file, 'UTF-8'); 
-    });
-    
-    spooky.on('dataread', function (file) {
-        var fs = require('fs');
-        fs.readFile(file, 'utf8', function(err, data){
-          console.log(data);
-        });
+    spooky.on('conv_encoding', function (file) {
 
-        fs.writeFile('./data/check', description, 'utf8', function(err){
-            response.writeHead(302, {Location: `/?id=${title}`});
-            response.end('success');
-          });
+        var fs = require('fs');
+        //euc-kr 파일을 utf-8 파일로 변환하는 설정
+        var encode = new Iconv('euc-kr', 'utf-8');
+
+        //버퍼형식으로 나옴 content = '<Buffer 0d 0a 0d 0a 0d 0a ... >'
+        var content = fs.readFileSync(file);
+        
+        //enconding 형식을 content에 적용하기
+        var content2 = encode.convert(content);
+
+        console.log('yes');
+        
+        //버퍼를 문자열로 변환하기
+        var utf8Text =content2.toString('utf-8');
+        
+        console.log(utf8Text);
+        
+        //파일 입출력 변환해주기 
+        fs.writeFileSync('./data/check', utf8Text, 'utf-8');
   
     });
 
