@@ -1,7 +1,8 @@
 <!--시간표를 보여주는 웹 페이지-->
 <template>
     <div id="show">
-        <div class=user>안녕하세요 :) {{ this.$route.params.name}}  </div>
+        <div class=user>안녕하세요 :) {{ student.name }}  </div>
+        
         <h1>TimeTable show</h1>
         <div class="container">
             <!--시간표 리스트-->
@@ -9,7 +10,7 @@
             <!--시간표  내용-->
             <Ttshow id ="timetable"/>
        </div>
-        <div class=user>안녕하세요 :) {{  this.$route.params.student_id }}</div>
+        <div class=user>안녕하세요 :) {{  student.student_id }}</div>
     </div>
 </template>
 
@@ -27,6 +28,10 @@ import { bus } from '../main.js'
         },
         data() {
             return {
+                student : {
+                    name : this.$route.params.name,
+                    student_id : this.$route.params.student_id 
+                }
                
             };
         },
