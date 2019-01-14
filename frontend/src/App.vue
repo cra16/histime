@@ -1,40 +1,36 @@
 <template>
   <div id="app">
+    <!--웹이 처음 시작될 때, 사용자가 검증되지 않았다고 초기화 해 줍니다.-->
+   
     <router-view/>
   </div>
 </template>
 
-
-
 <script>
-
+import login from './components/Login.vue'
+import make from './components/Make.vue'
+import show from './components/Show.vue'
 
 export default {
+
   name: 'app',
   components: {
-    //login import 하기
+
   },
   data() {
     return {
-      authenticated: false,
-      mockAccount: {
-      username: "cra",
-      password: "cra"
-      //여기에 로그인 정보 불러오기 from backend
-      }
     }
   },
   mounted() {
-    if(!this.authenticated) {
-    this.$router.replace({ name: "login" });
-            }
-        },
+    //웹이 처음 시작될 때 사용자가 검증되지 않은것으로 초기화 해줍니다.
+    this.setAuth(false)
+  },
   methods: {
-    setAuthenticated(status) {
-      this.authenticated = status;
+    setAuth(status) {
+      localStorage.auth = status;
       },
     logout() {
-      this.authenticated = false;
+      localStorage.auth = false;
     },
     
   }

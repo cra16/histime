@@ -1,17 +1,19 @@
+
 [
 
     {
     "name" : "식빵",
     "day" : "wed",
-    "time" : 1,
+    "time" : 2,
     "code" : "aaa"
     },
     {
         "name" : "치즈",
         "day" : "wed",
         "time" : 1,
-        "code" : "aaa"
+        "code" : "aba"
     },
+
     {
     "name" : "누텔라",
     "day" : "mon",

@@ -1,6 +1,8 @@
 <!--시간표를 보여주는 웹 페이지-->
 <template>
     <div id="show">
+        <div class=user>안녕하세요 :) {{ student.name }}  </div>
+        <div class=user>안녕하세요 :) {{ }}  </div>
         <h1>TimeTable show</h1>
         <div class="container">
             <!--시간표 리스트-->
@@ -8,29 +10,47 @@
             <!--시간표  내용-->
             <Ttshow id ="timetable"/>
        </div>
-        
+        <div class=user>안녕하세요 :) {{  student.student_id }}</div>
     </div>
 </template>
 
 <script>
-import Ttshow from '../components/showpage/Ttshow.vue'
-import Ttlist from '../components/showpage/Ttlist.vue'
+import Ttshow from '../components/showpage/Show.vue'
+import Ttlist from '../components/showpage/List.vue'
+import { bus } from '../main.js'
 
     export default {
         name: 'show',
+        auth : false,
         components: {
             Ttshow,
             Ttlist
         },
         data() {
-            return {};
+            return {
+                auth : false,
+                authenticated : false,
+                student : {
+                    name : "",
+                    student_id : ""
+                }
+               
+            };
         },
-        methods: {
-            go() { //시간표를 추가하는 웹 페이지로 전환
-                this.$router.replace({ name: "make" });
-            }
+
+    methods: {
+        go() { //시간표를 추가하는 웹 페이지로 전환
+            this.$router.replace({ name: "make" });
         }
-    }
+    },
+    mounted() {
+    if (localStorage.name) {
+        this.student.name = localStorage.name;
+        }
+    }    
+}
+   
+    
 </script>
 
 

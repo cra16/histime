@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
     } catch (e) {
         var Spooky = require('../lib/spooky');
     }
-    
+    console.log('in');
     var spooky = new Spooky({
             child: {
                 transport: 'http'
