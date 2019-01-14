@@ -88,6 +88,6 @@
     
 </script>
 
-<style src = '../../assets/showpage/ttshow.css' scoped>
+<style src = '../../assets/showpage/timetable.css' scoped>
 
 </style>

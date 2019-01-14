@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Ttshow from '../components/showpage/Ttshow.vue'
-import Ttlist from '../components/showpage/Ttlist.vue'
+import Ttshow from '../components/showpage/Show.vue'
+import Ttlist from '../components/showpage/List.vue'
 import { bus } from '../main.js'
 
     export default {
