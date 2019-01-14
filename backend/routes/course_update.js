@@ -51,10 +51,13 @@ router.get('/', function (req, res, next) {
                 this.download('https://hisnet.handong.edu/for_student/course/PLES333X.php?hak_year=2019&hak_term=1&gwamok=&gwamok_code=&hakbu=%C0%FC%C3%BC&isugbn=2&injung=%C0%FC%C3%BC&prof_name=', './data/courses'); 
             }); 
 
-            spooky.then(function () {
-                this.emit('hello', 'downloaded') ;
-            }); 
+            // spooky.then(function () {
+            //     this.emit('hello', 'downloaded') ;
+            // }); 
 
+            spooky.then(function () {
+                this.emit('conv_encoding', './data/courses') ;
+            }); 
             spooky.then(function () {
                 this.emit('conv_encoding', './data/courses') ;
             }); 
@@ -98,8 +101,6 @@ router.get('/', function (req, res, next) {
         
         //enconding 형식을 content에 적용하기
         var content2 = encode.convert(content);
-
-        console.log('yes');
         
         //버퍼를 문자열로 변환하기
         var utf8Text =content2.toString('utf-8');
@@ -107,7 +108,7 @@ router.get('/', function (req, res, next) {
         console.log(utf8Text);
         
         //파일 입출력 변환해주기 
-        fs.writeFileSync('./data/check', utf8Text, 'utf-8');
+        fs.writeFileSync('./data/courses', utf8Text, 'utf-8');
   
     });
 
