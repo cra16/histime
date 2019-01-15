@@ -31,7 +31,7 @@ app.use('/api/course_update', course_update);
 
 //mysql tester
 var mysql = require('./routes/mysql');
-// app.use('/api/mysql', mysql);
+app.use('/api/show', mysql);
 
 ////////////////////////////////////////
 app.use(logger('dev'));
