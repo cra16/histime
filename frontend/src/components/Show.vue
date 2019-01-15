@@ -3,6 +3,7 @@
     <div id="show">
         <div class=user>안녕하세요 {{ this.$session.get('name') }} 학우님⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾ </div>
         <h1>TimeTable show</h1>
+        <button v-on:click="logout()">로그아웃</button>
         <div class="container">
             <!--시간표 리스트-->
             <Ttlist id = "list" />
@@ -42,13 +43,25 @@ import { bus } from '../main.js'
         },
         logout: function () {
                 this.$session.destroy()
-                this.$router.push('/')
-            }
+                this.$cookies.set('auth_save',false)
+                this.$cookies.remove('name')
+                this.$cookies.remove('student_id',)
+                this.$cookies.remove('auth')
+                this.$router.replace('/login')
+                console.log(this.$cookies.get('auth_save'))
+            },
+        
+
         },
     beforeCreate: function () {
-            if (!this.$session.exists()) {
+            console.log('auth_save : ' + this.$cookies.get('auth_save'))
+            console.log('session: ' + this.$session.exists)
+           if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
                 alert("로그인이 필요합니다 :?")
-                this.$router.replace('/login')
+                this.$router.push('/login')
+            }
+            else{
+                
             }
         },
   
