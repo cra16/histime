@@ -26,12 +26,6 @@ h2{
     display: inline-block;
     width: 90%; height: 30px;
     margin-top:0px;
-    border: 1px solid #225B95;
-    background: white;
-}
-.input_text {
-    width: 85%; height: 15px;
-    margin: 7px 0 0 9px;
     border: 0;
     line-height: 21px;
     font-weight: bold;
