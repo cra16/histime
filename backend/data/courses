@@ -8,8 +8,13 @@
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <title>교직원정보시스템</title>
 
+<<<<<<< HEAD
 
 Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home/export/var_www/html/config/config.php on line 378
+=======
+
+Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home/export/var_www/html/config/config.php on line 378
+>>>>>>> yujin
 </head>
 
 <table border="1" width="750" bordercolorlight="#000000" cellspacing="0" cellpadding="0" bordercolordark="#FFFFFF">
@@ -35,6 +40,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	  계획서</td>
 	<td width="30" bgcolor="#eaebef" align="center">비고</td>
   </tr>
+<<<<<<< HEAD
   <tr bgcolor="#FFFFFF" >
     <td height="30" bgcolor="#F9F9F9" align="center">교선필</td>
     <td bgcolor="#F9F9F9" align="center">GCS10001</td>
@@ -15094,4 +15100,6 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     	 
     <td width="20" height="20" bgcolor="#F9F9F9" align="center">&nbsp;</td>
        </tr>
+=======
+>>>>>>> yujin
 </table>
