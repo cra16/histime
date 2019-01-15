@@ -19,4 +19,10 @@ npm run build
 npm run build --report
 ```
 
+#color
+>#225B95 : 진한파랑
+>#9CBADF : 연한파랑
+>#E6F1FC : 흰 회색
+>#FFCA55 : 노랑
+>#FF6D00 : 주황
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

@@ -44,9 +44,14 @@ import Save from '../components/makepage/Save.vue'
                 alert("로그인이 필요합니다 :?")
                 this.$router.push('/login')
             }
-        },
-
-    
+            else{
+                this.$session.start()
+                this.$session.set('name', this.$cookies.get('name') )
+                this.$session.set('student_id', this.$cookies.get('student_id'))
+                this.$session.set('auth', true)
+                }
+                
+            }
   
   }
     

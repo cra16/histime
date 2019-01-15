@@ -1,14 +1,23 @@
   <template>
   <div class="login">
-    <h1>{{ name }} </h1>
-    <form @submit.prevent ="addSkill">
-      <h3>Enter your email : </h3>
-      <input type = "text" placeholder="hisent id" v-model="input.id">
-      <h3>Enter your password :</h3>
-      <input type = "password" placeholder="hisnet password" v-model="input.password">
-      <p><input class="check_box" type="checkbox" v-model="isSave"> <label for="a">로그인 상태 30일 유지</label></p>
-      <button type="button" class="btn blue" v-on:click="login()">Login</button>
+    <div class = "logo">
+      <h1>{{ name }} </h1>
+      <p>이번 학기를 채울 모든 경우의 수, His Time</p>
+    </div>
+
+    <form>
+      <div class ="login_box">
+        <div class="input_box">
+          <input type = "text" placeholder="hisent id" v-model="input.id">
+          <br />
+          <input type = "password" placeholder="hisnet password" v-model="input.password">
+        </div>
+        <button type="button" class="btn yellow" v-on:click="login()">Login</button>
+      </div>
+
+      <!-- <div class="check_box"><input type="checkbox" v-model="isSave"> <p>로그인 상태 30일 유지</p></div> -->
     </form>
+    
     
     <div v-show="isLoad" id="loading"><img id="loading-image" src="/images/loading.gif" alt="Loading..." /></div>
 
@@ -24,7 +33,7 @@ export default {
   name: 'Login', 
   data() {
     return{
-      name : 'login page',
+      name : 'His Time',
       input :  {
           id : "",
           password : "",
@@ -105,101 +114,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; 
-
-#loading {
- width: 100%;  
- height: 100%;  
- top: 0px;
- left: 0px;
- position: fixed;  
- display: block;  
- opacity: 0.7;  
- background-color: #fff;  
- z-index: 99;  
- text-align: center; } 
-  
-#loading-image {  
- position: absolute;  
- top: 50%;  
- left: 50%; 
- z-index: 100; }
-
-
-
-
-  .holder {
-    background: #fff;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  ul li {
-    padding: 20px;
-    font-size: 1.3em;
-    background-color: #E0EDF4;
-    border-left: 5px solid #3EB3F6;
-    margin-bottom: 2px;
-    color: #3E5252;
-  }
-
-  
-
-  .container {
-    box-shadow: 0px 0px 40px lightgray;
-  }
-
-  input {
-    width: calc(100% - 40px);
-    border: 0;
-    padding: 20px;
-    font-size: 1.3em;
-    background-color: #323333;
-    color: #687F7F;
-  }
-  input.check_box{
-    width: auto
-  }
-
-    .alert {
-    background: #fdf2ce;
-    font-weight: bold;
-    display: inline-block;
-    padding: 5px;
-    margin-top: -20px;
-  }
-
-  i {
-    float : right;
-    cursor : pointer;
-  }
-
-  
-  .btn {
-  border-radius: 5px;
-  padding: 15px 25px;
-  font-size: 22px;
-  text-decoration: none;
-  margin: 20px;
-  color: #fff;
-  position: relative;
-  display: inline-block;
-  cursor : pointer;
-}
-.blue {
-  background-color: #55acee;
-  box-shadow: 0px 5px 0px 0px #3C93D5;
-}
-
-.blue:hover {
-  background-color: #6FC6FF;
-}
+<style src = '../assets/Login.less' lang='scss' scoped>
 
 </style>
 
