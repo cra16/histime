@@ -1,8 +1,7 @@
 <!--시간표를 보여주는 웹 페이지-->
 <template>
     <div id="show">
-        <div class=user>안녕하세요 :) {{ student.name }}  </div>
-        <div class=user>안녕하세요 :) {{ }}  </div>
+        <div class=user>안녕하세요 {{ this.$session.get('name') }} 학우님⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾ </div>
         <h1>TimeTable show</h1>
         <div class="container">
             <!--시간표 리스트-->
@@ -10,7 +9,6 @@
             <!--시간표  내용-->
             <Ttshow id ="timetable"/>
        </div>
-        <div class=user>안녕하세요 :) {{  student.student_id }}</div>
     </div>
 </template>
 
@@ -41,13 +39,19 @@ import { bus } from '../main.js'
     methods: {
         go() { //시간표를 추가하는 웹 페이지로 전환
             this.$router.replace({ name: "make" });
-        }
-    },
-    mounted() {
-    if (localStorage.name) {
-        this.student.name = localStorage.name;
-        }
-    }    
+        },
+        logout: function () {
+                this.$session.destroy()
+                this.$router.push('/')
+            }
+        },
+    beforeCreate: function () {
+            if (!this.$session.exists()) {
+                alert("로그인이 필요합니다 :?")
+                this.$router.replace('/login')
+            }
+        },
+  
 }
    
     

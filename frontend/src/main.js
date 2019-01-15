@@ -4,7 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-export const bus = new Vue();
+const VueSession = require('vue-session');
+Vue.use(VueSession)
+
+
 
 Vue.prototype.$http = axios
 

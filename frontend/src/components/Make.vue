@@ -23,11 +23,26 @@ import Save from '../components/makepage/Save.vue'
         data() {
             return {};
         },
+
         methods : {
              go() {
                 this.$router.replace({ name: "show" });
+            },
+            logout: function () {
+                this.$session.destroy()
+                this.$router.push('/')
             }
-        }
+        },
+
+        beforeCreate: function () {
+            if (!this.$session.exists()) {
+                alert("로그인이 필요합니다 :?")
+                this.$router.push('/')
+            }
+        },
+
+    
+  
   }
     
 </script>

@@ -35,18 +35,19 @@ export default {
         id : this.input.id,
         password : this.input.password
       }).then((response) => {
+        this.$session.start()
         console.log('로그' + response.data.student_id)
-        if(response.data.student_id != -1){
-          localStorage.name = response.data.name;
-          localStorage.studetn_id = response.data.student_id;
-          localStorage.auth = true
-          this.$router.replace({ name: "show"})
-        }
-        else{
-          console.log("The username and / or password is incorrect");//incorrect-error
-        }
-        
-      });
+        if (response.status === 200 ) {
+              this.$session.start()
+              this.$session.set('name', response.data.name)
+              this.$session.set('student_id', response.data.student_id)
+              this.$session.set('auth', 'true')
+              this.$router.replace({ name: "show"})
+              console.log(this.$session.getAll())
+            }
+          }, function (err) {
+            alert("틀렸따!")
+          })
     },
 
   },
