@@ -8,17 +8,30 @@ h1{
     margin-top:0px;
     background-color:#225B95;
 }
+h2{
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:5px;
+    background-color:#9CBADF;
+}
 
 .blue_window {
     display: inline-block;
-    width: 366px; height: 34px;
+    width: 57%; height: 34px;
     margin-top:5px;
     border: 3px solid #225B95;
     background: white;
 }
+.blue_window2 {
+    display: inline-block;
+    width: 90%; height: 30px;
+    margin-top:0px;
+    border: 1px solid #225B95;
+    background: white;
+}
 .input_text {
-    width: 348px; height: 21px;
-    margin: 6px 0 0 9px;
+    width: 85%; height: 15px;
+    margin: 7px 0 0 9px;
     border: 0;
     line-height: 21px;
     font-weight: bold;
@@ -26,7 +39,7 @@ h1{
     outline: none;
 }
 .sch_filt {
-    width: 35px; height: 40px;
+    width: 54px; height: 40px;
     margin: 0; border: 0;
     margin-top:5px;
     vertical-align: top;
@@ -41,3 +54,42 @@ h1{
     background: rgb(66, 173, 206);
 }
 
+.boxed {
+    border: 1px solid #225B95 ;
+  }
+
+  .placeholder-box {
+    position: relative;
+    display: block;
+    width: 300px;
+    min-height: 150px;
+    margin-top: 0px;
+    padding: 5px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+    background-color:#E6F1FC;
+  }
+    
+  .placeholder-box p {
+    text-align:left;
+    
+  }
+  
+   button {
+   display: block;
+   border: solid white;
+   border-width: 0 10px;
+   border-radius: 0;
+   background: #FFCA55;
+   color: white;
+   font-size: 13px;
+   font-weight: bold;
+   margin: 0px auto 10px;
+   padding: 3px;
+  }
+
+  td{
+      margin-bottom:0;
+  }

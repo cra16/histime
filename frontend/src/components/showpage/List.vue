@@ -55,7 +55,10 @@
         methods: {
             go() { //시간표를 추가하는 웹 페이지로 전환
                 var userInput=prompt(" 시간표 이름을 입력하세요");
-                if(userInput==null){
+                if(userInput==""){
+                    alert("취소되었습니다");
+                    return false;
+                } else if(userInput==null){
                     alert("취소되었습니다");
                     return false;
                 } else {
