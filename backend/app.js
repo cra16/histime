@@ -29,7 +29,7 @@ var course_update = require('./routes/course_update');
 app.use('/api/login', login);
 app.use('/api/course_update', course_update);
 
-//mysql tester
+//give to frontend data for Show page
 var mysql = require('./routes/mysql');
 app.use('/api/show', mysql);
 

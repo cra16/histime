@@ -38,7 +38,8 @@ import List from '../components/showpage/List.vue'
         },
         data() {
             return {
-                ttlist : [], 
+                ttlist : [],
+                ttsubjects : [],
                 auth : false,
                 authenticated : false,
                 student : {
