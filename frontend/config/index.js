@@ -16,11 +16,7 @@ module.exports = {
     proxyTable: {
   '/api': {
 
-<<<<<<< HEAD
-    target: 'http:localhost/3000',
-=======
     target: 'http://localhost:3000/api',
->>>>>>> jinhyeok
 
     changeOrigin: true,
     pathRewrite: {
