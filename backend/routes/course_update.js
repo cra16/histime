@@ -120,7 +120,7 @@ function conv_encoding(){
 
             console.log(converted);
 
-            //디비 넣기
+            //디비 넣기 
             addtoDB(converted);
 
     });
