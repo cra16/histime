@@ -6,7 +6,8 @@
         <button v-on:click="logout()">로그아웃</button>
         <div class="container">
             <!--시간표 리스트-->
-            <List id = "list" :val="this.ttlist" />
+            <!-- <List id = "list" :val="this.ttlist" /> -->
+            <List id ="list" />
             <!--시간표  내용-->
             <timetable_s id ="timetable"/>
        </div>
@@ -19,16 +20,16 @@ import List from '../components/showpage/List.vue'
 
 
     export default {
-        created () {
-            this.$http.post('/api/show/ttlist', {
-                id : '21500670'//this.student.student_id
-            }).then((response) => {
-                if (response.status === 200 ) {
-                    this.ttlist = response.data;
-                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
-                }
-            });
-        },
+        // created () {
+        //     this.$http.post('/api/show', {
+        //         id : '21500670'//this.student.student_id
+        //     }).then((response) => {
+        //         if (response.status === 200 ) {
+        //             this.ttlist = response.data;
+        //             console.log(response.data[0].ttname); //ttname, ttrank, total_credit
+        //         }
+        //     });
+        // },
         name: 'show',
         auth : false,
         components: {
@@ -37,7 +38,8 @@ import List from '../components/showpage/List.vue'
         },
         data() {
             return {
-                ttlist : [], 
+                ttlist : [],
+                ttsubjects : [],
                 auth : false,
                 authenticated : false,
                 student : {
