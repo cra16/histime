@@ -83,7 +83,18 @@
                 //     })
                 // }
                 // 만들다가 실패.. 나중에 다시하기(지현)
-              }
+              },
+        created(){
+            this.$http.post('/api/show/tt', {
+                id : '21500670', //this.student.student_id
+                ttname : 'A'
+            }).then((response) => {
+                if (response.status === 200) {
+                this.ttsubjects = response.data; //course_name, professor, time, credit
+                console.log(response.data[0].course_name);                    }
+            });
+        }
+
       }
     
 </script>
