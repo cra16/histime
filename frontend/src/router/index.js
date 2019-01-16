@@ -20,23 +20,6 @@ const router = new VueRouter({
 })
 
 
-// router.beforeEach((to, from, next) => {
-//   this.$session.exists();
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     if ( this.$session.exists()) {
-//       alert("로그인이 필요합니다.");
-//       next({name : 'login'})
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next()
-//   }
-// })
-
-
-
-
 
  
 

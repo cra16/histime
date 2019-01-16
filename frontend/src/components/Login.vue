@@ -66,7 +66,7 @@ export default {
               this.$router.replace({ name: "show"}) 
             }
           }, function (err) {
-            alert("틀렸따!")
+            alert("로그인을 틀렸거나 서버가 이상하거나..")
           })
     },
     setCookies(){
