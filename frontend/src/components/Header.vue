@@ -8,10 +8,14 @@
  <div class = 'line'></div>
     <div class = 'user'>
         <p><span id="name">{{ this.$session.get('name') }}</span>님, 안녕하세요!</p>
+        
     </div>
     <button v-on:click="logout()">Logout</button>
-   
+    <div class='bottom'>
+        <p>약관 개인정보처리방침    copyright  by  cra</p>
+    </div>
 </div>
+
  
 </template>
 
