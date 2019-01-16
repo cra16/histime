@@ -16,7 +16,7 @@ connection.connect(function(err) {
     else console.log('You are now connected mysql successfully!');
 });
 
-router.get('/ttList', function(req, res, next) {
+router.get('/ttlist', function(req, res, next) {
     var student_id = 21500670;
     var ttname = '';
     var ttrank = 1;
@@ -28,7 +28,7 @@ router.get('/ttList', function(req, res, next) {
 
     connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND ttrank IS NOT NULL ORDER BY ttrank ASC`, function(err, results, fields) {
         if (err) console.log(err);
-        console.log(results);
+        res.send(results);
     });
 
     connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttrank=${ttrank};`, function(err, results, fields) {
