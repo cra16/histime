@@ -3,6 +3,7 @@
     <!--for demo wrap-->
     <h1>시간표 리스트</h1>
     <div class="tbl-header">
+       
         <table cellpadding="0" cellspacing="0" border="0">
         <thead>
                 <tr>  
@@ -18,9 +19,9 @@
     <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
-            <div v-for="ttlist in ttlists" :key="ttlist.ttrank">
+            <div v-for="ttlist in this.ttlists" :key="ttlist.ttrank">
                 <tr>
-                <td>1</td>
+                <td>{{this.ttlist.ttrank}}</td>
                 <td>플랜A</td>
                 <td>18</td>
                 <td><button v-on:click="ttedit()">수정</button></td>
@@ -39,15 +40,27 @@
 <script>
     export default {
         name: 'ttlist',
+        // props :['ttlists'],
         data() {
             return {
-                ttlists:ttlists,
+                ttlists:[],
                 ttlist:{
                     ttname :"",
                     ttrank:"",
                     total_credit:""
                 }
             };
+        },
+        created () {
+            this.$http.post('/api/show', {
+                id : '21500670'//this.student.student_id
+            }).then((response) => {
+                if (response.status === 200 ) {
+                    this.ttlists = response.data;
+                    console.log("get item")
+                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
+                }
+            });
         },
         methods: {
             go() { //시간표를 추가하는 웹 페이지로 전환
