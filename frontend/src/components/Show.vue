@@ -6,17 +6,17 @@
         <button v-on:click="logout()">로그아웃</button>
         <div class="container">
             <!--시간표 리스트-->
-            <Ttlist id = "list" />
+            <List id = "list" />
             <!--시간표  내용-->
-            <Ttshow id ="timetable"/>
+            <timetable_s id ="timetable"/>
        </div>
     </div>
 </template>
 
 <script>
-import Ttshow from '../components/showpage/Show.vue'
-import Ttlist from '../components/showpage/List.vue'
-import { bus } from '../main.js'
+import Timetable_s from '../components/showpage/Timetable_s.vue'
+import List from '../components/showpage/List.vue'
+
 
     export default {
         created () {
@@ -32,8 +32,8 @@ import { bus } from '../main.js'
         name: 'show',
         auth : false,
         components: {
-            Ttshow,
-            Ttlist
+           Timetable_s,
+           List
         },
         data() {
             return {
@@ -61,7 +61,11 @@ import { bus } from '../main.js'
                 this.$router.replace('/login')
                 console.log(this.$cookies.get('auth_save'))
             },
+<<<<<<< HEAD
         
+=======
+         
+>>>>>>> lee
     }
         
 }

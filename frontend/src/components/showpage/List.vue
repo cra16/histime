@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import show from '../components/Show.vue'
+
     export default {
         name: 'ttlist',
         data() {
@@ -80,7 +82,16 @@
                     alert("취소");
                 }    
                 }
-            }    
+            },
+            show: function () {
+            this.$http.post('/api/list', {
+                id : this.$session.get('student_id')
+            }).then((response) => {
+                if (response.status === 200 ) {
+                    response.show()
+                }
+            });
+        }  
             
         }
     
