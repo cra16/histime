@@ -60,7 +60,7 @@ import { bus } from '../main.js'
                 alert("로그인이 필요합니다 :?")
                 this.$router.push('/login')
             }
-             else{
+             else if(!this.$session.exists()){
                 this.$session.start()
                 this.$session.set('name', this.$cookies.get('name') )
                 this.$session.set('student_id', this.$cookies.get('student_id'))

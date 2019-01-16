@@ -26,13 +26,27 @@ export default {
   
   },
   methods: {
+
     
-  }
+  },
+  beforeCreate: function () {
+            if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
+                this.$router.push('/login')
+            }
+             else if(!this.$session.exists()){
+                this.$session.start()
+                this.$session.set('name', this.$cookies.get('name') )
+                this.$session.set('student_id', this.$cookies.get('student_id'))
+                this.$session.set('auth', true)
+                }
+                
+            }
 }
 </script>
 
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
 div{
      margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
