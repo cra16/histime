@@ -46,9 +46,6 @@ export default {
 
   },
   methods: {
-    //로그인 함수
-    //로그인 성공 => 히즈넷에서 크롤링한 사용자 정보를(이름, 학번) localStorage에 저장, 사용자가 검증되었다고 저장.
-    //로그인 실패 =>  에러가 발생함 : 백엔드에서 문제가 생김 , 고쳐야함
     login(){
       this.$cookies.config('30d')
       this.isLoad = true;
