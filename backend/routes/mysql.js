@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
         res.send(results);
     });
 
-    connection.end();
+    // connection.end();
 });
 
 router.post('/tt', function(req, res, next) {
@@ -33,9 +33,10 @@ router.post('/tt', function(req, res, next) {
     var student_id = req.body.id;
     var ttname = req.body.ttname;
 
-    connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttrank=${ttrank};`, function(err, results, fields) {
+    connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
         if(err) console.log(err);
         console.log(results);
+        res.send(results);
     });
 });
 

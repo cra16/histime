@@ -20,12 +20,21 @@ import List from '../components/showpage/List.vue'
 
     export default {
         created () {
-            this.$http.post('/api/show/ttlist', {
+            this.$http.post('/api/show', {
                 id : '21500670'//this.student.student_id
             }).then((response) => {
                 if (response.status === 200 ) {
-                    this.ttlist = response.data;
-                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
+                    this.ttlist = response.data; //ttname, ttrank, total_credit
+                    console.log(response.data[0].ttname);
+                }
+            });
+            this.$http.post('/api/show/tt', {
+                id : '21500670', //this.student.student_id
+                ttname : 'A'
+            }).then((response) => {
+                if (response.status === 200) {
+                    this.ttsubjects = response.data; //course_name, professor, time, credit
+                    console.log(response.data[0].course_name);
                 }
             });
         },
@@ -37,7 +46,8 @@ import List from '../components/showpage/List.vue'
         },
         data() {
             return {
-                ttlist : [], 
+                ttlist : [],
+                ttsubjects : [],
                 auth : false,
                 authenticated : false,
                 student : {
