@@ -19,6 +19,12 @@ import Ttlist from '../components/showpage/List.vue'
 import { bus } from '../main.js'
 
     export default {
+        created () {
+            this.$http.get('/api/show/ttlist')
+            .then((response) => {
+                this.ttlist = response.data
+            })
+        },
         name: 'show',
         auth : false,
         components: {
@@ -27,6 +33,7 @@ import { bus } from '../main.js'
         },
         data() {
             return {
+                ttlist : [],
                 auth : false,
                 authenticated : false,
                 student : {
