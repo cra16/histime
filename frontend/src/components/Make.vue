@@ -39,7 +39,7 @@ import Save from '../components/makepage/Save.vue'
             }
         },
 
-        beforeCreate: function () {
+        /* beforeCreate: function () {
             if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
                 alert("로그인이 필요합니다 :?")
                 this.$router.push('/login')
@@ -52,7 +52,7 @@ import Save from '../components/makepage/Save.vue'
                 }
                 
             }
-  
+  */
   }
     
 </script>

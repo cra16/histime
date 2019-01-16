@@ -50,10 +50,20 @@ import { bus } from '../main.js'
                 this.$router.replace('/login')
                 console.log(this.$cookies.get('auth_save'))
             },
+         show: function () {
+            this.$http.post('/api/list', {
+                id : this.$session.get('student_id')
+            }).then((response) => {
+                if (response.status === 200 ) {
+                    response.show()
+                }
+            });
+        }
+    }
         
-
-        },
-    beforeCreate: function () {
+}
+        
+  /*  beforeCreate: function () {
             console.log('auth_save : ' + this.$cookies.get('auth_save'))
             console.log('session: ' + this.$session.exists)
            if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
@@ -67,8 +77,7 @@ import { bus } from '../main.js'
                 this.$session.set('auth', true)
                 }
         },
-  
-}
+  */
    
     
 </script>
