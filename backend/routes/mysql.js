@@ -16,8 +16,9 @@ connection.connect(function(err) {
     else console.log('You are now connected mysql successfully!');
 });
 
-router.get('/ttlist', function(req, res, next) {
-    var student_id = 21500670;
+router.post('/ttlist', function(req, res, next) {
+    console.log(req.body.id);
+    var student_id = req.body.id;
     var ttname = '';
     var ttrank = 1;
     var total_credit = 0;
@@ -31,10 +32,10 @@ router.get('/ttlist', function(req, res, next) {
         res.send(results);
     });
 
-    connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttrank=${ttrank};`, function(err, results, fields) {
-        if(err) console.log(err);
-        console.log(results);
-    });
+    // connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttrank=${ttrank};`, function(err, results, fields) {
+    //     if(err) console.log(err);
+    //     console.log(results);
+    // });
     connection.end();
 });
 

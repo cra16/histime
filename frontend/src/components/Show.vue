@@ -20,10 +20,14 @@ import { bus } from '../main.js'
 
     export default {
         created () {
-            this.$http.get('/api/show/ttlist')
-            .then((response) => {
-                this.ttlist = response.data
-            })
+            this.$http.post('/api/show/ttlist', {
+                id : '21500670'//this.student.student_id
+            }).then((response) => {
+                if (response.status === 200 ) {
+                    this.ttlist = response.data;
+                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
+                }
+            });
         },
         name: 'show',
         auth : false,
@@ -57,15 +61,7 @@ import { bus } from '../main.js'
                 this.$router.replace('/login')
                 console.log(this.$cookies.get('auth_save'))
             },
-         show: function () {
-            this.$http.post('/api/list', {
-                id : this.$session.get('student_id')
-            }).then((response) => {
-                if (response.status === 200 ) {
-                    response.show()
-                }
-            });
-        }
+        
     }
         
 }
