@@ -10,8 +10,8 @@ var html;
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : 'h010638847',
+    user     : 'tester',
+    password : '1234',
     database : 'histime'
 });
 
@@ -183,14 +183,21 @@ function addtoDB(json){
         var name = obj[3];
         var credit = obj[4];
         var professor;
-        if(obj[5].toString().includes('주간')){
-            var str_start = obj[5].toString().indexOf('간') + 1;
-            professor = obj[5].toString().substr(str_start);
+        if(obj[5].includes('주간')){
+            var str_start = obj[5].indexOf('간') + 1;
+            professor = obj[5].substr(str_start);
         }
         else{
             professor = obj[5];
         }
-        var time = obj[6];
+        var time;
+        if(obj[6].includes('\n')){
+            var str_end = obj[6].indexOf('\n');
+            time = obj[6].substr(0, str_end);
+        }
+        else{
+            time = obj[6];
+        }
         var room = obj[7];
         var max_num = obj[8];
         var cur_num = obj[9];
@@ -210,4 +217,3 @@ function addtoDB(json){
 
 
 module.exports = router;
-
