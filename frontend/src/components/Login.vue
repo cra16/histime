@@ -7,15 +7,16 @@
 
     <form>
       <div class ="login_box">
-        <div class="input_box">
+         <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
+        <div class="text_box">
           <input type = "text" placeholder="hisent id" v-model="input.id">
           <br />
           <input type = "password" placeholder="hisnet password" v-model="input.password">
         </div>
-        <button type="button" class="btn yellow" v-on:click="login()">Login</button>
+       
       </div>
-
-      <!-- <div class="check_box"><input type="checkbox" v-model="isSave"> <p>로그인 상태 30일 유지</p></div> -->
+      <br /><br /><br />
+      <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
     </form>
     
     

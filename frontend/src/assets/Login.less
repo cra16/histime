@@ -18,45 +18,51 @@
 
   
   form{
-    margin-left : 30%;
-    margin-right: 30%;
-    .input_box{float : left;}
-    input{
-      margin : 5px;
-      width: 80%;
-      padding: 9px;
-      font-size: 15pt;
-      border : 1px solid #225B95;
-      color:#225B95
-    }
-    ::placeholder { color: #225B95; font-size: 15px; }
-    .btn{
-      width : 20%;
-      border-radius: 5px;
-      padding: 15px 25px;
-      font-size: 22px;
-      text-decoration: none;
-      margin: 0;
-      color: #fff;
-      position: relative;
-      float : right;
-      cursor : pointer;
-      text-align: center;
-    }
-    input::after { content: ''; display: table; clear: both }
-
-
-    .check_box {
-      float : clear;
-
-      input{
-        width: 14px;
-        float : clear;
+    margin-left : 35%;
+    margin-right: 35%;
+    .login_box{
+      display : block;
+      .text_box{
+        width : auto;
+        input{
+          float : left;
+          margin-bottom : 5px;
+          width: 300px;
+          padding: 9px;
+          font-size: 15pt;
+          border : 1.6px solid #225B95;
+          color:#225B95
+          
+        }
+        ::placeholder { color: #225B95; font-size: 15px; } 
       }
-      p{ color:darkgrey;}
+      .btn{
+        width : 90px;
+        height : 90px;
+        border-radius: 5px;
+        padding: 7px 7px;
+        font-size: 22px;
+        text-decoration: none;
+        margin: 0;
+        color: #fff;
+        position: relative;
+        float : right;
+        cursor : pointer;
+        text-align: center;
+      }
     }
-    
+  .check_box {
+    clear: both;
+    margin : 0;
+    input{ 
+     display : inline
+    }
+    p{ 
+      display : inline;
+      
+    }
   }
+}
  
   
 
