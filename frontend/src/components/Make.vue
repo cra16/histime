@@ -14,7 +14,7 @@
 
 <script>
 import Search from '../components/makepage/Search.vue'
-import Timetable from '../components/makepage/Timetable.vue'
+import Timetable from '../components/makepage/Timetable_m.vue'
 import Save from '../components/makepage/Save.vue'
     export default {
         name: 'make',
