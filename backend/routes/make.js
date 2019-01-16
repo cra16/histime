@@ -28,7 +28,6 @@ router.post('/', function(req, res, next) {
     // connection.end();
 });
 
-//나중에 포스트형식으로 바꿧 req 사용할 예정
 //make page 초기에 즐겨찾기 리스트 생성해주는 친구
 //input : student_id
 //output : list of course_names
@@ -42,20 +41,44 @@ router.get('/favorite', function(req, res) {
     });
 });
 
-//나중에 포스트형식으로 바꿧 req 사용할 예정
 //이름으로 검색시
 //input : course_name
 //output : list of object(name, code, time, credit, gubun, professor, english)
 router.get('/search/name', function(req, res) {
     // console.log(req.body.course_name);
     var course_name = '철학';
-    connection.query(`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE name like '%${course_name}%';`, function(err, courseList, fields) {
+    var search_by_name = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE name like '%${course_name}%';`;
+    connection.query(search_by_name, function(err, courseList, fields) {
         if(err) console.log(err);
         console.log(courseList);
         res.send(courseList);
     });
 });
 
+//이름으로 검색시
+//input : course_name
+//output : list of object(hakbu, gubun, gyoyang, credit, english, professor, time)
+router.get('/search/filter', function(req, res) {
+    var hakbu = '';
+    var gubun = '';
+    var gyoyang = '';
+    var credit = '';
+    var english = '';
+    var professor = '';
+    var time = '';
+    //debugging용
+    var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and credit like '%${credit}%' and english like '%${english}%' and professor like '%${professor}%' and time like '%${time}%'`;
+    // var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${req.body.hakbu}%' and gubun like '%${req.body.gubun}%' and gyoyang like '%${req.body.gyoyang}%' and credit like '%${req.body.credit}%' and english like '%${req.body.english}%' and professor like '%${req.body.professor}% and time like '%${req.body.time}%'`;
+ 
+
+    connection.query(search, function(err, courseList, fields) {
+        if(err) console.log(err);
+        console.log(courseList);
+        res.send(courseList);
+    });
+});
+
+router
 
 
 
