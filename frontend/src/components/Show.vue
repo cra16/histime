@@ -6,7 +6,7 @@
         <button v-on:click="logout()">로그아웃</button>
         <div class="container">
             <!--시간표 리스트-->
-            <List id = "list" />
+            <List id = "list" :val="this.ttlist" />
             <!--시간표  내용-->
             <timetable_s id ="timetable"/>
        </div>
@@ -61,11 +61,7 @@ import List from '../components/showpage/List.vue'
                 this.$router.replace('/login')
                 console.log(this.$cookies.get('auth_save'))
             },
-<<<<<<< HEAD
-        
-=======
          
->>>>>>> lee
     }
         
 }
