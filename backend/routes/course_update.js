@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var Iconv = require('iconv').Iconv;
+// var iconv = require('iconv').Iconv;
 var fs = require('fs');
 var mysql = require('mysql');
 var tabletojson = require('tabletojson');
-
+var jschardet   = require('jschardet');
 var html; 
 
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 
@@ -95,20 +95,6 @@ router.get('/', function (req, res, next) {
         
         //html변수에 encoding 변환 html 저장        
         conv_encoding();
-
-        
-        //자동으로 파씽된 데이터를 json형식으로 저장        
-        var converted = tabletojson.convert(html);
-        
-        console.log('after json');
-
-        console.log(converted);
-
-        //디비 넣기
-        addtoDB(converted);
-
-        
-  
     });
 
 
@@ -117,30 +103,29 @@ router.get('/', function (req, res, next) {
 
 //html변수에 encoding 변환 html 저장
 function conv_encoding(){
+    var iconv = require('iconv-lite');
 
-    console.log('into encoding');
-
-    //euc-kr 파일을 utf-8 파일로 변환하는 설정
-    var encode = new Iconv('cp949', 'UTF-8');
-
-    console.log('1');
-
-    //버퍼형식으로 나옴 content = '<Buffer 0d 0a 0d 0a 0d 0a ... >'
-    var content = fs.readFileSync('./data/courses');
     
-    console.log(content);
+    // Convert encoding streaming example
+    fs.createReadStream('./data/courses')
+        .pipe(iconv.decodeStream('ks_c_5601-1987'))
+        .pipe(iconv.encodeStream('utf-8')).collect(function(err, body){
+            // console.log(body.toString('utf-8'));
+            html = body.toString('utf-8');
+            console.log(html);
+            //자동으로 파씽된 데이터를 json형식으로 저장        
+            var converted = tabletojson.convert(html);
 
-    //enconding 형식을 content에 적용하기
-    var content2 = encode.convert(content);
-    console.log('3');
+            console.log('after json');
 
-    //버퍼를 문자열로 변환하기
-    html =content2.toString('utf-8');
+            console.log(converted);
+
+            //디비 넣기 
+            addtoDB(converted);
+
+    });
+
     
-
-    console.log(html);
-
-
 }
 
 
@@ -183,14 +168,28 @@ function conv_encoding(){
 
 function addtoDB(json){
     console.log('into addtoDB');
-
+    var create = 'create table courses( gubun VARCHAR(5), code VARCHAR(40) PRIMARY KEY, name VARCHAR(150), credit VARCHAR(5), professor VARCHAR(40), time VARCHAR(40), room VARCHAR(40), max_num VARCHAR(10), cur_num VARCHAR(10), english VARCHAR(10), gyoyang VARCHAR(10), grade_type VARCHAR(10), pf_avail VARCHAR(10) );';
+    var remove = 'DROP TABLE courses;';
+    connection.query(remove , function (error, results, fields) {
+        if (error) {
+            console.log('no table exist');
+        }
+    });
+    connection.query(create);
     for(var i = 1; i < json[0].length; i++) {
         var obj = json[0][i];
         var gubun = obj[0];
         var code = obj[1] + "-" + obj[2];
         var name = obj[3];
         var credit = obj[4];
-        var professor = obj[5];
+        var professor;
+        if(obj[5].toString().includes('주간')){
+            var str_start = obj[5].toString().indexOf('간') + 1;
+            professor = obj[5].toString().substr(str_start);
+        }
+        else{
+            professor = obj[5];
+        }
         var time = obj[6];
         var room = obj[7];
         var max_num = obj[8];
@@ -199,21 +198,11 @@ function addtoDB(json){
         var gyoyang = obj[11];
         var grade_type = obj[12];
         var pf_avail = obj[13];
+        var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
+        console.log(insert);
+        connection.query(insert);
         //     1, 교필, GEE10001-01, English Chapel 1(English Chapel 1), 0, 글로벌 주간Gregory T. Brown, 수7
         // Wed7, ANH Auditorium, 999, , 100%, 신앙1, PF, N);
-        var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
-        var remove = 'DROP TABLE courses;';
-        
-        connection.query(remove, function (error, results, fields) {
-            if (error) {
-                console.log(error);
-            }
-        });
-        connection.query(insert , function (error, results, fields) {
-            if (error) {
-                console.log(error);
-            }
-        });
     }
 
     
@@ -221,4 +210,3 @@ function addtoDB(json){
 
 
 module.exports = router;
-
