@@ -1,13 +1,27 @@
-<template>
+  <template>
   <div class="login">
-    <h1>{{ name }} </h1>
-    <form @submit.prevent ="addSkill">
-      <h3>Enter your email : </h3>
-      <input type = "text" placeholder="hisent id" v-model="input.id">
-      <h3>Enter your password :</h3>
-      <input type = "password" placeholder="hisnet password" v-model="input.password">
-      <button type="button" class="btn blue" v-on:click="login()">Login</button>
+    <div class = "logo">
+      <h1>{{ name }} </h1>
+      <p>이번 학기를 채울 모든 경우의 수, His Time</p>
+    </div>
+
+    <form>
+      <div class ="login_box">
+         <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
+        <div class="text_box">
+          <input type = "text" placeholder="hisent id" v-model="input.id">
+          <br />
+          <input type = "password" placeholder="hisnet password" v-model="input.password">
+        </div>
+       
+      </div>
+      <br /><br /><br />
+      <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
     </form>
+    
+    
+    <div v-show="isLoad" id="loading"><img id="loading-image" src="/images/loading.gif" alt="Loading..." /></div>
+
      
   </div>
 </template>
@@ -15,39 +29,63 @@
 <script>
 
 
+
 export default {
   name: 'Login', 
   data() {
     return{
-      name : 'login page',
+      name : 'His Time',
       input :  {
           id : "",
           password : "",
       },
+      isLoad: false,
+      isSave: false,
+      _response : {}
     }
+
   },
   methods: {
     //로그인 함수
     //로그인 성공 => 히즈넷에서 크롤링한 사용자 정보를(이름, 학번) localStorage에 저장, 사용자가 검증되었다고 저장.
     //로그인 실패 =>  에러가 발생함 : 백엔드에서 문제가 생김 , 고쳐야함
     login(){
+      this.$cookies.config('30d')
+      this.isLoad = true;
       this.$http.post('/api/login', {
         id : this.input.id,
         password : this.input.password
       }).then((response) => {
-        console.log('로그' + response.data.student_id)
-        if(response.data.student_id != -1){
-          localStorage.name = response.data.name;
-          localStorage.studetn_id = response.data.student_id;
-          localStorage.auth = true
-          this.$router.replace({ name: "show"})
-        }
-        else{
-          console.log("The username and / or password is incorrect");//incorrect-error
-        }
-        
-      });
+        if (response.status === 200 ) {
+              this._response = response;
+              this.$session.start()
+              this.setSession()
+              if(this.isSave){this.setCookies(response)}
+              else{
+                this.$cookies.set('auth_save', false)
+                }
+              
+              console.log(this.$cookies.get('auth_save'))
+              this.$router.replace({ name: "show"}) 
+            }
+          }, function (err) {
+            alert("틀렸따!")
+          })
     },
+    setCookies(){
+      
+      this.$cookies.set('auth_save', true)
+      this.$cookies.set('name', this._response.data.name)
+      this.$cookies.set('student_id', this._response.data.student_id)
+      this.$cookies.set('auth', true)
+      console.log("set cookie")
+    },
+    setSession(){
+      this.$session.start()
+      this.$session.set('name', this._response.data.name)
+      this.$session.set('student_id', this._response.data.student_id)
+      this.$session.set('auth', true)
+    }
 
   },
 
@@ -77,81 +115,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; 
-
-  .holder {
-    background: #fff;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  ul li {
-    padding: 20px;
-    font-size: 1.3em;
-    background-color: #E0EDF4;
-    border-left: 5px solid #3EB3F6;
-    margin-bottom: 2px;
-    color: #3E5252;
-  }
-
-  p {
-    text-align:center;
-    padding: 30px 0;
-    color: gray;
-  }
-
-  .container {
-    box-shadow: 0px 0px 40px lightgray;
-  }
-
-  input {
-    width: calc(100% - 40px);
-    border: 0;
-    padding: 20px;
-    font-size: 1.3em;
-    background-color: #323333;
-    color: #687F7F;
-  }
-
-    .alert {
-    background: #fdf2ce;
-    font-weight: bold;
-    display: inline-block;
-    padding: 5px;
-    margin-top: -20px;
-  }
-
-  i {
-    float : right;
-    cursor : pointer;
-  }
-
-  
-  .btn {
-  border-radius: 5px;
-  padding: 15px 25px;
-  font-size: 22px;
-  text-decoration: none;
-  margin: 20px;
-  color: #fff;
-  position: relative;
-  display: inline-block;
-  cursor : pointer;
-}
-.blue {
-  background-color: #55acee;
-  box-shadow: 0px 5px 0px 0px #3C93D5;
-}
-
-.blue:hover {
-  background-color: #6FC6FF;
-}
+<style src = '../assets/Login.less' lang='scss' scoped>
 
 </style>
 

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import login from './components/Login.vue'
 import make from './components/Make.vue'
 import show from './components/Show.vue'
@@ -22,16 +23,9 @@ export default {
     }
   },
   mounted() {
-    //웹이 처음 시작될 때 사용자가 검증되지 않은것으로 초기화 해줍니다.
-    this.setAuth(false)
+  
   },
   methods: {
-    setAuth(status) {
-      localStorage.auth = status;
-      },
-    logout() {
-      localStorage.auth = false;
-    },
     
   }
 }
