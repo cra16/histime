@@ -21,9 +21,9 @@
         <tbody>
             <div v-for="ttlist in this.ttlists" :key="ttlist.ttrank">
                 <tr>
-                <td>{{this.ttlist.ttrank}}</td>
-                <td>플랜A</td>
-                <td>18</td>
+                <td>{{ttlist.ttrank}}</td>
+                <td>{{ttlist.ttname}}</td>
+                <td>{{ttlist.total_credit}}</td>
                 <td><button v-on:click="ttedit()">수정</button></td>
                 <td><button v-on:click="ttdelete()">삭제</button></td>
                 </tr>
@@ -40,12 +40,12 @@
 <script>
     export default {
         name: 'ttlist',
-        // props :['ttlists'],
+        //props :['ttlists'],
         data() {
             return {
                 ttlists:[],
                 ttlist:{
-                    ttname :"",
+                    ttname :""+"",
                     ttrank:"",
                     total_credit:""
                 }
