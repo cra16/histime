@@ -33,7 +33,7 @@ import { bus } from '../main.js'
         },
         data() {
             return {
-                ttlist : [],
+                ttlist : [], 
                 auth : false,
                 authenticated : false,
                 student : {
