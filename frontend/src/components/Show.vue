@@ -6,27 +6,38 @@
         <button v-on:click="logout()">로그아웃</button>
         <div class="container">
             <!--시간표 리스트-->
-            <Ttlist id = "list" />
+            <List id = "list" :val="this.ttlist" />
             <!--시간표  내용-->
-            <Ttshow id ="timetable"/>
+            <timetable_s id ="timetable"/>
        </div>
     </div>
 </template>
 
 <script>
-import Ttshow from '../components/showpage/Show.vue'
-import Ttlist from '../components/showpage/List.vue'
-import { bus } from '../main.js'
+import Timetable_s from '../components/showpage/Timetable_s.vue'
+import List from '../components/showpage/List.vue'
+
 
     export default {
+        created () {
+            this.$http.post('/api/show/ttlist', {
+                id : '21500670'//this.student.student_id
+            }).then((response) => {
+                if (response.status === 200 ) {
+                    this.ttlist = response.data;
+                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
+                }
+            });
+        },
         name: 'show',
         auth : false,
         components: {
-            Ttshow,
-            Ttlist
+           Timetable_s,
+           List
         },
         data() {
             return {
+                ttlist : [], 
                 auth : false,
                 authenticated : false,
                 student : {
@@ -50,25 +61,26 @@ import { bus } from '../main.js'
                 this.$router.replace('/login')
                 console.log(this.$cookies.get('auth_save'))
             },
+         
+    }
         
-
-        },
-    beforeCreate: function () {
+}
+        
+  /*  beforeCreate: function () {
             console.log('auth_save : ' + this.$cookies.get('auth_save'))
             console.log('session: ' + this.$session.exists)
            if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
                 alert("로그인이 필요합니다 :?")
                 this.$router.push('/login')
             }
-             else{
+             else if(!this.$session.exists()){
                 this.$session.start()
                 this.$session.set('name', this.$cookies.get('name') )
                 this.$session.set('student_id', this.$cookies.get('student_id'))
                 this.$session.set('auth', true)
                 }
         },
-  
-}
+  */
    
     
 </script>
