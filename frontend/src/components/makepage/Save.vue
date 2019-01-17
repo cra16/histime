@@ -1,13 +1,14 @@
 <template>
 
 <div class="save">
-    <h1>즐겨찾기</h1>
-
+    <h1 id="head">즐겨찾기</h1>
+<!-- 여기에 이렇게 많은 정보가 필요한가? -->
     <div class='contents'>
         <!-- <div v-for="subject in subjects" :key ="subject.code" > -->
-            <div class="content" >
+            <!-- <div v-for="content in this.contents" :key="content.course_name" class="content" > -->
+                 <div v-for="n in 10" :key ='n' class="content" >
                 <div class="section1">
-                    <p>데이터 구조</p>
+                    <p>{{ content.course_name }}</p>
                     <p>[IDH20457]</p>
                 </div>
                 <div class="section2">
@@ -26,10 +27,11 @@
                 </div>
                 <hr />
             </div>
-        
-            
-        <!-- </div> -->
     </div>
+    <h1 id="foot">
+        <button class="all">전체추가</button>
+        <button class="all">전체삭제</button>
+    </h1>    
 </div>
    
 </template>
@@ -42,6 +44,10 @@ export default{
         return{
        
             active: false,
+            contents : [],
+            content :{
+                course_name:"",
+            },
             subject : {
                 name : "",
                 code : "",
@@ -54,12 +60,11 @@ export default{
     },
      created(){
             this.$http.post('/api/make/fav_list', {
-                student_id : this.$session.get('student_id'), //this.student.student_id
-                
+                student_id : '21500670' //this.student.student_id
             }).then((response) => {
                 if (response.status === 200) {
-                console.log( "학번 : " + this.$session.get('student_id'));
-                console.log("fav_list : " + response.data[0].course_name);                   }
+                    this.contents = response.data;
+                }
             });
         }
 
