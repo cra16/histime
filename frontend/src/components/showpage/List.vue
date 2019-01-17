@@ -53,7 +53,7 @@
         },
         created () {
             this.$http.post('/api/show', {
-                id : '21500670'//this.student.student_id
+                id : ''//this.student.student_id
             }).then((response) => {
                 if (response.status === 200 ) {
                     this.ttlists = response.data;
