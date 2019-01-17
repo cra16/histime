@@ -180,7 +180,8 @@ function addtoDB(json){
         var obj = json[0][i];
         var gubun = obj[0];
         var code = obj[1] + "-" + obj[2];
-        var name = obj[3];
+        
+        var name = obj[3].substr(0, obj[3].lastIndexOf('('));
         var credit = obj[4];
         var professor;
         var hakbu = '';
