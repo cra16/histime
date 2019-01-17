@@ -6,35 +6,41 @@ div #Make{
 
 #container {
   
+  
   @media only screen and (min-width : 1824px) {
     margin-left : 7%;
     width : 85%;
   }
-    
+
     display: flex;
     height : 600px;
     width : 100%
+    
   }
   #search {
-    background: rgb(224, 222, 222);
+    border : 1.5px solid #225B95 ;
     flex : 1;
-    margin : 5px;
+    height : 700px;
+    @media only screen and (max-width : 1824px) {
+      //맥북화면
+      margin-left : 3%;
+    }
   }
   #timetable {
-    background: rgb(224, 222, 222);
+    border : 1.5px solid #225B95 ;
     flex:2;
-    margin : 5px;
-  }
-  #save {
-    background: rgb(224, 222, 222);
-    flex : 1;
-    margin : 5px;
+    height : 700px;
+    margin-left : 15px;  
+    margin-right: 15px;  
   }
 
-h1 {
-	font-size: 30pt;
-	color: orange;
-  margin-bottom : 50px;
-   
-}
+  #save {
+    border : 1.5px solid #225B95 ;
+    flex : 1;
+    height : 700px;
+    @media only screen and (max-width : 1824px) {
+      //맥북화면
+      margin-right : 3%;
+    }
+  }
 
