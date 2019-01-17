@@ -6,8 +6,8 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : 'h010638847',
+    user     : 'tester',
+    password : '1234',
     database : 'histime'
 });
 
@@ -30,17 +30,25 @@ router.post('/', function(req, res, next) {
 
 //make page 초기에 즐겨찾기 리스트 생성
 //input : student_id
-//output : list of course_names
+//output : list of object(name, code, time, credit, gubun, professor, english)
 
 //과목명말고 다른 정보는 어떻게 가져올건가요?
 router.post('/fav_list', function(req, res) {
     // console.log(req.body.id);
     var student_id = 21500670; //req.body.student_id;
-    connection.query(`SELECT course_name FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function(err, results, fields) {
+    var code_list = [];
+    var object_list = [];
+    connection.query(`SELECT code FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function(err, results, fields) {
         if(err) console.log(err);
-        console.log(results);
-        res.send(results);
+        code_list = results;
+        console.log(results + 'length : ' + results.length + ' | ' + code_list.length);
     });
+
+    // connection.query(`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE code='${code}';`, function(err, results, fields) {
+    //     if(err) console.log(err);
+    //     console.log(results);
+    //     object_list = results;
+    // });
 });
 
 //이름으로 검색시
