@@ -16,6 +16,8 @@ import Search from '../components/makepage/Search.vue'
 import Timetable from '../components/makepage/Timetable_m.vue'
 import Save from '../components/makepage/Save.vue'
 import Header from '../components/Header.vue'
+
+
     export default {
         name: 'make',
         components: {
