@@ -10,8 +10,8 @@ var html;
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 
@@ -168,7 +168,7 @@ function conv_encoding(){
 
 function addtoDB(json){
     console.log('into addtoDB');
-    var create = 'create table courses( gubun VARCHAR(5), code VARCHAR(40) PRIMARY KEY, name VARCHAR(150), credit VARCHAR(5), professor VARCHAR(40), time VARCHAR(40), room VARCHAR(40), max_num VARCHAR(10), cur_num VARCHAR(10), english VARCHAR(10), gyoyang VARCHAR(10), grade_type VARCHAR(10), pf_avail VARCHAR(10) );';
+    var create = 'create table courses( gubun VARCHAR(5), code VARCHAR(40) PRIMARY KEY, hakbu VARCHAR(100), name VARCHAR(150), credit VARCHAR(5), professor VARCHAR(40), time VARCHAR(40), room VARCHAR(40), max_num VARCHAR(10), cur_num VARCHAR(10), english VARCHAR(10), gyoyang VARCHAR(10), grade_type VARCHAR(10), pf_avail VARCHAR(10) );';
     var remove = 'DROP TABLE courses;';
     connection.query(remove , function (error, results, fields) {
         if (error) {
@@ -183,9 +183,12 @@ function addtoDB(json){
         var name = obj[3];
         var credit = obj[4];
         var professor;
+        var hakbu = '';
         if(obj[5].includes('주간')){
-            var str_start = obj[5].indexOf('간') + 1;
+
+            var str_start = obj[5].indexOf('주') + 2;
             professor = obj[5].substr(str_start);
+            hakbu = obj[5].substr(0, str_start-3)
         }
         else{
             professor = obj[5];
@@ -205,9 +208,15 @@ function addtoDB(json){
         var gyoyang = obj[11];
         var grade_type = obj[12];
         var pf_avail = obj[13];
-        var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
+        var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${hakbu}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
         console.log(insert);
-        connection.query(insert);
+        connection.query(insert , function (error, results, fields) {
+            if (error) {
+                console.log('insert Error here');
+                console.log(error);
+                console.log('query문은 다음과 같다.' + insert);
+            }
+        });
         //     1, 교필, GEE10001-01, English Chapel 1(English Chapel 1), 0, 글로벌 주간Gregory T. Brown, 수7
         // Wed7, ANH Auditorium, 999, , 100%, 신앙1, PF, N);
     }
