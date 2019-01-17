@@ -46,10 +46,9 @@ router.post('/fav_list', function(req, res) {
 //이름으로 검색시
 //input : course_name
 //output : list of object(name, code, time, credit, gubun, professor, english)
-router.get('/search/name', function(req, res) {
+router.post('/search/name', function(req, res, next) {
     // console.log(req.body.course_name);
-    var course_name = '철학';
-    var search_by_name = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE name like '%${course_name}%';`;
+    var search_by_name = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE name like '%${req.body.course_name}%';`;
     connection.query(search_by_name, function(err, courseList, fields) {
         if(err) console.log(err);
         console.log(courseList);
