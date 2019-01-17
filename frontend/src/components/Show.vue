@@ -22,7 +22,7 @@ import List from '../components/showpage/List.vue'
     export default {
         // created () {
         //     this.$http.post('/api/show', {
-        //         id : '21500670'//this.student.student_id
+        //         student_id : '21500670'//this.student.student_id
         //     }).then((response) => {
         //         if (response.status === 200 ) {
         //             this.ttlist = response.data;
