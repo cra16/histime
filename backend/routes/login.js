@@ -2,7 +2,7 @@ var express = require('express');
 
 var router = express.Router();
 
-var student_id = 0;
+var student_id = '';
 var name = '';
 
 router.post('/', function (req, res) {
@@ -82,7 +82,6 @@ router.post('/', function (req, res) {
         console.log(input);
         if(input.length() > 10) student_id = -1;
         student_id = input;
-        
     });
     spooky.on('name', function (input) {
         console.log(input);
