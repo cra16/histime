@@ -2,7 +2,7 @@ var express = require('express');
 
 var router = express.Router();
 
-var student_id = 0;
+var student_id = '';
 var name = '';
 
 router.post('/', function (req, res) {
@@ -87,7 +87,7 @@ router.post('/', function (req, res) {
     spooky.on('name', function (input) {
         console.log(input);
         name = input;
-        res.send({ student_id : student_id, name : name });
+        res.send({ student_id : student_id.toString(), name : name });
 
     });
 
