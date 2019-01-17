@@ -1,6 +1,9 @@
-h1{
+::-webkit-scrollbar {width: 5px; height: 3px; border: 0px solid #fff; }
+::-webkit-scrollbar-thumb {height: 3px; width: 5px; background: #FFCA55 }
+
+#head{
     font-size: 21px;
-    padding : 10px;
+    padding : 5px;
     font-weight : 500;
     color:white;
     letter-spacing : 1px;
@@ -8,10 +11,11 @@ h1{
     margin : 0;
     background-color:#225B95;
 }
+
 hr{
     margin : 0px;
     margin-top : 24px;
-
+    border:1px solid #225B95;
 }
 p{
     margin : 0.5px;
@@ -20,46 +24,49 @@ p{
 .contents{
     font-size : 13px;
     font-weight : 500;
+    height:85%;
+    overflow: scroll;
+
+    .section1{
+        display : inline-block;
+        margin-left : 5%;
+    }
+    .section2{
+        display : inline-block;
+        margin :0;
+        position:relative;top:20px;
+        margin-left : 5%;
+
+
+    }
+    .section3{
+        display : inline-block;
+        margin :0;
+        margin-left : 5%;
+    }
+    .section4{
+        display : inline-block;
+        margin-right :5%;
+        float:right;
+        display : none;
+        button{
+            width : 34px;
+            height : 34px;
+            border-radius: 5px;
+            cursor : pointer;
+        }
+        
+        #delete{
+            margin-top : 13%;
+            background : url( '../../image/cancle.png') no-repeat;
+        }
+        #add{
+            margin-top : 13%;
+            background : url( '../../image/plus.png') no-repeat;
+        }
+    }
 }
 
-.section1{
-    display : inline-block;
-    margin-left : 5%;
-}
-.section2{
-    display : inline-block;
-    margin :0;
-    position:relative;top:20px;
-    margin-left : 5%;
-
-
-}
-.section3{
-    display : inline-block;
-    margin :0;
-    margin-left : 5%;
-}
-.section4{
-    display : inline-block;
-    margin-right :5%;
-    float:right;
-    display : none;
-    button{
-        width : 34px;
-        height : 34px;
-        border-radius: 5px;
-        cursor : pointer;
-      }
-     
-      #delete{
-        margin-top : 13%;
-        background : url( '../../image/cancle.png') no-repeat;
-      }
-      #add{
-          margin-top : 13%;
-          background : url( '../../image/plus.png') no-repeat;
-      }
-}
 
 .content:hover .section4 {
     display: block;
@@ -69,6 +76,27 @@ p{
     background-color : rgb(193, 213, 236) ;
   }
 
-
-
-
+#foot{
+    font-weight : 500;
+    text-align: center;
+    margin : 0;
+    border:2px solid #225B95;
+    background-color:#9CBADF;
+    vertical-align: middle;
+    width: 100%;
+    position:relative;right:2px;
+    .all{
+        width : 100px;
+        font-weight : 500;
+        border-radius: 5px;
+        padding: 7px 6px;
+        font-size: 17px;
+        text-decoration: none;
+        margin : 0;
+        color: white;
+        cursor : pointer;
+        text-align: center;
+        background-color:#FFCA55 ;
+        position:relative;bottom:5px;
+      }
+}

@@ -1,5 +1,6 @@
 <template>
 <!-- show page에서 시간표를 보여주는 부분 -->
+<body>
 <div class = "Ttshow">
     <h1 class ="tt_name">{{ tt_name }}</h1>
     <div class="days">
@@ -59,6 +60,7 @@
     </div>
     <button v-on:click = go()>완성!</button>
 </div>
+</body>
 
 </template>
 
@@ -98,6 +100,6 @@
 </script>
 
 
-<style  src = '../../assets/Makepage/timetable.css' scoped>
+<style  src = '../../assets/Makepage/timetable.less' lang="scss" scoped>
 
 </style>
