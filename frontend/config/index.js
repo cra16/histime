@@ -24,7 +24,7 @@ module.exports = {
   }
 },
 
-//localhost:3000
+//localhost:3000/api
     
 
     // Various Dev Server settings

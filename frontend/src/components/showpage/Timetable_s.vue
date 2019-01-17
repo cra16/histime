@@ -140,11 +140,29 @@
                 // }
                 // 만들다가 실패.. 나중에 다시하기(지현)
               },
+<<<<<<< HEAD
             methods : {
                 go(){
                     this.$router.replace({ name: "show" });
                 }
             }
+=======
+        created(){
+            this.$http.post('/api/show/tt', {
+                student_id : this.$session.get('student_id'),
+                ttname : this.$session.get('ttlists[0].ttname') //this.$session.get('ttlists[i].ttname')
+            }).then((response) => {
+                if (response.status === 200) {
+                this.ttsubjects = response.data; //course_name, professor, time, credit
+                console.log('1번 tt의 Subjects : ' + this.ttsubjects.length + '개');
+                for(var i = 0; i < this.ttsubjects.length; i++) {
+                    console.log('Subject ' + (i+1) + '번 이름: ' + this.ttsubjects[i].course_name);
+                }
+                }
+            });
+        }
+
+>>>>>>> 60fa9dbfffdbdfd945a798c54535d8e3eba00428
       }
     
 </script>

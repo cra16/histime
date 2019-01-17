@@ -58,18 +58,20 @@ export default{
     methods :{
        
     },
-     created(){
-            this.$http.post('/api/make/fav_list', {
-                student_id : '21500670' //this.student.student_id
-            }).then((response) => {
-                if (response.status === 200) {
-                    this.contents = response.data;
-                }
-            });
-        }
-
-          
+    created(){
+        this.$http.post('/api/make/fav_list', {
+            student_id : this.$session.get('student_id')
+        }).then((response) => {
+            if (response.status === 200) {
+                var subjects = response.data; //name, code, time, credit, gubun, professor, english
+                console.log('즐겨찾기 List : ' + subjects.length + '개');
+                // for(var i = 0; i < subjects.length; i++) {
+                //     console.log('즐겨찾기 ' + (i+1) + '번 과목: ' + subjects[i].name);
+                // }
+            }
+        });
     }
+}
  
     
 </script>
