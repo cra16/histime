@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
 //과목명말고 다른 정보는 어떻게 가져올건가요?
 router.post('/fav_list', function(req, res) {
     // console.log(req.body.id);
-    var student_id = req.body.id;//21500670; 
+    var student_id = 21500670; //req.body.student_id;
     connection.query(`SELECT course_name FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function(err, results, fields) {
         if(err) console.log(err);
         console.log(results);

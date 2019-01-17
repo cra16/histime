@@ -2,7 +2,7 @@ var express = require('express');
 
 var router = express.Router();
 
-var student_id = 0;
+var student_id = '';
 var name = '';
 
 router.post('/', function (req, res) {
@@ -47,11 +47,14 @@ router.post('/', function (req, res) {
                 }));
             });
             spooky.then(function () {
-                this.emit('id', this.getElementAttribute('input[name="hakbun"]', 'value')) ;
-                this.emit('name', this.getElementInfo('td[width="240"]').text);
-                this.exit();
-
+                this.emit('name', {name : this.getElementInfo('td[width="240"]').text, student_id : this.getElementAttribute('input[name="hakbun"]', 'value')});
             }); 
+
+            spooky.then(function () {
+                this.exit();
+            }); 
+
+            
             
             spooky.run();
         });
@@ -79,14 +82,19 @@ router.post('/', function (req, res) {
     });
     
     spooky.on('id', function (input) {
-        console.log(input);
+
         if(input.length() > 10) student_id = -1;
+<<<<<<< HEAD
         student_id = input;
+=======
+        else student_id = input.toString();
+        console.log(student_id + 'id이다')
+
+>>>>>>> jinhyeok
     });
     spooky.on('name', function (input) {
-        console.log(input);
-        name = input;
-        res.send({ student_id : student_id.toString(), name : name });
+        console.log(input.student_id + input.name);
+        res.send({ student_id : input.student_id, name : input.name });
 
     });
 

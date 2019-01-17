@@ -75,15 +75,20 @@ export default {
       this.$cookies.set('name', this._response.data.name)
       this.$cookies.set('student_id', this._response.data.student_id)
       this.$cookies.set('auth', true)
-      console.log("set cookie")
     },
     setSession(){
       this.$session.start()
       this.$session.set('name', this._response.data.name)
       this.$session.set('student_id', this._response.data.student_id)
+<<<<<<< HEAD
       console.log("login name : " + this._response.data.name)
       console.log("login studentid : " +this._response.data.student_id )
+=======
+      console.log(this._response.data.name + this._response.data.student_id)
+>>>>>>> jinhyeok
       this.$session.set('auth', true)
+      console.log("set session")
+
     }
 
   },
