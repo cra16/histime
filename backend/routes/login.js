@@ -84,7 +84,13 @@ router.post('/', function (req, res) {
     spooky.on('id', function (input) {
 
         if(input.length() > 10) student_id = -1;
+<<<<<<< HEAD
         student_id = input;
+=======
+        else student_id = input.toString();
+        console.log(student_id + 'id이다')
+
+>>>>>>> 08c67041854a681198de1cb0e858377ad5a27d7c
     });
     spooky.on('name', function (input) {
         console.log(input.student_id + input.name);
