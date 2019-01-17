@@ -6,18 +6,29 @@
         <input id=text type="text" placeholder="과목명" class='input_text' name="search" onkeydown="enterSearch()"/></span>  
         <input type="button" class='sch_filt' value="검색" onclick="Search()"/>
       
-        <input type="button" class='sch_filt' value="필터" onclick="filter()"/>
+        <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </h2>
-      <div class="placeholder-box" >
+      <div v-show="showbox" class="placeholder-box" >
       <tr>
       <p>학부<p>
        <td align ="center">
        <select name="keyField">
-       <option value="management">경영경제학부</option>
-       <option value="news">언론정보문화학부</option>
+       <option value="blank">전체</option>/
+       <option value="gls">글로벌</option>  
+       <option value="mechanical">기계제어</option>   
+       <option value="management">경영경제</option>
+       <option value="space">공간환경</option>
+       <option value="international">국제어문</option>
        <option value="legal-law">법학부</option>
-       <option value="life-science">생명공학부</option>
-       <option value="csee">전산전자공학부</option>
+       <option value="counsel">상담복지</option>  
+       <option value="life-science">생명과학</option>
+       <option value="news">언론정보</option>
+       <option value="csee">전산전자</option>
+       <option value="idea-society">창의융합(인문사회)</option>
+       <option value="idea-nature">창의융합(자연과학)</option>
+       <option value="idea-mechanic">창의융합(공학)</option>
+       <option value="contents">콘텐츠융합디자인</option>
+       <option value="ictbusiness">ICT창업</option>
        </select>
        </td>
        </tr>
@@ -25,8 +36,14 @@
       <p>이수구분</p>
        <td align ="center">
        <select name="crs">
-       <option value="mustchoose">전공필수</option>
-       <option value="selectchoose">전공선택</option>
+       <option value="blank">전체</option>    
+       <option value="전선">전선</option>
+       <option value="전필">전필</option>
+       <option value="자선">자선</option>
+       <option value="교선">교선</option>
+       <option value="교선필">교선필</option>
+       <option value="교필">교필</option>
+       <option value="공선">공선</option>
        </select>
        </td>
        </tr>
@@ -34,10 +51,34 @@
       <p>교양영역</p>
        <td align ="center">
        <select name="liberalarts">
-       <option value="whole">전체</option>
-       <option value="gospel">신앙</option>
+       <option value="blank">전체</option>
+       <option value="신앙">신앙3</option>
        <option value="naturalscience">자연과학</option>
-       <option value="entertainment">예체능</option>
+       <option value="예체능">예술</option>
+       <option value="">ICT입문</option>
+       <option value="">프로그래밍기초</option>
+       <option value="">소통</option>
+       <option value="">융복합</option>
+       <option value="">제2외국어</option>
+       <option value="">영어1</option>
+       <option value="">한국어</option>
+       <option value="">영어2</option>
+       <option value="">신앙1</option>
+       <option value="">인성1</option>
+       <option value="">세계관1</option>
+       <option value="">세계관2</option>
+       <option value="">인문학</option>
+       <option value="">스포츠</option>
+       <option value="">리더십및문제해결</option>
+       <option value="">사회과학</option>
+       <option value="">자연과학</option>
+       <option value="">전공기초</option>
+       <option value="">기독교신앙기초1</option>
+       <option value="">기독교신앙기초2</option>
+       <option value="">특론및개별연구</option>
+       <option value="">소프트웨어활용</option>
+
+       
        </select>
        </td>
       </tr>
@@ -84,18 +125,27 @@ function enterSearch() {
         Search();  // 실행할 이벤트
     }
 }
+
+
 function Search() {
     var x = document.getElementById("text").value;
     window.location.href = "http://hisnet.handong.edu/for_student/course/PLES330M.php/search"+x;
 }
 
-function filter(){
-    
+export default {
+    data(){
+        return{
+            showbox:false,
+        }
+    },
+    methods:{
+        show: function(){
+            this.showbox=!this.showbox;
+    } 
+        }
+    }
 
 
-
-}
- 
 </script>
 <style  src = '../../assets/Makepage/search.css' scoped>
 
