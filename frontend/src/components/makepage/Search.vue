@@ -3,8 +3,8 @@
        <h1>과목찾기</h1>
        <h2>
       <span class='blue_window'>
-        <input id=text type="text" placeholder="과목명" class='input_text' name="search" onkeydown="enterSearch()"/></span>  
-        <input type="button" class='sch_filt' value="검색" onclick="Search()"/>
+        <input v-model="search.course_name" id=text type="text" placeholder="과목명" class='input_text' name="search"/></span> 
+        <input type="button" class='sch_filt' value="검색" v-on:click="search_byname"/>
       
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </h2>
@@ -120,30 +120,38 @@
 </template>
 
 <script type="text/javascript">
-function enterSearch() {
-    if(event.keyCode == 13){
-        Search();  // 실행할 이벤트
-    }
-}
 
-
-function Search() {
-    var x = document.getElementById("text").value;
-    window.location.href = "http://hisnet.handong.edu/for_student/course/PLES330M.php/search"+x;
-}
 
 export default {
     data(){
         return{
             showbox:false,
+            search : {
+                course_name : '',
+                gubun : '',
+                gyoyang : '',
+                professor : '',
+                credit : 0,
+                english : '',
+                time : '',
+            },
+            result : {
+
+            }
         }
     },
     methods:{
         show: function(){
             this.showbox=!this.showbox;
-    } 
+        },
+        search_byname: function(){
+            console.log(this.$session.get('student_id'));
+            
+            this.search.course_name = '';
         }
+            
     }
+}
 
 
 </script>

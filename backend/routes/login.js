@@ -87,7 +87,7 @@ router.post('/', function (req, res) {
     spooky.on('name', function (input) {
         console.log(input);
         name = input;
-        res.send({ student_id : student_id, name : name });
+        res.send({ student_id : student_id.toString(), name : name });
 
     });
 
