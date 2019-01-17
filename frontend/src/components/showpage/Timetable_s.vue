@@ -140,13 +140,6 @@
                 // }
                 // 만들다가 실패.. 나중에 다시하기(지현)
               },
-<<<<<<< HEAD
-            methods : {
-                go(){
-                    this.$router.replace({ name: "show" });
-                }
-            }
-=======
         created(){
             this.$http.post('/api/show/tt', {
                 student_id : this.$session.get('student_id'),
@@ -162,7 +155,6 @@
             });
         }
 
->>>>>>> 60fa9dbfffdbdfd945a798c54535d8e3eba00428
       }
     
 </script>
