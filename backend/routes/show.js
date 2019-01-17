@@ -54,4 +54,7 @@ router.get('/modify_ttname', function(req, res, next) {
     });
 });
 
+//시간표순위바꾸기
+
 module.exports = router;
+
