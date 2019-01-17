@@ -54,7 +54,10 @@ router.get('/modify_ttname', function(req, res, next) {
     });
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86789f1d985fe6d80e34f8a78e1b594a5badc8ec
 
 
 module.exports = router;
