@@ -7,9 +7,8 @@
         <input type="button" class='sch_filt' value="검색" onclick="Search()"/>
       
         <input type="button" class='sch_filt' value="필터" onclick="filter()"/>
-    </h2>
-    <!--  <h3><div id="rectangle"></div></h3> -->
-      <div class="placeholder-box">
+       </h2>
+      <div class="placeholder-box" >
       <tr>
       <p>학부<p>
        <td align ="center">
@@ -88,6 +87,13 @@ function enterSearch() {
 function Search() {
     var x = document.getElementById("text").value;
     window.location.href = "http://hisnet.handong.edu/for_student/course/PLES330M.php/search"+x;
+}
+
+function filter(){
+    
+
+
+
 }
  
 </script>

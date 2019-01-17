@@ -30,8 +30,12 @@ app.use('/api/login', login);
 app.use('/api/course_update', course_update);
 
 //give to frontend information for Show page
-var mysql = require('./routes/mysql');
-app.use('/api/show', mysql);
+var show = require('./routes/show');
+app.use('/api/show', show);
+
+//favorite
+var make = require('./routes/make');
+app.use('/api/make', make);
 
 ////////////////////////////////////////
 app.use(logger('dev'));

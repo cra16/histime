@@ -9,20 +9,31 @@ h1 {
 }
 .container{
 	display : inline-flex;
-	justify-content: center;
+	@media only screen and (min-width : 1824px) {
+		margin-left : 7%;
+		margin-right : 7%;
+	}
 }
 
 #list{
 	margin: 50px;
 	flex : 1;
+	@media only screen and (min-width : 1824px) {
+		width : 700px;
+		height : 700px;
+	}
 	width : 600px;
 	height : 600px;
-	border : black 1px solid;
+	border : 2px solid #225B95;
 }
 #timetable{
 	margin : 50px;
 	flex : 1;
+	@media only screen and (min-width : 1824px) {
+		width : 700px;
+		height : 700px;
+	}
 	width : 600px;
 	height : 600px;
-	border : black 1px solid;
+	border : 2px solid #225B95;
 }

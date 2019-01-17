@@ -1,9 +1,7 @@
 <!--시간표를 보여주는 웹 페이지-->
 <template>
     <div id="show">
-        <div class=user>안녕하세요 {{ this.$session.get('name') }} 학우님⁽⁽◝( ˙ ꒳ ˙ )◜⁾⁾ </div>
-        <h1>TimeTable show</h1>
-        <button v-on:click="logout()">로그아웃</button>
+        <Header></Header>
         <div class="container">
             <!--시간표 리스트-->
             <!-- <List id = "list" :val="this.ttlist" /> -->
@@ -17,6 +15,7 @@
 <script>
 import Timetable_s from '../components/showpage/Timetable_s.vue'
 import List from '../components/showpage/List.vue'
+import Header from '../components/Header.vue'
 
 
     export default {
@@ -34,7 +33,8 @@ import List from '../components/showpage/List.vue'
         auth : false,
         components: {
            Timetable_s,
-           List
+           List,
+           Header
         },
         data() {
             return {
@@ -53,36 +53,11 @@ import List from '../components/showpage/List.vue'
     methods: {
         go() { //시간표를 추가하는 웹 페이지로 전환
             this.$router.replace({ name: "make" });
-        },
-        logout: function () {
-                this.$session.destroy()
-                this.$cookies.set('auth_save',false)
-                this.$cookies.remove('name')
-                this.$cookies.remove('student_id',)
-                this.$cookies.remove('auth')
-                this.$router.replace('/login')
-                console.log(this.$cookies.get('auth_save'))
-            },
-         
+        }
     }
         
 }
-        
-  /*  beforeCreate: function () {
-            console.log('auth_save : ' + this.$cookies.get('auth_save'))
-            console.log('session: ' + this.$session.exists)
-           if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
-                alert("로그인이 필요합니다 :?")
-                this.$router.push('/login')
-            }
-             else if(!this.$session.exists()){
-                this.$session.start()
-                this.$session.set('name', this.$cookies.get('name') )
-                this.$session.set('student_id', this.$cookies.get('student_id'))
-                this.$session.set('auth', true)
-                }
-        },
-  */
+
    
     
 </script>

@@ -21,9 +21,9 @@
         <tbody>
             <div v-for="ttlist in this.ttlists" :key="ttlist.ttrank">
                 <tr>
-                <td>{{this.ttlist.ttrank}}</td>
-                <td>플랜A</td>
-                <td>18</td>
+                <td>{{ttlist.ttrank}}</td>
+                <td>{{ttlist.ttname}}</td>
+                <td>{{ttlist.total_credit}}</td>
                 <td><button v-on:click="ttedit()">수정</button></td>
                 <td><button v-on:click="ttdelete()">삭제</button></td>
                 </tr>
@@ -40,7 +40,7 @@
 <script>
     export default {
         name: 'ttlist',
-        // props :['ttlists'],
+        //props :['ttlists'],
         data() {
             return {
                 ttlists:[],
@@ -66,7 +66,7 @@
             go() { //시간표를 추가하는 웹 페이지로 전환
                 var userInput=prompt(" 시간표 이름을 입력하세요");
                 if(userInput==""){
-                    alert("취소되었습니다");
+                    alert("최소 한글자 이상 입력해주세요");
                     return false;
                 } else if(userInput==null){
                     alert("취소되었습니다");
