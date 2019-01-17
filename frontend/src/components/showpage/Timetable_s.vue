@@ -33,8 +33,8 @@
               },
         created(){
             this.$http.post('/api/show/tt', {
-                id : '21500670', //this.student.student_id
-                ttname : 'A'
+                id : '21500670',//this.$session.get('student_id'), //this.student.student_id
+                ttname : 'AAA'
             }).then((response) => {
                 if (response.status === 200) {
                 this.ttsubjects = response.data; //course_name, professor, time, credit

@@ -82,7 +82,6 @@ router.post('/', function (req, res) {
         console.log(input);
         if(input.length() > 10) student_id = -1;
         student_id = input;
-        
     });
     spooky.on('name', function (input) {
         console.log(input);
