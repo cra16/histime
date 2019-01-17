@@ -6,8 +6,8 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : 'h010638847',
+    user     : 'tester',
+    password : '1234',
     database : 'histime'
 });
 
@@ -28,10 +28,10 @@ router.post('/', function(req, res, next) {
     // connection.end();
 });
 
-//make page 초기에 즐겨찾기 리스트 생성해주는 친구
+//make page 초기에 즐겨찾기 리스트 생성
 //input : student_id
 //output : list of course_names
-router.get('/favorite', function(req, res) {
+router.get('/fav_list', function(req, res) {
     // console.log(req.body.id);
     var student_id = 21500670;
     connection.query(`SELECT course_name FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function(err, results, fields) {
@@ -55,8 +55,8 @@ router.get('/search/name', function(req, res) {
     });
 });
 
-//이름으로 검색시
-//input : course_name
+//필터로 검색시
+//input : courses' information except name
 //output : list of object(hakbu, gubun, gyoyang, credit, english, professor, time)
 router.get('/search/filter', function(req, res) {
     var hakbu = '';
@@ -78,9 +78,36 @@ router.get('/search/filter', function(req, res) {
     });
 });
 
-router
+//즐겨찾기 추가
+//input : student_id, code, course_name, professor, time, credit
+//output : NULL
+router.get('/add_fav', function(req, res) {
+    var student_id = ''; //req.body.student_id
+    var code = ''; //req.body.code
+    var course_name = ''; //req.body.course_name
+    var professor = ''; //req.body.professor
+    var time = ''; //req.body.time
+    var credit = 0; //req.body.credit
+    //debugging용
+    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+    
+    connection.query(add_fav, function(err, result, fields) {
+        if(err) console.log(err);
+    });
+});
 
+//다른 시간표 보기
+//input : student_id, ttname
+//output : list of object(course_name, professor, time, credit)
+router.get('/show_tt', function(req, res) {
+    var student_id = 21500670; //req.body.id
+    var ttname = ''; //req.body.ttname
 
-
+    connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
+        if(err) console.log(err);
+        console.log(results);
+        res.send(results);
+    });
+});
 
 module.exports = router;
