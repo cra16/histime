@@ -9,6 +9,7 @@
             <!--시간표  내용-->
             <timetable_s id ="timetable"/>
        </div>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -16,7 +17,7 @@
 import Timetable_s from '../components/showpage/Timetable_s.vue'
 import List from '../components/showpage/List.vue'
 import Header from '../components/Header.vue'
-
+import Footer from '../components/Footer.vue'
 
     export default {
        
@@ -25,7 +26,8 @@ import Header from '../components/Header.vue'
         components: {
            Timetable_s,
            List,
-           Header
+           Header,
+           Footer
         },
         data() {
             return {
