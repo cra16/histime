@@ -53,12 +53,14 @@
         },
         created () {
             this.$http.post('/api/show', {
-                id : ''//this.student.student_id
+                student_id : this.$session.get('student_id')
             }).then((response) => {
                 if (response.status === 200 ) {
-                    this.ttlists = response.data;
-                    console.log("get item")
-                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
+                    this.ttlists = response.data; //ttname, ttrank, total_credit
+                    console.log('Time table list : ' + this.ttlists.length + '개');
+                    for(var i = 0; i < this.ttlists.length; i++) {
+                        console.log('Time table ' + (i+1) + '번 이름: ' + this.ttlists[i].ttname);
+                    }
                 }
             });
         },

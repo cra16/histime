@@ -34,21 +34,25 @@ router.post('/', function(req, res, next) {
 
 //과목명말고 다른 정보는 어떻게 가져올건가요?
 router.post('/fav_list', function(req, res) {
-    // console.log(req.body.id);
-    var student_id = 21500670; //req.body.student_id;
+    var student_id = '21500670'; //req.body.student_id;
     var code_list = [];
     var object_list = [];
+
     connection.query(`SELECT code FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function(err, results, fields) {
         if(err) console.log(err);
         code_list = results;
-        console.log(results + 'length : ' + results.length + ' | ' + code_list.length);
-    });
 
-    // connection.query(`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE code='${code}';`, function(err, results, fields) {
-    //     if(err) console.log(err);
-    //     console.log(results);
-    //     object_list = results;
-    // });
+        for(var i = 0; i < code_list.length; i++) {
+            connection.query(`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE code='${code_list[i].code}';`, function(err, results, fields) {
+                if(err) console.log(err);
+                console.log(i + ': ' + results[0]);
+                // object_list[i] = result[0];
+                // object_list.push(results[0]);
+                // console.log(object_list[i]);
+            });
+        }
+        // res.send(object_list);
+    });
 });
 
 //이름으로 검색시
