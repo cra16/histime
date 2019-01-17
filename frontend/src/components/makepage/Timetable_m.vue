@@ -1,65 +1,120 @@
 <template>
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
-<div class = "Ttshow">
-    <h1 class ="tt_name">{{ tt_name }}</h1>
-    <div class="days">
-        <div class="day time">
-            <div class="day_title">Time</div>
-            <div class="hour">1교시</div>
-            <div class="hour">2교시</div>
-            <div class="hour">3교시</div>
-            <div class="hour">4교시</div>
-            <div class="hour">5교시</div>
-            <div class="hour">6교시</div>
-            <div class="hour">7교시</div>
-            <div class="hour">8교시</div>
-            <div class="hour">9교시</div>
-            <div class="hour">10교시</div>
-        </div>
-
-        <div class="day monday">
-            <div class="day_title">Mon</div>
-            <div v-for="n in 10" :key="n" class="time ">
-                <div v-for="subject in subjects" :key ="subject.time" class ="blue">
-                    <div >
-                        <div v-if="subject.time===1">{{ subject.name }}</div>
-                        <div v-if="subject.time===2">{{ subject.name }}</div>
-                        <div v-if="subject.time===3">{{ subject.name }}</div>
-                        <div v-if="subject.time===4">{{ subject.name }}</div>
-                        <div v-if="subject.time===5">{{ subject.name }}</div>
-                        <div v-if="subject.time===6">{{ subject.name }}</div>
-                        <div v-if="subject.time===7">{{ subject.name }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="day tuesday">
-            <div class="day_title">Tuesday</div>
-             <div class="class b15 blue" data-tooltip="Advanced Integral Calculus">2MIC1 [K2]</div>
-        </div>
-
-        <div class="day wednesday">
-            <div class="day_title">Wednesday</div>
-             <div v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</div>
-        </div>
-
-        <div class="day thursday">
-            <div class="day_title">Thursday</div>
-             <div v-for="subject in subjects" :key ="subject.name" class ="class b15 blue">{{ subject.name }}</div>
-        </div>
-
-        <div class="day friday">
-            <div class="day_title">Friday</div>
-        </div>
-
-        <div class="day saturday">
-            <div class="day_title">Saturday</div>	
-        </div>
+    <div class="head">
+        <h3>첫번째 예상시간표</h3><!--글자 제한 두기-->
+        <button class="btn" id="redo"></button>
+        <button  class="btn" id="undo"></button>
     </div>
-    <button v-on:click = go()>완성!</button>
-</div>
+    <div class = "timetable">
+        <table>
+            <tr>
+                <th>List</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+            <tr>
+                <td id="class">1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+             
+            </tr>
+             <tr>
+                <td id="class">2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+                
+            </tr>
+             <tr>
+                <td id="class">3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">7</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">8</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">10</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="foot">
+        <button class="btn" id="save">저장하기</button> 
+    </div>
 </body>
 
 </template>
@@ -100,6 +155,6 @@
 </script>
 
 
-<style  src = '../../assets/Makepage/timetable.less' lang="scss" scoped>
+<style  src = '../../assets/Makepage/timetable_m.less' lang="scss" scoped>
 
 </style>
