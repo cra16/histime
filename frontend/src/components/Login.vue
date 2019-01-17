@@ -75,13 +75,15 @@ export default {
       this.$cookies.set('name', this._response.data.name)
       this.$cookies.set('student_id', this._response.data.student_id)
       this.$cookies.set('auth', true)
-      console.log("set cookie")
     },
     setSession(){
       this.$session.start()
       this.$session.set('name', this._response.data.name)
       this.$session.set('student_id', this._response.data.student_id)
+      console.log(this._response.data.name + this._response.data.student_id)
       this.$session.set('auth', true)
+      console.log("set session")
+
     }
 
   },
