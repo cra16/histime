@@ -97,16 +97,16 @@ router.get('/search/filter', function(req, res) {
 //즐겨찾기추가
 //input : student_id, code, course_name, professor, time, credit
 //output : NULL
-router.get('/add_fav', function(req, res) {
-    var student_id = ''; //req.body.student_id
-    var code = ''; //req.body.code
-    var course_name = ''; //req.body.course_name
-    var professor = ''; //req.body.professor
-    var time = ''; //req.body.time
-    var credit = 0; //req.body.credit
-    //debugging용
-    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+router.post('/add_fav', function(req, res, next) {
+    var student_id = req.body.student_id;
+    var code = req.body.code;
+    var course_name = req.body.course_name;
+    var professor = req.body.professor;
+    var time = req.body.time;
+    var credit = req.body.credit; 
     
+    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+    console.log(add_fav);
     connection.query(add_fav, function(err, result, fields) {
         if(err) console.log(err);
     });
