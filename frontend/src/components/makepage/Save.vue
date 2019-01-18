@@ -50,7 +50,7 @@ export default{
             
           },
     methods :{
-       
+        
     },
      created(){
             this.$http.post('/api/make/fav_list', {

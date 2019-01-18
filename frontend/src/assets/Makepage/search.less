@@ -55,7 +55,7 @@ h2{
   .placeholder-box {
     position: relative;
     display: block;
-    width: 300px;
+    width: 350px;
     min-height: 150px;
     margin-top: 0px;
     padding: 5px;
@@ -86,4 +86,61 @@ h2{
 
   td{
       margin-bottom:0;
+  }
+  p{
+    margin : 0.5px;
+    font-weight : 700;
+}
+.contents{
+    font-size : 13px;
+    font-weight : 500;
+}
+
+
+  .section1{
+    display : inline-block;
+    margin-left : 5%;
+}
+
+.section2{
+    display : inline-block;
+    margin :0;
+    position:relative;top:20px;
+    margin-left : 5%;
+}
+
+.section3{
+    display : inline-block;
+    margin :0;
+    margin-left : 5%;
+}
+
+.section4{
+    display : inline-block;
+    margin-right :5%;
+    float:right;
+    display : none;
+    button{
+        width : 34px;
+        height : 34px;
+        border-radius: 5px;
+        cursor : pointer;
+      }
+     
+      #delete{
+        margin-top : 13%;
+        background : url( '../../image/cancle.png') no-repeat;
+      }
+      #add{
+          margin-top : 13%;
+          background : url( '../../image/plus.png') no-repeat;
+      }
+}
+
+.content:hover .section4 {
+    display: block;
+    
+  }
+.content:hover {
+    background-color : rgb(193, 213, 236) ;
   }
