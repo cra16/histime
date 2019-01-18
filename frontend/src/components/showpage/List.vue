@@ -60,9 +60,13 @@
                     console.log('Time table list : ' + this.ttlists.length + '개');
                     for(var i = 0; i < this.ttlists.length; i++) {
                         console.log('Time table ' + (i+1) + '번 이름: ' + this.ttlists[i].ttname);
+                       
                     }
+                    console.log("버스에 보낸 이름 :" + this.ttlists[0].ttname);
+                     this.$EventBus.$emit('ttname',this.ttlists[0].ttname);//임시 이벤트 버스, 첫번째 것만 보냄
                 }
             });
+          
         },
         methods: {
             go() { //시간표를 추가하는 웹 페이지로 전환
