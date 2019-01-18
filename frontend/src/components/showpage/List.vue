@@ -56,11 +56,6 @@
                 id : '21500670'//this.student.student_id
             }).then((response) => {
                 if (response.status === 200 ) {
-<<<<<<< HEAD
-                    this.ttlists = response.data;
-                    console.log("get item")
-                    console.log(response.data[0].ttname); //ttname, ttrank, total_credit
-=======
                     this.ttlists = response.data; //ttname, ttrank, total_credit
                     console.log('Time table list : ' + this.ttlists.length + '개');
                     for(var i = 0; i < this.ttlists.length; i++) {
@@ -69,7 +64,6 @@
                     }
                     console.log("버스에 보낸 이름 :" + this.ttlists[0].ttname);
                      this.$EventBus.$emit('ttname',this.ttlists[0].ttname);//임시 이벤트 버스, 첫번째 것만 보냄
->>>>>>> jihyun
                 }
             });
           
