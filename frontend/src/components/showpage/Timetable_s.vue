@@ -7,7 +7,7 @@
     <div class = "timetable">
         <table>
             <tr>
-                <th>List</th>
+                <th></th>
                 <th>월</th>
                 <th>화</th>
                 <th>수</th>
