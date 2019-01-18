@@ -44,13 +44,10 @@ export default{
         return{
        
             active: false,
-<<<<<<< HEAD
-=======
             contents : [],
             content :{
                 course_name:"",
             },
->>>>>>> ce6456065d78fceea7687b2d8a414679e90b3721
             subject : {
                 name : "",
                 code : "",
@@ -59,22 +56,6 @@ export default{
             
           },
     methods :{
-<<<<<<< HEAD
-        
-    },
-     created(){
-            this.$http.post('/api/make/fav_list', {
-                student_id : this.$session.get('student_id'), //this.student.student_id
-                
-            }).then((response) => {
-                if (response.status === 200) {
-                console.log( "학번 : " + this.$session.get('student_id'));
-                console.log("fav_list : " + response.data[0].course_name);                   }
-            });
-        }
-
-          
-=======
         //즐겨찾기 항목 하나만 삭제
         del(){
             alert("delete");
@@ -113,7 +94,6 @@ export default{
                 // }
             }
         });
->>>>>>> ce6456065d78fceea7687b2d8a414679e90b3721
     }
 }
  
