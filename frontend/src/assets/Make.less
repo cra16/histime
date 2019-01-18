@@ -1,16 +1,19 @@
 //less 파일 : css랑 같다고 생각하면 되는데 좀더 편하게 쓸 수 있음-지현
 //$anchor-color: #555555;
-div #Make{
-    padding : 5px;
-}
+
 
 #container {
   display : inline-block;
-  @media only screen and (min-width : 1824px) {
+  height : 600px;
+  width : 2000px;
+  @media only screen and (max-width : 1824px) {
+    //맥북화면
     margin-left : 2%;
+    width : 1400px; 
   }
-    height : 600px;
-    width : 100%
+  
+  
+
   }
 
   #search {
@@ -21,7 +24,7 @@ div #Make{
     float : left;
     margin-left : 6%;
     @media only screen and (max-width : 1824px) {
-      //맥북화면
+      //멕북화면
       margin-left : 3%;
       height : 600px;
       width: 330px;
@@ -29,6 +32,7 @@ div #Make{
     }
   }
   #timetable {
+    margin-top:0;
     border : 1.5px solid #225B95 ;
     float : left;
     height : 700px;
