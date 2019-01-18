@@ -113,7 +113,11 @@
         </table>
     </div>
     <div class="foot">
+<<<<<<< HEAD
+        <button class="btn" id="save">저장하기</button> 
+=======
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
+>>>>>>> ce6456065d78fceea7687b2d8a414679e90b3721
     </div>
 </body>
 
