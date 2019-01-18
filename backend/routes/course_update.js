@@ -196,8 +196,9 @@ function addtoDB(json){
         }
         var time;
         if(obj[6].includes('\n')){
+            
             var str_end = obj[6].indexOf('\n');
-            time = obj[6].substr(0, str_end);
+            time = obj[6].substr(str_end+2, obj[6].length - str_end);
         }
         else{
             time = obj[6];

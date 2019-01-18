@@ -89,7 +89,7 @@
             <p>시간대</p>
             <input type="button" value="선택창 열기">
             
-            <button type="button">검색하기</button>
+            <button type="button" v-on:click="search_by_name" >검색하기</button>
        </div>
     </div>
   
