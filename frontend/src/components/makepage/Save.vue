@@ -69,13 +69,16 @@ export default{
         },
 
         add(){
-            alert("add");
+           // alert("add");
+           //send message to timetable component
+            this.$EventBus.$emit('add','add subject');
         },
         del_a(){
             alert("del_a");
         },
         add_a(){
             alert("add_a");
+            this.$EventBus.$emit('add_a','add all subject');
         },
        
     },

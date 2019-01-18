@@ -20,7 +20,7 @@
     </form>
     
     
-    <div v-show="isLoad" id="loading"><img id="loading-image" src="/images/loading.gif" alt="Loading..." /></div>
+    <div  v-show="isLoad" id="loading"></div>
 
      
   </div>
