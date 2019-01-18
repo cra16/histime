@@ -3,13 +3,13 @@
 <body>
     <div class="head">
         <h3>첫번째 예상시간표</h3><!--글자 제한 두기-->
-        <button class="btn" id="redo"></button>
-        <button  class="btn" id="undo"></button>
+        <button class="btn" id="redo" v-on:click="redo()"></button>
+        <button  class="btn" id="undo" v-on:click="undo()"></button>
     </div>
     <div class = "timetable">
         <table>
             <tr>
-                <th>List</th>
+                <th></th>
                 <th>월</th>
                 <th>화</th>
                 <th>수</th>
@@ -113,7 +113,11 @@
         </table>
     </div>
     <div class="foot">
+<<<<<<< HEAD
         <button class="btn" id="save">저장하기</button> 
+=======
+        <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
+>>>>>>> ce6456065d78fceea7687b2d8a414679e90b3721
     </div>
 </body>
 
@@ -136,21 +140,26 @@
             
           },
           computed : {
-                // filter:function(day){
-                //     for (var i in subjects) 
-                    
-                //     return this.subject.filter((mon)=>{
-                //         return ;
-                //     })
-                // }
-                // 만들다가 실패.. 나중에 다시하기(지현)
               },
             methods : {
-                go(){
+                save(){
                     this.$router.replace({ name: "show" });
+                },
+                undo(){
+                    alert("undo")
+                },
+                redo(){
+                    alert("redo")
                 }
+            },
+            created(){
+                this.$EventBus.$on('add',function(text){
+                    console.log(text);
+                })
+                
             }
-      }
+        }
+        
     
 </script>
 

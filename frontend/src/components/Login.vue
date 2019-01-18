@@ -20,7 +20,7 @@
     </form>
     
     
-    <div v-show="isLoad" id="loading"><img id="loading-image" src="/images/loading.gif" alt="Loading..." /></div>
+    <div  v-show="isLoad" id="loading"></div>
 
      
   </div>
@@ -75,7 +75,6 @@ export default {
       this.$cookies.set('name', this._response.data.name)
       this.$cookies.set('student_id', this._response.data.student_id)
       this.$cookies.set('auth', true)
-      console.log("set cookie")
     },
     setSession(){
       this.$session.start()
@@ -84,6 +83,8 @@ export default {
       console.log("login name : " + this._response.data.name)
       console.log("login studentid : " +this._response.data.student_id )
       this.$session.set('auth', true)
+      console.log("set session")
+
     }
 
   },
