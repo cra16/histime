@@ -1,9 +1,117 @@
 <template>
 <!-- show page에서 시간표를 보여주는 부분 -->
-<div class = "Timtable">
-    <h2 class = "ttname">2학기 예비 1</h2>
+<body>
+    <div class="head">
+        <h3>첫번째 예상시간표</h3><!--글자 제한 두기-->
+    </div>
+    <div class = "timetable">
+        <table>
+            <tr>
+                <th></th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+            <tr>
+                <td id="class">1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+             
+            </tr>
+             <tr>
+                <td id="class">2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+                
+            </tr>
+             <tr>
+                <td id="class">3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">7</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">8</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
+             <tr>
+                <td id="class">10</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="last"></td>
+            </tr>
 
-</div>
+        </table>
+    </div>
+</body>
+
 </template>
 
 <script >
@@ -11,6 +119,7 @@
     export default{
           data(){
               return{
+                  tt_name : "aa",
                   subjects: subjects,
                   subject : {
                        name : ""
@@ -50,6 +159,7 @@
     
 </script>
 
-<style src = '../../assets/showpage/timetable.less' lang = "scss" scoped>
+
+<style  src = '../../assets/Showpage/timetable_s.less' lang="scss" scoped>
 
 </style>

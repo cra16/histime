@@ -1,5 +1,5 @@
 <template>
-
+<!-- 시간표 만드는 페이지에서 즐겨찾기 부분 -->
 <div class="save">
     <h1 id="head">즐겨찾기</h1>
 <!-- 여기에 이렇게 많은 정보가 필요한가? -->
@@ -21,16 +21,16 @@
                     <p>영어 100%</p>
                 </div>
                 <div  class="section4">
-                    <button id="delete"></button>
+                    <button id="delete" v-on:click="del()"></button>
                     <br/>
-                    <button id="add"></button>
+                    <button id="add" v-on:click="add()"></button>
                 </div>
                 <hr />
             </div>
     </div>
     <h1 id="foot">
-        <button class="all">전체추가</button>
-        <button class="all">전체삭제</button>
+        <button class="all" v-on:click="add_a()">전체추가</button>
+        <button class="all" v-on:click="del_a()">전체삭제</button>
     </h1>    
 </div>
    
@@ -56,6 +56,30 @@ export default{
             
           },
     methods :{
+        //즐겨찾기 항목 하나만 삭제
+        del(){
+            alert("delete");
+             this.$http.post('/api/login', {
+            }).then((response) => {
+                if (response.status === 200 ) {
+                }
+            }, function (err) {
+                alert("로그인을 틀렸거나 서버가 이상하거나..")
+            })
+        },
+
+        add(){
+           // alert("add");
+           //send message to timetable component
+            this.$EventBus.$emit('add','add subject');
+        },
+        del_a(){
+            alert("del_a");
+        },
+        add_a(){
+            alert("add_a");
+            this.$EventBus.$emit('add_a','add all subject');
+        },
        
     },
     created(){

@@ -49,6 +49,9 @@ export default {
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+::-webkit-scrollbar {width: 5px; height: 3px; border: 0px solid #fff; }
+::-webkit-scrollbar-thumb {height: 3px; width: 5px; background: #FFCA55 }
+
 div{
      margin: 0;
     font-family: 'Noto Sans KR', sans-serif;

@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+//스크롤바 크롬
+::-webkit-scrollbar {width: 5px; height: 3px; border: 0px solid #fff; }
+::-webkit-scrollbar-thumb {height: 3px; width: 5px; background: #FFCA55 }
+
+.head{
+    margin:0;
+    background-color:#225B95;
+    text-align: center;
+    h3{
+        font-size : 20px;
+        padding : 1%;
+        margin:0px;
+        // margin-left : 20%;
+        color:white;
+        display: inline-block;
+    }
+   
+    #undo{
+        display: inline;
+        position:relative;top:8px;
+        float: right;
+        margin-right :5% ;
+        border : none;
+        height:20px;
+        width:20px;
+        background : url( '../../image/schedule_left.png') no-repeat;
+        background-size : cover//이미지가 버튼 사이즈에 맞게 조절
+    }
+    #redo{
+        display: inline;
+        position:relative;top:8px;
+        float:right;
+        margin-right :10% ;
+        height:20px;
+        width:20px;
+        border : none;
+        background : url( '../../image/schedule_right.png') no-repeat;
+        background-size : cover
+    }
+}
+.timetable{
+    overflow: scroll;
+    height : 85%;
+    @media only screen and (min-width : 1824px) {
+        //큰 화면
+        height :86.7%;
+    }
+    table{
+        width : 99%;
+        border-collapse: collapse;
+        
+    th{
+        border-bottom : 2px solid #225B95;
+    }   
+    td{
+        width : auto;
+        border-bottom : 1px solid #225B95;
+        border-top: 1px solid #225B95;
+        border-right: 1px solid #225B95;
+        height : 80px;
+    }
+    #last{
+        border-right : none;
+    }
+    #class{
+       width  : 10%;
+       border-right : 2px solid #225B95;
+       text-align : center;
+    }
+    
+    }
+}
+
+.foot{
+    text-align: center;
+    margin : 0;
+    border:2px solid #225B95;
+    background-color:#9CBADF;
+    width: 99.9%;
+    height : 49px;
+    position:relative;right:2px;
+    #save{
+        width : 100px;
+        font-weight : 500;
+        border-radius: 5px;
+        padding: 7px 6px;
+        font-size: 17px;
+        text-decoration: none;
+        margin : 0;
+        color: white;
+        cursor : pointer;
+        text-align: center;
+        background-color:#FFCA55 ;
+        position:relative;top:8px;
+    }
+}
