@@ -4,7 +4,7 @@
        <h2>
       <span class='blue_window'>
         <input v-model="course_name" id=text type="text" placeholder="과목명" class='input_text' name="search"/></span> 
-        <input type="button" class='sch_filt' value="검색" v-on:click="search_byname"/>
+        <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
       
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </h2>
@@ -26,7 +26,7 @@
                     <p>영어 {{course.english}}</p>
                 </div>
                 <div  class="section4">
-                    <button id="delete"></button>
+                    <button id="add" v-on:click="(event) => { add_to_fav(key) }"></button>
                     <br/>
                     <button id="add"></button>
                 </div>
@@ -89,7 +89,7 @@
             <p>시간대</p>
             <input type="button" value="선택창 열기">
             
-            <button type="button">검색하기</button>
+            <button type="button" v-on:click="search_by_name" >검색하기</button>
        </div>
     </div>
   
@@ -127,7 +127,7 @@ export default {
         show: function(){
             this.showbox=!this.showbox;
         },
-        search_byname: function(){
+        search_by_name: function(){
             console.log(this.$session.get('student_id'));
             this.$http.post('/api/make/search/name', {
                 course_name : this.course_name,
@@ -142,6 +142,22 @@ export default {
         search_by_Filter: function(){
             this.$http.post('/api/make/search/filter', {
                 course_name : this.search.course_name,
+                }).then((response) => {
+                    console.log(response.data);
+                    search = response.data;
+            });
+        },
+        add_to_fav: function(key){
+            // console.log(key);
+            console.log(this.search[key].name);
+            
+            this.$http.post('/api/make/add_fav', {
+                student_id : this.$session.get('student_id'),
+                code : this.search[key].code,
+                course_name : this.search[key].name,
+                professor : this.search[key].professor,
+                time : this.search[key].time,
+                credit : this.search[key].credit
                 }).then((response) => {
                     console.log(response.data);
                     search = response.data;

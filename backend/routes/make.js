@@ -6,10 +6,11 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
+
 
 connection.connect(function(err) {
     if(err) console.log(err);
@@ -96,16 +97,16 @@ router.get('/search/filter', function(req, res) {
 //즐겨찾기추가
 //input : student_id, code, course_name, professor, time, credit
 //output : NULL
-router.get('/add_fav', function(req, res) {
-    var student_id = ''; //req.body.student_id
-    var code = ''; //req.body.code
-    var course_name = ''; //req.body.course_name
-    var professor = ''; //req.body.professor
-    var time = ''; //req.body.time
-    var credit = 0; //req.body.credit
-    //debugging용
-    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+router.post('/add_fav', function(req, res, next) {
+    var student_id = req.body.student_id;
+    var code = req.body.code;
+    var course_name = req.body.course_name;
+    var professor = req.body.professor;
+    var time = req.body.time;
+    var credit = req.body.credit; 
     
+    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+    console.log(add_fav);
     connection.query(add_fav, function(err, result, fields) {
         if(err) console.log(err);
     });

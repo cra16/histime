@@ -10,8 +10,8 @@ var html;
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 
@@ -196,8 +196,9 @@ function addtoDB(json){
         }
         var time;
         if(obj[6].includes('\n')){
+            
             var str_end = obj[6].indexOf('\n');
-            time = obj[6].substr(0, str_end);
+            time = obj[6].substr(str_end+2, obj[6].length - str_end);
         }
         else{
             time = obj[6];
