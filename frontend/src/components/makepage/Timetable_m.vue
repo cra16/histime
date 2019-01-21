@@ -18,100 +18,69 @@
                 <th>토</th>
             </tr>
             <tr>
-                <td id="class">1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-             
+                <td id="class_time">1</td>
+                <td rowspan="10" class="mon">
+                    <!-- 월요일에 대한 반복문-->
+                    <!--1교시 to 10교시-->
+                    <div v-for="i in 10" :key="i">
+                         <div v-if="courses[1] != undefined">
+                            <div v-if="courses[1][i] != undefined">
+                                <div v-for="course of courses[1][i]" :key="course.code">
+                                        <node :data="course" />
+                                </div>
+                            </div>
+                         </div>
+                    </div> 
+                </td>
+
+                 <td rowspan="10">
+                     
+                 </td>
+                 <td rowspan="10">
+                    
+                 </td>
+                 <td rowspan="10">
+                     
+                 </td>
+                 <td rowspan="10">
+                 
+                </td>
+                <td rowspan="10" id="last">
+                </td>
             </tr>
              <tr>
-                <td id="class">2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
+                <td id="class_time">2</td>
+              
+            </tr>
+             <tr>
+               <td id="class_time">3</td>
+            </tr>
+             <tr>
+              <td id="class_time">4</td>
+            </tr>
+             <tr>
+                <td id="class_time">5</td>
+            </tr>
+             <tr>
+              <td id="class_time">6</td>
+            </tr>
+             <tr>
+                <td id="class_time">7</td>
+            </tr>
+             <tr>
+                <td id="class_time">8</td>
+               
+            </tr>
+             <tr>
+                <td id="class_time">9</td>
                 
             </tr>
              <tr>
-                <td id="class">3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">6</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">7</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">8</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">9</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">10</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
+                <td id="class_time">10</td>
             </tr>
 
         </table>
-    </div>
+    </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
     </div>
@@ -120,23 +89,35 @@
 </template>
 
 <script >
-  import subjects from '../timetable.json'
+    import subjects from '../timetable.json'
+    import node from '../timetable/node'
     export default{
+        components : {
+            node
+        },
           data(){
               return{
-                  tt_name : "aa",
+                  tt_name : "",
                   subjects: subjects,
                   subject : {
                        name : ""
                   },
                   filltedSub :{
-
-                  }
+                  },
+                  courses : [[[]]],
+                  
               }
             
           },
-          computed : {
+          watch: {
+            courses : {
+                deep : true,
+                handler(){
+                    console.log("added")
+                }
               },
+              
+          },
             methods : {
                 save(){
                     this.$router.replace({ name: "show" });
@@ -146,21 +127,35 @@
                 },
                 redo(){
                     alert("redo")
+                },
+                add_to(data){
+                    
+                    for(var i = 0; i < data.length; i++){
+                        var day_index = 0;
+                        var time_index = parseInt(data[i].start);
+                        console.log(data[i]);
+                        console.log(parseInt(data[i].start));
+                        if(data[i].day === 'Mon') day_index = 1;
+                        else if(data[i].day === 'Tue') day_index = 2;
+                        else if(data[i].day === 'Wed') day_index = 3;
+                        else if(data[i].day === 'Thi') day_index = 4;
+                        else if(data[i].day === 'Fri') day_index = 5;
+                        else if(data[i].day === 'Sat') day_index = 6;
+                        if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                        if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
+                        this.courses[day_index][time_index].push(data[i]);
+                        this.$forceUpdate();
+                    }
+                    console.log(this.courses);
+
                 }
             },
+          
             created(){
                 this.$EventBus.$on('add',function(text){
                     console.log(text);
-                })
-                this.$EventBus.$on('courses',function(courses){
-                    for(var i = 0 ; i < courses.length; i++){
-                        console.log( "day :" + courses[i].day);
-                        console.log( "start :" + courses[i].start);
-                        console.log( "length :" + courses[i].long);
-                    }
-                })
-
-                
+                }),
+                this.$EventBus.$on('courses',this.add_to);
             }
         }
         

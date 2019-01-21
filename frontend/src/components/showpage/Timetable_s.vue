@@ -15,16 +15,20 @@
                 <th>금</th>
                 <th>토</th>
             </tr>
+
             <tr>
                 <td id="class_time">1</td>
                 <td rowspan="10" class="mon">
-                    <!-- <node v-for="n in 3" :key="n" data="node">
-                    </node> -->
-                    <node :data='node'>
-                    </node>
-                    <node :data='node'>
-                    </node>
+                    <!-- 월요일에 대한 반복문
+                    <div v-for="i in 10" :key="i"> 
+                        <div v-for="item of data[0][i]" :key="item.course_name">
+                                <node :data="node" />
+                        </div>
+                    </div> -->
+                    <node :data="node" />
+        
                 </td>
+
                  <td rowspan="10">
                      
                  </td>
@@ -72,7 +76,6 @@
             </tr>
              <tr>
                 <td id="class_time">10</td>
-                
             </tr>
 
         </table>
@@ -89,32 +92,44 @@
         },
           data(){
               return{
-                  tt_name : "",
-                  subject : {
-                       name : ""
-                  },
-                  nodes : {
-                     
-                  },
+                  tt_name : "", 
+                  nodes:{
+
+                  },                 
                   node : {
                       start : "1" ,
-                      end : "2",
+                      leng : "2",
                       name : "녹차아이스",
-                  }
+                  },
+                 check :[[]]
               }
             
           },
+
         created() {
-    	    this.$EventBus.$on('ttname', this.onReceive);
+            this.$EventBus.$on('ttname', this.onReceive);
+            this.check = new Array(6); // 매개변수는 배열의 크기
+            for (var i = 0; i < 5; i++) {
+                 arr[i] = new Array(10); // 매개변수는 배열의 크기
+            }
+           
         },
          methods: {
     	    onReceive(text) {
                 this.tt_name = text;
+            },
+            timetable_s(){
+                this.$http.post('/api/show/timetable', {
+                    student_id : this.$session.get('student_id'),
+                    tt_name : this.tt_name
+                }).then((response) => {
+                    if (response.status === 200 ) {
+                        nodes : response.data
+                }
+            });
             }
        }   
     }
-    
-
 </script>
 
 
