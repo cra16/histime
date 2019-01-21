@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="section4">
-                            <button id="add" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <button id="delete" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
 
