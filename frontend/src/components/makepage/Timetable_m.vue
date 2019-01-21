@@ -2,7 +2,18 @@
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
     <div class="head">
-        <h3>첫번째 예상시간표</h3><!--글자 제한 두기-->
+        <h3><!--글자 제한 두기-->
+         <p align="left">이시간표 이름은 ~~
+            <select v-model="listselect">
+            <option value="" >시간표 선택</option>
+           <!-- <option v-for="list in lists" v-bind:value="list.value">
+                {{list}} 
+            </option>-->
+            
+            </select>
+            </p> 
+            </h3>
+        
         <button class="btn" id="redo" v-on:click="redo()"></button>
         <button  class="btn" id="undo" v-on:click="undo()"></button>
     </div>
