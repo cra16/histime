@@ -18,12 +18,85 @@
                 <th>토</th>
             </tr>
             <tr>
-                
-                <td id="class_time">1</td>
 
+                <td id="class_time">1</td>
+      
+                    <td rowspan="10">
+                        <!-- 월요일에 대한 반복문-->
+                        <!--1교시 to 10교시-->
+                        <div v-for="i in 10" :key="i">
+                            <div v-if="courses[1] != undefined">
+                                <div v-if="courses[1][i] != undefined">
+                                    <div v-for="course of courses[1][i]" :key="course.code">
+                                            <node :data="course" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </td>
+             
+                 <td rowspan="10">
+                   <div v-for="i in 10" :key="i">
+                            <div v-if="courses[2] != undefined">
+                                <div v-if="courses[2][i] != undefined">
+                                    <div v-for="course of courses[2][i]" :key="course.code">
+                                            <node :data="course" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                 </td>
+
+                 <td rowspan="10">
+                      <div v-for="i in 10" :key="i">
+                            <div v-if="courses[3] != undefined">
+                                <div v-if="courses[3][i] != undefined">
+                                    <div v-for="course of courses[3][i]" :key="course.code">
+                                            <node :data="course" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                 </td>
+                 <td rowspan="10">
+                      <div v-for="i in 10" :key="i">
+                            <div v-if="courses[4] != undefined">
+                                <div v-if="courses[4][i] != undefined">
+                                    <div v-for="course of courses[4][i]" :key="course.code">
+                                            <node :data="course" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                 </td>
+                 <td rowspan="10">
+                      <div v-for="i in 10" :key="i">
+                            <div v-if="courses[5] != undefined">
+                                <div v-if="courses[5][i] != undefined">
+                                    <div v-for="course of courses[5][i]" :key="course.code">
+                                            <node :data="course" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                </td>
+                <td rowspan="10" id="last">
+                     <div v-for="i in 10" :key="i">
+                            <div v-if="courses[6] != undefined">
+                                <div v-if="courses[6][i] != undefined">
+                                    <div v-for="course of courses[6][i]" :key="course.code">
+                                            <node :data="course" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                </td>
             </tr>
+
              <tr>
                 <td id="class_time">2</td>
+                
+                
             </tr>
              <tr>
                <td id="class_time">3</td>
