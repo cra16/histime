@@ -315,19 +315,25 @@ export default {
             // });
         },    
         parsingTime: function(course){
-            var sep_time = course.time.split( ',');
+            var course_temp = JSON.parse(JSON.stringify(course));
+            var course_for_use = JSON.parse(JSON.stringify(course));
+            
+            var prepared_data = [];
+            if(course_temp.time = '')return prepared_data;
+
+            var sep_time = course_for_use.time.split( ',');
             // for(var i = 0; i< sep_time.length; i++){
             //     console.log(sep_time[i]);
             // }
-            var prepared_data = [];
-            if(course.time = '')return prepared_data;
+            console.log(course.time + '코스타임');
+            console.log(course_temp.time + '타임');
 
             prepared_data.push({
-                        code : course.code,
-                        course_name : course.name,
-                        professor : course.professor,
+                        code : course_temp.code,
+                        course_name : course_temp.name,
+                        professor : course_temp.professor,
                         time : course.time,
-                        credit : course.credit,
+                        credit : course_temp.credit,
                         
                         day : sep_time[0].substr(0, 3),
                         start : sep_time[0][3],
@@ -344,11 +350,11 @@ export default {
                 }
                 else{
                     prepared_data.push({
-                        code : course.code,
-                        course_name : course.name,
-                        professor : course.professor,
+                        code : course_temp.code,
+                        course_name : course_temp.name,
+                        professor : course_temp.professor,
                         time : course.time,
-                        credit : course.credit,
+                        credit : course_temp.credit,
                         
                         day : sep_time[i].substr(0, 3),
                         start : sep_time[i][3],
