@@ -89,9 +89,9 @@ export default{
             if (response.status === 200) {
                 var subjects = response.data; //name, code, time, credit, gubun, professor, english
                 console.log('즐겨찾기 List : ' + subjects.length + '개');
-                // for(var i = 0; i < subjects.length; i++) {
-                //     console.log('즐겨찾기 ' + (i+1) + '번 과목: ' + subjects[i].name);
-                // }
+                for(var i = 0; i < subjects.length; i++) {
+                    console.log('즐겨찾기 ' + (i+1) + '번 과목: ' + subjects[i].name);
+                }
             }
         });
     }
