@@ -1,5 +1,6 @@
-  <template>
+<template>
   <div class="login">
+    <!--<div class="page"> -->
     <div class = "logo">
       <h1>{{ name }} </h1>
       <p>이번 학기를 채울 모든 경우의 수, His Time</p>
@@ -19,15 +20,21 @@
       <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
     </form>
     
-    
-    <div  v-show="isLoad" id="loading"></div>
+    <!--</div> -->
 
+    <div  v-show="isLoad" id="loading">
+       <div class="container">
+        <div class="item item-1"></div>
+        <div class="item item-2"></div>
+        <div class="item item-3"></div>
+        <div class="item item-4"></div>
+    </div>
      
+  </div>
   </div>
 </template>
 
 <script>
-
 
 
 export default {
@@ -68,6 +75,7 @@ export default {
           }, function (err) {
             alert("로그인을 틀렸거나 서버가 이상하거나..")
           })
+          
     },
     setCookies(){
       
@@ -90,7 +98,6 @@ export default {
   },
 
 }
-
 
 
     // login(){
@@ -118,6 +125,7 @@ export default {
 <style src = '../assets/Login.less' lang='scss' scoped>
 
 </style>
+
 
 
 

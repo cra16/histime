@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
 router.post('/tt', function(req, res, next) {
     console.log(req.body.ttname);
     var student_id = '21500670';//req.body.student_id;
-    var ttname = '실험용 시간표';//req.body.ttname;
+    var ttname = req.body.ttname;
 
     connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
         if(err) console.log(err);
