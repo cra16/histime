@@ -4,30 +4,33 @@
     <h1 id="head">즐겨찾기</h1>
 <!-- 여기에 이렇게 많은 정보가 필요한가? -->
     <div class='contents'>
-        <!-- <div v-for="subject in subjects" :key="subject.code"> -->
-
-            <div v-for="course in this.courses" :key="course.code" class="content">
-                 <!-- <div v-for="n in 10" :key ='n' class="content" > -->
-                <div class="section1">
-                    <p>{{ course.name }}</p>
-                    <p>{{`[${course.code}]`}}</p>
-                </div>
-                <div class="section2">
-                    <p>{{course.time}}</p>
-                    <p>{{course.credit}}학점</p>
-                    <p>{{course.gubun}}</p>
-                </div>
-                <div class="section3">
-                    <p>{{course.professor}}</p>
-                    <p>영어 {{course.english}}</p>
-                </div>
-                <div  class="section4">
-                    <button id="delete" v-on:click="del()"></button>
-                    <br/>
-                    <button id="add" v-on:click="add()"></button>
-                </div>
-                <hr />
+        
+        <div v-for="course in this.courses" :key="course.code" class="content">
+            
+            <div class="section1">
+                <p>{{ course.name }}</p>
+                <p>{{`[${course.code}]`}}</p>
             </div>
+
+            <div class="section2">
+                <p>{{course.time}}</p>
+                <p>{{course.credit}}학점</p>
+                <p>{{course.gubun}}</p>
+            </div>
+
+            <div class="section3">
+                <p>{{course.professor}}</p>
+                <p>영어 {{course.english}}</p>
+            </div>
+
+            <div  class="section4">
+                <button id="delete" v-on:click="del()"></button>
+                <br/>
+                <button id="add" v-on:click="add()"></button>
+            </div>
+
+            <hr />
+        </div>
     </div>
     <h1 id="foot">
         <button class="all" v-on:click="add_a()">전체추가</button>
@@ -46,9 +49,6 @@ export default{
        
             active: false,
             courses : [],
-            content : {
-                course_name:"",
-            }
             // course : {
             //     name : "",
             //     code : "",
