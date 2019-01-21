@@ -43,22 +43,23 @@
       
      
       <div v-show="showbox" class="placeholder-box" >
+           <p></p>
             <p>학부 &emsp;&ensp;&nbsp;
                 <select v-model="filter.hakbu">
                     <option v-for="course_name in course_names" :key="course_name"> 
                         {{course_name}}
                     </option>
                 </select>
-            <p>
-            
-            <p>이수구분 
+            </p>
+        
+            <p>이수구분  
                 <select v-model="filter.gubun"> 
                     <option  v-for=" gubun in gubuns " :key="gubun">
                         {{ gubun }}
                     </option>
                 </select>
             
-                &ensp;&nbsp;교양영역
+                &ensp;교양영역
                 <select v-model="filter.gyoyang">
                         <option v-for=" gyoyang in gyoyangs" :key="gyoyang">
                         {{gyoyang}}
@@ -70,7 +71,7 @@
             <input v-model="filter.professor" type="text" placeholder="교수님 이름"/>
             </p>     
 
-            <p>학점 &emsp;&ensp;&nbsp;
+            <p>학점&emsp;&ensp;&nbsp;
                     <input type="button" class="credit" value="0.5">
                     <input type="button" class="credit" value="1">
                     <input type="button" class="credit" value="2">
@@ -87,11 +88,114 @@
             </select>
             </p>
 
-            <p>시간대 &nbsp;&ensp;
-            <input type="button" class="choose" value="선택창열기">
-            </p>
-            
+        
+                <p>시간대 &nbsp;&ensp;
+               
+                <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/>
+                 
+                </p>
+
+
+         
            <center><input type="button"  class="search" value="검색하기"></center>
+
+            <div v-show="searchbox" class="placeholder-box2">
+                <p>검색하고자 하는 시간대를 모두 클릭해주세요</p>
+                         <table>
+                            <thead>
+                                <tr>
+                                 <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                    <td>1</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>2</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>3</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>4</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>5</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>6</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>7</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>8</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>9</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>10</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                     
+                
+                <p> <input type="button" class="choosedone" value=" done "  v-on:click="chosen">
+                    <input type="button" class="choosereset" value=" reset " v-on:click="reset" >
+                </p>
+            </div>
        </div>
        
      <h1 id="foot"> </h1>   
@@ -113,6 +217,7 @@ export default {
             englishs:['100%','0%'],
             course_name: '',
             showbox:false,
+            searchbox:false,
             search:[
 
             ],
@@ -132,6 +237,15 @@ export default {
         show: function(){
             this.showbox=!this.showbox;
         },
+        show2: function(){
+            this.searchbox=!this.searchbox;
+        },
+        chosen: function(){
+            this.searchbox=false;
+        },
+        reset:function(){
+            this.style.backgroundColor=white;
+        },
         search_byname: function(){
             console.log(this.$session.get('student_id'));
             this.$http.post('/api/make/search/name', {
@@ -139,8 +253,6 @@ export default {
                 }).then((response) => {
                     console.log(response.data);
                     this.search = response.data;
-
-                    
             });
             this.course_name = '';
         },
@@ -156,7 +268,8 @@ export default {
     }
 }
 
+
 </script>
-<style  src = '../../assets/Makepage/search.less' scoped>
+<style   src = '../../assets/Makepage/search.less' lang = "scss" scoped>
 </style>
 
