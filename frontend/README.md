@@ -25,4 +25,13 @@ npm run build --report
 >#E6F1FC : 흰 회색
 >#FFCA55 : 노랑
 >#FF6D00 : 주황
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+#eventbus
+this.$EventBus.$emit('add_a','add all subject');
+
+ created(){
+                this.$EventBus.$on('add',function(text){
+                    console.log(text);
+                })
+                
+            }

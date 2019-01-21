@@ -2,7 +2,7 @@
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
     <div class="head">
-        <h3>첫번째 예상시간표</h3><!--글자 제한 두기-->
+        <h3>{{ tt_name }}</h3><!--글자 제한 두기-->
     </div>
     <div class = "timetable">
         <table>
@@ -16,147 +16,105 @@
                 <th>토</th>
             </tr>
             <tr>
-                <td id="class">1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-             
+                <td id="class_time">1</td>
+                <td rowspan="10" class="mon">
+                    <!-- <node v-for="n in 3" :key="n" data="node">
+                    </node> -->
+                    <node :data='node'>
+                    </node>
+                    <node :data='node'>
+                    </node>
+                </td>
+                 <td rowspan="10">
+                     
+                 </td>
+                 <td rowspan="10">
+                    <node></node>
+                    <node></node>
+                 </td>
+                 <td rowspan="10">
+                     
+                 </td>
+                 <td rowspan="10">
+                 <node></node>
+                      <node></node></td>
+                <td rowspan="10" id="last">
+                    <node></node>
+                    <node></node>
+                </td>
             </tr>
              <tr>
-                <td id="class">2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
+                <td id="class_time">2</td>
+              
+            </tr>
+             <tr>
+               <td id="class_time">3</td>
+            </tr>
+             <tr>
+              <td id="class_time">4</td>
+            </tr>
+             <tr>
+                <td id="class_time">5</td>
+            </tr>
+             <tr>
+              <td id="class_time">6</td>
+            </tr>
+             <tr>
+                <td id="class_time">7</td>
+            </tr>
+             <tr>
+                <td id="class_time">8</td>
+               
+            </tr>
+             <tr>
+                <td id="class_time">9</td>
                 
             </tr>
              <tr>
-                <td id="class">3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">6</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">7</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">8</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">9</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
-            </tr>
-             <tr>
-                <td id="class">10</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="last"></td>
+                <td id="class_time">10</td>
+                
             </tr>
 
         </table>
-    </div>
+    </div><!--timetable ending tag-->
 </body>
 
 </template>
 
 <script >
-  import subjects from '../timetable.json'
+    import node from '../timetable/node'
     export default{
+        components : {
+            node
+        },
           data(){
               return{
-                  tt_name : "aa",
-                  subjects: subjects,
+                  tt_name : "",
                   subject : {
                        name : ""
                   },
-                  filltedSub :{
-
+                  nodes : {
+                     
+                  },
+                  node : {
+                      start : "1" ,
+                      end : "2",
+                      name : "녹차아이스",
                   }
               }
             
           },
-          computed : {
-                // filter:function(day){
-                //     for (var i in subjects) 
-                    
-                //     return this.subject.filter((mon)=>{
-                //         return ;
-                //     })
-                // }
-                // 만들다가 실패.. 나중에 다시하기(지현)
-              },
-        created(){
-            this.$http.post('/api/show/tt', {
-                student_id : this.$session.get('student_id'),
-                ttname : this.$session.get('ttlists[0].ttname') //this.$session.get('ttlists[i].ttname')
-            }).then((response) => {
-                if (response.status === 200) {
-                this.ttsubjects = response.data; //course_name, professor, time, credit
-                console.log('1번 tt의 Subjects : ' + this.ttsubjects.length + '개');
-                for(var i = 0; i < this.ttsubjects.length; i++) {
-                    console.log('Subject ' + (i+1) + '번 이름: ' + this.ttsubjects[i].course_name);
-                }
-                }
-            });
-        }
-
-      }
+        created() {
+    	    this.$EventBus.$on('ttname', this.onReceive);
+        },
+         methods: {
+    	    onReceive(text) {
+                this.tt_name = text;
+            }
+       }   
+    }
     
+
 </script>
 
 
