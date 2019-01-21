@@ -24,7 +24,7 @@
             </div>
 
             <div  class="section4">
-                <button id="delete" v-on:click="del()"></button>
+                <button id="delete" v-on:click="del(key)"></button>
                 <br/>
                 <button id="add" v-on:click="add()"></button>
             </div>
@@ -63,7 +63,9 @@ export default{
     },
     methods :{
         //즐겨찾기 항목 하나만 삭제
-        del(){
+        del(key) {
+            console.log(key.toString());
+
             alert("delete");
              this.$http.post('/api/login', {
             }).then((response) => {

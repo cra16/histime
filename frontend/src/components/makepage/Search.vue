@@ -30,7 +30,11 @@
                         </div>
 
                         <div class="section4">
+<<<<<<< HEAD
                             <button id="add" v-on:click="(event) => { add_to_fav(key) }"></button>
+=======
+                            <button id="delete" v-on:click="(event) => { add_to_fav(key) }"></button>
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
 
@@ -364,4 +368,5 @@ export default {
 </script>
 <style   src = '../../assets/Makepage/search.less' lang = "scss" scoped>
 </style>
+
 
