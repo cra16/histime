@@ -6,11 +6,10 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : 'h010638847',
+    user     : 'tester',
+    password : '1234',
     database : 'histime'
 });
-
 
 connection.connect(function(err) {
     if(err) console.log(err);
@@ -36,23 +35,19 @@ router.post('/', function(req, res, next) {
 //과목명말고 다른 정보는 어떻게 가져올건가요?
 router.post('/fav_list', function(req, res) {
     var student_id = '21500670'; //req.body.student_id;
-    var code_list = [];
     var object_list = [];
 
-    connection.query(`SELECT code FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function(err, results, fields) {
+    connection.query(`SELECT code FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function (err, code_list) {
         if(err) console.log(err);
-        code_list = results;
 
-        for(var i = 0; i < code_list.length; i++) {
-            connection.query(`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE code='${code_list[i].code}';`, function(err, results, fields) {
+        for(var i in code_list) {
+            connection.query(`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE code='${code_list[i].code}';`, function (err, result) {
                 if(err) console.log(err);
-                console.log(i + ': ' + results[0]);
-                // object_list[i] = result[0];
-                // object_list.push(results[0]);
-                // console.log(object_list[i]);
+                object_list.push(result[0]);
+                
+                if(object_list[code_list.length - 1] !== undefined) res.send(object_list);
             });
         }
-        // res.send(object_list);
     });
 });
 
