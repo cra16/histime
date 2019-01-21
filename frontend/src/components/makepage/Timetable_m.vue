@@ -20,6 +20,7 @@
 
             <tr>
                 <td id="class_time">1</td>
+<<<<<<< HEAD
                 <td rowspan="10" class="mon"><!--월요일-->
                     <div v-for="(course, key) in courses"> 
                         <div v-if="course.day==='mon'">
@@ -50,24 +51,48 @@
 
                     </div> 
                     
+=======
+                <td rowspan="10" class="mon">
+                    <!-- 월요일에 대한 반복문-->
+                    <!--1교시 to 10교시-->
+                    <div v-for="i in 10" :key="i">
+                         <div v-if="courses[1] != undefined">
+                            <div v-if="courses[1][i] != undefined">
+                                <div v-for="course of courses[1][i]" :key="course.code">
+                                        <node :data="course" />
+                                </div>
+                            </div>
+                         </div>
+                    </div> 
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
                 </td>
 
                  <td rowspan="10">
                      
                  </td>
                  <td rowspan="10">
+<<<<<<< HEAD
                     <node></node>
                     <node></node>
+=======
+                    
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
                  </td>
                  <td rowspan="10">
                      
                  </td>
                  <td rowspan="10">
+<<<<<<< HEAD
                  <node></node>
                       <node></node></td>
                 <td rowspan="10" id="last">
                     <node></node>
                     <node></node>
+=======
+                 
+                </td>
+                <td rowspan="10" id="last">
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
                 </td>
             </tr>
              <tr>
@@ -111,16 +136,21 @@
 </template>
 
 <script >
-  import subjects from '../timetable.json'
+    import subjects from '../timetable.json'
+    import node from '../timetable/node'
     export default{
+        components : {
+            node
+        },
           data(){
               return{
-                  tt_name : "aa",
+                  tt_name : "",
                   subjects: subjects,
                   subject : {
                        name : ""
                   },
                   filltedSub :{
+<<<<<<< HEAD
 
                   },
                   courses : [[[]]]
@@ -128,6 +158,23 @@
             
           },
           
+=======
+                  },
+                  courses : [[[]]],
+                  
+              }
+            
+          },
+          watch: {
+            courses : {
+                deep : true,
+                handler(){
+                    console.log("added")
+                }
+              },
+              
+          },
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
             methods : {
                 save(){
                     this.$router.replace({ name: "show" });
@@ -154,6 +201,10 @@
                         if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                         if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
                         this.courses[day_index][time_index].push(data[i]);
+<<<<<<< HEAD
+=======
+                        this.$forceUpdate();
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
                     }
                     console.log(this.courses);
 
@@ -165,6 +216,7 @@
                     console.log(text);
                 }),
                 this.$EventBus.$on('courses',this.add_to);
+<<<<<<< HEAD
                     // for(var i = 0 ; i < courses.length; i++){
                     //     // console.log( "day :" + courses[i].day);
                     //     // console.log( "start :" + courses[i].start);
@@ -174,6 +226,8 @@
                     // }
                 
 
+=======
+>>>>>>> 4df11f7a544976035a47fb4003e0c8f0bfae82ea
             }
         }
         

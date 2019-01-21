@@ -1,81 +1,84 @@
 <template>
-    <div>
-       <h1>과목찾기</h1>
-       <h2>
+ <div>
+       <h1 id="head">과목찾기</h1>
+       <h2 > 
       <span class='blue_window'>
-        <input v-model="course_name" id=text type="text" placeholder="과목명" class='input_text' name="search"/></span> 
+        <input v-model="course_name" type="text" placeholder="과목명" class='input_text' name="search"/></span> 
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
       
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </h2>
-<div class="contents" >
-    <div class="content" v-show="!showbox" v-for="(course, key) in search">
-            
-                <div class="section1">
-                    <p>{{course.name}}</p>
-                    <p>{{`[${course.code}]`}}</p>
-                </div>
-                <div class="section2">
-                    <p>{{course.time}}</p>
-                    <p>{{course.credit}}학점</p>
-                    <p>{{course.gubun}}</p>
-                </div>
-                <div class="section3">
-                    <p>{{course.professor}}</p>
-                    <p>영어 {{course.english}}</p>
-                </div>
-                <div  class="section4">
-                    <button id="add" v-on:click="(event) => { add_to_fav(key) }"></button>
-                    <br/>
-                    <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
-                </div>
-                <hr />
-            </div>
-        
-    </div> 
 
+  <div class='contents'>
+        <div v-show="!showbox" v-for="(course, key) in search" >
+       
+            <div class="content" >
+                        <div class="section1">
+                            <p>{{course.name}}</p>
+                            <p>{{`[${course.code}]`}}</p>
+                        </div>
 
+                        <div class="section2">
+                            <p>{{course.time}}</p>
+                            <p>{{course.credit}}학점</p>
+                            <p>{{course.gubun}}</p>
+                        </div>
+
+                        <div class="section3">
+                            <p>{{course.professor}}</p>
+                            <p>영어 {{course.english}}</p>
+                        </div>
+
+                        <div class="section4">
+                            <button id="delete" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <br/>
+                            <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
+
+                        </div>
+
+                        <hr/>
+             </div>
+      </div>
+    </div>
+     
+      
      
       <div v-show="showbox" class="placeholder-box" >
-            <p>학부
+           <p></p>
+            <p>학부 &emsp;&ensp;&nbsp;
                 <select v-model="filter.hakbu">
                     <option v-for="course_name in course_names" :key="course_name"> 
                         {{course_name}}
                     </option>
                 </select>
-            <p>
-            
-            <p>이수구분
+            </p>
+        
+            <p>이수구분  
                 <select v-model="filter.gubun"> 
                     <option  v-for=" gubun in gubuns " :key="gubun">
                         {{ gubun }}
                     </option>
                 </select>
             
-                교양영역
+                &ensp;교양영역
                 <select v-model="filter.gyoyang">
                         <option v-for=" gyoyang in gyoyangs" :key="gyoyang">
                         {{gyoyang}}
                         </option>
             </select>
             </p>
-            
+        
+            <p>교수님 &ensp;&nbsp;
+            <input v-model="filter.professor" type="text" placeholder="교수님 이름"/>
+            </p>     
 
-            <tr>
-            <p>교수님</p>
-            <span class='blue_window2'>
-            <input v-model="filter.professor" id=text type="text" placeholder="교수님 이름" class='input_text' name="search" onkeydown="enterSearch()"/></span> 
-            </tr>     
-
-            <tr>
-                
-            <p>학점</p>
-                    <input type="button" value="0.5">
-                    <input type="button" value="1">
-                    <input type="button" value="2">
-                    <input type="button" value="3">
-                    <input type="button" value="4">
-            </tr>
+            <p>학점&emsp;&ensp;&nbsp;
+                    <input type="button" class="credit" value="0.5">
+                    <input type="button" class="credit" value="1">
+                    <input type="button" class="credit" value="2">
+                    <input type="button" class="credit" value="3">
+                    <input type="button" class="credit" value="4">
+            </p>
 
             
             <p>영어비율
@@ -85,11 +88,118 @@
                         </option>
             </select>
             </p>
-            <p>시간대</p>
-            <input type="button" value="선택창 열기">
-            
-            <button type="button" v-on:click="search_by_filter" >검색</button>
+
+        
+                <p>시간대 &nbsp;&ensp;
+               
+                <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/>
+                 
+                </p>
+
+         
+           <center><input type="button"  class="search" value="검색하기"></center>
+
+            <div v-show="searchbox" class="placeholder-box2">
+                <p>검색하고자 하는 시간대를 모두 클릭해주세요</p>
+                         <table>
+                            <thead>
+                                <tr>
+                                 <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                    <td>1</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>2</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>3</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>4</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>5</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>6</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>7</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>8</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>9</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>10</td><td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                              <td onclick="this.style.backgroundColor = 'yellow';"></td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                     
+                
+                <p> <input type="button" class="choosedone" value=" done "  v-on:click="chosen">
+                    <input type="button" class="choosereset" value=" reset " v-on:click="reset" >
+                </p>
+            </div>
        </div>
+       
+     <h1 id="foot"> </h1>   
+
     </div>
   
 </template>
@@ -107,6 +217,7 @@ export default {
             englishs:['100%','0%'],
             course_name: '',
             showbox:false,
+            searchbox:false,
             search:[
 
             ],
@@ -126,6 +237,15 @@ export default {
         show: function(){
             this.showbox=!this.showbox;
         },
+        show2: function(){
+            this.searchbox=!this.searchbox;
+        },
+        chosen: function(){
+            this.searchbox=false;
+        },
+        reset:function(){
+            this.style.backgroundColor=white;
+        },
         search_by_name: function(){
             console.log(this.$session.get('student_id'));
             this.$http.post('/api/make/search/name', {
@@ -133,21 +253,12 @@ export default {
                 }).then((response) => {
                     console.log(response.data);
                     this.search = response.data;
-
-                    
             });
             this.course_name = '';
-            
         },
-        search_by_filter: function(){
+        search_by_Filter: function(){
             this.$http.post('/api/make/search/filter', {
-                hakbu : filter.hakbu,
-                gubun : filter.gubun,
-                gyoyang : filter.gyoyang,
-                credit : filter.credit,
-                english : filter.english,
-                professor : filter.professor,
-                time : filter.time
+                course_name : this.search.course_name,
                 }).then((response) => {
                     console.log(response.data);
                     search = response.data;
@@ -161,8 +272,7 @@ export default {
             this.filter.time = '';
             this.showbox  = !this.showbox;
         },
-
-        add_to_fav: function(key){
+         add_to_fav: function(key){
             // console.log(key);
             console.log(this.search[key].name);
             
@@ -247,10 +357,12 @@ export default {
                 }
             }
             return prepared_data;
-        }
+        }   
     }
 }
 
 </script>
-<style  src = '../../assets/Makepage/search.less' scoped>
+<style   src = '../../assets/Makepage/search.less' lang = "scss" scoped>
 </style>
+
+

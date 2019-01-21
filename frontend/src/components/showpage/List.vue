@@ -22,7 +22,7 @@
             <div v-for="ttlist in this.ttlists" :key="ttlist.ttrank">
                 <tr>
                 <td>{{ttlist.ttrank}}</td>
-                <td>{{ttlist.ttname}}</td>
+                <td id = "ttname">{{ttlist.ttname}}<button id="modify_name" v-on:click="modify_name()"></button></td>
                 <td>{{ttlist.total_credit}}</td>
                 <td><button v-on:click="ttedit()">수정</button></td>
                 <td><button v-on:click="ttdelete()">삭제</button></td>
@@ -82,6 +82,22 @@
                 }
                 this.$router.replace({ name: "make" });  
             },
+            modify_name(ttname) {
+                var modified_name = prompt("수정할 시간표 이름을 입력하세요");
+                if(modified_name === "") {
+                    alert("최소 한 글자 이상 입력해주세요");
+                    return false;
+                } else if(modified_name === null) {
+                    console.log(ttname);
+                    alert("취소되었습니다");
+                    return false;
+                // } else if(modified_name === ){
+                //     alert("시간표의 이름이 동일합니다");
+                //     return false;
+                } else {
+
+                }
+            },
             ttdelete(){
                 if(confirm("시간표를 삭제하시겠습니까?")){
                     alert("삭제");
@@ -105,5 +121,5 @@
 
 
 
-<style  src = '../../assets/showpage/list.css' scoped>
+<style  src = '../../assets/Showpage/list.css' scoped>
 </style>

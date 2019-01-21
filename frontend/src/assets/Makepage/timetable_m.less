@@ -39,13 +39,32 @@
         background-size : cover
     }
 }
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+//스크롤바
+::-webkit-scrollbar {width: 5px; height: 3px; border: 0px solid #fff; }
+::-webkit-scrollbar-thumb {height: 3px; width: 5px; background: #FFCA55 }
+
+.head{
+    margin:0;
+    background-color:#225B95;
+    text-align: center;
+    h3{
+        font-size : 20px;
+        padding : 1%;
+        margin:0px;
+        color:white;
+        display: inline-block;
+    }
+}
+
 .timetable{
+    position:relative;
     overflow: scroll;
     height : 85%;
-    @media only screen and (min-width : 1824px) {
-        //큰 화면
-        height :86.7%;
-    }
+    width : 100%;
+    margin :0;
+
+   
     table{
         width : 99%;
         border-collapse: collapse;
@@ -54,23 +73,31 @@
         border-bottom : 2px solid #225B95;
     }   
     td{
-        width : auto;
+        position : relative;
+        width : 40px;
         border-bottom : 1px solid #225B95;
         border-top: 1px solid #225B95;
         border-right: 1px solid #225B95;
-        height : 80px;
+        height : 80px;//1교시당 시간 높이
     }
     #last{
         border-right : none;
     }
-    #class{
+    #class_time{
        width  : 10%;
        border-right : 2px solid #225B95;
        text-align : center;
     }
+    .course{
+        border : 1px solid orange;
+        display: inline-block;
+        
+    }
     
     }
 }
+
+
 
 .foot{
     text-align: center;

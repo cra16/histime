@@ -49,6 +49,14 @@ ts{
   color: rgb(223, 119, 78);
   border-bottom: solid 1px rgba(255,255,255,0.1);
 }
+#modify_name{
+  border: none;
+  width : 10px;
+  height : 10px;
+  margin-left: 5px;
+  background : url( '../../image/edit_name.png') no-repeat;
+  background-size : contain;
+}
 
 /* demo styles */
 
