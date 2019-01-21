@@ -1,12 +1,46 @@
+$base: 83px;
+
 div{
-    position : relative;
+    position : absolute;
     overflow: scroll;
-    width  : auto;
-    background: red;
+    height : $base;
+    background: green;
     display : inline-block;
     margin : 0;
-    top : -440%;
     color : white;
     font-size : 16px;
-
+    width : 100%;
 }
+
+.t1{
+    //top : -465%; 혹시나 퍼센트로도 나타내 봄
+    top : $base *0;
+}
+.t2{
+    top : $base *1;
+}
+.t3{
+   top : $base *2;
+}
+.t4{
+    top : $base *3;
+}
+.t5{
+    top : $base *4;
+}
+.t6{
+    top : $base *5;
+}
+.t7{
+    top : $base *6;
+}
+.t8{
+    top : $base *7;
+}
+.t9{
+    top : $base *8;
+}
+.t10{
+    top : $base *9;
+}
+
