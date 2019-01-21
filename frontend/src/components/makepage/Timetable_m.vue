@@ -152,6 +152,14 @@
                 this.$EventBus.$on('add',function(text){
                     console.log(text);
                 })
+                this.$EventBus.$on('courses',function(courses){
+                    for(var i = 0 ; i < courses.length; i++){
+                        console.log( "day :" + courses[i].day);
+                        console.log( "start :" + courses[i].start);
+                        console.log( "length :" + courses[i].long);
+                    }
+                })
+
                 
             }
         }

@@ -8,10 +8,9 @@
       
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </h2>
-
-    <div v-show="!showbox" v-for="(course, key) in search">
-        <div class='contents'>
-            <div class="content" >
+<div class="contents" >
+    <div class="content" v-show="!showbox" v-for="(course, key) in search">
+            
                 <div class="section1">
                     <p>{{course.name}}</p>
                     <p>{{`[${course.code}]`}}</p>
@@ -28,13 +27,13 @@
                 <div  class="section4">
                     <button id="add" v-on:click="(event) => { add_to_fav(key) }"></button>
                     <br/>
-                    <button id="add"></button>
+                    <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
                 </div>
                 <hr />
             </div>
-    
-        </div>
+        
     </div> 
+
 
      
       <div v-show="showbox" class="placeholder-box" >
@@ -89,7 +88,7 @@
             <p>시간대</p>
             <input type="button" value="선택창 열기">
             
-            <button type="button" v-on:click="search_by_name" >검색하기</button>
+            <button type="button" v-on:click="search_by_filter" >검색</button>
        </div>
     </div>
   
@@ -138,15 +137,31 @@ export default {
                     
             });
             this.course_name = '';
+            
         },
-        search_by_Filter: function(){
+        search_by_filter: function(){
             this.$http.post('/api/make/search/filter', {
-                course_name : this.search.course_name,
+                hakbu : filter.hakbu,
+                gubun : filter.gubun,
+                gyoyang : filter.gyoyang,
+                credit : filter.credit,
+                english : filter.english,
+                professor : filter.professor,
+                time : filter.time
                 }).then((response) => {
                     console.log(response.data);
                     search = response.data;
             });
+            this.filter.hakbu = '';
+            this.filter.gubun = '';
+            this.filter.gyoyang = '';
+            this.filter.credit = '';
+            this.filter.english = '';
+            this.filter.professor = '';
+            this.filter.time = '';
+            this.showbox  = !this.showbox;
         },
+
         add_to_fav: function(key){
             // console.log(key);
             console.log(this.search[key].name);
@@ -162,11 +177,79 @@ export default {
                     console.log(response.data);
                     search = response.data;
             });
-        }
+        },
+        add_to_tt: function(key){
+            // console.log(key);
+            console.log(this.search[key].name);
+            var data = this.parsingTime(this.search[key]);
+
+            for(var i = 0 ; i < data.length; i++){
+                console.log( "day :" + data[i].day);
+                console.log( "start :" + data[i].start);
+                console.log( "length :" + data[i].long);
+                
+            }
+
+            this.$EventBus.$emit('courses', data);
+
+            // this.$http.post('/api/make/add_fav', {
+            //     student_id : this.$session.get('student_id'),
+            //     code : this.search[key].code,
+            //     course_name : this.search[key].name,
+            //     professor : this.search[key].professor,
+            //     time : this.search[key].time,
+            //     credit : this.search[key].credit
+            //     }).then((response) => {
+            //         console.log(response.data);
+            //         search = response.data;
+            // });
+        },    
+        parsingTime: function(course){
+            var sep_time = course.time.split( ',');
+            // for(var i = 0; i< sep_time.length; i++){
+            //     console.log(sep_time[i]);
+            // }
+            var prepared_data = [];
+            if(course.time = '')return prepared_data;
+
+            prepared_data.push({
+                        code : course.code,
+                        course_name : course.name,
+                        professor : course.professor,
+                        time : course.time,
+                        credit : course.credit,
+                        
+                        day : sep_time[0].substr(0, 3),
+                        start : sep_time[0][3],
+                        long : 1,
+                    });
             
+            for(var i = 1; i < sep_time.length; i++){
+                if(parseInt(sep_time[i-1][3]) + 1 === parseInt(sep_time[i][3])){
+                    console.log("into comparison");
+                    var temp = prepared_data.pop();
+                    console.log(temp.long);
+                    temp.long ++;
+                    prepared_data.push(temp);
+                }
+                else{
+                    prepared_data.push({
+                        code : course.code,
+                        course_name : course.name,
+                        professor : course.professor,
+                        time : course.time,
+                        credit : course.credit,
+                        
+                        day : sep_time[i].substr(0, 3),
+                        start : sep_time[i][3],
+                        long : 1,
+                    });
+                }
+            }
+            return prepared_data;
+        }
     }
 }
-
 
 </script>
 <style  src = '../../assets/Makepage/search.less' scoped>

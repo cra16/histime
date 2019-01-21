@@ -74,24 +74,24 @@ router.post('/search/name', function(req, res, next) {
 //output : list of object(hakbu, gubun, gyoyang, credit, english, professor, time)
 
 //타임은 어떻게할지 고민해봐야함
-router.get('/search/filter', function(req, res) {
-    var hakbu = '';
-    var gubun = '';
-    var gyoyang = '';
-    var credit = '';
-    var english = '';
-    var professor = '';
-    var time = '';
-    //debugging용
-    var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and credit like '%${credit}%' and english like '%${english}%' and professor like '%${professor}%' and time like '%${time}%'`;
-    // var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${req.body.hakbu}%' and gubun like '%${req.body.gubun}%' and gyoyang like '%${req.body.gyoyang}%' and credit like '%${req.body.credit}%' and english like '%${req.body.english}%' and professor like '%${req.body.professor}% and time like '%${req.body.time}%'`;
+router.post('/search/filter', function(req, res, next) {
+    // var hakbu = '';
+    // var gubun = '';
+    // var gyoyang = '';
+    // var credit = '';
+    // var english = '';
+    // var professor = '';
+    // var time = '';
+    // //debugging용
+    // var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and credit like '%${credit}%' and english like '%${english}%' and professor like '%${professor}%' and time like '%${time}%'`;
+    var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${req.body.hakbu}%' and gubun like '%${req.body.gubun}%' and gyoyang like '%${req.body.gyoyang}%' and credit like '%${req.body.credit}%' and english like '%${req.body.english}%' and professor like '%${req.body.professor}% and time like '%${req.body.time}%'`;
  
-
-    connection.query(search, function(err, courseList, fields) {
-        if(err) console.log(err);
-        console.log(courseList);
-        res.send(courseList);
-    });
+    console.log(search);
+    // connection.query(search, function(err, courseList, fields) {
+    //     if(err) console.log(err);
+    //     console.log(courseList);
+    //     res.send(courseList);
+    // });
 });
 
 //즐겨찾기추가
