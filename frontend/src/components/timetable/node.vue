@@ -1,6 +1,6 @@
 <template>
 
-<div v-bind:class="classObject">{{ this.data.course_name }}</div>
+<div id ='node' v-bind:class="classObject">{{ this.data.course_name }}</div>
 
 
 </template>
@@ -19,16 +19,13 @@ export default {
         };
     },
     method : {
-         generator: function(){
-             console.log("change")
-            this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16)
-            document.div.style.background = this.mycolor
-      }
+ 
     },
-    // created(){
-    //         this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16)
-    //         div.background-color = this.mycolor
-    // },
+     created(){
+            // var div = document.querySelector('#node').style;
+            //  this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+            //  div.backgroundColor = this.mycolor;
+     },
     computed: {
         classObject: function () {
                    for(var i=0; i<10; i++)
