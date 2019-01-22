@@ -139,13 +139,13 @@ router.post('/del_all_fav', function(req, res) {
 });
 
 //시간표생성
-//input : array of data(student_id, ttname, total_credit, code, course_name, professor, time, credit)
+//input : array of data(student_id, ttname, total_credit, code, name, professor, time, credit)
 router.post('/make_tt', function(req, res) {
     //디버깅용
-    var student_id = '21500670'; //req.body.student_id;
+    var student_id = req.body.student_id;
     var ttname = req.body.ttname;
-    var data_list = req.body.data_list;
     var total_credit = req.body.total_credit;
+    var data_list = req.body.data_list;
     // [
     //     {
     //         student_id : 21500670,
@@ -190,7 +190,7 @@ router.post('/make_tt', function(req, res) {
 
     //실제용
     for (var i in data_list) {
-        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, '${total_credit}', '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
+        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, ${total_credit}, '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             console.log(courseList);
