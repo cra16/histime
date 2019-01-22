@@ -2,7 +2,7 @@
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
     <div class="head">
-        <h3>첫번째 예상시간표</h3><!--글자 제한 두기-->
+        <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <button class="btn" id="redo" v-on:click="redo()"></button>
         <button  class="btn" id="undo" v-on:click="undo()"></button>
     </div>
@@ -26,9 +26,9 @@
                         <!--1교시 to 10교시-->
                         
                         <div v-for="i in 10" :key="i">
-                            <div v-if="courses[1] != undefined">
-                                <div v-if="courses[1][i] != undefined">
-                                    <div v-for="course of courses[1][i]" :key="course.code">
+                            <div v-if="courses[j] != undefined">
+                                <div v-if="courses[j][i] != undefined">
+                                    <div v-for="course of courses[j][i]" :key="course.code">
                                             <node :data="course" />
                                     </div>
                                 </div>
@@ -100,11 +100,17 @@
                   filltedSub :{
                   },
                   courses : [[[]]],
+                  raw_courses : [],
                   
               }
             
           },
           watch: {
+            tt_name : {
+                handler(){
+                    console.log("changed")
+                }
+            },
             courses : {
                 deep : true,
                 handler(){
@@ -114,7 +120,17 @@
               
           },
             methods : {
+                
                 save(){
+                    console.log(this.$session.get('to_timetablem'))
+                    this.$http.post('/api/make/make_tt', {
+                        student_id :  this.$session.get('student_id'),
+                        ttname : this.$session.get('to_timetablem'),
+                        total_credit : this.total_credit(),
+                        data_list : this.raw_courses
+
+                    })
+                    console.log("저장완료")
                     this.$router.replace({ name: "show" });
                 },
                 undo(){
@@ -133,7 +149,7 @@
                         if(data[i].day === 'Mon') day_index = 1;
                         else if(data[i].day === 'Tue') day_index = 2;
                         else if(data[i].day === 'Wed') day_index = 3;
-                        else if(data[i].day === 'Thi') day_index = 4;
+                        else if(data[i].day === 'Thu') day_index = 4;
                         else if(data[i].day === 'Fri') day_index = 5;
                         else if(data[i].day === 'Sat') day_index = 6;
                         if(this.courses[day_index] === undefined) this.courses[day_index] = [];
@@ -143,14 +159,36 @@
                     }
                     console.log(this.courses);
 
+                },
+                set_name(text) {
+                    this.tt_name = text;
+                },
+                add_to_database(data){
+                    //duplicate 검사하기
+                    this.raw_courses.push(data)
+                },
+                total_credit(){
+                    var sum = 0;
+                    for (var i in this.raw_courses){
+                        sum += this.raw_courses[i].credit*1;
+                    }
+                    return sum;
                 }
             },
           
+           
+          
             created(){
-                this.$EventBus.$on('add',function(text){
+                this.$EventBus.$on('to_timetablem',function(text){//show 에서 추가하기 했을때 오는 이름
+                    this.tt_name = text;
+                    this.tt_name = "aa";
+                    console.log(this.tt_name);
+                }),
+                this.$EventBus.$on('add',function(text){//즐겨찾기에서 오는 버스
                     console.log(text);
                 }),
                 this.$EventBus.$on('courses',this.add_to);
+                this.$EventBus.$on('raw_courses', this.add_to_database)
             }
         }
         

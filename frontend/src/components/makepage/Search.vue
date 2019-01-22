@@ -292,6 +292,10 @@ export default {
 
             this.$EventBus.$emit('courses', data);
 
+            //원본데이터를 timetable_m에 넘김 : 데이터베이스에 업데이트하기 쉽게 하려고
+              console.log(this.search[key])
+            this.$EventBus.$emit('raw_courses', this.search[key])
+          
             // this.$http.post('/api/make/add_fav', {
             //     student_id : this.$session.get('student_id'),
             //     code : this.search[key].code,
