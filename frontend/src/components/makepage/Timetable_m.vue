@@ -120,11 +120,13 @@
               
           },
             methods : {
+                
                 save(){
+                    console.log(this.$session.get('to_timetablem'))
                     this.$http.post('/api/make/make_tt', {
                         student_id :  this.$session.get('student_id'),
-                        tt_name : this.tt_name,
-                        total_credit : "3",
+                        ttname : this.$session.get('to_timetablem'),
+                        total_credit : this.total_credit(),
                         data_list : this.raw_courses
 
                     })
@@ -164,6 +166,13 @@
                 add_to_database(data){
                     //duplicate 검사하기
                     this.raw_courses.push(data)
+                },
+                total_credit(){
+                    var sum = 0;
+                    for (var i in this.raw_courses){
+                        sum += this.raw_courses[i].credit*1;
+                    }
+                    return sum;
                 }
             },
           
