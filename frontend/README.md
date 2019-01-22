@@ -45,3 +45,8 @@ this.$http.post('/api/login', {
                 })
 
 
+#사용중인 event bus 
+>this.$EventBus.$emit('ttname',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
+>this.$EventBus.$emit('new_tt',userInput);//새로운 시간표 추가될 show 페이지에서 이름 받아오기
+> //원본데이터를 timetable_m에 넘김 : 데이터베이스에 업데이트하기 쉽게 하려고
+    this.$EventBus.$emit('raw_courses', this.search[key])
