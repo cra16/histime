@@ -190,7 +190,7 @@ router.post('/make_tt', function(req, res) {
 
     //실제용
     for (var i in data_list) {
-        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, '${total_credit}', '${data_list[i].code}', '${data_list[i].course_name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
+        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, '${total_credit}', '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             console.log(courseList);
