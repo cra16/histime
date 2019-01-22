@@ -24,6 +24,7 @@
                     <td rowspan="10">
                         <!-- 월요일에 대한 반복문-->
                         <!--1교시 to 10교시-->
+                        
                         <div v-for="i in 10" :key="i">
                             <div v-if="courses[1] != undefined">
                                 <div v-if="courses[1][i] != undefined">
