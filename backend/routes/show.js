@@ -19,7 +19,7 @@ connection.connect(function(err) {
 
 //show list
 router.post('/', function(req, res, next) {
-    var student_id = '21500670';//req.body.student_id;
+    var student_id = req.body.student_id;
 
     connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND total_credit IS NOT NULL`, function(err, results, fields) {
         if (err) console.log(err);
@@ -32,7 +32,7 @@ router.post('/', function(req, res, next) {
 //show timetable
 router.post('/tt', function(req, res, next) {
     console.log(req.body.ttname);
-    var student_id = '21500670';//req.body.student_id;
+    var student_id = req.body.student_id;
     var ttname = req.body.ttname;
 
     connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
@@ -45,7 +45,7 @@ router.post('/tt', function(req, res, next) {
 //input : student_id, original_ttname, modified_ttname
 //output : NULL
 router.post('/modify_ttname', function(req, res, next) {
-    var student_id = '21500670'; //req.body.student_id;
+    var student_id = req.body.student_id;
     var original_ttname = req.body.original_ttname;
     var modified_ttname = req.body.modified_ttname;
 
@@ -59,7 +59,7 @@ router.post('/modify_ttname', function(req, res, next) {
 //input : student_id, ttname
 //output : NULL
 router.post('/del_tt', function(req, res, next) {
-    var student_id = '21500670'; //req.body.student_id;
+    var student_id = req.body.student_id;
     var ttname = req.body.ttname;
 
     connection.query(`DELETE FROM user WHERE student_id = ${student_id} AND ttname = '${ttname}';`, function(err, results, fields) {

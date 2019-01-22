@@ -142,7 +142,7 @@ router.post('/del_all_fav', function(req, res) {
 //input : array of data(student_id, ttname, total_credit, code, name, professor, time, credit)
 router.post('/make_tt', function(req, res) {
     //디버깅용
-    var student_id = '21500670'; //req.body.student_id;
+    var student_id = req.body.student_id;
     var ttname = req.body.ttname;
     var total_credit = req.body.total_credit;
     var data_list = req.body.data_list;
