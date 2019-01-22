@@ -275,18 +275,8 @@ export default {
          add_to_fav: function(key){
             // console.log(key);
             console.log(this.search[key].name);
-            
-            this.$http.post('/api/make/add_fav', {
-                student_id : this.$session.get('student_id'),
-                code : this.search[key].code,
-                course_name : this.search[key].name,
-                professor : this.search[key].professor,
-                time : this.search[key].time,
-                credit : this.search[key].credit
-                }).then((response) => {
-                    console.log(response.data);
-                    search = response.data;
-            });
+
+            this.$EventBus.$emit('add_to_fav',this.search[key]);
         },
         add_to_tt: function(key){
             // console.log(key);
