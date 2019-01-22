@@ -90,14 +90,13 @@ export default {
     };
   },
   watch: {
-    tt_name: function(data) {
+    tt_name: function(data) {//시간표 이름이 바뀔 때 마다 시간표 내용이 달라짐
       this.get_data();
     }
   },
 
   created() {
-    this.$EventBus.$on("ttname", this.onReceive);
-    this.$EventBus.$on("to_timetable", this.change_name);
+    this.$EventBus.$on("to_timetables", this.change_name);//중간중간 시간표 클릭시
     // this.check = new Array(6); // 매개변수는 배열의 크기
     // for (var i = 0; i < 5; i++) {
     //      arr[i] = new Array(10); // 매개변수는 배열의 크기
@@ -122,9 +121,7 @@ export default {
     change_name(text) {
       this.tt_name = text;
     },
-    onReceive(text) {
-      this.tt_name = text;
-    },
+
     timetable_s() {
       this.$http
         .post("/api/show/timetable", {
