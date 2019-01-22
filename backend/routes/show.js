@@ -21,7 +21,7 @@ connection.connect(function(err) {
 router.post('/', function(req, res, next) {
     var student_id = '21500670';//req.body.student_id;
 
-    connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND ttrank IS NOT NULL ORDER BY ttrank ASC`, function(err, results, fields) {
+    connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND total_credit IS NOT NULL`, function(err, results, fields) {
         if (err) console.log(err);
         res.send(results);
     });
