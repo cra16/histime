@@ -22,9 +22,9 @@ export default {
  
     },
      created(){
-            var div = document.querySelector('#node').style;
-             this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-             div.backgroundColor = this.mycolor;
+            // var div = document.querySelector('#node').style;
+            //  this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+            //  div.backgroundColor = this.mycolor;
      },
     computed: {
         classObject: function () {

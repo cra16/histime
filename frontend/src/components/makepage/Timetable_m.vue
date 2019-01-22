@@ -21,7 +21,7 @@
 
                 <td id="class_time">1</td>
       
-                    <td rowspan="10">
+                    <td v-for="j in 6" :key="j" rowspan="10">
                         <!-- 월요일에 대한 반복문-->
                         <!--1교시 to 10교시-->
                         
@@ -36,62 +36,7 @@
                         </div> 
                     </td>
              
-                 <td rowspan="10">
-                   <div v-for="i in 10" :key="i">
-                            <div v-if="courses[2] != undefined">
-                                <div v-if="courses[2][i] != undefined">
-                                    <div v-for="course of courses[2][i]" :key="course.code">
-                                            <node :data="course" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                 </td>
-
-                 <td rowspan="10">
-                      <div v-for="i in 10" :key="i">
-                            <div v-if="courses[3] != undefined">
-                                <div v-if="courses[3][i] != undefined">
-                                    <div v-for="course of courses[3][i]" :key="course.code">
-                                            <node :data="course" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                 </td>
-                 <td rowspan="10">
-                      <div v-for="i in 10" :key="i">
-                            <div v-if="courses[4] != undefined">
-                                <div v-if="courses[4][i] != undefined">
-                                    <div v-for="course of courses[4][i]" :key="course.code">
-                                            <node :data="course" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                 </td>
-                 <td rowspan="10">
-                      <div v-for="i in 10" :key="i">
-                            <div v-if="courses[5] != undefined">
-                                <div v-if="courses[5][i] != undefined">
-                                    <div v-for="course of courses[5][i]" :key="course.code">
-                                            <node :data="course" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                </td>
-                <td rowspan="10" id="last">
-                     <div v-for="i in 10" :key="i">
-                            <div v-if="courses[6] != undefined">
-                                <div v-if="courses[6][i] != undefined">
-                                    <div v-for="course of courses[6][i]" :key="course.code">
-                                            <node :data="course" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                </td>
+               
             </tr>
 
              <tr>
@@ -170,10 +115,10 @@
                     this.$router.replace({ name: "show" });
                 },
                 undo(){
-                    alert("undo")
+                    alert("다음 업데이트를 기대해 주세요")
                 },
                 redo(){
-                    alert("redo")
+                    alert("다음 업데이트를 기대해 주세요")
                 },
                 add_to(data){
                     
