@@ -59,7 +59,7 @@ router.post('/modify_ttname', function(req, res, next) {
 //input : student_id, ttname
 //output : NULL
 router.post('/del_tt', function(req, res, next) {
-    var student_id = '21500670';
+    var student_id = '21500670'; //req.body.student_id;
     var ttname = req.body.ttname;
 
     connection.query(`DELETE FROM user WHERE student_id = ${student_id} AND ttname = '${ttname}';`, function(err, results, fields) {
