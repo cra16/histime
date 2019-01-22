@@ -17,6 +17,7 @@ connection.connect(function(err) {
     console.log('You are now connected...');
 });
 
+//show list
 router.post('/', function(req, res, next) {
     var student_id = '21500670';//req.body.student_id;
 
@@ -28,6 +29,7 @@ router.post('/', function(req, res, next) {
     // connection.end();
 });
 
+//show timetable
 router.post('/tt', function(req, res, next) {
     console.log(req.body.ttname);
     var student_id = '21500670';//req.body.student_id;
@@ -53,6 +55,23 @@ router.post('/modify_ttname', function(req, res, next) {
     });
 });
 
+//시간표 삭제
+//input : student_id, ttname
+//output : NULL
+router.post('/del_tt', function(req, res, next) {
+    var student_id = '21500670';
+    var ttname = req.body.ttname;
+
+    connection.query(`DELETE FROM user WHERE student_id = ${student_id} AND ttname = '${ttname}';`, function(err, results, fields) {
+        if(err) console.log(err);
+        console.log(results);
+    });
+});
+
+//시간표 수정
+router.get('/modify_tt', function(req, res, next) {
+
+});
 
 
 module.exports = router;
