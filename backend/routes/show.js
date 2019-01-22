@@ -43,12 +43,9 @@ router.post('/tt', function(req, res, next) {
 //input : student_id, original_ttname, modified_ttname
 //output : NULL
 router.post('/modify_ttname', function(req, res, next) {
-    var student_id = '21500670'; //req.body.studnet_id;
-    var original_ttname = '';//req.body.original_ttname;
-    var modified_ttname = '';//req.body.modified_ttname;
-
-    console.log("original: " + original_ttname);
-    console.log("modified: " + modified_ttname);
+    var student_id = '21500670'; //req.body.student_id;
+    var original_ttname = req.body.original_ttname;
+    var modified_ttname = req.body.modified_ttname;
 
     connection.query(`UPDATE user set ttname = '${modified_ttname}' WHERE student_id = ${student_id} and ttname = '${original_ttname}';`, function(err, results, fields) {
         if(err) console.log(err);

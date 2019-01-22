@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
 
 //과목명말고 다른 정보는 어떻게 가져올건가요?
 router.post('/fav_list', function(req, res) {
-    var student_id = '21500670'; //req.body.student_id;
+    var student_id = req.body.student_id;
     var object_list = [];
 
     connection.query(`SELECT code FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function (err, code_list) {
@@ -110,9 +110,11 @@ router.post('/add_fav', function(req, res, next) {
 //즐겨찾기삭제
 //input : code, student_id
 //output : 
-router.get('/del_fav', function(req, res) {
-    var code = 'ECE20016-01';
-    var student_id = 21500670;
+router.post('/del_fav', function(req, res) {
+    var student_id = req.body.student_id;
+    var code = req.body.code;
+    console.log(student_id);
+    console.log(code);
     var _delete = `DELETE FROM user WHERE code = '${code}' and student_id = '${student_id}' and favorited = TRUE;`;
     // var _delete = `DELETE FROM user WHERE code = '%${req.body.code}%' and student_id = '${req.body.user}' and favorited = TRUE;`;
     connection.query(_delete, function(err, courseList, fields) {
@@ -125,8 +127,8 @@ router.get('/del_fav', function(req, res) {
 //즐겨찾기전체삭제
 //input : student_id
 //output : 
-router.get('/del_all_fav', function(req, res) {
-    var student_id = 21500670;
+router.post('/del_all_fav', function(req, res) {
+    var student_id = req.body.student_id;
     var delete_all = `DELETE FROM user WHERE student_id = '${student_id}' and favorited = TRUE;`;
     // var delete_all = `DELETE FROM user WHERE student_id = '${req.body.student_id}' and favorited = TRUE;`;
     connection.query(delete_all, function(err, courseList, fields) {

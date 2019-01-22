@@ -5,7 +5,7 @@
 <!-- 여기에 이렇게 많은 정보가 필요한가? -->
     <div class='contents'>
         
-        <div v-for="course in this.courses" :key="course.code" class="content">
+        <div v-for="(course, key) in this.courses" :key="key" class="content">
             
             <div class="section1">
                 <p>{{ course.name }}</p>
@@ -61,34 +61,67 @@ export default{
         }
             
     },
-    methods :{
+    methods : {
         //즐겨찾기 항목 하나만 삭제
         del(key) {
-            console.log(key.toString());
-
-            alert("delete");
-             this.$http.post('/api/login', {
-            }).then((response) => {
-                if (response.status === 200 ) {
-                }
-            }, function (err) {
-                alert("로그인을 틀렸거나 서버가 이상하거나..")
+            this.$http.post('/api/make/del_fav', {
+                student_id : this.$session.get('student_id'),
+                code : this.courses[key].code
             })
-        },
 
+            this.courses.splice(key, 1);
+        },
         add(){
            // alert("add");
            //send message to timetable component
             this.$EventBus.$emit('add','add subject');
         },
         del_a(){
-            alert("del_a");
+            if(confirm("즐겨찾기에 있는 모든 과목을 삭제하시겠습니까?")) {
+                this.$http.post('/api/make/del_all_fav', {
+                    student_id : this.$session.get('student_id'),
+                })
+
+                this.courses.splice(0, (this.courses.length));
+            }
         },
         add_a(){
             alert("add_a");
             this.$EventBus.$emit('add_a','add all subject');
         },
-       
+        add_to_fav(course) {
+            var duplication = false;
+
+            for(var i in this.courses) {
+                if(course.code === this.courses[i].code) {
+                    duplication = true;
+                    break;
+                }
+            }
+
+            if(duplication === true) {
+                alert("이미 즐겨찾기에 추가된 과목 입니다!");
+            } else {
+                this.$http.post('/api/make/add_fav', {
+                    student_id : this.$session.get('student_id'),
+                    code : course.code,
+                    course_name : course.name,
+                    professor : course.professor,
+                    time : course.time,
+                    credit : course.credit
+                });
+
+                this.courses.push({
+                    name: course.name,
+                    code: course.code,
+                    time: course.time,
+                    credit: course.credit,
+                    gubun: course.gubun,
+                    professor: course.professor,
+                    english: course.english
+                });
+            }
+        }
     },
     created(){
         this.$http.post('/api/make/fav_list', {
@@ -102,6 +135,8 @@ export default{
                 }
             }
         });
+
+        this.$EventBus.$on('add_to_fav', this.add_to_fav);
     }
 }
  
