@@ -50,3 +50,5 @@ this.$http.post('/api/login', {
 >this.$EventBus.$emit('new_tt',userInput);//새로운 시간표 추가될 show 페이지에서 이름 받아오기
 > //원본데이터를 timetable_m에 넘김 : 데이터베이스에 업데이트하기 쉽게 하려고
     this.$EventBus.$emit('raw_courses', this.search[key])
+> this.$EventBus.$emit('add_to_fav', this.search[key]); // search에서 save로 즐겨찾기 추가
+> this.$EventBus.$emit('add_to_list', data); // make페이지 timetable_m에서 show페이지 list에 새로운 tt 추가

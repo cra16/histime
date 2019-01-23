@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="section4">
-                            <button id="add" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
 
@@ -276,6 +276,7 @@ export default {
             // console.log(key);
             console.log(this.search[key].name);
 
+
             this.$EventBus.$emit('add_to_fav',this.search[key]);
         },
         add_to_tt: function(key){
@@ -287,15 +288,10 @@ export default {
                 console.log( "day :" + data[i].day);
                 console.log( "start :" + data[i].start);
                 console.log( "length :" + data[i].long);
-                
             }
 
-            this.$EventBus.$emit('courses', data);
+            this.$EventBus.$emit('courses', {parsed : data, raw : this.search[key]});
 
-            //원본데이터를 timetable_m에 넘김 : 데이터베이스에 업데이트하기 쉽게 하려고
-              console.log(this.search[key])
-            this.$EventBus.$emit('raw_courses', this.search[key])
-          
             // this.$http.post('/api/make/add_fav', {
             //     student_id : this.$session.get('student_id'),
             //     code : this.search[key].code,

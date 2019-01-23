@@ -92,6 +92,8 @@ export default{
         add_to_fav(course) {
             var duplication = false;
 
+            console.log("created: " + course);
+
             for(var i in this.courses) {
                 if(course.code === this.courses[i].code) {
                     duplication = true;
@@ -135,7 +137,6 @@ export default{
                 }
             }
         });
-
         this.$EventBus.$on('add_to_fav', this.add_to_fav);
     }
 }

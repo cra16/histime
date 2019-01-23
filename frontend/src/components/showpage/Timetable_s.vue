@@ -106,7 +106,7 @@ export default {
     get_data() {
       this.$http
         .post("/api/show/tt", {
-          student_id: this.$session.get("name"),
+          student_id: this.$session.get("student_id"),
           ttname: this.tt_name
         })
         .then(
