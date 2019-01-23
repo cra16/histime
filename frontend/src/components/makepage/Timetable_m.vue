@@ -119,19 +119,21 @@
               
           },
             methods : {
-                save(){
+                save(){//저장하기, 
                     this.$http.post('/api/make/make_tt', {
                         student_id :  this.$session.get('student_id'),
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
                         data_list : this.raw_courses
-                    })
-                    this.$router.replace({ name: "show" });
-                    console.log("저장완료");
+                    }).then((response) => {
+                        window.location = 'http://localhost:8080'
+                    });
                 },
                 user_add(){
                     this.user_add_clicked = !(this.user_add_clicked)
                 },
+
+
                 add_to(course){
                     var data = course.parsed;
                     var raw_data = course.raw;
@@ -183,18 +185,20 @@
                 },
                 
             },
-            mounted() {
-                if (localStorage.getItem('reloaded')) {
-                    // The page was just reloaded. Clear the value from local storage
-                    // so that it will reload the next time this page is visited.
-                    localStorage.removeItem('reloaded');
-                } else {
-                    // Set a flag so that we know not to reload the page twice.
-                    localStorage.setItem('reloaded', '1');
-                    location.reload();
-                }
+            beforeCreate() {
+                //  if (localStorage.getItem('reloaded')) {
+                //     // The page was just reloaded. Clear the value from local storage
+                //     // so that it will reload the next time this page is visited.
+                //     localStorage.removeItem('reloaded');
+                // } else {
+                //     // Set a flag so that we know not to reload the page twice.
+                //     localStorage.setItem('reloaded', '1');
+                //     location.reload();
+                // }
+              
             },
             created(){
+               
                 this.$EventBus.$on('to_timetablem',function(text){//show 에서 추가하기 했을때 오는 이름
                     this.tt_name = text;
                     this.tt_name = "aa";
