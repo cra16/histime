@@ -119,49 +119,60 @@
               
           },
             methods : {
-                
                 save(){
-                    console.log(this.$session.get('to_timetablem'))
                     this.$http.post('/api/make/make_tt', {
                         student_id :  this.$session.get('student_id'),
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
                         data_list : this.raw_courses
-
                     })
-                    console.log("저장완료")
                     this.$router.replace({ name: "show" });
+                    console.log("저장완료");
                 },
                 user_add(){
                     this.user_add_clicked = !(this.user_add_clicked)
                 },
-                add_to(data){
-                    
-                    for(var i = 0; i < data.length; i++){
-                        var day_index = 0;
-                        var time_index = parseInt(data[i].start);
-                        console.log(data[i]);
-                        console.log(parseInt(data[i].start));
-                        if(data[i].day === 'Mon') day_index = 1;
-                        else if(data[i].day === 'Tue') day_index = 2;
-                        else if(data[i].day === 'Wed') day_index = 3;
-                        else if(data[i].day === 'Thu') day_index = 4;
-                        else if(data[i].day === 'Fri') day_index = 5;
-                        else if(data[i].day === 'Sat') day_index = 6;
-                        if(this.courses[day_index] === undefined) this.courses[day_index] = [];
-                        if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
-                        this.courses[day_index][time_index].push(data[i]);
-                        this.$forceUpdate();
-                    }
-                    console.log(this.courses);
+                add_to(course){
+                    var data = course.parsed;
+                    var raw_data = course.raw;
+                    var duplication = false;
 
+                    console.log("rc_length: " + this.raw_courses.length);
+
+                    for(var i in this.raw_courses) {
+                        if(this.raw_courses[i].code === raw_data.code) {
+                            duplication = true;
+                            break;
+                        }
+                    }
+
+                    if(duplication === true) {
+                            alert("이미 시간표에 추가한 과목입니다!");
+                    } else {
+                        this.raw_courses.push(raw_data);
+
+                        for(var i = 0; i < data.length; i++){
+                            var day_index = 0;
+                            var time_index = parseInt(data[i].start);
+                            console.log(data[i]);
+                            console.log(parseInt(data[i].start));
+                            if(data[i].day === 'Mon') day_index = 1;
+                            else if(data[i].day === 'Tue') day_index = 2;
+                            else if(data[i].day === 'Wed') day_index = 3;
+                            else if(data[i].day === 'Thu') day_index = 4;
+                            else if(data[i].day === 'Fri') day_index = 5;
+                            else if(data[i].day === 'Sat') day_index = 6;
+                            if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                            if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
+                            this.courses[day_index][time_index].push(data[i]);
+                            this.$forceUpdate();
+                        }
+
+                        console.log(this.courses);
+                    }
                 },
                 set_name(text) {
                     this.tt_name = text;
-                },
-                add_to_database(data){
-                    //duplicate 검사하기
-                    this.raw_courses.push(data)
                 },
                 total_credit(){
                     var sum = 0;
@@ -172,9 +183,17 @@
                 },
                 
             },
-          
-           
-          
+            mounted() {
+                if (localStorage.getItem('reloaded')) {
+                    // The page was just reloaded. Clear the value from local storage
+                    // so that it will reload the next time this page is visited.
+                    localStorage.removeItem('reloaded');
+                } else {
+                    // Set a flag so that we know not to reload the page twice.
+                    localStorage.setItem('reloaded', '1');
+                    location.reload();
+                }
+            },
             created(){
                 this.$EventBus.$on('to_timetablem',function(text){//show 에서 추가하기 했을때 오는 이름
                     this.tt_name = text;
@@ -185,9 +204,7 @@
                     console.log(text);
                 }),
                 this.$EventBus.$on('courses',this.add_to);
-                this.$EventBus.$on('raw_courses', this.add_to_database),
                 this.$EventBus.$on('close_user_custom',this.user_add)//user custom 창 종료
-                this.$EventBus.$on('get_user_custom',this.get_user_add)//user custom 창 종료
             }
         }
         

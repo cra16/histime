@@ -52,6 +52,17 @@
                 ttnames:[]
             };
         },
+        mounted() {
+            if (localStorage.getItem('reloaded')) {
+                // The page was just reloaded. Clear the value from local storage
+                // so that it will reload the next time this page is visited.
+                localStorage.removeItem('reloaded');
+            } else {
+                // Set a flag so that we know not to reload the page twice.
+                localStorage.setItem('reloaded', '1');
+                location.reload();
+            }
+        },
         created () {
             this.$http.post('/api/show', {
                 student_id : this.$session.get('student_id')
@@ -64,7 +75,6 @@
                     }
                 }
             });
-          
         },
         methods: {
             go_make() { //시간표를 추가하는 웹 페이지로 전환
@@ -84,7 +94,6 @@
                 }
                 this.$router.replace({ name: "make" });  
             },
-
             modify_name(key) {//시간표 이름 수정(연필모양)
                 var modified_name = prompt("수정할 시간표 이름을 입력하세요");
                 if(modified_name === "") {
@@ -104,9 +113,6 @@
                         modified_ttname : modified_name 
                     })
                     this.ttlists[key].ttname = modified_name 
-
-
-
                 }
             },
             duplication(new_name){//새로 이름만들기, 이름 수정할 때 중복검사
@@ -115,7 +121,6 @@
                 }
                 return false;
             },
-
             ttdelete(key){//시간표 삭제
                 if(confirm("시간표를 삭제하시겠습니까?")){
                     console.log(this.ttlists[key].ttname);
@@ -124,22 +129,18 @@
                             student_id :  this.$session.get('student_id'),
                             ttname :  this.ttlists[key].ttname
                     })
-                    this.ttlists.splice(key,1)
+                    this.ttlists.splice(key,1);
                 }
-               
             },
-
             ttedit(){
                 if(confirm("시간표를 수정하시겠습니까?")){
                     alert("수정");
                 }else{
                     alert("취소");
                 }    
-                }
-            },
-           
-            
-        }
+            }
+        },
+    }
     
 </script>
 
