@@ -145,7 +145,7 @@ router.post('/make_tt', function(req, res) {
     var student_id = req.body.student_id;
     var ttname = req.body.ttname;
     var total_credit = req.body.total_credit;
-    var data_list = req.body.data_list;
+    var data_list = req.body.data_list; // code, name, professor, time, credit
     // [
     //     {
     //         student_id : 21500670,
@@ -194,7 +194,7 @@ router.post('/make_tt', function(req, res) {
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             console.log(courseList);
-            // res.send(courseList);
+            res.send(courseList);
         });
     }
 });

@@ -52,17 +52,6 @@
                 ttnames:[]
             };
         },
-        mounted() {
-            if (localStorage.getItem('reloaded')) {
-                // The page was just reloaded. Clear the value from local storage
-                // so that it will reload the next time this page is visited.
-                localStorage.removeItem('reloaded');
-            } else {
-                // Set a flag so that we know not to reload the page twice.
-                localStorage.setItem('reloaded', '1');
-                location.reload();
-            }
-        },
         created () {
             this.$http.post('/api/show', {
                 student_id : this.$session.get('student_id')
@@ -92,7 +81,7 @@
                 alert("시간표 생성페이지로 이동합니다");
                  this.$session.set('to_timetablem', userInput)
                 }
-                this.$router.replace({ name: "make" });  
+                window.location = 'http://localhost:8000/make';
             },
             modify_name(key) {//시간표 이름 수정(연필모양)
                 var modified_name = prompt("수정할 시간표 이름을 입력하세요");
