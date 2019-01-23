@@ -79,11 +79,11 @@
                     return false;
                 } else {
                 alert("시간표 생성페이지로 이동합니다");
-                 this.$session.set('to_timetablem', userInput)
+                 this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
                 }
-                window.location = 'http://localhost:8000/make';
+                window.location = 'http://localhost:8080/make'
             },
-            modify_name(key) {//시간표 이름 수정(연필모양)
+            modify_name(key) {//시간표 이름 수정(연필모양)-이름수정
                 var modified_name = prompt("수정할 시간표 이름을 입력하세요");
                 if(modified_name === "") {
                     alert("최소 한 글자 이상 입력해주세요");
@@ -121,12 +121,16 @@
                     this.ttlists.splice(key,1);
                 }
             },
-            ttedit(){
-                if(confirm("시간표를 수정하시겠습니까?")){
-                    alert("수정");
-                }else{
-                    alert("취소");
-                }    
+            ttedit(key){//시간표 수정하기
+                if(confirm("시간표를 수정하시겠습니까?")){        
+                    console.log(this.ttlists[key].ttname);
+                    this.$http.post('/api/show/del_tt', {
+                        student_id :  this.$session.get('student_id'),
+                        ttname :  this.ttlists[key].ttname
+                    })
+                    this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
+                    window.location = 'http://localhost:8080'
+                }  
             }
         },
     }
