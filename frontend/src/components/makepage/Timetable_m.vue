@@ -3,9 +3,10 @@
 <body>
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
-        <button class="btn" id="redo" v-on:click="redo()"></button>
-        <button  class="btn" id="undo" v-on:click="undo()"></button>
+        <button class="btn" id="redo" v-on:click="user_add()"></button>
     </div>
+
+    <add v-if="user_add_clicked" ></add>
     <div class = "timetable">
         <table>
             <tr>
@@ -20,15 +21,11 @@
             <tr>
 
                 <td id="class_time">1</td>
-      
-                    <td v-for="j in 6" :key="j" rowspan="10">
-                        <!-- 월요일에 대한 반복문-->
-                        <!--1교시 to 10교시-->
-                        
-                        <div v-for="i in 10" :key="i">
-                            <div v-if="courses[j] != undefined">
-                                <div v-if="courses[j][i] != undefined">
-                                    <div v-for="course of courses[j][i]" :key="course.code">
+                    <td v-for="i in 6" :key="i" rowspan="10"><!--요일에 대한 반복문-->
+                        <div v-for="j in 10" :key="j"><!--1교시 to 10교시 반복문-->
+                            <div v-if="courses[i] != undefined">
+                                <div v-if="courses[i][j] != undefined">
+                                    <div v-for="course of courses[i][j]" :key="course.code">
                                             <node :data="course" />
                                     </div>
                                 </div>
@@ -86,9 +83,11 @@
 <script >
     import subjects from '../timetable.json'
     import node from '../timetable/node'
+    import add from "../timetable/add"
+
     export default{
         components : {
-            node
+            node, add
         },
           data(){
               return{
@@ -99,9 +98,9 @@
                   },
                   filltedSub :{
                   },
-                  courses : [[[]]],
-                  raw_courses : [],
-                  
+                  courses : [[[]]],//시간표에 띄워줄 용도
+                  raw_courses : [],//백엔드에 넘겨줄 용도
+                  user_add_clicked : false//user 
               }
             
           },
@@ -133,11 +132,8 @@
                     console.log("저장완료")
                     this.$router.replace({ name: "show" });
                 },
-                undo(){
-                    alert("다음 업데이트를 기대해 주세요")
-                },
-                redo(){
-                    alert("다음 업데이트를 기대해 주세요")
+                user_add(){
+                    this.user_add_clicked = !(this.user_add_clicked)
                 },
                 add_to(data){
                     
@@ -173,7 +169,8 @@
                         sum += this.raw_courses[i].credit*1;
                     }
                     return sum;
-                }
+                },
+                
             },
           
            
@@ -188,7 +185,9 @@
                     console.log(text);
                 }),
                 this.$EventBus.$on('courses',this.add_to);
-                this.$EventBus.$on('raw_courses', this.add_to_database)
+                this.$EventBus.$on('raw_courses', this.add_to_database),
+                this.$EventBus.$on('close_user_custom',this.user_add)//user custom 창 종료
+                this.$EventBus.$on('get_user_custom',this.get_user_add)//user custom 창 종료
             }
         }
         

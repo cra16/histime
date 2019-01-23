@@ -2,10 +2,13 @@
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
   <div class="head">
+    
     <h3>{{ tt_name }}</h3>
     <!--글자 제한 두기-->
   </div>
+
    <div class = "timetable">
+     
         <table>
             <tr>
                 <th></th>
@@ -17,7 +20,6 @@
                 <th>토</th>
             </tr>
             <tr>
-
                 <td id="class_time">1</td>
                     <td v-for="j in 6" :key="j" rowspan="10"> <!--요일 반복문-->         
                         <div v-for="i in 10" :key="i"><!--시간반복-->
@@ -73,6 +75,7 @@
 
 <script >
 import node from "../timetable/node";
+
 export default {
   components: {
     node
@@ -106,7 +109,7 @@ export default {
     get_data() {
       this.$http
         .post("/api/show/tt", {
-          student_id: this.$session.get("name"),
+          student_id: this.$session.get("student_id"),
           ttname: this.tt_name
         })
         .then(

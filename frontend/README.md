@@ -25,6 +25,7 @@ npm run build --report
 > #E6F1FC : 흰 회색
 > #FFCA55 : 노랑
 > #FF6D00 : 주황
+> #E6F1FC : 팝업창 컬러 연한 하늘색;
 
 #eventbus
 this.$EventBus.$emit('add_a','add all subject');
@@ -38,7 +39,7 @@ this.$EventBus.$emit('add_a','add all subject');
 #send by http
 this.$http.post('/api/login', {
     id :  this.$session.get('name')
-                }).then((response) => {
+                }).then((response) => {s
                     if (response.status === 200 ) {}
                 }, function (err) {
          
