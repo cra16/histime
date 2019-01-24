@@ -1,18 +1,48 @@
-$base: 83px;
+$base: 83px;//기본크기
 
-div{
+.node{
+    overflow: hidden;
     text-align: center;
     position : absolute;
     overflow: scroll;
-    height : $base;
-    background: green;
+    background: olive;
     display : inline-block;
     margin : 0;
     color : white;
     font-size : 12px;
+    cursor: pointer;
     width : 100%;
+    p{
+        margin : 2px;
+    }
+    #code{
+        font-size : 10px
+    }
+}
+.box:hover .tooltip{
+    display : inline;
 }
 
+.tooltip {
+    display : none;
+    width: 120px;
+    background-color: olivedrab;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    left : 105%;
+    height : 105px;
+    /* Position the tooltip */
+    position : absolute;
+    z-index: 6;
+  }
+ 
+
+
+
+
+// 시간대 표시
 .t1{
     //top : -465%; 혹시나 퍼센트로도 나타내 봄
     top : $base *0;
@@ -45,3 +75,19 @@ div{
     top : $base *9;
 }
 
+
+// 연강표시
+#long1{
+    height : $base
+}
+
+#long2{
+    height : $base *2
+}
+
+#long3{
+    height : $base *3
+}
+#long4{
+    height : $base *4
+}

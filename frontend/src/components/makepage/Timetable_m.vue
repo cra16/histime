@@ -26,7 +26,7 @@
                             <div v-if="courses[i] != undefined">
                                 <div v-if="courses[i][j] != undefined">
                                     <div v-for="course of courses[i][j]" :key="course.code">
-                                            <node :data="course" />
+                                            <node @update="update" :data="course" />
                                     </div>
                                 </div>
                             </div>
@@ -113,12 +113,16 @@
             courses : {
                 deep : true,
                 handler(){
-                    console.log("added")
+                    console.log("changed")
+                    this.$forceUpdate();
                 }
               },
               
           },
             methods : {
+                update(){
+                    this.$forceUpdate();
+                },
                 save(){//저장하기, 
                     this.$http.post('/api/make/make_tt', {
                         student_id :  this.$session.get('student_id'),

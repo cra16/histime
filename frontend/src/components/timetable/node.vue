@@ -1,34 +1,62 @@
 <template>
+<div>
+    <div class ="box">
+        <div v-bind:id="long" v-bind:class="classObject" class = "node" >
+            <button v-on:click="this.delete_course" >x</button>
 
-    <!-- <div v-if="data.long == 1"> -->
-        <div v-bind:id="ID" v-bind:class="classObject">{{ this.data.course_name }}</div>
-    <!-- </div> -->
-
-
+            <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
+            <p id = "code" >{{ this.data.code }}<p>
+            <p id="prof">{{ this.data.professor}}</p>    
+        </div>
+        <span v-bind:class="classObject" class = "tooltip">룰루</span>
+    </div>
+</div>
+    
 </template>
 
 <script>
 export default {
-   props : ['data'],//start, long, name
+   props : ['data'],//start, long, name, professor
    data(){
         return{
             time : [] ,
-            ID : '',
-            mycolor: '#000000'
-          
-
-               
+            long : 'long' + this.data.long , //연강
+            mycolor: '#000000',
+            
 
         };
     },
-    method : {
+    methods : {
+       delete_course(){//노드 courses[[[]]]배열에서 삭제
+           console.log(this.$parent.courses)
+           for(var i=1;i<=6;i++){
+                if(this.$parent.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
+                for(var j=1;j<=10;j++){
+                if(this.$parent.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                for(var k=0; k<this.$parent.courses[i][j].length;k++){
+                      if(this.$parent.courses[i][j][k].code == this.data.code){
+                        this.$parent.courses[i][j].splice(k,1) 
+                        this.$emit('update', 'hello!')
+                      }
+                  }                
+               }
+           }
+       }
+        
  
     },
      created(){
             // var div = document.querySelector('#node').style;
             //  this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
             //  div.backgroundColor = this.mycolor;
-            console.log(this.data.course_name)
+     },
+     watich:{
+         tooltip :{
+             handler(){
+                console.log(this.tooltip)
+             }
+            
+         }
      },
     computed: {
         classObject: function () {
@@ -46,9 +74,7 @@ export default {
                     t7: this.time[6],
                     t8: this.time[7],
                     t9: this.time[8],
-                    t10: this.time[9],
-                
-                    
+                    t10: this.time[9],       
             }
         }
     }   
