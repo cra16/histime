@@ -69,24 +69,33 @@ router.post('/search/name', function(req, res, next) {
 //output : list of object(hakbu, gubun, gyoyang, credit, english, professor, time)
 
 //타임은 어떻게할지 고민해봐야함
-router.get('/search/filter', function(req, res) {
-    var hakbu = '';
-    var gubun = '';
-    var gyoyang = '';
-    var credit = [];
+router.post('/search/filter', function(req, res, next) {
+    var hakbu = req.body.hakbu;
+    var gubun = req.body.gubun;
+    var gyoyang = req.body.gyoyang;
+    var credit = req.body.credit;
+    var time = req.body.time;
+    var english = req.body.english;
+    var professor = req.body.professor;
+
     var credit_query = '';
-    var time = ['Mon1'];
     var time_query = '';
-    var english = '';
-    var professor = '';
-    
+
     if(credit.length != 0){
         credit_query += ' and (';
     }
     for(var i = 0 ; i < credit.length; i++){
+        var credit_each = '';
         console.log(`credit ${i}`);
-        credit_query += `credit like '%${credit[i]}%' `;
-        if(i != credit.length -1) credit_query += 'or ';
+        if(credit[i] = true){
+            if(i == 0) credit_each = '.5';
+            else if(i == 1) credit_each = '1';
+            else if(i == 2) credit_each = '2';
+            else if(i == 3) credit_each = '3';
+            else if(i == 4) credit_each = '4';
+            credit_query += `credit like '%${credit_each}%' `;
+            if(i != credit.length -1) credit_query += 'or ';
+        }
     }
 
     if(credit.length != 0){
@@ -116,11 +125,11 @@ router.get('/search/filter', function(req, res) {
     var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and english like '%${english}%' and professor like '%${professor}%'${credit_query}${time_query}`;
  
     console.log(search);
-    // connection.query(search, function(err, courseList, fields) {
-    //     if(err) console.log(err);
-    //     console.log(courseList);
-    //     res.send(courseList);
-    // });
+    connection.query(search, function(err, courseList, fields) {
+        if(err) console.log(err);
+        console.log(courseList);
+        res.send(courseList);
+    });
 });
 
 //즐겨찾기추가
@@ -227,8 +236,8 @@ router.post('/make_tt', function(req, res) {
         var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, ${total_credit}, '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
-            console.log(courseList);
-            res.send(courseList);
+            // console.log(courseList);
+            // res.send(courseList);
         });
     }
 });
