@@ -93,50 +93,99 @@ export default {
     };
   },
   watch: {
-    tt_name: function(data) {//시간표 이름이 바뀔 때 마다 시간표 내용이 달라짐
-      this.get_data();
-    }
+    
   },
 
   created() {
-    this.$EventBus.$on("to_timetables", this.change_name);//중간중간 시간표 클릭시
+    this.$EventBus.$on("to_timetables", this.get_data);//중간중간 시간표 클릭시
     // this.check = new Array(6); // 매개변수는 배열의 크기
     // for (var i = 0; i < 5; i++) {
     //      arr[i] = new Array(10); // 매개변수는 배열의 크기
     // }
   },
   methods: {
-    get_data() {
-      this.$http
-        .post("/api/show/tt", {
-          student_id: this.$session.get("student_id"),
-          ttname: this.tt_name
-        })
-        .then(
-          response => {
-            if (response.status === 200) {
-              console.log(response)    
-            }
-          },
-          function(err) {}
+    get_data(text) {
+        this.tt_name = text;
+        console.log(this.tt_name);
+        this.$http.post("/api/show/tt", {
+            student_id: this.$session.get("student_id"),
+            ttname: this.tt_name}).then(
+                response => {
+                    if (response.status === 200) {
+                    console.log(response.data);
+                       
+                }
+            },
         );
     },
-    change_name(text) {
-      this.tt_name = text;
-    },
-
     timetable_s() {
-      this.$http
-        .post("/api/show/timetable", {
+      this.$http.post("/api/show/timetable", {
           student_id: this.$session.get("student_id"),
           tt_name: this.tt_name
         })
         .then(response => {
           if (response.status === 200) {
-            nodes: response.data;
+            console.log(response.data);
           }
         });
-    }
+    },
+    parsingTime(course) {
+        var course_temp = JSON.parse(JSON.stringify(course));
+        var course_for_use = JSON.parse(JSON.stringify(course));
+        
+        var prepared_data = [];
+
+        if(course_temp.time = '')return prepared_data;
+
+        var sep_time = course_for_use.time.split( ',');
+        // for(var i = 0; i< sep_time.length; i++){
+        //     console.log(sep_time[i]);
+        // }
+        console.log(course.time + '코스타임');
+        console.log(course_temp.time + '타임');
+
+        prepared_data.push({
+            code : course_temp.code,
+            course_name : course_temp.name,
+            professor : course_temp.professor,
+            time : course.time,
+            credit : course_temp.credit,
+            
+            day : sep_time[0].substr(0, 1),
+            start : sep_time[0][1],
+            long : 1,
+        });
+
+        for(var i = 1; i < sep_time.length; i++){
+            if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
+                console.log("into comparison");
+                var temp = prepared_data.pop();
+                console.log(temp.long);
+                temp.long ++;
+                prepared_data.push(temp);
+            } else {
+                prepared_data.push({
+                    code : course_temp.code,
+                    course_name : course_temp.name,
+                    professor : course_temp.professor,
+                    time : course.time,
+                    credit : course_temp.credit,
+                    
+                    day : sep_time[i].substr(0, 1),
+                    start : sep_time[i][1],
+                    long : 1,
+                });
+            }
+        }
+
+        for(var i = 0 ; i < prepared_data.length; i++){
+            console.log( "day :" + prepared_data[i].day);
+            console.log( "start :" + prepared_data[i].start);
+            console.log( "length :" + prepared_data[i].long);
+        }
+
+        return prepared_data;
+    },
   }
 };
 </script>

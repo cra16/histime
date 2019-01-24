@@ -20,7 +20,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <div v-for="(ttlist,key) in this.ttlists" :key="key">
-                <tr>
+                <tr v-on:click="ttselect(key)">
                     <td>{{ key+1 }}</td>
                     <td v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname"><p >{{ttlist.ttname}}</p><button id="modify_name" v-on:click="modify_name(key)"></button></td>
                     <td>{{ttlist.total_credit}}</td>
@@ -123,6 +123,10 @@
                     this.$session.set('to_timetablem', this.ttlists[key].ttname)//시간표 이름을 세션으로 보냄
                     window.location = 'http://localhost:8080/make'
                 }  
+            },
+            ttselect(key){
+                console.log(this.ttlists[key].ttname);
+                this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
             }
         },
     }
