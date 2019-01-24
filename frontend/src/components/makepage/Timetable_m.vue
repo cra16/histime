@@ -134,7 +134,7 @@
                 },
 
 
-                add_to(course){
+                add_to(course){//과목 검색 후 추가를 눌렀을 때 데이터 베이스용 배열과 시간표 보여주기용 배열에 각각 다른 포맷으로 출력
                     var data = course.parsed;
                     var raw_data = course.raw;
                     var duplication = false;
@@ -198,7 +198,6 @@
               
             },
             created(){
-               
                 this.$EventBus.$on('to_timetablem',function(text){//show 에서 추가하기 했을때 오는 이름
                     this.tt_name = text;
                     this.tt_name = "aa";
