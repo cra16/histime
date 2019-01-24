@@ -126,52 +126,106 @@
                         total_credit : this.total_credit(),
                         data_list : this.raw_courses
                     }).then((response) => {
-                        window.location = 'http://localhost:8080'
+                        if (response.status === 200) {
+                            console.log(response);
+                            window.location = 'http://localhost:8080'
+                        }
                     });
                 },
                 user_add(){
                     this.user_add_clicked = !(this.user_add_clicked)
                 },
+                add_to(raw_data){
+                    var parsed_data = this.parsingTime(raw_data);
+                    var duplication = duplication(raw_data);
 
-
-                add_to(course){
-                    var data = course.parsed;
-                    var raw_data = course.raw;
-                    var duplication = false;
-
+                    for(var i = 0 ; i < parsed_data.length; i++){
+                        console.log( "day :" + parsed_data[i].day);
+                        console.log( "start :" + parsed_data[i].start);
+                        console.log( "length :" + parsed_data[i].long);
+                    }
                     console.log("rc_length: " + this.raw_courses.length);
 
-                    for(var i in this.raw_courses) {
-                        if(this.raw_courses[i].code === raw_data.code) {
-                            duplication = true;
-                            break;
-                        }
-                    }
-
-                    if(duplication === true) {
+                    if(duplication) {
                             alert("이미 시간표에 추가한 과목입니다!");
                     } else {
                         this.raw_courses.push(raw_data);
 
-                        for(var i = 0; i < data.length; i++){
+                        for(var i = 0; i < parsed_data.length; i++){
                             var day_index = 0;
-                            var time_index = parseInt(data[i].start);
-                            console.log(data[i]);
-                            console.log(parseInt(data[i].start));
-                            if(data[i].day === 'Mon') day_index = 1;
-                            else if(data[i].day === 'Tue') day_index = 2;
-                            else if(data[i].day === 'Wed') day_index = 3;
-                            else if(data[i].day === 'Thu') day_index = 4;
-                            else if(data[i].day === 'Fri') day_index = 5;
-                            else if(data[i].day === 'Sat') day_index = 6;
+                            var time_index = parseInt(parsed_data[i].start);
+                            console.log(parsed_data[i]);
+                            console.log(parseInt(parsed_data[i].start));
+                            if(parsed_data[i].day === '월') day_index = 1;
+                            else if(parsed_data[i].day === '화') day_index = 2;
+                            else if(parsed_data[i].day === '수') day_index = 3;
+                            else if(parsed_data[i].day === '목') day_index = 4;
+                            else if(parsed_data[i].day === '금') day_index = 5;
+                            else if(parsed_data[i].day === '토') day_index = 6;
                             if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                             if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
-                            this.courses[day_index][time_index].push(data[i]);
+                            this.courses[day_index][time_index].push(parsed_data[i]);
                             this.$forceUpdate();
                         }
 
                         console.log(this.courses);
                     }
+                },
+                parsingTime(course) {
+                    var course_temp = JSON.parse(JSON.stringify(course));
+                    var course_for_use = JSON.parse(JSON.stringify(course));
+                    
+                    var prepared_data = [];
+
+                    if(course_temp.time = '')return prepared_data;
+
+                    var sep_time = course_for_use.time.split( ',');
+                    // for(var i = 0; i< sep_time.length; i++){
+                    //     console.log(sep_time[i]);
+                    // }
+                    console.log(course.time + '코스타임');
+                    console.log(course_temp.time + '타임');
+
+                    prepared_data.push({
+                        code : course_temp.code,
+                        course_name : course_temp.name,
+                        professor : course_temp.professor,
+                        time : course.time,
+                        credit : course_temp.credit,
+                        
+                        day : sep_time[0].substr(0, 1),
+                        start : sep_time[0][1],
+                        long : 1,
+                    });
+            
+                    for(var i = 1; i < sep_time.length; i++){
+                        if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
+                            console.log("into comparison");
+                            var temp = prepared_data.pop();
+                            console.log(temp.long);
+                            temp.long ++;
+                            prepared_data.push(temp);
+                        } else {
+                            prepared_data.push({
+                                code : course_temp.code,
+                                course_name : course_temp.name,
+                                professor : course_temp.professor,
+                                time : course.time,
+                                credit : course_temp.credit,
+                                
+                                day : sep_time[i].substr(0, 1),
+                                start : sep_time[i][1],
+                                long : 1,
+                            });
+                        }
+                    }
+                    return prepared_data;
+                },
+                duplication(raw_data) {
+                    var duplication =   this.raw_courses.some(function(item, index, array) {
+                                            return (item.code === raw_data.code);
+                                        });
+                    return duplication;
                 },
                 set_name(text) {
                     this.tt_name = text;
@@ -182,8 +236,7 @@
                         sum += this.raw_courses[i].credit*1;
                     }
                     return sum;
-                },
-                
+                }
             },
             created(){
                

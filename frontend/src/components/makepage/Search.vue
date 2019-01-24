@@ -275,20 +275,12 @@ export default {
          add_to_fav: function(key){
             // console.log(key);
             console.log(this.search[key].name);
-
-
             this.$EventBus.$emit('add_to_fav',this.search[key]);
         },
         add_to_tt: function(key){
             // console.log(key);
-            console.log(this.search[key].name);
-            var data = this.parsingTime(this.search[key]);
 
-            for(var i = 0 ; i < data.length; i++){
-                console.log( "day :" + data[i].day);
-                console.log( "start :" + data[i].start);
-                console.log( "length :" + data[i].long);
-            }
+            this.$EventBus.$emit('courses', this.search[key].name);
 
             this.$EventBus.$emit('courses', {parsed : data, raw : this.search[key]});
 
@@ -303,57 +295,7 @@ export default {
             //         console.log(response.data);
             //         search = response.data;
             // });
-        },    
-        parsingTime: function(course){
-            var course_temp = JSON.parse(JSON.stringify(course));
-            var course_for_use = JSON.parse(JSON.stringify(course));
-            
-            var prepared_data = [];
-            if(course_temp.time = '')return prepared_data;
-
-            var sep_time = course_for_use.time.split( ',');
-            // for(var i = 0; i< sep_time.length; i++){
-            //     console.log(sep_time[i]);
-            // }
-            console.log(course.time + '코스타임');
-            console.log(course_temp.time + '타임');
-
-            prepared_data.push({
-                        code : course_temp.code,
-                        course_name : course_temp.name,
-                        professor : course_temp.professor,
-                        time : course.time,
-                        credit : course_temp.credit,
-                        
-                        day : sep_time[0].substr(0, 3),
-                        start : sep_time[0][3],
-                        long : 1,
-                    });
-            
-            for(var i = 1; i < sep_time.length; i++){
-                if(parseInt(sep_time[i-1][3]) + 1 === parseInt(sep_time[i][3])){
-                    console.log("into comparison");
-                    var temp = prepared_data.pop();
-                    console.log(temp.long);
-                    temp.long ++;
-                    prepared_data.push(temp);
-                }
-                else{
-                    prepared_data.push({
-                        code : course_temp.code,
-                        course_name : course_temp.name,
-                        professor : course_temp.professor,
-                        time : course.time,
-                        credit : course_temp.credit,
-                        
-                        day : sep_time[i].substr(0, 3),
-                        start : sep_time[i][3],
-                        long : 1,
-                    });
-                }
-            }
-            return prepared_data;
-        }   
+        }
     }
 }
 
