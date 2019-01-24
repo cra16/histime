@@ -206,12 +206,6 @@ export default {
                     console.log(this.backendchecktime);
                     
                          //this.checktime[i][j]===false 체크 후 done 하고 초기화
-                       
-
-
-
-
-
                 }
 
             }
