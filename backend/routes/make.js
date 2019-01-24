@@ -6,8 +6,8 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 
@@ -69,17 +69,51 @@ router.post('/search/name', function(req, res, next) {
 //output : list of object(hakbu, gubun, gyoyang, credit, english, professor, time)
 
 //타임은 어떻게할지 고민해봐야함
-router.post('/search/filter', function(req, res, next) {
-    // var hakbu = '';
-    // var gubun = '';
-    // var gyoyang = '';
-    // var credit = '';
-    // var english = '';
-    // var professor = '';
-    // var time = '';
+router.get('/search/filter', function(req, res) {
+    var hakbu = '';
+    var gubun = '';
+    var gyoyang = '';
+    var credit = [];
+    var credit_query = '';
+    var time = ['Mon1'];
+    var time_query = '';
+    var english = '';
+    var professor = '';
+    
+    if(credit.length != 0){
+        credit_query += ' and (';
+    }
+    for(var i = 0 ; i < credit.length; i++){
+        console.log(`credit ${i}`);
+        credit_query += `credit like '%${credit[i]}%' `;
+        if(i != credit.length -1) credit_query += 'or ';
+    }
+
+    if(credit.length != 0){
+        credit_query += ')';
+    }
+    
+    if(time.length != 0){
+        time_query += ' and (';
+    }
+    for(var i = 0 ; i < time.length; i++){
+        console.log(`time ${i}`);
+        time_query += `time like '%${time[i]}%' `;
+        if(i != time.length -1) time_query += 'or ';
+    }
+
+    if(time.length != 0){
+        time_query += ')';
+    }
+
+    
+    // and time like '%${time}%'
+    // and credit like '%${credit}%'
+    
+
+
     // //debugging용
-    // var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and credit like '%${credit}%' and english like '%${english}%' and professor like '%${professor}%' and time like '%${time}%'`;
-    var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${req.body.hakbu}%' and gubun like '%${req.body.gubun}%' and gyoyang like '%${req.body.gyoyang}%' and credit like '%${req.body.credit}%' and english like '%${req.body.english}%' and professor like '%${req.body.professor}% and time like '%${req.body.time}%'`;
+    var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and english like '%${english}%' and professor like '%${professor}%'${credit_query}${time_query}`;
  
     console.log(search);
     // connection.query(search, function(err, courseList, fields) {

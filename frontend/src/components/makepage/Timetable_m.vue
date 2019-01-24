@@ -158,12 +158,12 @@
                             var time_index = parseInt(data[i].start);
                             console.log(data[i]);
                             console.log(parseInt(data[i].start));
-                            if(data[i].day === 'Mon') day_index = 1;
-                            else if(data[i].day === 'Tue') day_index = 2;
-                            else if(data[i].day === 'Wed') day_index = 3;
-                            else if(data[i].day === 'Thu') day_index = 4;
-                            else if(data[i].day === 'Fri') day_index = 5;
-                            else if(data[i].day === 'Sat') day_index = 6;
+                            if(data[i].day === '월') day_index = 1;
+                            else if(data[i].day === '화') day_index = 2;
+                            else if(data[i].day === '수') day_index = 3;
+                            else if(data[i].day === '목') day_index = 4;
+                            else if(data[i].day === '금') day_index = 5;
+                            else if(data[i].day === '토') day_index = 6;
                             if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                             if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
                             this.courses[day_index][time_index].push(data[i]);
