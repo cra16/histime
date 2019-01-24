@@ -1,21 +1,21 @@
 <template>
 <!-- 시간표 만드는 페이지에서 즐겨찾기 부분 -->
 <div class="save">
-    <h1 id="head">즐겨찾기</h1>
+    <h1 id="head">즐겨찾는 과목</h1>
 <!-- 여기에 이렇게 많은 정보가 필요한가? -->
     <div class='contents'>
         
         <div v-for="(course, key) in this.courses" :key="key" class="content">
             
             <div class="section1">
-                <p>{{ course.name }}</p>
                 <p>{{`[${course.code}]`}}</p>
+                <p>{{ course.name }}</p>
             </div>
 
             <div class="section2">
+                <p>{{course.gubun}}</p>
                 <p>{{course.time}}</p>
                 <p>{{course.credit}}학점</p>
-                <p>{{course.gubun}}</p>
             </div>
 
             <div class="section3">
@@ -84,7 +84,6 @@ export default{
             }
         },
         add_a(){
-            alert("add_a");
             this.$EventBus.$emit('add_a',this.courses);
         },
         add_to_fav(course) {

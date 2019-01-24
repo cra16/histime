@@ -2,7 +2,7 @@
  <div>
        <h1 id="head">과목찾기</h1>
        <div class="search_field" > 
-        <input v-model="course_name" type="text" placeholder="과목명" class='input_text' name="search"/>
+        <input v-model="course_name" type="text" placeholder="과목명" class='input_text' name="search" v-on:keydown.enter="search_by_name"/>
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
       
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
@@ -13,14 +13,14 @@
        
             <div class="content" >
                         <div class="section1">
-                            <p>{{course.name}}</p>
                             <p>{{`[${course.code}]`}}</p>
+                            <p>{{course.name}}</p>
                         </div>
 
                         <div class="section2">
+                            <p>{{course.gubun}}</p>
                             <p>{{course.time}}</p>
                             <p>{{course.credit}}학점</p>
-                            <p>{{course.gubun}}</p>
                         </div>
 
                         <div class="section3">
