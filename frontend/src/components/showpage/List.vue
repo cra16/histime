@@ -58,10 +58,7 @@
             }).then((response) => {
                 if (response.status === 200 ) {
                     this.ttlists = response.data; //ttname, ttrank, total_credit
-                     this.$EventBus.$emit('to_timetables',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
-                     for(var i = 0; i < this.ttlists.length; i++) {
-                       this.ttnames.push(this.ttlists[i].ttname);
-                    }
+                    this.$EventBus.$emit('to_timetables',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
                 }
             });
         },
@@ -105,10 +102,10 @@
                 }
             },
             duplication(new_name){//새로 이름만들기, 이름 수정할 때 중복검사
-                if(this.ttnames.includes(new_name)){
-                    return true;
-                }
-                return false;
+            var duplication =   this.ttlists.some(function(item, index, array) {
+                                    return (item.ttname === new_name);
+                                });
+                return duplication;
             },
             ttdelete(key){//시간표 삭제
                 if(confirm("시간표를 삭제하시겠습니까?")){

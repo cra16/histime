@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="section4">
-                            <button id="delete" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
 
@@ -75,15 +75,15 @@
             </p>     
 
             <p>학점&emsp;&ensp;&nbsp;
-                    <input type="checkbox" id="credit" value="0.5" v-model="checkedCredits">
+                    <input type="checkbox" id="credit" value="0.5" v-model="checkedCredits[0]">
                     <label for="credit">&ensp;0.5</label>
-                    <input type="checkbox" id="credit1" value="1" v-model="checkedCredits">
+                    <input type="checkbox" id="credit1" value="1" v-model="checkedCredits[1]">
                     <label for="credit1">&emsp; 1</label>
-                    <input type="checkbox" id="credit2" value="2" v-model="checkedCredits">
+                    <input type="checkbox" id="credit2" value="2" v-model="checkedCredits[2]">
                     <label for="credit2">&emsp; 2</label>
-                    <input type="checkbox" id="credit3" value="3" v-model="checkedCredits">
+                    <input type="checkbox" id="credit3" value="3" v-model="checkedCredits[3]">
                     <label for="credit3">&emsp; 3</label>
-                    <input type="checkbox" id="credit4" value="4" v-model="checkedCredits">
+                    <input type="checkbox" id="credit4" value="4" v-model="checkedCredits[4]">
                     <label for="credit4">&emsp; 4</label>
             </p>
 
@@ -105,7 +105,7 @@
                 </p>
 
          
-           <center><input type="button"  class="search" value="검색하기" v-on:click="ssearch"></center>
+           <center><input type="button"  class="search" value="검색하기" v-on:click="search_by_Filter"></center>
 
             <div v-show="searchbox" class="placeholder-box2">
                 <p>검색하고자 하는 시간대를 모두 클릭해주세요</p>
@@ -171,8 +171,8 @@ export default {
                 gyoyang:'',
                 professor:'',
                 english:'',
-                time:'',
-                credit:''
+                time:[],
+                credit:[]
             },
         
             
@@ -194,256 +194,18 @@ export default {
                   if(this.checktime[i] === undefined){
                       continue;
                 } if(this.checktime[i][j]===true) {
-                        {    if(i==1) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon1');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue1');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed1');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu1');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri1');
-                                    console.log(this.backendchecktime);
-                                }
-                             
-                                if(j==6){
-                                    this.backendchecktime.push('Sat1');
-                                    console.log(this.backendchecktime);
-                                }
-                            }
+                    var day = '';
+                    if(j === 1) day +=  '월';
+                    else if(j === 2) day += '화';
+                    else if(j === 3) day += '수';
+                    else if(j === 4) day += '목';
+                    else if(j === 5) day += '금';
+                    else if(j === 6) day += '토';
 
-                            if(i==2) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon2');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue2');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed2');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu2');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri2');
-                                    console.log(this.backendchecktime);
-                                }
-                             
-                                if(j==6){
-                                    this.backendchecktime.push('Sat2');
-                                    console.log(this.backendchecktime);
-                                }
-                            }
-                            if(i==3) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon3');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue3');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed3');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu3');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri3');
-                                    console.log(this.backendchecktime);
-                                }
-                             
-                                if(j==6){
-                                    this.backendchecktime.push('Sat3');
-                                    console.log(this.backendchecktime);
-                                }
-                            }
-                            if(i==4) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon4');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue4');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed4');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu4');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri4');
-                                    console.log(this.backendchecktime);
-                                }
-                             
-                                if(j==6){
-                                    this.backendchecktime.push('Sat4');
-                                    console.log(this.backendchecktime);
-                                }
-                            }
-                            if(i==5) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon5');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue5');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed5');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu5');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri5');
-                                    console.log(this.backendchecktime);
-                                }
-                             
-                                if(j==6){
-                                    this.backendchecktime.push('Sat5');
-                                    console.log(this.backendchecktime);
-                                }
-                            }
-                             if(i==6) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon6');
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue6');                        
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed6');
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu6');
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri6');
-                                }
-                                if(j==6){
-                                    this.backendchecktime.push('Sat6');
-                                }
-                            }
-                            if(i==7) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon7');
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue7');                        
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed7');
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu7');
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri7');
-                                }
-                                if(j==6){
-                                    this.backendchecktime.push('Sat7');
-                                }
-                            }
-                            if(i==8) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon8');
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue8');                        
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed8');
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu8');
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri8');
-                                }
-                                if(j==6){
-                                    this.backendchecktime.push('Sat8');
-                                }
-                            }
-                            if(i==9) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon9');
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue9');                        
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed9');
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu9');
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri9');
-                                }
-                                if(j==6){
-                                    this.backendchecktime.push('Sat9');
-                                }
-                            }
-                             if(i==10) {
-                                if(j==1){
-                                    this.backendchecktime.push('Mon10');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==2){
-                                    this.backendchecktime.push('Tue10');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==3){
-                                    this.backendchecktime.push('Wed10');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==4){
-                                    this.backendchecktime.push('Thu10');
-                                    console.log(this.backendchecktime);
-                                }
-                                if(j==5){
-                                    this.backendchecktime.push('Fri10');
-                                    console.log(this.backendchecktime);
-                                }
-                             
-                                if(j==6){
-                                    this.backendchecktime.push('Sat10');
-                                    console.log(this.backendchecktime);
-                                }
-                            }
-                       }  //this.checktime[i][j]===false 체크 후 done 하고 초기화
-                       
-
-
-
-
-
+                    this.backendchecktime.push(`${day}${i}`);
+                    console.log(this.backendchecktime);
+                    
+                         //this.checktime[i][j]===false 체크 후 done 하고 초기화
                 }
 
             }
@@ -456,10 +218,6 @@ export default {
         creditslt:function(){
            this.style.background='powderblue';
 
-        },
-        ssearch:function(){
-            this.showbox=!this.showbox;
-         
         },
         checkmethod:function(i,j){
             if(this.checktime[i] === undefined) {
@@ -479,12 +237,23 @@ export default {
             this.course_name = '';
         },
         search_by_Filter: function(){
-            this.$http.post('/api/make/search/filter', {
-                course_name : this.search.course_name,
-                }).then((response) => {
-                    console.log(response.data);
-                    search = response.data;
-            });
+            this.showbox=!this.showbox;
+            console.log(this.checkedCredits);
+            this.filter.credit =  this.checkedCredits;
+            this.filter.time = this.backendchecktime;
+            console.log("학부 "+ this.filter.hakbu);
+            console.log("구분 "+ this.filter.gubun);
+            console.log("교양 "+ this.filter.gyoyang);
+            console.log("학점 "+ this.filter.credit);
+            console.log("영어 "+ this.filter.english);
+            console.log("교수 "+ this.filter.professor);
+            console.log("교시 "+ this.filter.time);
+            // this.$http.post('/api/make/search/filter', {
+            //     course_name : this.search.course_name,
+            //     }).then((response) => {
+            //         console.log(response.data);
+            //         search = response.data;
+            // });
             this.filter.hakbu = '';
             this.filter.gubun = '';
             this.filter.gyoyang = '';
@@ -497,23 +266,12 @@ export default {
          add_to_fav: function(key){
             // console.log(key);
             console.log(this.search[key].name);
-
-
             this.$EventBus.$emit('add_to_fav',this.search[key]);
         },
         add_to_tt: function(key){
             // console.log(key);
-            console.log(this.search[key].name);
-            var data = this.parsingTime(this.search[key]);
 
-            for(var i = 0 ; i < data.length; i++){
-                console.log( "day :" + data[i].day);
-                console.log( "start :" + data[i].start);
-                console.log( "length :" + data[i].long);
-            }
-
-            this.$EventBus.$emit('courses', {parsed : data, raw : this.search[key]});
-
+            this.$EventBus.$emit('courses', this.search[key]);
             // this.$http.post('/api/make/add_fav', {
             //     student_id : this.$session.get('student_id'),
             //     code : this.search[key].code,
@@ -525,58 +283,7 @@ export default {
             //         console.log(response.data);
             //         search = response.data;
             // });
-        },    
-        parsingTime: function(course){
-            var course_temp = JSON.parse(JSON.stringify(course));
-            var course_for_use = JSON.parse(JSON.stringify(course));
-            
-            var prepared_data = [];
-            if(course_temp.time = '')return prepared_data;
-
-            var sep_time = course_for_use.time.split( ',');
-            // for(var i = 0; i< sep_time.length; i++){
-            //     console.log(sep_time[i]);
-            // }
-            console.log(course.time + '코스타임');
-            console.log(course_temp.time + '타임');
-
-            prepared_data.push({
-                        code : course_temp.code,
-                        course_name : course_temp.name,
-                        professor : course_temp.professor,
-                        time : course.time,
-                        credit : course_temp.credit,
-                        
-                        day : sep_time[0].substr(0, 1),
-                        start : sep_time[0][1],
-                        long : 1,
-                    });
-            
-            for(var i = 1; i < sep_time.length; i++){
-                if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
-                    console.log("into comparison");
-                    var temp = prepared_data.pop();
-                    console.log(temp.long);
-                    temp.long ++;
-                    prepared_data.push(temp);
-                }
-                else{
-                    prepared_data.push({
-                        code : course_temp.code,
-                        course_name : course_temp.name,
-                        professor : course_temp.professor,
-                        time : course.time,
-                        credit : course_temp.credit,
-                        
-                        day : sep_time[i].substr(0, 1),
-                        start : sep_time[i][1],
-                        long : 1,
-                    });
-                }
-            }
-            return prepared_data;
         }
-    
     }
 }
 
