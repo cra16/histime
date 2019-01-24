@@ -10,8 +10,8 @@ var html;
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 
@@ -198,7 +198,7 @@ function addtoDB(json){
         if(obj[6].includes('\n')){
             
             var str_end = obj[6].indexOf('\n');
-            time = obj[6].substr(str_end+2, obj[6].length - str_end);
+            time = obj[6].substr(0, str_end);
         }
         else{
             time = obj[6];
@@ -211,7 +211,7 @@ function addtoDB(json){
         var grade_type = obj[12];
         var pf_avail = obj[13];
         var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${hakbu}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
-        console.log(insert);
+        console.log(`asd${time}asd`);
         connection.query(insert , function (error, results, fields) {
             if (error) {
                 console.log('insert Error here');
