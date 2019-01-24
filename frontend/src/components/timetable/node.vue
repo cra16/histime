@@ -1,16 +1,19 @@
 <template>
 
-<div id ='node' v-bind:class="classObject">{{ this.data.course_name }}</div>
+    <!-- <div v-if="data.long == 1"> -->
+        <div v-bind:id="ID" v-bind:class="classObject">{{ this.data.course_name }}</div>
+    <!-- </div> -->
 
 
 </template>
 
 <script>
 export default {
-   props : ['data'],//start, end, name
+   props : ['data'],//start, long, name
    data(){
         return{
             time : [] ,
+            ID : '',
             mycolor: '#000000'
           
 
@@ -25,6 +28,7 @@ export default {
             // var div = document.querySelector('#node').style;
             //  this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
             //  div.backgroundColor = this.mycolor;
+            console.log(this.data.course_name)
      },
     computed: {
         classObject: function () {
@@ -43,6 +47,8 @@ export default {
                     t8: this.time[7],
                     t9: this.time[8],
                     t10: this.time[9],
+                
+                    
             }
         }
     }   
