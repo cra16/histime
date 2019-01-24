@@ -4,8 +4,8 @@
         <div v-bind:id="long" v-bind:class="classObject" class = "node" >
             <button v-on:click="this.delete_course" >x</button>
 
+            <p id = "code" >{{`[${this.data.code}]`}}<p>
             <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
-            <p id = "code" >{{ this.data.code }}<p>
             <p id="prof">{{ this.data.professor}}</p>    
         </div>
         <span v-bind:class="classObject" class = "tooltip">룰루</span>

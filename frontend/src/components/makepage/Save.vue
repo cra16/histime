@@ -8,14 +8,14 @@
         <div v-for="(course, key) in this.courses" :key="key" class="content">
             
             <div class="section1">
-                <p>{{ course.name }}</p>
                 <p>{{`[${course.code}]`}}</p>
+                <p>{{ course.name }}</p>
             </div>
 
             <div class="section2">
+                <p>{{course.gubun}}</p>
                 <p>{{course.time}}</p>
                 <p>{{course.credit}}학점</p>
-                <p>{{course.gubun}}</p>
             </div>
 
             <div class="section3">
