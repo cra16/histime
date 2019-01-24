@@ -27,21 +27,29 @@ export default {
         };
     },
     methods : {
-       delete_course(){//노드 courses[[[]]]배열에서 삭제
-           console.log(this.$parent.courses)
-           for(var i=1;i<=6;i++){
-                if(this.$parent.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
-                for(var j=1;j<=10;j++){
-                if(this.$parent.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
-                for(var k=0; k<this.$parent.courses[i][j].length;k++){
-                      if(this.$parent.courses[i][j][k].code == this.data.code){
-                        this.$parent.courses[i][j].splice(k,1) 
-                        this.$emit('update', 'hello!')
-                      }
-                  }                
-               }
-           }
-       }
+        delete_course(){
+            console.log(this.$parent.courses);
+
+            //노드 courses[[[]]]배열에서 삭제
+            for(var i=1;i<=6;i++){
+                    if(this.$parent.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
+                    for(var j=1;j<=10;j++){
+                    if(this.$parent.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                    for(var k=0; k<this.$parent.courses[i][j].length;k++){
+                        if(this.$parent.courses[i][j][k].code == this.data.code){
+                            this.$parent.courses[i][j].splice(k,1) 
+                            this.$emit('update', 'hello!')
+                        }
+                    }                
+                }
+            }
+
+            for(var i in this.$parent.raw_courses) {
+                if(this.$parent.raw_courses[i].code === this.data.code) {
+                    this.$parent.raw_courses.splice(i, 1);
+                }
+            }
+        }
         
  
     },

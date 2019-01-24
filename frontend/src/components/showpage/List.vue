@@ -75,7 +75,6 @@
                     alert("시간표의 이름이 동일합니다");
                     return false;
                 } else {
-                alert("시간표 생성페이지로 이동합니다");
                  this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
                 }
                 // this.$router.replace({name: 'make'});
