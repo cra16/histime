@@ -547,13 +547,13 @@ export default {
                         time : course.time,
                         credit : course_temp.credit,
                         
-                        day : sep_time[0].substr(0, 3),
-                        start : sep_time[0][3],
+                        day : sep_time[0].substr(0, 1),
+                        start : sep_time[0][1],
                         long : 1,
                     });
             
             for(var i = 1; i < sep_time.length; i++){
-                if(parseInt(sep_time[i-1][3]) + 1 === parseInt(sep_time[i][3])){
+                if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
                     console.log("into comparison");
                     var temp = prepared_data.pop();
                     console.log(temp.long);
@@ -568,8 +568,8 @@ export default {
                         time : course.time,
                         credit : course_temp.credit,
                         
-                        day : sep_time[i].substr(0, 3),
-                        start : sep_time[i][3],
+                        day : sep_time[i].substr(0, 1),
+                        start : sep_time[i][1],
                         long : 1,
                     });
                 }
