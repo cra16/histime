@@ -26,7 +26,7 @@
             <div  class="section4">
                 <button id="delete" v-on:click="del(key)"></button>
                 <br/>
-                <button id="add" v-on:click="add()"></button>
+                <button id="add" v-on:click="add(key)"></button>
             </div>
 
             <hr />
@@ -71,10 +71,8 @@ export default{
 
             this.courses.splice(key, 1);
         },
-        add(){
-           // alert("add");
-           //send message to timetable component
-            this.$EventBus.$emit('add','add subject');
+        add(key){
+            this.$EventBus.$emit('courses',this.courses[key]);
         },
         del_a(){
             if(confirm("즐겨찾기에 있는 모든 과목을 삭제하시겠습니까?")) {
@@ -87,7 +85,7 @@ export default{
         },
         add_a(){
             alert("add_a");
-            this.$EventBus.$emit('add_a','add all subject');
+            this.$EventBus.$emit('add_a',this.courses);
         },
         add_to_fav(course) {
             var duplication = false;

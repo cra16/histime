@@ -123,13 +123,8 @@
             },
             ttedit(key){//시간표 수정하기
                 if(confirm("시간표를 수정하시겠습니까?")){        
-                    console.log(this.ttlists[key].ttname);
-                    this.$http.post('/api/show/del_tt', {
-                        student_id :  this.$session.get('student_id'),
-                        ttname :  this.ttlists[key].ttname
-                    })
-                    this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
-                    window.location = 'http://localhost:8080'
+                    this.$session.set('to_timetablem', this.ttlists[key].ttname)//시간표 이름을 세션으로 보냄
+                    window.location = 'http://localhost:8080/make'
                 }  
             }
         },
