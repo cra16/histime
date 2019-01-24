@@ -125,48 +125,46 @@
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
                         data_list : this.raw_courses
-                    }).then((response) => {
-                        if (response.status === 200) {
-                            console.log(response);
-                            window.location = 'http://localhost:8080'
-                        }
                     });
+
+                    this.$router.replace({name: 'show'});
                 },
                 user_add(){
                     this.user_add_clicked = !(this.user_add_clicked)
                 },
-                add_to(raw_data){
-                    var parsed_data = this.parsingTime(raw_data);
-                    var duplication = this.duplication(raw_data);
+                add_a_to(data) {
+                    for(var i in data) {
+                        var duplication = this.duplication(data[i]);
 
-                    for(var i = 0 ; i < parsed_data.length; i++){
-                        console.log( "day :" + parsed_data[i].day);
-                        console.log( "start :" + parsed_data[i].start);
-                        console.log( "length :" + parsed_data[i].long);
+                        if(!duplication) {
+                            var parsed_data = this.parsingTime(data[i]);
+
+                            this.raw_courses.push(data[i]);
+                            this.display(parsed_data);
+                        }
                     }
-                    console.log("rc_length: " + this.raw_courses.length);
+                    // data.forEach(function(item, data_index, data_array) {
+                    //     var duplication = this.duplication(item);
+
+                    //     if(!duplication) {
+                    //         var parsed_data = this.parsingTime(item);
+
+                    //         this.raw_courses.push(item);
+                    //         this.display(parsed_data);
+                    //     }
+                    // });
+                },
+                add_to(raw_data){
+                    var duplication = this.duplication(raw_data);
+                    // console.log("rc_length: " + this.raw_courses.length);
 
                     if(duplication) {
                             alert("이미 시간표에 추가한 과목입니다!");
                     } else {
-                        this.raw_courses.push(raw_data);
+                        var parsed_data = this.parsingTime(raw_data);
 
-                        for(var i = 0; i < parsed_data.length; i++){
-                            var day_index = 0;
-                            var time_index = parseInt(parsed_data[i].start);
-                            console.log(parsed_data[i]);
-                            console.log(parseInt(parsed_data[i].start));
-                            if(parsed_data[i].day === '월') day_index = 1;
-                            else if(parsed_data[i].day === '화') day_index = 2;
-                            else if(parsed_data[i].day === '수') day_index = 3;
-                            else if(parsed_data[i].day === '목') day_index = 4;
-                            else if(parsed_data[i].day === '금') day_index = 5;
-                            else if(parsed_data[i].day === '토') day_index = 6;
-                            if(this.courses[day_index] === undefined) this.courses[day_index] = [];
-                            if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
-                            this.courses[day_index][time_index].push(parsed_data[i]);
-                            this.$forceUpdate();
-                        }
+                        this.raw_courses.push(raw_data);
+                        this.display(parsed_data);
 
                         console.log(this.courses);
                     }
@@ -219,6 +217,13 @@
                             });
                         }
                     }
+
+                    for(var i = 0 ; i < prepared_data.length; i++){
+                        console.log( "day :" + prepared_data[i].day);
+                        console.log( "start :" + prepared_data[i].start);
+                        console.log( "length :" + prepared_data[i].long);
+                    }
+
                     return prepared_data;
                 },
                 duplication(raw_data) {
@@ -226,6 +231,24 @@
                                             return (item.code === raw_data.code);
                                         });
                     return duplication;
+                },
+                display(parsed_data) {
+                    for(var i = 0; i < parsed_data.length; i++){
+                            var day_index = 0;
+                            var time_index = parseInt(parsed_data[i].start);
+                            console.log(parsed_data[i]);
+                            console.log(parseInt(parsed_data[i].start));
+                            if(parsed_data[i].day === '월') day_index = 1;
+                            else if(parsed_data[i].day === '화') day_index = 2;
+                            else if(parsed_data[i].day === '수') day_index = 3;
+                            else if(parsed_data[i].day === '목') day_index = 4;
+                            else if(parsed_data[i].day === '금') day_index = 5;
+                            else if(parsed_data[i].day === '토') day_index = 6;
+                            if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                            if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
+                            this.courses[day_index][time_index].push(parsed_data[i]);
+                            this.$forceUpdate();
+                        }
                 },
                 set_name(text) {
                     this.tt_name = text;
@@ -239,16 +262,14 @@
                 }
             },
             created(){
-                this.$EventBus.$on('to_timetablem',function(text){//show 에서 추가하기 했을때 오는 이름
+                this.$EventBus.$on('to_timetablem', function(text){//show 에서 추가하기 했을때 오는 이름
                     this.tt_name = text;
                     this.tt_name = "aa";
                     console.log(this.tt_name);
                 }),
-                this.$EventBus.$on('add',function(text){//즐겨찾기에서 오는 버스
-                    console.log(text);
-                }),
-                this.$EventBus.$on('courses',this.add_to);
-                this.$EventBus.$on('close_user_custom',this.user_add)//user custom 창 종료
+                this.$EventBus.$on('add_a', this.add_a_to),
+                this.$EventBus.$on('courses', this.add_to),
+                this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
             }
         }
         

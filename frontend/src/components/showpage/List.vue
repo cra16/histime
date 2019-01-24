@@ -78,6 +78,7 @@
                 alert("시간표 생성페이지로 이동합니다");
                  this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
                 }
+                // this.$router.replace({name: 'make'});
                 window.location = 'http://localhost:8080/make'
             },
             modify_name(key) {//시간표 이름 수정(연필모양)-이름수정

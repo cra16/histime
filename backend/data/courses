@@ -484,7 +484,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>김영칠</font></td>
     <td bgcolor="#F9F9F9" align="center">화2,금2<br>
 	Tue2,Fri2<br><br><br></td>
-	<td bgcolor="#F9F9F9" align="center">GLC 106&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">GLC 105(회의실)&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
@@ -2491,7 +2491,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>Bryan Alkema</font></td>
     <td bgcolor="#F9F9F9" align="center">화1,금1<br>
 	Tue1,Fri1<br><br><br></td>
-	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">GLC 106&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">22</td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
@@ -5272,10 +5272,10 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">인간관계와자기성장<br>(Human Relationship & Self Growth)</td>
     <td bgcolor="#F9F9F9" align="center">3</td>
     <td bgcolor="#F9F9F9" align="center">글로벌&nbsp;주간<br><font color=blue>김수지</font></td>
-    <td bgcolor="#F9F9F9" align="center">월6,월7<br>
-	Mon6,Mon7<br><br><br></td>
-	<td bgcolor="#F9F9F9" align="center">NMH 403&nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">60</td>
+    <td bgcolor="#F9F9F9" align="center">금2,금3<br>
+	Fri2,Fri3<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">OH 306&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">40</td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">리더십및문제해결&nbsp;</td>	
@@ -10002,9 +10002,9 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">심리학개론<br>(Introduction to Psychology)</td>
     <td bgcolor="#F9F9F9" align="center">3</td>
     <td bgcolor="#F9F9F9" align="center">상담복지&nbsp;주간<br><font color=blue>김수지</font></td>
-    <td bgcolor="#F9F9F9" align="center">월4,월5<br>
-	Mon4,Mon5<br><br><br></td>
-	<td bgcolor="#F9F9F9" align="center">NMH 309&nbsp;</td>
+    <td bgcolor="#F9F9F9" align="center">금4,금5<br>
+	Fri4,Fri5<br><br><br></td>
+	<td bgcolor="#F9F9F9" align="center">OH 402&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
 	<td bgcolor="#F9F9F9" align="center">0&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
@@ -11916,7 +11916,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">월6,월7<br>
 	Mon6,Mon7<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NTH 412&nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">50</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">0&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
@@ -12084,7 +12084,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">화1,화2,금1,금2<br>
 	Tue1,Tue2,<br>ri1,Fri2<br><br></td>
 	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">40</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">0&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
@@ -12105,7 +12105,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">화1,화2,금1,금2<br>
 	Tue1,Tue2,<br>ri1,Fri2<br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NTH 412&nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">40</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
@@ -12378,7 +12378,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">월4,목4<br>
 	Mon4,Thu4<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NTH 313&nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">40</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">1&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
@@ -12861,7 +12861,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">월1,월2,목1,목2<br>
 	Mon1,Mon2,<br>hu1,Thu2<br><br></td>
 	<td bgcolor="#F9F9F9" align="center">OH 319&nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">40</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
@@ -12924,7 +12924,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
     <td bgcolor="#F9F9F9" align="center">월5,목5<br>
 	Mon5,Thu5<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">OH 401&nbsp;</td>
-    <td bgcolor="#F9F9F9" align="center">40</td>
+    <td bgcolor="#F9F9F9" align="center">0</td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
