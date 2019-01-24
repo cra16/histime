@@ -5,7 +5,7 @@
         <div>
         <hr width="70%"/>
         </div>
-        <p align="center">약관 개인정보처리방침    copyright  by  cra </p>
+        <center><p >약관 개인정보처리방침    copyright  by  cra </p></center>
     </div>
 </div>
  
