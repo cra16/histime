@@ -33,7 +33,7 @@
         </table>
     </div>
     <td></td>
-    <button v-on:click="go()">추가하기</button>
+    <button class="add" v-on:click="go()">추가하기</button>
     </section>
 </template>
 

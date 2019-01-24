@@ -9,6 +9,17 @@ h1{
   margin-top:0px;
   background-color:#225B95;
 }
+.add{
+   position:relative;
+   left: 300px;
+   top:100px;
+   background-color:#FFCA55;
+   color:white;
+   border-radius: 10px;
+   font-size:18px;
+   font-weight: bold;
+}
+
 table{
   width:100%;
   table-layout: fixed;
@@ -57,6 +68,8 @@ ts{
   background : url( '../../image/edit_name.png') no-repeat;
   background-size : contain;
 }
+
+
 
 /* demo styles */
 
