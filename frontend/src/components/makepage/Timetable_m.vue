@@ -198,6 +198,9 @@
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0][1],
                         long : 1,
+
+                        k_start : -1,
+                        size : -1,
                     });
             
                     for(var i = 1; i < sep_time.length; i++){
@@ -206,6 +209,7 @@
                             var temp = prepared_data.pop();
                             console.log(temp.long);
                             temp.long ++;
+
                             prepared_data.push(temp);
                         } else {
                             prepared_data.push({
@@ -218,6 +222,9 @@
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i][1],
                                 long : 1,
+
+                                k_start : -1,
+                                size : -1,
                             });
                         }
                     }
@@ -236,24 +243,216 @@
                                         });
                     return duplication;
                 },
+
                 display(parsed_data) {
-                    for(var i = 0; i < parsed_data.length; i++){
+                    for(var t = 0; t < parsed_data.length; t++){
                             var day_index = 0;
-                            var time_index = parseInt(parsed_data[i].start);
-                            console.log(parsed_data[i]);
-                            console.log(parseInt(parsed_data[i].start));
-                            if(parsed_data[i].day === '월') day_index = 1;
-                            else if(parsed_data[i].day === '화') day_index = 2;
-                            else if(parsed_data[i].day === '수') day_index = 3;
-                            else if(parsed_data[i].day === '목') day_index = 4;
-                            else if(parsed_data[i].day === '금') day_index = 5;
-                            else if(parsed_data[i].day === '토') day_index = 6;
+                            var time_index = parseInt(parsed_data[t].start);
+                            console.log(parsed_data[t]);
+                            console.log(parseInt(parsed_data[t].start));
+                            if(parsed_data[t].day === '월') day_index = 1;
+                            else if(parsed_data[t].day === '화') day_index = 2;
+                            else if(parsed_data[t].day === '수') day_index = 3;
+                            else if(parsed_data[t].day === '목') day_index = 4;
+                            else if(parsed_data[t].day === '금') day_index = 5;
+                            else if(parsed_data[t].day === '토') day_index = 6;
+
                             if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                             if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
-                            this.courses[day_index][time_index].push(parsed_data[i]);
-                            this.$forceUpdate();
+
+                            //시작해봅시다
+                            var dest = this.courses[day_index][time_index];
+                            var size = -1; //새로 들어온 원소가 전달할 사이즈값
+                            var k_start = -1;
+                            //일단 다 차있으면 더 못들어간다고 말해주자
+                            if(dest.length === 3)console.log("full!!");
+
+                            //만약에 이게 들어가는 첫 원소라면 그냥 넣어주세요(만약에 this.course[day_index][time_index]이 없다면)
+                            else if(dest.length === 0 || dest === undefined){
+                                dest = [];
+                                size = 1;
+                                k_start = 0;
+                            }
+
+                            //만약에 원소가 존재한다면 해당 원소가 들어갈 위치를 찾아서 알려주세요.
+                            else if(dest.length != 0){
+
+                                //원소 중에 있나 연강 친구가 있나 확인해주세요.
+                                var cont_index = -1; //연강 친구의 index
+                                
+                                for(var i = 0; i < dest.length; i++){
+
+                                    //연강 시작친구(long = 2)이거나 똥값(long = -1)이거나
+                                    if(dest[i].long === 2 || dest[i].long === -1){
+                                        cont_index = i;
+                                        break;
+                                    }
+                                }
+                                //연강 원소가 존재하면 
+                                if(cont_index != -1){
+
+                                    //원소가 새로 들어오면 연강 원소의 사이즈보다 커진다면
+                                    //(여기가 연강 원소들을 모두 size update 해줘야 하는 곳입니다.)
+                                    if(dest.length + 1 > dest[cont_index].size){
+
+                                        size = dest.length + 1;
+                                        //courses[[[]]]에서 찾아봐
+                                        for(var i=1;i<=6;i++){
+                                                if(this.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
+                                                for(var j=1;j<=10;j++){
+                                                if(this.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                                                for(var k=0; k<this.courses[i][j].length;k++){
+                                                    if(this.courses[i][j][k].code === dest[cont_index].code){
+                                                        for(var m = 0; m < this.courses[i][j].length; m++){
+                                                            this.courses[i][j][m].size = size; 
+                                                        }
+                                                        continue;
+                                                    }
+                                                }                
+                                            }
+                                        }
+                                    }
+                                    
+                                    //연강의 사이즈가 더 크다면 그 사이즈에 맞춰줘야 합니다.
+                                    else{
+                                        size = dest[cont_index].size;
+                                    }
+                                }
+                                
+                                //연강 원소가 없으면 
+                                else{
+                                    size = dest[0].size + 1;
+                                }
+
+
+                                //빈칸 찾습니다.
+                                for(var i = 0; i < dest.length; i++){
+                                    //빈칸에 해당하는 k_start를 찾아주기
+                                    if(k_start === -1 && dest[i].k_start != i)k_start = i;
+                                    //나머지 사이즈 업데이트
+                                    dest[i].size = size;
+                                }
+                                if(k_start === -1) k_start = dest.length;
+
+                                
+                            }
+
+                            //원소가 연강이면
+                            if(parsed_data[t].long != 1){
+                                for(var j = 1; j < parsed_data[t].long; j++){
+                                    var dest_cont = this.courses[day_index][time_index+j];
+                                    //courses에 푸쉬
+                                    if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                                    //연강인데 원소 위치가 정의가 안되있을경우
+                                    if(dest_cont === undefined){
+                                        console.log("똥값 들어갔음");
+                                        dest_cont = [];
+                                        dest_cont.push({
+                                            code : parsed_data[t].code,
+                                            course_name : 'null',
+                                            professor : '',
+                                            time : '',
+                                            credit : '',
+                                            day : '',
+                                            start : '',
+                                            long : -1,
+                                            k_start : k_start,
+                                            size : size,
+                                        });
+
+                                    }
+
+                                    //원소 위치가 정의 되어있다면
+                                    else{
+                                        //근데 위치가보니까 내 위치 사이즈가 더 크면 업데이트해줘
+                                        if(dest_cont[0].size < size) {
+                                            for(var i=1;i<=6;i++){
+                                                if(this.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
+                                                for(var j=1;j<=10;j++){
+                                                    if(this.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                                                    for(var k=0; k<this.courses[i][j].length;k++){
+                                                        if(this.courses[i][j][k].code === parsed_data[t].code){
+                                                            for(var m = 0; m < this.courses[i][j].length; m++){
+                                                                this.courses[i][j][m].size = size; 
+                                                            }
+                                                            continue;
+                                                        }
+                                                    }                
+                                                }
+                                            }
+                                        }
+                                        //내 위치 사이즈가 작으면 해당 위치 사이즈로 바꿔주면 됨
+                                        else {
+                                            size = dest_cont[0].size;
+                                            for(var j = 0 ; j < dest_cont.length; j++){
+                                                dest_cont[j].size = size;
+                                            }
+                                            //k_start 이상할까봐 한번 확인해주는 거임
+                                            for(var j = 0 ; j < dest_cont.length; j++){
+                                                if(dest_cont[j].k_start === k_start){
+                                                    if(k_start === 3) console.log('사이즈 밖으로 나가서 그려야되서 안됌 지금부터 에러');
+                                                    k_start += 1;
+                                                    for(var i=1;i<=6;i++){
+                                                        if(this.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
+                                                        for(var j=1;j<=10;j++){
+                                                            if(this.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                                                            for(var k=0; k<this.courses[i][j].length;k++){
+                                                                if(this.courses[i][j][k].code === parsed_data[t].code){
+                                                                    this.courses[i][j][k].k_start = k_start;
+                                                                    continue;
+                                                                }
+                                                            }                
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        console.log("똥값넣기");
+                                        dest_cont.push({
+                                            code : parsed_data[t].code,
+                                            course_name : '',
+                                            professor : '',
+                                            time : '',
+                                            credit : '',
+                                            day : '',
+                                            start : '',
+                                            long : -1,
+                                            k_start : k_start,
+                                            size : size,
+                                        });
+                                    }
+                                }
+                            }
+
+                            //연강이 아니면
+                            parsed_data[t].size = size;
+                            parsed_data[t].k_start = k_start;
+
+                            //courses에 푸쉬
+                            console.log('제대로된 친구 넣기');
+                            this.courses[day_index][time_index].push(parsed_data[t]);
+                            // this.$forceUpdate();
                         }
                 },
+                
+                // display(parsed_data) {
+                //     for(var i = 0; i < parsed_data.length; i++){
+                //             var day_index = 0;
+                //             var time_index = parseInt(parsed_data[i].start);
+                //             console.log(parsed_data[i]);
+                //             console.log(parseInt(parsed_data[i].start));
+                //             if(parsed_data[i].day === '월') day_index = 1;
+                //             else if(parsed_data[i].day === '화') day_index = 2;
+                //             else if(parsed_data[i].day === '수') day_index = 3;
+                //             else if(parsed_data[i].day === '목') day_index = 4;
+                //             else if(parsed_data[i].day === '금') day_index = 5;
+                //             else if(parsed_data[i].day === '토') day_index = 6;
+                //             if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                //             if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
+                //             this.courses[day_index][time_index].push(parsed_data[i]);
+                //             this.$forceUpdate();
+                //         }
+                // },
                 set_name(text) {
                     this.tt_name = text;
                 },
@@ -263,7 +462,8 @@
                         sum += this.raw_courses[i].credit*1;
                     }
                     return sum;
-                }
+                },
+                
             },
             created(){
                 this.$EventBus.$on('to_timetablem', function(text){//show 에서 추가하기 했을때 오는 이름
