@@ -7,7 +7,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
         <thead>
                 <tr>  
-                <th>순위</th>
+                <th>번호</th>
                 <th>시간표 이름</th>
                 <th>학점</th>
                 <th colspan="2">변경</th>
@@ -19,13 +19,13 @@
     <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
-            <div v-for="ttlist in this.ttlists" :key="ttlist.ttrank">
+            <div v-for="(ttlist,key) in this.ttlists" :key="key">
                 <tr>
-                <td>{{ttlist.ttrank}}</td>
-                <td id = "ttname">{{ttlist.ttname}}<button id="modify_name" v-on:click="modify_name()"></button></td>
-                <td>{{ttlist.total_credit}}</td>
-                <td><button v-on:click="ttedit()">수정</button></td>
-                <td><button v-on:click="ttdelete()">삭제</button></td>
+                    <td>{{ key+1 }}</td>
+                    <td v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname"><p >{{ttlist.ttname}}</p><button id="modify_name" v-on:click="modify_name(key)"></button></td>
+                    <td>{{ttlist.total_credit}}</td>
+                    <td><button v-on:click="ttedit(key)">수정</button></td>
+                    <td><button v-on:click="ttdelete(key)">삭제</button></td>
                 </tr>
             </div>
            
@@ -33,7 +33,7 @@
         </table>
     </div>
     <td></td>
-    <button class="add" v-on:click="go()">추가하기</button>
+    <button class ="add" v-on:click="go_make()">추가하기</button>
     </section>
 </template>
 
@@ -48,7 +48,8 @@
                     ttname :"",
                     ttrank:"",
                     total_credit:""
-                }
+                },
+                ttnames:[]
             };
         },
         created () {
@@ -57,19 +58,15 @@
             }).then((response) => {
                 if (response.status === 200 ) {
                     this.ttlists = response.data; //ttname, ttrank, total_credit
-                    console.log('Time table list : ' + this.ttlists.length + '개');
-                    for(var i = 0; i < this.ttlists.length; i++) {
-                        console.log('Time table ' + (i+1) + '번 이름: ' + this.ttlists[i].ttname);
-                       
+                     this.$EventBus.$emit('to_timetables',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
+                     for(var i = 0; i < this.ttlists.length; i++) {
+                       this.ttnames.push(this.ttlists[i].ttname);
                     }
-                    console.log("버스에 보낸 이름 :" + this.ttlists[0].ttname);
-                     this.$EventBus.$emit('ttname',this.ttlists[0].ttname);//임시 이벤트 버스, 첫번째 것만 보냄
                 }
             });
-          
         },
         methods: {
-            go() { //시간표를 추가하는 웹 페이지로 전환
+            go_make() { //시간표를 추가하는 웹 페이지로 전환
                 var userInput=prompt(" 시간표 이름을 입력하세요");
                 if(userInput==""){
                     alert("최소 한글자 이상 입력해주세요");
@@ -77,12 +74,16 @@
                 } else if(userInput==null){
                     alert("취소되었습니다");
                     return false;
+                } else if(this.duplication(userInput)){
+                    alert("시간표의 이름이 동일합니다");
+                    return false;
                 } else {
                 alert("시간표 생성페이지로 이동합니다");
+                 this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
                 }
-                this.$router.replace({ name: "make" });  
+                window.location = 'http://localhost:8080/make'
             },
-            modify_name(ttname) {
+            modify_name(key) {//시간표 이름 수정(연필모양)-이름수정
                 var modified_name = prompt("수정할 시간표 이름을 입력하세요");
                 if(modified_name === "") {
                     alert("최소 한 글자 이상 입력해주세요");
@@ -91,31 +92,48 @@
                     console.log(ttname);
                     alert("취소되었습니다");
                     return false;
-                // } else if(modified_name === ){
-                //     alert("시간표의 이름이 동일합니다");
-                //     return false;
-                } else {
-
+                } else if(this.duplication(modified_name)){
+                    alert("시간표의 이름이 동일합니다");
+                    return false;
+                } else {//수정가능
+                    this.$http.post('/api/show/modify_ttname', {
+                        student_id :  this.$session.get('student_id'),
+                        original_ttname :  this.ttlists[key].ttname,
+                        modified_ttname : modified_name 
+                    })
+                    this.ttlists[key].ttname = modified_name 
                 }
             },
-            ttdelete(){
+            duplication(new_name){//새로 이름만들기, 이름 수정할 때 중복검사
+                if(this.ttnames.includes(new_name)){
+                    return true;
+                }
+                return false;
+            },
+            ttdelete(key){//시간표 삭제
                 if(confirm("시간표를 삭제하시겠습니까?")){
-                    alert("삭제");
-                }else{
-                    alert("취소");
-                }
-                },
-            ttedit(){
-                if(confirm("시간표를 수정하시겠습니까?")){
-                    alert("수정");
-                }else{
-                    alert("취소");
-                }    
+                    console.log(this.ttlists[key].ttname);
+
+                        this.$http.post('/api/show/del_tt', {
+                            student_id :  this.$session.get('student_id'),
+                            ttname :  this.ttlists[key].ttname
+                    })
+                    this.ttlists.splice(key,1);
                 }
             },
-           
-            
-        }
+            ttedit(key){//시간표 수정하기
+                if(confirm("시간표를 수정하시겠습니까?")){        
+                    console.log(this.ttlists[key].ttname);
+                    this.$http.post('/api/show/del_tt', {
+                        student_id :  this.$session.get('student_id'),
+                        ttname :  this.ttlists[key].ttname
+                    })
+                    this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
+                    window.location = 'http://localhost:8080'
+                }  
+            }
+        },
+    }
     
 </script>
 

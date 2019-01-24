@@ -325,6 +325,76 @@
     padding:2px;
     
 }
+.contents{
+   
+    font-size : 13px;
+    font-weight : 500;
+    height:85%;
+    overflow: scroll;
+    @media only screen and (min-width : 1824px) {
+        //큰 화면
+        height :86.7%;
+    }
+}
+.section1{
+    display : inline-block;
+    margin-left : 5%;
+}
+.section2{
+    display : inline-block;
+    margin :0;
+    position:relative;top:20px;
+    margin-left : 5%;
+
+}
+.section3{
+    display : inline-block;
+    margin :0;
+    margin-left : 5%;
+}
+
+.section4{
+    display : inline-block;
+    margin-right :5%;
+    float:right;
+    display : none;
+    
+    button{
+        width : 34px;
+        height : 34px;
+        border-radius: 5px;
+        cursor : pointer;
+    }
+    
+    #delete{
+        margin-top : 13%;
+        background : url( "../../image/cancle.png") no-repeat;
+        background-size : cover
+    }
+    #fav{
+        border: none;
+        margin-top : 13%;
+        background : url( '../../image/starF.png') no-repeat;
+        background-size : cover//이미지가 버튼 사이즈에 맞게 조절
+    }
+    #add{
+        margin-top : 13%;
+        background : url( '../../image/plus.png') no-repeat;
+        background-size : cover//이미지가 버튼 사이즈에 맞게 조절
+   }
+
+}
+
+
+.content:hover .section4 {
+    display: block;
+    
+  }
+.content:hover {
+    margin-top:0px;
+    background-color : rgb(193, 213, 236) ;
+  }
+
   #foot{
     position:absolute;
     bottom: 47px;

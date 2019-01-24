@@ -4,13 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-
 const VueSession = require('vue-session');
 const VueCookies = require('vue-cookies')
 
 Vue.use(VueSession)
 Vue.use(VueCookies)
-
 
 
 

@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
 
 //과목명말고 다른 정보는 어떻게 가져올건가요?
 router.post('/fav_list', function(req, res) {
-    var student_id = '21500670'; //req.body.student_id;
+    var student_id = req.body.student_id;
     var object_list = [];
 
     connection.query(`SELECT code FROM user WHERE student_id=${student_id} and favorited= TRUE;`, function (err, code_list) {
@@ -110,9 +110,11 @@ router.post('/add_fav', function(req, res, next) {
 //즐겨찾기삭제
 //input : code, student_id
 //output : 
-router.get('/del_fav', function(req, res) {
-    var code = 'ECE20016-01';
-    var student_id = 21500670;
+router.post('/del_fav', function(req, res) {
+    var student_id = req.body.student_id;
+    var code = req.body.code;
+    console.log(student_id);
+    console.log(code);
     var _delete = `DELETE FROM user WHERE code = '${code}' and student_id = '${student_id}' and favorited = TRUE;`;
     // var _delete = `DELETE FROM user WHERE code = '%${req.body.code}%' and student_id = '${req.body.user}' and favorited = TRUE;`;
     connection.query(_delete, function(err, courseList, fields) {
@@ -125,8 +127,8 @@ router.get('/del_fav', function(req, res) {
 //즐겨찾기전체삭제
 //input : student_id
 //output : 
-router.get('/del_all_fav', function(req, res) {
-    var student_id = 21500670;
+router.post('/del_all_fav', function(req, res) {
+    var student_id = req.body.student_id;
     var delete_all = `DELETE FROM user WHERE student_id = '${student_id}' and favorited = TRUE;`;
     // var delete_all = `DELETE FROM user WHERE student_id = '${req.body.student_id}' and favorited = TRUE;`;
     connection.query(delete_all, function(err, courseList, fields) {
@@ -137,54 +139,48 @@ router.get('/del_all_fav', function(req, res) {
 });
 
 //시간표생성
-//input : array of data(student_id, ttname, total_credit, code, course_name, professor, time, credit)
-router.get('/make_tt', function(req, res) {
+//input : array of data(student_id, ttname, total_credit, code, name, professor, time, credit)
+router.post('/make_tt', function(req, res) {
     //디버깅용
-    var body = [
-        {
-            student_id : 21500670,
-            ttname : '실험용 시간표',
-            total_credit : 9,
-            code : 'ITP40001-01',
-            course_name : 'Database System(Database System)',
-            professor : '남재창',
-            time : '월5,목5',
-            credit : 3
-        },
-        {
-            student_id : 21500670,
-            ttname : '실험용 시간표',
-            total_credit : 9,
-            code : 'ITP20003-01',
-            course_name : 'Java Programming(Java Programming)',
-            professor : '남재창',
-            time : '화1,화2,금1,금2',
-            credit : 3
-        },
-        {
-            student_id : 21500670,
-            ttname : '실험용 시간표',
-            total_credit : 9,
-            code : 'ECE20016-01',
-            course_name : '자바프로그래밍언어(Introduction to JAVA Programming)',
-            professor : '남재창',
-            time : '월6,월7,목6,목7',
-            credit : 3
-        },
-    ]
+    var student_id = req.body.student_id;
+    var ttname = req.body.ttname;
+    var total_credit = req.body.total_credit;
+    var data_list = req.body.data_list; // code, name, professor, time, credit
+    // [
+    //     {
+    //         student_id : 21500670,
+    //         ttname : '실험용 시간표',
+    //         total_credit : 9,
+    //         code : 'ITP40001-01',
+    //         course_name : 'Database System(Database System)',
+    //         professor : '남재창',
+    //         time : '월5,목5',
+    //         credit : 3
+    //     },
+    //     {
+    //         student_id : 21500670,
+    //         ttname : '실험용 시간표',
+    //         total_credit : 9,
+    //         code : 'ITP20003-01',
+    //         course_name : 'Java Programming(Java Programming)',
+    //         professor : '남재창',
+    //         time : '화1,화2,금1,금2',
+    //         credit : 3
+    //     },
+    //     {
+    //         student_id : 21500670,
+    //         ttname : '실험용 시간표',
+    //         total_credit : 9,
+    //         code : 'ECE20016-01',
+    //         course_name : '자바프로그래밍언어(Introduction to JAVA Programming)',
+    //         professor : '남재창',
+    //         time : '월6,월7,목6,목7',
+    //         credit : 3
+    //     },
+    // ]
 
-    for(var i = 0 ; i < body.length; i++){
-        var make_tt = `INSERT INTO user values(NULL, ${body[i].student_id}, '${body[i].ttname}', NULL, '${body[i].total_credit}', '${body[i].code}', '${body[i].course_name}', '${body[i].professor}', '${body[i].time}', ${body[i].credit}, false);`
-        connection.query(make_tt, function(err, courseList, fields) {
-            if(err) console.log(err);
-            console.log(courseList);
-            // res.send(courseList);
-        });
-    }
-
-    // //실제용
-    // for(var i = 0 ; i < req.body.length; i++){
-    //     var make_tt = `INSERT INTO user values(NULL, ${req.body[i].student_id}, '${req.body[i].ttname}', NULL, '${req.body[i].total_credit}', '${req.body[i].code}', '${req.body[i].course_name}', '${req.body[i].professor}', '${req.body[i].time}', ${req.body[i].credit}, false);`
+    // for(var i = 0 ; i < body.length; i++){
+    //     var make_tt = `INSERT INTO user values(NULL, ${body[i].student_id}, '${body[i].ttname}', NULL, '${body[i].total_credit}', '${body[i].code}', '${body[i].course_name}', '${body[i].professor}', '${body[i].time}', ${body[i].credit}, false);`
     //     connection.query(make_tt, function(err, courseList, fields) {
     //         if(err) console.log(err);
     //         console.log(courseList);
@@ -192,8 +188,15 @@ router.get('/make_tt', function(req, res) {
     //     });
     // }
 
-
-
+    //실제용
+    for (var i in data_list) {
+        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, ${total_credit}, '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
+        connection.query(make_tt, function(err, courseList, fields) {
+            if(err) console.log(err);
+            console.log(courseList);
+            res.send(courseList);
+        });
+    }
 });
 
 //다른시간표보기리스트생성(초기)
@@ -209,20 +212,6 @@ router.get('/tt_list', function(req, res) {
         // res.send(courseList);
     });
     
-});
-
-//다른 시간표 보기
-//input : student_id, ttname
-//output : list of object(course_name, professor, time, credit)
-router.get('/show_tt', function(req, res) {
-    var student_id = 21500670; //req.body.id
-    var ttname = ''; //req.body.ttname
-
-    connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
-        if(err) console.log(err);
-        console.log(results);
-        res.send(results);
-    });
 });
 
 //다른 시간표 보기

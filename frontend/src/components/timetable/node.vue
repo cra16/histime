@@ -1,5 +1,8 @@
 <template>
-<div v-bind:class="classObject">{{ this.data.course_name }}</div>
+
+<div id ='node' v-bind:class="classObject">{{ this.data.course_name }}</div>
+
+
 </template>
 
 <script>
@@ -7,11 +10,22 @@ export default {
    props : ['data'],//start, end, name
    data(){
         return{
-           time : [] 
+            time : [] ,
+            mycolor: '#000000'
+          
+
                
 
         };
     },
+    method : {
+ 
+    },
+     created(){
+            // var div = document.querySelector('#node').style;
+            //  this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+            //  div.backgroundColor = this.mycolor;
+     },
     computed: {
         classObject: function () {
                    for(var i=0; i<10; i++)

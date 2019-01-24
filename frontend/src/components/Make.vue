@@ -20,13 +20,16 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 
 
+
     export default {
         name: 'make',
         components: {
             Search,Timetable,Save,Header,Footer
         },
         data() {
-            return {};
+            return {
+                
+            };
         },
 
         methods : {
