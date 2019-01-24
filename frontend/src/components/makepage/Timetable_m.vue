@@ -137,7 +137,7 @@
                 },
                 add_to(raw_data){
                     var parsed_data = this.parsingTime(raw_data);
-                    var duplication = duplication(raw_data);
+                    var duplication = this.duplication(raw_data);
 
                     for(var i = 0 ; i < parsed_data.length; i++){
                         console.log( "day :" + parsed_data[i].day);

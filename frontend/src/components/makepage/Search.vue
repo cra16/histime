@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="section4">
-                            <button id="delete" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
 
@@ -502,10 +502,7 @@ export default {
         add_to_tt: function(key){
             // console.log(key);
 
-            this.$EventBus.$emit('courses', this.search[key].name);
-
-            this.$EventBus.$emit('courses', {parsed : data, raw : this.search[key]});
-
+            this.$EventBus.$emit('courses', this.search[key]);
             // this.$http.post('/api/make/add_fav', {
             //     student_id : this.$session.get('student_id'),
             //     code : this.search[key].code,
