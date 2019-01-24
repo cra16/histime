@@ -12,7 +12,7 @@
         <div class="text_box">
           <input type = "text" placeholder="hisent id" v-model="input.id">
           <br />
-          <input type = "password" placeholder="hisnet password" v-model="input.password">
+          <input type = "password" placeholder="hisnet password" v-on:keyup.enter="login()" v-model="input.password">
         </div>
        
       </div>
