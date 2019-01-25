@@ -2,7 +2,6 @@
     <div id="Make">
         <div class="outer">
             <div class="inner">
-                        
                 <Header></Header>
                 <div class="centered"> 
                     <div id='container'>
