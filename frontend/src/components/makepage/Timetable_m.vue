@@ -299,7 +299,8 @@
                                     //원소가 새로 들어오면 연강 원소의 사이즈보다 커진다면
                                     //(여기가 연강 원소들을 모두 size update 해줘야 하는 곳입니다.)
                                     if(dest.length + 1 > dest[cont_index].size){
-
+                                        console.log('똥값의 사이즈가 현재 어레이 사이즈 보다 크다면 업뎃');
+                                    
                                         size = dest.length + 1;
                                         //courses[[[]]]에서 찾아봐
                                         for(var i=1;i<=6;i++){
@@ -320,18 +321,21 @@
                                     
                                     //연강의 사이즈가 더 크다면 그 사이즈에 맞춰줘야 합니다.
                                     else{
+                                        console.log('똥값의 사이즈가 현재 어레이 사이즈 보다 작으면 똥값으로 업뎃')
                                         size = dest[cont_index].size;
                                     }
                                 }
                                 
                                 //연강 원소가 없으면 
                                 else{
+                                    console.log('연강원소가 없으면 사이즈는 그냥 dest의 size + 1')
                                     size = dest[0].size + 1;
                                 }
 
 
                                 //빈칸 찾습니다.
                                 for(var i = 0; i < dest.length; i++){
+                                    console.log('빈칸 위치를 찾아서 넣어줍니다')
                                     //빈칸에 해당하는 k_start를 찾아주기
                                     if(k_start === -1 && dest[i].k_start != i)k_start = i;
                                     //나머지 사이즈 업데이트
@@ -344,15 +348,7 @@
 
                             //원소가 연강이면
                             if(parsed_data[t].long != 1){
-                                for(var j = 1; j < parsed_data[t].long; j++){
-                                    var dest_cont = this.courses[day_index][time_index+j];
-                                    //courses에 푸쉬
-                                    if(this.courses[day_index] === undefined) this.courses[day_index] = [];
-                                    //연강인데 원소 위치가 정의가 안되있을경우
-                                    if(dest_cont === undefined){
-                                        console.log("똥값 들어갔음");
-                                        dest_cont = [];
-                                        dest_cont.push({
+                                var poop = {
                                             code : parsed_data[t].code,
                                             course_name : 'null',
                                             professor : '',
@@ -363,7 +359,18 @@
                                             long : -1,
                                             k_start : k_start,
                                             size : size,
-                                        });
+                                        }
+                                console.log('연강입니까?')
+                                for(var j = 1; j < parsed_data[t].long; j++){
+                                    var dest_cont = this.courses[day_index][time_index+j];
+                                    //courses에 푸쉬
+                                    if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                                    //연강인데 원소 위치가 정의가 안되있을경우
+                                    if(dest_cont === undefined){
+                                        console.log("똥값 들어갔음");
+                                        this.courses[day_index][time_index+j] = [];
+                                        this.courses[day_index][time_index+j].push(poop);
+                                        console.log(this.courses);
 
                                     }
 
@@ -412,24 +419,15 @@
                                                 }
                                             }
                                         }
-                                        console.log("똥값넣기");
-                                        dest_cont.push({
-                                            code : parsed_data[t].code,
-                                            course_name : '',
-                                            professor : '',
-                                            time : '',
-                                            credit : '',
-                                            day : '',
-                                            start : '',
-                                            long : -1,
-                                            k_start : k_start,
-                                            size : size,
-                                        });
+                                        console.log("똥값넣기1");
+                                        this.courses[day_index][time_index+j].push(poop);
+                                        console.log(this.courses);
+
                                     }
                                 }
                             }
 
-                            //연강이 아니면
+                            console.log('size : ' + size + ' k_start : ' + k_start);
                             parsed_data[t].size = size;
                             parsed_data[t].k_start = k_start;
 
