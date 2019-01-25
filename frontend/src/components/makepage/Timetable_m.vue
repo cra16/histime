@@ -4,6 +4,7 @@
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <button class="btn" id="redo" v-on:click="user_add()"></button>
+        <button class="btn" id="reset" v-on:click="reset()"></button>
     </div>
 
     <add v-if="user_add_clicked" ></add>
@@ -26,7 +27,7 @@
                             <div v-if="courses[i] != undefined">
                                 <div v-if="courses[i][j] != undefined">
                                     <div v-for="course of courses[i][j]" :key="course.code">
-                                            <node @update="update" :data="course" />
+                                            <node @update="update" :data="course"/>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +101,8 @@
                   },
                   courses : [[[]]],//시간표에 띄워줄 용도
                   raw_courses : [],//백엔드에 넘겨줄 용도
-                  user_add_clicked : false//user 
+                  user_add_clicked : false, //user 
+                  color : '#000000',
               }
             
           },
@@ -124,14 +126,16 @@
                     this.$forceUpdate();
                 },
                 save(){//저장하기, 
-                    this.$http.post('/api/make/make_tt', {
+                    if(confirm("시간표를 완성하시겠습니까?")){
+                        this.$http.post('/api/make/make_tt', {
                         student_id :  this.$session.get('student_id'),
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
                         data_list : this.raw_courses
-                    });
-
-                    this.$router.replace({name: 'show'});
+                        });
+                        window.location = 'http://localhost:8080/'
+                        // this.$router.replace({name: 'show'});
+                    }
                 },
                 user_add(){
                     this.user_add_clicked = !(this.user_add_clicked)
@@ -141,12 +145,18 @@
                         var duplication = this.duplication(data[i]);
 
                         if(!duplication) {
+                            console.log('not duplication!! : ' + data[i]);
                             var parsed_data = this.parsingTime(data[i]);
 
+                            this.color = this.set_color();
                             this.raw_courses.push(data[i]);
                             this.display(parsed_data);
+                        } else {
+                            console.log('duplication!');
                         }
                     }
+
+                    
                     // data.forEach(function(item, data_index, data_array) {
                     //     var duplication = this.duplication(item);
 
@@ -179,7 +189,7 @@
                     
                     var prepared_data = [];
 
-                    if(course_temp.time = '')return prepared_data;
+                    if(course_temp.time = '') return prepared_data;
 
                     var sep_time = course_for_use.time.split( ',');
                     // for(var i = 0; i< sep_time.length; i++){
@@ -237,6 +247,8 @@
                     return duplication;
                 },
                 display(parsed_data) {
+                    this.color = this.set_color();
+                    console.log('color : ' + this.color);
                     for(var i = 0; i < parsed_data.length; i++){
                             var day_index = 0;
                             var time_index = parseInt(parsed_data[i].start);
@@ -251,18 +263,45 @@
                             if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                             if(this.courses[day_index][time_index] === undefined)this.courses[day_index][time_index] = [];
                             this.courses[day_index][time_index].push(parsed_data[i]);
-                            this.$forceUpdate();
-                        }
+                    }
+                    this.$forceUpdate();
+                },
+                set_color() {
+                    //hsl color
+                    // var color = 'hsl(';
+                    // color += Math.floor(Math.random() * 360);
+                    // color = color + ', 50%, 80%)';
+
+                    //hex
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+
+                    // console.log('color' + color);
+
+                    return color;
                 },
                 set_name(text) {
                     this.tt_name = text;
                 },
                 total_credit(){
                     var sum = 0;
+
                     for (var i in this.raw_courses){
                         sum += this.raw_courses[i].credit*1;
                     }
+
                     return sum;
+                },
+                reset() {
+                    if(confirm("시간표를 비우시겠습니까?")){
+                        this.raw_courses = [];
+                        this.courses = [[[]]];
+                        this.$forceUpdate();
+                    }
                 }
             },
             created(){
