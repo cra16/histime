@@ -23,7 +23,7 @@
             <div v-for="(ttlist,key) in this.ttlists" :key="key">
                 <tr>
                     <td id="index">{{ key+1 }}</td>
-                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname"><p >{{ttlist.ttname}}</p><button id="modify_name" v-on:click="modify_name(key)"></button></td>
+                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname"><p >{{ttlist.ttname}}</p><button id="modify_name" v-on:click="modify_name(key)"></button></td>
                     <td id="credit">{{ttlist.total_credit}}</td>
                     <td id="edit"><button v-on:click="ttedit(key)">수정</button></td>
                     <td id="del"><button v-on:click="ttdelete(key)">삭제</button></td>
@@ -34,7 +34,7 @@
         </table>
     </div>
     <td></td>
-    <!-- <button class ="add" v-on:click="go_make()">추가하기</button> -->
+    <button class ="add" v-on:click="go_make()">추가하기</button>
     </section>
 </template>
 <script>

@@ -104,19 +104,19 @@ export default {
     // }
   },
   methods: {
-    get_data(text) {
-        this.tt_name = text;
+    get_data(data) {
+
+        this.tt_name = data.ttname;
         console.log(this.tt_name);
+
         this.$http.post("/api/show/tt", {
             student_id: this.$session.get("student_id"),
-            ttname: this.tt_name}).then(
-                response => {
-                    if (response.status === 200) {
-                    console.log(response.data);
-                       
-                }
-            },
-        );
+            ttname: this.tt_name
+        }).then(response => {
+            if (response.status === 200) {
+                console.log(response.data);
+            }
+        });
     },
     timetable_s() {
       this.$http.post("/api/show/timetable", {
