@@ -1,17 +1,22 @@
-$base: 83px;//기본크기
-
+$base: 103px;//기본크기
+::-webkit-scrollbar { 
+    display: none; 
+}
 .node{
-    overflow: hidden;
+    float : right;
+    display : block;
     text-align: center;
     position : absolute;
     overflow: scroll;
-    background: olive;
+    // background: olive;
     display : inline-block;
+    background: olive;
+    width : 100%;
     margin : 0;
     color : white;
     font-size : 12px;
     cursor: pointer;
-    width : 100%;
+    
     p{
         margin : 2px;
     }

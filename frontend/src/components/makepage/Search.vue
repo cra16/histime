@@ -1,17 +1,20 @@
 <template>
  <div>
        <h1 id="head">과목찾기</h1>
+       <div>
        <div class="search_field" > 
         <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name"/>
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
       
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
+       </div>
 
   <div class='contents'>
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
        
             <div class="content" >
+                
                         <div class="section1">
                             <p>{{`[${course.code}]`}}</p>
                             <p>{{course.name}}</p>
@@ -32,13 +35,17 @@
                             <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
-
                         </div>
-
-                        <hr/>
+                        
+                       
              </div>
       </div>
+        
     </div>
+    <div id="foot">
+    
+    </div>
+    
      
       
      
@@ -133,8 +140,7 @@
                 </p>
             </div>
        </div>
-       
-     <h1 id="foot"> </h1>   
+     
 
     </div>
   

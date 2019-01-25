@@ -22,6 +22,7 @@ p{
     font-weight : 700;
 }
 .contents{
+    position: relative;
     font-size : 13px;
     font-weight : 500;
     height:85%;
@@ -34,26 +35,33 @@ p{
     .section1{
         display : inline-block;
         margin-left : 5%;
+        position: relative;
     }
     .section2{
         display : inline-block;
         margin :0;
         position:relative;top:20px;
         margin-left : 5%;
-
-
     }
     .section3{
         display : inline-block;
         margin :0;
         margin-left : 5%;
+        position: relative;
+
     }
     .section4{
-        display : inline-block;
-        margin-right :5%;
-        float:right;
+
+        width : 3%;
+        margin-right :2%;
+        margin-top :2%;
+        right : 2%;
         display : none;
+        position : absolute;
+        z-index: 6;
+     
         button{
+            float : right;
             width : 34px;
             height : 34px;
             border-radius: 5px;
@@ -63,7 +71,10 @@ p{
         #delete{
             margin-top : 13%;
             background : url( '../../image/cancle.png') no-repeat;
-            background-size : cover
+            background-size : cover;
+            position:relative;
+            
+           
         }
         #add{
             margin-top : 13%;
@@ -75,7 +86,7 @@ p{
 
 
 .content:hover .section4 {
-    display: block;
+    display : inline-block;
     
   }
 .content:hover {
