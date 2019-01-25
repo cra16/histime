@@ -276,6 +276,27 @@
                             var dest = this.courses[day_index][time_index];
                             var size = -1; //새로 들어온 원소가 전달할 사이즈값
                             var k_start = -1;
+
+                            //꽉 차있으면 return
+                            if(dest.length === 3){
+                                console.log("full!!");
+                                alert("어림없다.");
+                                return;
+                            }
+                            console.log('dest의 길이는 '+ dest.length);
+                            //연강 똥값 들어갈 곳이 사이즈가 꽉차있다면 return
+                            if(parsed_data[t].long > 1){
+                                for(var i = 1 ; i < parsed_data[t].long; i++){
+                                    if(this.courses[day_index][time_index + i] != undefined && this.courses[day_index][time_index + i].length > 2) {
+                                        console.log("full");
+                                        alert("어림없다.");
+
+                                        return;
+                                    }
+
+                                }
+                            }
+
                             //일단 다 차있으면 더 못들어간다고 말해주자
                             if(dest.length === 3)console.log("full!!");
 
@@ -373,15 +394,15 @@
                                             size : size,
                                         }
                                 console.log('연강입니까?')
-                                for(var j = 1; j < parsed_data[t].long; j++){
-                                    var dest_cont = this.courses[day_index][time_index+j];
+                                for(var z = 1; z < parsed_data[t].long; z++){
+                                    var dest_cont = this.courses[day_index][time_index+z];
                                     //courses에 푸쉬
                                     if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                                     //연강인데 원소 위치가 정의가 안되있을경우
                                     if(dest_cont === undefined){
                                         console.log("똥값 들어갔음");
-                                        this.courses[day_index][time_index+j] = [];
-                                        this.courses[day_index][time_index+j].push(poop);
+                                        this.courses[day_index][time_index+z] = [];
+                                        this.courses[day_index][time_index+z].push(poop);
                                         console.log(this.courses);
 
                                     }
@@ -432,7 +453,9 @@
                                             }
                                         }
                                         console.log("똥값넣기1");
-                                        this.courses[day_index][time_index+j].push(poop);
+                                        console.log("z 값은 : ");
+                                        console.log(z);
+                                        this.courses[day_index][time_index+z].push(poop);
                                         console.log(this.courses);
 
                                     }
