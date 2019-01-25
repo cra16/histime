@@ -1,12 +1,14 @@
 <template>
 <div>
     <div class ="box">
-        <div v-bind:id="long" v-bind:class="classObject" class = "node" >
+        <div v-bind:id="long" v-bind:class="classObject" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
+            <input type = "color" v-model="mycolor" />
             <button v-on:click="this.delete_course" >x</button>
 
-            <p id = "code" >{{`[${this.data.code}]`}}<p>
+            <p id = "code" >{{`[${this.data.code}]`}}</p>
             <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
             <p id="prof">{{ this.data.professor}}</p>    
+
         </div>
         <span v-bind:class="classObject" class = "tooltip">
             <p>상세정보</p>
@@ -27,9 +29,7 @@ export default {
         return{
             time : [] ,
             long : 'long' + this.data.long , //연강
-            mycolor: '#000000',
-            
-
+            mycolor : ""
         };
     },
     methods : {
@@ -60,9 +60,15 @@ export default {
  
     },
      created(){
-            // var div = document.querySelector('#node').style;
-            //  this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-            //  div.backgroundColor = this.mycolor;
+        this.mycolor = this.$parent.color;
+
+        // console.log(color);
+
+        // $(this).css('background-color', 'red');
+
+        //     var div = document.querySelector('#node').style;
+        //      this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        //      div.backgroundColor = this.mycolor;
      },
      watich:{
          tooltip :{
