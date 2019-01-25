@@ -486,7 +486,25 @@
                         this.courses = [[[]]];
                         this.$forceUpdate();
                     }
-                }
+                },
+                set_color() {
+                    //hsl color
+                    // var color = 'hsl(';
+                    // color += Math.floor(Math.random() * 360);
+                    // color = color + ', 50%, 80%)';
+
+                    //hex
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+
+                    // console.log('color' + color);
+
+                    return color;
+                },
             },
             created(){
                 this.$EventBus.$on('to_timetablem', function(text){//show 에서 추가하기 했을때 오는 이름
