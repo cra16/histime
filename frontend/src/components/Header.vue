@@ -1,6 +1,5 @@
 <template>
 <div class = 'header'>
-   
     <div class = 'logo'>
         <h1>His Time</h1>
         <p>이번 학기를 채울 모든 경우의 수, His Time.</p>
