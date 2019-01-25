@@ -8,7 +8,13 @@
             <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
             <p id="prof">{{ this.data.professor}}</p>    
         </div>
-        <span v-bind:class="classObject" class = "tooltip">룰루</span>
+        <span v-bind:class="classObject" class = "tooltip">
+            <p>상세정보</p>
+            <p>{{ this.data.code }}
+            <p>{{ this.data.course_name }}</p>
+            <p>{{ this.data.professor }}</p>
+            <p>{{ this.data.time }}</p>
+        </span>
     </div>
 </div>
     
