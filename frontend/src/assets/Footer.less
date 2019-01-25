@@ -1,29 +1,22 @@
 
 .footer{
-    width : 1500px;//이렇게 해야 화면 가로비율이 줄어들때 스크롤바가 생김.
-    margin-bottom : 9%;
+    width : 100%;//이렇게 해야 화면 가로비율이 줄어들때 스크롤바가 생김.
     clear : both;
-
     .bottom{
-        margin-bottom:10px;
-
         hr{
-                
             margin-bottom :0;
-            margin-top:6%;
-
+            margin-top:7%; 
+            @media only screen and (max-width : 1824px) {
+                //맥북화면
+                margin-top : 2%
                 
-        }
+              }
         
+        }
         p{       
                 color : dimgrey;
                 font-size : 0.8em;
                 margin-top :0.4%;
-              
-
-                
-
-               
         }
     }
 }
