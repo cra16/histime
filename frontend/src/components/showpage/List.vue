@@ -1,3 +1,4 @@
+
 <template>
     <section>
     <!--for demo wrap-->
@@ -7,10 +8,10 @@
         <table cellpadding="0" cellspacing="0" border="0">
         <thead>
                 <tr>  
-                <th>번호</th>
-                <th>시간표 이름</th>
-                <th>학점</th>
-                <th colspan="2">변경</th>
+                    <th>번호</th>
+                    <th>시간표 이름</th>
+                    <th>학점</th>
+                    <th colspan="2">변경</th>
                 </tr>
                 
         </thead>
@@ -21,11 +22,11 @@
         <tbody>
             <div v-for="(ttlist,key) in this.ttlists" :key="key">
                 <tr>
-                    <td>{{ key+1 }}</td>
-                    <td v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname"><p >{{ttlist.ttname}}</p><button id="modify_name" v-on:click="modify_name(key)"></button></td>
-                    <td>{{ttlist.total_credit}}</td>
-                    <td><button v-on:click="ttedit(key)">수정</button></td>
-                    <td><button v-on:click="ttdelete(key)">삭제</button></td>
+                    <td id="index">{{ key+1 }}</td>
+                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname"><p >{{ttlist.ttname}}</p><button id="modify_name" v-on:click="modify_name(key)"></button></td>
+                    <td id="credit">{{ttlist.total_credit}}</td>
+                    <td id="edit"><button v-on:click="ttedit(key)">수정</button></td>
+                    <td id="del"><button v-on:click="ttdelete(key)">삭제</button></td>
                 </tr>
             </div>
            
@@ -33,10 +34,9 @@
         </table>
     </div>
     <td></td>
-    <button class ="add" v-on:click="go_make()">추가하기</button>
+    <!-- <button class ="add" v-on:click="go_make()">추가하기</button> -->
     </section>
 </template>
-
 <script>
     export default {
         name: 'ttlist',
@@ -123,6 +123,10 @@
                     this.$session.set('to_timetablem', this.ttlists[key].ttname)//시간표 이름을 세션으로 보냄
                     window.location = 'http://localhost:8080/make'
                 }  
+            },
+            ttselect(key){
+                console.log(this.ttlists[key].ttname);
+                this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
             }
         },
     }
@@ -131,5 +135,5 @@
 
 
 
-<style  src = '../../assets/Showpage/list.css' scoped>
+<style  src = '../../assets/Showpage/list.less' lang ="scss" scoped>
 </style>
