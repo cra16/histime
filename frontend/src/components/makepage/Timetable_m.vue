@@ -446,7 +446,7 @@
                             //courses에 푸쉬
                             console.log('제대로된 친구 넣기');
                             this.courses[day_index][time_index].push(parsed_data[t]);
-                            // this.$forceUpdate();
+                            this.$forceUpdate();
                         }
                 },
                 

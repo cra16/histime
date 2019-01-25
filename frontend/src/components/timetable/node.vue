@@ -1,22 +1,24 @@
 <template>
 <div>
-    <div class ="box">
-        <div v-bind:id="long" v-bind:class="classObject" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
-            <input type = "color" v-model="mycolor" />
-            <button v-on:click="this.delete_course" >x</button>
+    <div v-if="data.long!=-1">
+        <div class ="box">
+            <div v-bind:id="long" v-bind:class="classObject" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
+                <input type = "color" v-model="mycolor" />
+                <button v-on:click="this.delete_course" >x</button>
 
-            <p id = "code" >{{`[${this.data.code}]`}}</p>
-            <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
-            <p id="prof">{{ this.data.professor}}</p>    
+                <p id = "code" >{{`[${this.data.code}]`}}</p>
+                <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
+                <p id="prof">{{ this.data.professor}}</p>    
 
+            </div>
+            <!-- <span v-bind:class="classObject" class = "tooltip">
+                <p>상세정보</p>
+                <p>{{ this.data.code }}
+                <p>{{ this.data.course_name }}</p>
+                <p>{{ this.data.professor }}</p>
+                <p>{{ this.data.time }}</p>
+            </span> -->
         </div>
-        <span v-bind:class="classObject" class = "tooltip">
-            <p>상세정보</p>
-            <p>{{ this.data.code }}
-            <p>{{ this.data.course_name }}</p>
-            <p>{{ this.data.professor }}</p>
-            <p>{{ this.data.time }}</p>
-        </span>
     </div>
 </div>
     
@@ -27,7 +29,7 @@ export default {
    props : ['data'],//start, long, name, professor
    data(){
         return{
-            time : [] ,
+            time : [] , case : [], 
             long : 'long' + this.data.long , //연강
             mycolor : ""
         };
@@ -70,7 +72,7 @@ export default {
         //      this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         //      div.backgroundColor = this.mycolor;
      },
-     watich:{
+     watch:{
          tooltip :{
              handler(){
                 console.log(this.tooltip)
@@ -80,9 +82,23 @@ export default {
      },
     computed: {
         classObject: function () {
+            var start = this.data.k_start;
+            var size =this.data.size;
+             for(var i=0; i<6; i++)
+                        this.case[i] = false;
+            if(start == 0&& size ==1) this.case[0] = true;
+            else if(start == 0&& size ==2)   this.case[1] = true;
+            else if(start == 0&& size ==3)   this.case[2] = true;
+            else if(start == 1&& size ==2)   this.case[3] = true;
+            else if(start == 1&& size ==3)   this.case[4] = true;
+            else if(start == 2&& size ==3)   this.case[5] = true;
+           
+
                    for(var i=0; i<10; i++)
                         this.time[i] = false;
                    this.time[this.data.start-1] = true;
+                   this.$emit('update', 'hello!')
+                   
                     
             return {
                     t1: this.time[0],
@@ -94,11 +110,22 @@ export default {
                     t7: this.time[6],
                     t8: this.time[7],
                     t9: this.time[8],
-                    t10: this.time[9],       
+                    t10: this.time[9],
+                    case0 : this.case[0],
+                    case1 : this.case[1],
+                    case2 : this.case[2],
+                    case3 : this.case[3],
+                    case4 : this.case[4],
+                    case5 : this.case[5]
+            
+                    
             }
         }
-    }   
+    }
 }
+
+       
+
 </script>
 
 <style src = '../../assets/timetable/node.less' lang='scss' scoped>
