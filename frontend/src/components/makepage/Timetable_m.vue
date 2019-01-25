@@ -248,7 +248,7 @@
                     for(var t = 0; t < parsed_data.length; t++){
                             var day_index = 0;
                             var time_index = parseInt(parsed_data[t].start);
-                            console.log(parsed_data[t]);
+                            console.log('into display' + parsed_data[t]);
                             console.log(parseInt(parsed_data[t].start));
                             if(parsed_data[t].day === '월') day_index = 1;
                             else if(parsed_data[t].day === '화') day_index = 2;
@@ -269,6 +269,7 @@
 
                             //만약에 이게 들어가는 첫 원소라면 그냥 넣어주세요(만약에 this.course[day_index][time_index]이 없다면)
                             else if(dest.length === 0 || dest === undefined){
+                                console.log('첫원소에요 그냥 넣어주세요');
                                 dest = [];
                                 size = 1;
                                 k_start = 0;
@@ -276,14 +277,18 @@
 
                             //만약에 원소가 존재한다면 해당 원소가 들어갈 위치를 찾아서 알려주세요.
                             else if(dest.length != 0){
+                                console.log('원소가 있어요');
+                                
 
                                 //원소 중에 있나 연강 친구가 있나 확인해주세요.
                                 var cont_index = -1; //연강 친구의 index
                                 
                                 for(var i = 0; i < dest.length; i++){
+                                    console.log('현재 원소갯수는 ' + dest.length);
 
                                     //연강 시작친구(long = 2)이거나 똥값(long = -1)이거나
                                     if(dest[i].long === 2 || dest[i].long === -1){
+                                        console.log('연강인 친구나 똥값이 있어요 위치 :' + i);
                                         cont_index = i;
                                         break;
                                     }
