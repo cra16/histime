@@ -1,15 +1,26 @@
 <!--시간표를 보여주는 웹 페이지-->
 <template>
     <div id="show">
-        <Header></Header>
-        <div class="container">
-            <!--시간표 리스트-->
-            <!-- <List id = "list" :val="this.ttlist" /> -->
-            <List id ="list" />
-            <!--시간표  내용-->
-            <timetable_s id ="timetable"/>
-       </div>
-        <Footer></Footer>
+        <div class="outer">
+            <div class="inner">
+              
+            <Header></Header>
+            <div class="centered">
+                <div class="container">
+                        <!--시간표 리스트-->
+                        <!-- <List id = "list" :val="this.ttlist" /> -->
+                         
+                            <List id ="list" /> 
+                        <!--시간표  내용-->
+                            <timetable_s id ="timetable"/>
+                        
+                 </div>
+                </div>
+             <Footer></Footer>
+
+            </div>
+        </div>
+      
     </div>
 </template>
 
