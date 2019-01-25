@@ -3,16 +3,46 @@
 
 #Make{
   overflow: hidden;
+  height:70%;
+  margin: 0px auto;
+  background:powderblue;
 }
+
+
+
+.outer{
+  display: table;
+  width: 100%;
+  height: 100%;
+ }
+ .inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  
+ }
+ .centered {
+  position: relative;
+  display: inline-block;
+  
+  width: 97%;
+  padding: 1em;
+  background: orange;
+  // color: white;
+ }
+
+
+
+
 #container {
   display : inline-block;
   height : 600px;
   width : 2000px;
-  @media only screen and (max-width : 1824px) {
-    //맥북화면
-    margin-left : 2%;
-    width : 1400px; 
-  }
+  // @media only screen and (max-width : 1824px) {
+  //   //맥북화면
+  //   margin-left : 2%;
+  //   width : 1400px; 
+  // }
   
   
 
@@ -21,43 +51,43 @@
   #search {
     display : inline-block;
     border : 1.5px solid #225B95 ;
-    width : 400px;
-    height : 700px;
+    width : 300px;
+    height : 500px;
     float : left;
-    margin-left : 6%;
-    @media only screen and (max-width : 1824px) {
-      //멕북화면
-      margin-left : 3%;
-      height : 600px;
-      width: 330px;
+    margin-left : 0%;
+    // @media only screen and (max-width : 1824px) {
+    //   //멕북화면
+    //   margin-left : 3%;
+    //   height : 600px;
+    //   width: 330px;
       
-    }
+    // }
   }
   #timetable {
     margin-top:0;
     border : 1.5px solid #225B95 ;
     float : left;
-    height : 700px;
+    height : 542px;
     margin-left : 15px;  
     margin-right: 15px;  
-    width : 700px;
-    @media only screen and (max-width : 1824px) {
-      //맥북화면
-      height : 600px;
-      width : 600px;
+    width : 550px;
+    // @media only screen and (max-width : 1824px) {
+    //   //맥북화면
+    //   height : 600px;
+    //   width : 600px;
       
-    }
+    // }
   }
 
   #save {
     border : 1.5px solid #225B95 ;
     float : left;
-    height : 700px;
-    width : 400px;
-    @media only screen and (max-width : 1824px) {
-      //맥북화면
-      height : 600px;
-      width : 330px;
-    }
+    height : 521px;
+    width : 300px;
+    // @media only screen and (max-width : 1824px) {
+    //   //맥북화면
+    //   height : 600px;
+    //   width : 330px;
+    // }
   }
 
