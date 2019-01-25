@@ -1,14 +1,21 @@
 <template>
     <div id="Make">
-        <Header></Header>
-        <div id='container'>
-            <Search id='search'></Search>
-            <Timetable id='timetable'></Timetable>
-            <Save id='save'>
-                <button v-on:click="go()">저장하기</button>
-            </Save>
+        <div class="outer">
+            <div class="inner">
+                        
+                <Header></Header>
+                <div class="centered"> 
+                    <div id='container'>
+                        <Search id='search'></Search>
+                        <Timetable id='timetable'></Timetable>
+                        <Save id='save'>
+                            <button v-on:click="go()">저장하기</button>
+                        </Save>
+                    </div>
+                </div>
+                <Footer></Footer>
         </div>
-        <Footer></Footer>
+        </div>
     </div>
 </template>
 
