@@ -37,7 +37,7 @@
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
                         </div>
                         
-                       
+                        <hr />
              </div>
       </div>
         
