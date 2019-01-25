@@ -1,4 +1,22 @@
 $base: 103px;//기본크기
+
+$start0: 0px;
+$start1: 0px;
+$start2 : 0%;
+$start3 : 50%;
+$start4 : 33%;
+$start5 : 66%;
+
+
+$size0 : 100%;
+$size1 : 50%;
+$size2 : 33%;
+$size3 : 50%;
+$size4 : 33%;
+$size5 : 33%;
+
+
+
 ::-webkit-scrollbar { 
     display: none; 
 }
@@ -8,6 +26,8 @@ $base: 103px;//기본크기
     text-align: center;
     position : absolute;
     overflow: scroll;
+    // background: olive;
+    display : inline-block;
     background: olive;
     width : 100%;
     margin : 0;
@@ -93,4 +113,40 @@ $base: 103px;//기본크기
 }
 #long4{
     height : $base *4
+}
+
+.case0{
+    left : $start0;
+    width : $size0;
+
+}
+
+.case1{
+    left : $start1;
+    width : $size1;
+
+}
+
+.case2{
+    left : $start2;
+    width : $size2;
+
+}
+
+.case3{
+    left : $start3;
+    width : $size3;
+
+}
+ 
+.case4{
+    left : $start4;
+    width : $size4;
+
+}
+
+
+.case5{
+    left : $start5;
+    width : $size5;
 }
