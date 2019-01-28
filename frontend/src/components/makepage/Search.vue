@@ -3,11 +3,11 @@
        <h1 id="head">과목찾기</h1>
        <div>
        <div class="search_field" > 
-          
-        <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name"/>
+
+        <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
-      
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
+
        </div>
        </div>
 
@@ -17,29 +17,28 @@
             <div class="content" >
                 
                         <div class="section1">
-                            <p>{{`[${course.code}]`}}</p>
-                            <p>{{course.name}}</p>
+                            <p>{{`[${course.code}]`}} {{course.name}}</p>
                         </div>
 
-                        <div class="section2">
+                        <span class="section2">
                             <p>{{course.gubun}}</p>
                             <p>{{course.time}}</p>
                             <p>{{course.credit}}학점</p>
-                        </div>
+                        </span>
 
-                        <div class="section3">
+                        <span class="section3">
                             <p>{{course.professor}}</p>
                             <p>영어 {{course.english}}</p>
-                        </div>
-
-                        <div class="section4">
+                        </span>
+                        <span class="section4">
                             <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
-                        </div>
-                        
+                        </span>
                         <hr />
+                       
              </div>
+               
       </div>
         
     </div>

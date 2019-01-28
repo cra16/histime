@@ -7,27 +7,27 @@
         
         <div v-for="(course, key) in this.courses" :key="key" class="content">
             
-            <div class="section1">
-                <p>{{`[${course.code}]`}}</p>
-                <p>{{ course.name }}</p>
+             <div class="section1">
+                <p>{{`[${course.code}]`}} {{course.name}}</p>
             </div>
 
-            <div class="section2">
+
+            <span class="section2">
                 <p>{{course.gubun}}</p>
                 <p>{{course.time}}</p>
                 <p>{{course.credit}}학점</p>
-            </div>
+            </span>
 
-            <div class="section3">
+            <span class="section3">
                 <p>{{course.professor}}</p>
                 <p>영어 {{course.english}}</p>
-            </div>
+            </span>
 
-            <div  class="section4">
+            <span  class="section4">
                 <button id="delete" v-on:click="del(key)"></button>
                 <br/>
                 <button id="add" v-on:click="add(key)"></button>
-            </div>
+            </span>
 
             <hr />
         </div>

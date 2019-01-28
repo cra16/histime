@@ -56,51 +56,38 @@ hr{
 }
 
 .contents{
-    position: relative;
     font-size : 13px;
     font-weight : 500;
     height:85%;
+    width : 100%;
     overflow: scroll;
+    position : relative;
 
-    // @media only screen and (min-width : 1824px) {
-    //     //큰 화면
-    //     height :86.7%;
-    // }
-    // .content{
-    //     height:100%;
-    // }
-
-    // @media only screen and (min-width : 1824px) {
-    //     //큰 화면
-    //     height :86.7%;
-    // }
-
- 
     .section1{
-        display : inline-block;
-        margin-left : 5%;
+        margin-top : 10px;
+        color: #FF6D00 ;
+        float: left;
         position: relative;
     }
     .section2{
         display : inline-block;
-        margin :0;
-        position:relative;top:20px;
-        margin-left : 5%;
+        position: relative;
     }
     .section3{
         display : inline-block;
-        margin :0;
-        margin-left : 5%;
         position: relative;
+        margin-left : 10%;
     }
     .section4{
+        width : 100%;
         position: relative;
-        margin-right :2%;
+        z-index: 2;
         display : none;
-        // z-index: 6;
+        margin-left : 130px;
+        margin-top : -50px;
+      
      
         button{
-            float : right;
             width : 34px;
             height : 34px;
             border-radius: 5px;
@@ -128,7 +115,8 @@ hr{
 
 
 .content:hover .section4 {
-    display : inline-block;
+    position: absolute;
+    z-index: 10;
     
   }
 .content:hover {
