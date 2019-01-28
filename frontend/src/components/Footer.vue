@@ -5,13 +5,12 @@
         <div>
         <hr width="70%"/>
         </div>
-      
-       <p v-on:click="feedback()">피드백
+          
+       <button id="feedback" v-on:click="feedback()">피드백</button>
        <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
        <a href="http://naver.com" title="이용약관">이용약관</a>
        <p v-on:click="individual()">개인정보처리방침</p>
        <p>copyright by cra &emsp;&emsp; designed by Chung YuJin</p>
-       </p>
        <router-view></router-view>
     </div>
 </div>
@@ -24,6 +23,9 @@ export default {
  methods: {
     individual() {
          window.location = 'http://localhost:8080/individual'
+    },
+    feedback:function(){
+        alert("@handong.edu");
     }
  }
 
