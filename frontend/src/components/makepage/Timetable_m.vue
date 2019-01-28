@@ -147,6 +147,7 @@
                         total_credit : this.total_credit(),
                         data_list : this.raw_courses
                         });
+                       
                         window.location = 'http://localhost:8080/'
                         // this.$router.replace({name: 'show'});
                     }
