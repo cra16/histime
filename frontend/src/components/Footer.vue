@@ -5,15 +5,32 @@
         <div>
         <hr width="70%"/>
         </div>
-        <center><p >약관 개인정보처리방침    copyright  by  cra </p></center>
+      
+       <p v-on:click="feedback()">피드백
+       <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
+       <a href="http://naver.com" title="이용약관">이용약관</a>
+       <p v-on:click="individual()">개인정보처리방침</p>
+       <p>copyright by cra &emsp;&emsp; designed by Chung YuJin</p>
+       </p>
+       <router-view></router-view>
     </div>
 </div>
  
 </template>
 
 <script>
+export default {
+ 
+ methods: {
+    individual() {
+         window.location = 'http://localhost:8080/individual'
+    }
+ }
+
+}
 
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style src = '../assets/Footer.less' lang='scss' scoped>
