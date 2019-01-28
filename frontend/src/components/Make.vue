@@ -2,7 +2,7 @@
     <div id="Make">
         <div class="outer">
             <div class="inner">
-                <Header class="header"></Header>
+                <Header></Header>
                 <div class="centered"> 
                     <div id='container'>
                         <Search id='search'></Search>

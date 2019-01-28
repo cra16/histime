@@ -22,15 +22,18 @@
 
 .input_text{
    position:relative;
-   top:5px;
+   top:3px;
+   left:-2px;
    width: 60%;
    height: 32px;
    border: 3px solid #225B95;
    border-radius:3px;
 }
 .sch_filt {
-    width: 54px; height: 40px;
+    width: 50px; height: 40px;
     margin: 0; border: 0;
+    left:0px;
+    top:0px;
     margin-top:1%;
     vertical-align: top;
     background: #225B95;
@@ -114,7 +117,7 @@ hr{
         #add{
             //margin-top : 13%;
             background : url( '../../image/plus.png') no-repeat;
-            background-size : cover//이미지가 버튼 사이즈에 맞게 조절
+            background-size : cover//이미지가 버튼 사이즈에 맞게 조절 
         }
     }
     .line{
@@ -400,39 +403,40 @@ p{
     display : inline-block;
     margin :0;
     margin-left : 5%;
+    .section4{
+        display : inline-block;
+        margin-right :5%;
+        float:right;
+        display : none;
+        
+        button{
+            width : 34px;
+            height : 34px;
+            border-radius: 5px;
+            cursor : pointer;
+        }
+        
+        #delete{
+            margin-top : 13%;
+            background : url( "../../image/cancle.png") no-repeat;
+            background-size : cover
+        }
+        #fav{
+            border: none;
+            margin-top : 13%;
+            background : url( '../../image/starF.png') no-repeat;
+            background-size : cover//이미지가 버튼 사이즈에 맞게 조절
+        }
+        #add{
+            margin-top : 13%;
+            background : url( '../../image/plus.png') no-repeat;
+            background-size : cover//이미지가 버튼 사이즈에 맞게 조절
+       }
+    
+    }
 }
 
-.section4{
-    display : inline-block;
-    margin-right :5%;
-    float:right;
-    display : none;
-    
-    button{
-        width : 34px;
-        height : 34px;
-        border-radius: 5px;
-        cursor : pointer;
-    }
-    
-    #delete{
-        margin-top : 13%;
-        background : url( "../../image/cancle.png") no-repeat;
-        background-size : cover
-    }
-    #fav{
-        border: none;
-        margin-top : 13%;
-        background : url( '../../image/starF.png') no-repeat;
-        background-size : cover//이미지가 버튼 사이즈에 맞게 조절
-    }
-    #add{
-        margin-top : 13%;
-        background : url( '../../image/plus.png') no-repeat;
-        background-size : cover//이미지가 버튼 사이즈에 맞게 조절
-   }
 
-}
 
 
 .content:hover .section4 {
