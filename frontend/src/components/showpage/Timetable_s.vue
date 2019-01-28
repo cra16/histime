@@ -1,6 +1,6 @@
 <template>
 <!-- show page에서 시간표를 보여주는 부분 -->
-<body>
+<div>
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
@@ -70,7 +70,7 @@
 
         </table>
     </div><!--timetable ending tag-->
-</body>
+</div>
 </template>
 
 <script >

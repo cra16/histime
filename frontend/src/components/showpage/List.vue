@@ -1,6 +1,6 @@
 
 <template>
-    <section>
+    <div>
     <!--for demo wrap-->
     <h1>시간표 리스트</h1>
     <div class="tbl-header">
@@ -38,7 +38,7 @@
     <div class="add">
         <button id="add" v-on:click="go_make()">시간표 추가하기</button>
     </div>
-    </section>
+    </div>
 </template>
 <script>
     export default {
