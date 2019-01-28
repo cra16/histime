@@ -3,12 +3,12 @@
     <div v-if="data.long!=-1">
         <div class ="box">
             <div v-bind:id="long" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
-                <input type = "color" v-model="mycolor" />
-                
-                <button v-on:click="this.delete_course" >x</button>
+                <!-- <input type = "color" v-model="mycolor" /> -->
+                <button id = "del" v-on:click="this.delete_course" >x</button>
 
                 <p id = "code" >{{`[${this.data.code}]`}}</p>
-                <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
+                <p id="course_name">{{ this.data.course_name }}</p>
+                <p id="credit">{{ this.data.credit }}학점</p>
                 <p id="prof">{{ this.data.professor}}</p>   
                 <div ></div> 
 
