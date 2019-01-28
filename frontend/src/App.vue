@@ -55,6 +55,7 @@ export default {
 div{
      margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
+    width : 100%;
  
     }
 </style>
