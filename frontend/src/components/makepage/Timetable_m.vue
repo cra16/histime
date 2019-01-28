@@ -116,14 +116,14 @@
                 deep : true,
                 handler(){
                     console.log("changed")
-                    this.$forceUpdate();
+                   
                 }
               },
               
           },
             methods : {
                 update(){
-                    this.$forceUpdate();
+                    this.forceUpdate();
                 },
                 save(){//저장하기, 
                     if(confirm("시간표를 완성하시겠습니까?")){
@@ -182,6 +182,7 @@
 
                         console.log(this.courses);
                     }
+                    this.$forceUpdate();
                 },
                 parsingTime(course) {
                     var course_temp = JSON.parse(JSON.stringify(course));
@@ -539,6 +540,7 @@
                 this.$EventBus.$on('courses', this.add_to),
                 this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
             }
+            
         }
         
     
