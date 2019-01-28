@@ -76,7 +76,7 @@
                 </select>
             </p>
             <p>교수님 &ensp;&nbsp;
-            <input v-model="filter.professor" type="text" placeholder="교수님 이름"/>
+            <input v-model="filter.professor" type="text" class="pfname" placeholder="교수님 이름"/>
             </p>     
 
             <p>학점&emsp;&ensp;&nbsp;
