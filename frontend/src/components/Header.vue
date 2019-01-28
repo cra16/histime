@@ -1,7 +1,7 @@
 <template>
 <div class = 'header'>
-    <div class = 'logo'>
-    </div>
+    <span class = 'logo'>HisTime</span>
+    <span class = 'logo'>이번 학기를 채울 모든 경우의 수, HisTime</span>
 
 <div class = 'line'></div>
     <div class = 'user'>

@@ -2,8 +2,8 @@
 //$anchor-color: #555555;
 
 #Make{
-  overflow: hidden;
-  height:70%;
+  overflow: scroll;
+  height:100%;
   width:100%;
   margin: 0px auto;
   background:powderblue;
@@ -25,70 +25,37 @@
  .centered {
   position: relative;
   display: inline-block;
-  
-  width: 96%;
+  width: 1300px;//여기를 조정해야 한다.
   padding: 1em;
   background: orange;
-  // color: white;
+  height : 100%
+
  }
 
-
-
-
 #container {
-  display : inline-block;
-  height : 600px;
-  width : 2000px;
-  // @media only screen and (max-width : 1824px) {
-  //   //맥북화면
-  //   margin-left : 2%;
-  //   width : 1400px; 
-  // }
   
-  
-
+  display: flex;
+  height : 100%;
+  width : 100%;
   }
 
   #search {
-    display : inline-block;
     border : 1.5px solid #225B95 ;
-    width : 300px;
-    height : 90%;
-    float : left;
-    margin-left : 0%;
-    // @media only screen and (max-width : 1824px) {
-    //   //멕북화면
-    //   margin-left : 3%;
-    //   height : 600px;
-    //   width: 330px;
-      
-    // }
+    height : 600px;
+    flex :1;
+  
   }
   #timetable {
-    margin-top:0;
     border : 1.5px solid #225B95 ;
-    float : left;
-    height : 90%;
-    margin-left : 1%;  
-    margin-right: 1%;  
-    width : 550px;
-    // @media only screen and (max-width : 1824px) {
-    //   //맥북화면
-    //   height : 600px;
-    //   width : 600px;
-      
-    // }
+    height : 600px;
+    flex-basis: 600px;
+    margin: 0 2%;
   }
 
   #save {
     border : 1.5px solid #225B95 ;
-    float : left;
-    height : 90%;
-    width : 300px;
-    // @media only screen and (max-width : 1824px) {
-    //   //맥북화면
-    //   height : 600px;
-    //   width : 330px;
-    // }
+    flex :1;
+    height : 600px;
+
   }
 

@@ -7,9 +7,7 @@
                     <div id='container'>
                         <Search id='search'></Search>
                         <Timetable id='timetable'></Timetable>
-                        <Save id='save'>
-                            <button v-on:click="go()">저장하기</button>
-                        </Save>
+                        <Save id='save'></Save>
                     </div>
                 </div>
                 <Footer></Footer>
