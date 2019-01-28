@@ -15,7 +15,7 @@
             </div>
             <!-- <span v-bind:class="classObject" class = "tooltip">
                 <p>상세정보</p>
-                <p>{{ this.data.code }}
+                <p>{{ this.data.code }}  
                 <p>{{ this.data.course_name }}</p>
                 <p>{{ this.data.professor }}</p>
                 <p>{{ this.data.time }}</p>

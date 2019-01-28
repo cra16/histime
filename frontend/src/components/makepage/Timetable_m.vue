@@ -119,7 +119,7 @@
           },
             methods : {
                 update(data){
-                    console.log('update function');
+                   this.$forceUpdate()
                 
                 },
                 update_table(){
@@ -197,6 +197,7 @@
 
                         console.log(this.courses);
                     }
+                    this.$forceUpdate();
                 },
                 parsingTime(course) {
                     var course_temp = JSON.parse(JSON.stringify(course));
@@ -557,6 +558,7 @@
                 this.$EventBus.$on('courses', this.add_to),
                 this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
             }
+            
         }
         
     
