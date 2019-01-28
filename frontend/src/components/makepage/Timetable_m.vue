@@ -102,7 +102,7 @@
                   },
                   courses : [[[]]],//시간표에 띄워줄 용도
                   courses_store : [[[]]],
-                  raw_courses : [],//백엔드에 넘겨줄 용도
+                  courses_for_back : [],//백엔드에 넘겨줄 용도
                   user_add_clicked : false, //user 
                   color : '#000000',
               }
@@ -151,7 +151,7 @@
                         student_id :  this.$session.get('student_id'),
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
-                        data_list : this.courses_store,
+                        data_list : this.courses_for_back,
 
                         });
                        
@@ -171,8 +171,11 @@
                             var parsed_data = this.parsingTime(data[i]);
 
                             this.color = this.set_color();
-                            this.raw_courses.push(data[i]);
+                            // this.courses_for_back.push(data[i]);
                             this.course_update(parsed_data);
+                            this.update_table();
+
+                            
                         } else {
                             console.log('duplication!');
                         }
@@ -185,21 +188,21 @@
                     //     if(!duplication) {
                     //         var parsed_data = this.parsingTime(item);
 
-                    //         this.raw_courses.push(item);
+                    //         this.courses_for_back.push(item);
                     //         this.course_update(parsed_data);
                     //     }
                     // });
                 },
                 add_to(raw_data){
                     var duplication = this.duplication(raw_data);
-                    // console.log("rc_length: " + this.raw_courses.length);
+                    // console.log("rc_length: " + this.courses_for_back.length);
 
                     if(duplication) {
                             alert("이미 시간표에 추가한 과목입니다!");
                     } else {
                         var parsed_data = this.parsingTime(raw_data);
 
-                        this.raw_courses.push(raw_data);
+                        // this.courses_for_back.push(raw_data);
                         this.course_update(parsed_data);
                         this.update_table();
 
@@ -272,7 +275,7 @@
                     return prepared_data;
                 },
                 duplication(raw_data) {
-                    var duplication =   this.raw_courses.some(function(item, index, array) {
+                    var duplication =   this.courses_for_back.some(function(item, index, array) {
                                             return (item.code === raw_data.code);
                                         });
                     return duplication;
@@ -451,6 +454,7 @@
                             console.log('제대로된 친구 넣기');
                             parsed_data[t].color = this.color;
                             this.courses_store[day_index][time_index].push(parsed_data[t]);
+                            this.courses_for_back.push(parsed_data[t]);
                             this.$forceUpdate();
                         }
                 },
@@ -477,15 +481,20 @@
                 total_credit(){
                     var sum = 0;
 
-                    for (var i in this.raw_courses){
-                        sum += this.raw_courses[i].credit*1;
+                    for (var i = 0 ; i < this.courses_for_back.length; i++){
+                        var j = 0 ;
+                        for(j = 0 ; j < i; j++){
+                            if(this.courses_for_back[i].code === this.courses_for_back[j].code) break;
+                        }
+
+                        if(i === j) sum += this.courses_for_back[i].credit*1;
                     }
 
                     return sum;
                 },
                 reset() {
                     if(confirm("시간표를 비우시겠습니까?")){
-                        this.raw_courses = [];
+                        this.courses_for_back = [];
                         this.courses = [[[]]];
                         this.$forceUpdate();
                     }

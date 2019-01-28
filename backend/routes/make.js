@@ -235,7 +235,7 @@ router.post('/make_tt', function(req, res) {
     for (var i in data_list) {
 
 
-        var make_tt = `INSERT INTO user(student_id, ttname, total_credit, code, course_name, professor, time, credit, length, start, size, k_start, color) VALUES (${student_id}, '${ttname}', ${total_credit}, '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, ${data_list[i].long}, ${data_list[i].start}, ${data_list[i].size},  ${data_list[i].k_start}, '${data_list[i].color}');`
+        var make_tt = `INSERT INTO user(student_id, ttname, total_credit, code, course_name, professor, time, credit, length, start, size, k_start, color) VALUES (${student_id}, '${ttname}', ${total_credit}, '${data_list[i].code}', '${data_list[i].course_name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, ${data_list[i].long}, ${data_list[i].start}, ${data_list[i].size},  ${data_list[i].k_start}, '${data_list[i].color}');`
 
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
