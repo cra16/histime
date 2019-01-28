@@ -6,7 +6,7 @@
         <hr width="70%"/>
         </div>
       
-       <p>피드백
+       <p v-on:click="feedback()">피드백
        <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
        <a href="http://naver.com" title="이용약관">이용약관</a>
        <p v-on:click="individual()">개인정보처리방침</p>
