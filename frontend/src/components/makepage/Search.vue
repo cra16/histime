@@ -50,7 +50,7 @@
       
      
       <div v-show="showbox" class="placeholder-box" >
-           <p></p>
+           
             <p>학부&emsp;&ensp;&nbsp;
                 <select v-model="filter.hakbu">
                     <option value="">전체</option>
@@ -59,7 +59,6 @@
                     </option>
                 </select>
             </p>
-        
             <p>이수구분 
                 <select v-model="filter.gubun">
                     <option value="">전체</option>
@@ -67,8 +66,8 @@
                         {{ gubun }}
                     </option>
                 </select>
-            
-                &ensp;교양영역
+            </p>
+            <p>교양영역
                 <select v-model="filter.gyoyang">
                         <option value="">전체</option>
                         <option v-for=" gyoyang in gyoyangs" :key="gyoyang">
@@ -76,7 +75,6 @@
                         </option>
                 </select>
             </p>
-        
             <p>교수님 &ensp;&nbsp;
             <input v-model="filter.professor" type="text" placeholder="교수님 이름"/>
             </p>     
