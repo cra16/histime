@@ -114,16 +114,9 @@ export default {
                 this.courses = [[[]]]; 
                 console.log(response.data);
                 for(var i = 0; i < response.data.length; i ++){
+                    var day_index = response.data[i].day;
                     var time_index = response.data[i].start;
-                    var day_index = 0;
-                    console.log(response.data[i].height);
-                    if(response.data[i].day === '월') day_index = 1;
-                    else if(response.data[i].day === '화') day_index = 2;
-                    else if(response.data[i].day === '수') day_index = 3;
-                    else if(response.data[i].day === '목') day_index = 4;
-                    else if(response.data[i].day === '금') day_index = 5;
-                    else if(response.data[i].day === '토') day_index = 6;
-
+                    
                    
                     if(this.courses[day_index] === undefined) this.courses[day_index] = [];
                     if(this.courses[day_index][time_index] === undefined) this.courses[day_index][time_index] = [];

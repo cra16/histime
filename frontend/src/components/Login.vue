@@ -80,7 +80,7 @@ export default {
                   if(this.isSave){this.setCookies(response)}//30일 저장한다고 했을 때 =>쿠키에 정보 저장
                   else{this.$cookies.set('auth_save', false)}//그렇지 않은 경우 -> 쿠키에 저장된 정보 없에기
               }
-              this.$router.replace({ name: "show"}) 
+              this.$router.replace({ name: "show"});
             }
           }, function (err) {//서버가 이상한 경우
             alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
