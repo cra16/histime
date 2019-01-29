@@ -135,13 +135,41 @@
                     this.courses = this.courses_store ;
                     this.$forceUpdate();
                 },
-                remove(course){
+                find_course_to_remove_per_day(code){
+                    var courses_per_day = [];
+                    var course_to_send;
+                    for(var i=1;i<=6;i++){
+                        if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                        for(var j=1;j<=10;j++){
+                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                            for(var k=0; k<this.courses_store[i][j].length;k++){
+                                if(this.courses_store[i][j][k].code === code){
+                                    course_to_send = this.courses_store[i][j][k];
+                                    courses_per_day.push(course_to_send);
+                                    break;
+                                }
+                            }
+                            if(course_to_send.day === i)break;
+                                            
+                        }
+                    }
+                    console.log('find course to remove');
+                    console.log(courses_per_day);
+                    return courses_per_day;
+                },
+                rearrange_for_removal(course){
+                    console.log('into rearrange');
+                    console.log(course);
                     var size =  course.size;
                     var k_start = course.k_start;
                     var day_index = course.day;
                     var time_index = 0; 
-                    console.log(code);
-                    this.prop_update(course.code, course.size -1, 'size');
+                    console.log('요일');
+                    console.log(day_index);
+                    console.log('현재싸이즈');
+                    console.log(size);
+                    size = size -1 ;
+                    this.prop_update_specific(course.code, size, 'size', day_index);
                     for(var i = 0; i < course.height; i++){
                         // console.log(`this.courses_store[course.day][course.start+i]은 [${course.day}][${course.start+i}]`);
                         time_index = parseInt(course.start) + i;
@@ -149,15 +177,22 @@
                         console.log(day_index);
                         console.log(time_index);
                         console.log(this.courses_store);
+                        
                         for(var j = 0; j < dest.length; j++){
                             if(dest[j].k_start > k_start) dest[j].k_start  = dest[j].k_start -1;
                         }
                     }
-                    this.delete_course(course.code);
-                    this.update_table();
-                  
                 },
-                delete_course(code){
+                remove(code){
+                    var courses_to_remove = this.find_course_to_remove_per_day(code);
+                    for(var i = 0; i < courses_to_remove.length; i++)this.rearrange_for_removal(courses_to_remove[i]);
+                    this.remove_course(code);
+                    this.update_table();
+
+                },
+
+                
+                remove_course(code){
                     console.log('delete');
                     console.log(code);
                     //노드 courses_store[[[]]]배열에서 삭제
@@ -528,6 +563,23 @@
                         }
                     }
                 },
+                prop_update_specific(code, data, prop, day){
+                    console.log('prop_update_in');
+                    console.log(day);
+                    for(var j=1;j<=10;j++){
+                        if(this.courses_store[day][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                        for(var k=0; k<this.courses_store[day][j].length;k++){
+                            if(this.courses_store[day][j][k].code === code){
+                                for(var m = 0; m < this.courses_store[day][j].length; m++){
+                                    this.$set(this.courses_store[day][j][m], prop, data); 
+                                    console.log('specific update');
+                                    console.log(data);
+                                }
+                                continue;
+                            }
+                        }                
+                    }
+                },
                 set_name(text) {
                     this.tt_name = text;
                 },
@@ -547,7 +599,8 @@
                 },
                 reset() {
                     if(confirm("시간표를 비우시겠습니까?")){
-                        this.courses_for_back = [];
+                        this.courses_store = [[[]]];
+                        this.course_for_back = [];
                         this.courses = [[[]]];
                         this.$forceUpdate();
                     }

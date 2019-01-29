@@ -4,7 +4,7 @@
         <div class ="box">
             <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
                 <!-- <input type = "color" v-model="mycolor" /> -->
-                <button id = "del" v-on:click="(event) => { this.$parent.remove(this.data) }" >x</button>
+                <button id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
 
                 <p id = "code" >{{`[${this.data.code}]`}}</p>
                 <p id="course_name">{{ this.data.course_name }}</p>
