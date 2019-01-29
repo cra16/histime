@@ -134,18 +134,46 @@
                     this.courses = [[[]]];                    
                     this.courses = this.courses_store ;
                     this.$forceUpdate();
+                },
+                remove(course){
+                    var size =  course.size;
+                    var k_start = course.k_start;
+                    var day_index = course.day;
+                    var time_index = 0; 
+                    console.log(code);
+                    this.prop_update(course.code, course.size -1, 'size');
+                    for(var i = 0; i < course.height; i++){
+                        // console.log(`this.courses_store[course.day][course.start+i]은 [${course.day}][${course.start+i}]`);
+                        time_index = parseInt(course.start) + i;
+                        var dest = this.courses_store[day_index][time_index];
+                        console.log(day_index);
+                        console.log(time_index);
+                        console.log(this.courses_store);
+                        for(var j = 0; j < dest.length; j++){
+                            if(dest[j].k_start > k_start) dest[j].k_start  = dest[j].k_start -1;
+                        }
+                    }
+                    this.delete_course(course.code);
+                    this.update_table();
+                  
+                },
+                delete_course(code){
+                    console.log('delete');
+                    console.log(code);
+                    //노드 courses_store[[[]]]배열에서 삭제
                     for(var i=1;i<=6;i++){
                             if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
                             for(var j=1;j<=10;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
-                                this.courses.push(this.courses_store[i][j][k]);
+                                if(this.courses_store[i][j][k].code === code){
+                                    this.courses_store[i][j].splice(k,1) 
+                                }
                             }                
                         }
                     }
-
-                    
                 },
+
                 save(){//저장하기, 
                     if(confirm("시간표를 완성하시겠습니까?")){
                         this.$http.post('/api/make/make_tt', {
@@ -286,10 +314,23 @@
                     return prepared_data;
                 },
                 duplication(raw_data) {
-                    var duplication =   this.courses_for_back.some(function(item, index, array) {
-                                            return (item.code === raw_data.code);
-                                        });
-                    return duplication;
+                    // var duplication =   this.courses_for_back.some(function(item, index, array) {
+                    //                         return (item.code === raw_data.code);
+                    //                     });
+                    // return duplication;
+                    for(var i=1;i<=6;i++){
+                            if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                            for(var j=1;j<=10;j++){
+                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                            for(var k=0; k<this.courses_store[i][j].length;k++){
+                                if(this.courses_store[i][j][k].code === code){
+                                    return true;
+                                }
+                            }                
+                        }
+                    }
+                    return false;
+
                 },
 
                 course_update(parsed_data) {
@@ -307,6 +348,7 @@
                             else if(parsed_data[t].day === '금') day_index = 5;
                             else if(parsed_data[t].day === '토') day_index = 6;
 
+                            parsed_data[t].day = day_index;
                             if(this.courses_store[day_index] === undefined) this.courses_store[day_index] = [];
                             if(this.courses_store[day_index][time_index] === undefined)this.courses_store[day_index][time_index] = [];
 
