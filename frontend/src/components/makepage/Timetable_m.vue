@@ -145,6 +145,36 @@
 
                     
                 },
+                remove(course){
+                    var size =  course.size;
+                    var k_start = course.k_start;
+                    console.log(code);
+                    this.prop_update(course.code, course.size -1, 'size');
+                    for(var i = 0; i < course.height; i++){
+                        var target = this.courses_store[course.day][course.start+i];  
+                        for(var j = 0; j < target.length; j++){
+                            if(target[j].k_start > k_start) this.courses_store[course.day][course.start+i][j].k_start  = this.courses_store[course.day][course.start+i][j].k_start -1;
+                        }
+                    }
+                    this.delete_course(course.code);
+                    this.update_table();
+                  
+                },
+                delete_course(code){
+                    //노드 courses_store[[[]]]배열에서 삭제
+                    for(var i=1;i<=6;i++){
+                            if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                            for(var j=1;j<=10;j++){
+                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                            for(var k=0; k<this.courses_store[i][j].length;k++){
+                                if(this.courses_store[i][j][k].code == code){
+                                    this.courses_store[i][j].splice(k,1) 
+                                }
+                            }                
+                        }
+                    }
+                },
+
                 save(){//저장하기, 
                     if(confirm("시간표를 완성하시겠습니까?")){
                         this.$http.post('/api/make/make_tt', {
@@ -299,6 +329,7 @@
                             else if(parsed_data[t].day === '금') day_index = 5;
                             else if(parsed_data[t].day === '토') day_index = 6;
 
+                            parsed_data[t].day = day_index;
                             if(this.courses_store[day_index] === undefined) this.courses_store[day_index] = [];
                             if(this.courses_store[day_index][time_index] === undefined)this.courses_store[day_index][time_index] = [];
 
