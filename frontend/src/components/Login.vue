@@ -64,7 +64,14 @@ export default {
               this._response = response;
               this.$session.start()
               this.setSession()
-              if(this.isSave){this.setCookies(response)}
+              if(response.data.student_id === 'nope'){
+                alert("어림없음.");
+                this.input.id = '';
+                this.input.password = '';
+                this.isLoad = false;
+                return;
+              }
+              else if(this.isSave){this.setCookies(response)}
               else{
                 this.$cookies.set('auth_save', false)
                 }
@@ -74,7 +81,7 @@ export default {
             }
           }, function (err) {
             alert("로그인을 틀렸거나 서버가 이상하거나..")
-          })
+          });
           
     },
     setCookies(){
