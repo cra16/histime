@@ -152,9 +152,8 @@
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
                         data_list : this.courses_for_back,
+                        }).
 
-                        });
-                       
                         window.location = 'http://localhost:8080/'
                         // this.$router.replace({name: 'show'});
                     }

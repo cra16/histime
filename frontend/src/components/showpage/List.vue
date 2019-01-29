@@ -33,11 +33,13 @@
             </div>
            
         </tbody>
+        
         </table>
+        <div class="add">
+            <button id="add" v-on:click="go_make()">시간표 추가하기</button>
+        </div>
     </div>
-    <div class="add">
-        <button id="add" v-on:click="go_make()">시간표 추가하기</button>
-    </div>
+  
     </div>
 </template>
 <script>
