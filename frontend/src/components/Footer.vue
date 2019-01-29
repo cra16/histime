@@ -6,10 +6,10 @@
         <hr width="70%"/>
         </div>
     
-        <a href="http://localhost:8080/aboutus" title="cra">About us</a>
+        <a href="http://localhost:3000/aboutus" title="cra">About us</a>
         <a href="mailto:21500582@handong.edu" title="email">피드백 보내기</a>
         <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
-        <a href="http://localhost:8080/individual" title="law">개인정보처리방침</a>
+        <a href="http://localhost:3000/individual" title="law">개인정보처리방침</a>
         <!-- <a v-on:click="individual()">개인정보처리방침</a>
        -->
        <p>copyright by CRA &emsp;&emsp; Designed by Chung YuJin</p>

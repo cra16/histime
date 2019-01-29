@@ -92,7 +92,7 @@
                  this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
                 }
                 // this.$router.replace({name: 'make'});
-                window.location = 'http://localhost:8080/make'
+                window.location = 'http://localhost:3000/make'
             },
             modify_name(key) {//시간표 이름 수정(연필모양)-이름수정
                 var modified_name = prompt("수정할 시간표 이름을 입력하세요");
@@ -135,7 +135,7 @@
             ttedit(key){//시간표 수정하기
                 if(confirm("시간표를 수정하시겠습니까?")){        
                     this.$session.set('to_timetablem', this.ttlists[key].ttname)//시간표 이름을 세션으로 보냄
-                    window.location = 'http://localhost:8080/make'
+                    window.location = 'http://localhost:3000/make'
                 }  
             },
             ttselect(key){

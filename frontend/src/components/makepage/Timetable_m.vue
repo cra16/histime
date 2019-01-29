@@ -220,7 +220,7 @@
                         }).then((response) => {
                          if (response.status === 200 ) {
                        
-                             window.location = 'http://localhost:8080/'
+                             window.location = 'http://localhost:3000/'
                              // this.$router.replace({name: 'show'});
                         }
                     });
@@ -228,7 +228,7 @@
                 },
                  cancel(){//취소하기
                     if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
-                        window.location = 'http://localhost:8080/'
+                        window.location = 'http://localhost:3000/'
                     }else{
                         return;
                     }
