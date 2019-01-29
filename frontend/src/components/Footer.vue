@@ -6,10 +6,10 @@
         <hr width="70%"/>
         </div>
     
-        <a href="http://localhost:3000/aboutus" title="cra">About us</a>
+        <a href="http://203.252.99.231:3000/aboutus" title="cra">About us</a>
         <a href="mailto:21500582@handong.edu" title="email">피드백 보내기</a>
         <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
-        <a href="http://localhost:3000/individual" title="law">개인정보처리방침</a>
+        <a href="http://203.252.99.231:3000/individual" title="law">개인정보처리방침</a>
         <!-- <a v-on:click="individual()">개인정보처리방침</a>
        -->
        <p>copyright by CRA &emsp;&emsp; Designed by Chung YuJin</p>
@@ -25,7 +25,7 @@ export default {
  
  methods: { //methods 안에 주석처리된 함수들은 지워도 됩니다!
    //  individual() {
-   //       window.location = 'http://localhost:8080/individual'
+   //       window.location = 'http://203.252.99.231:8080/individual'
    //  },                             
    //  feedback:function(){
    //      alert("문의 사항 및 피드백은 @@@@@handong.edu로 보내주세요!");
