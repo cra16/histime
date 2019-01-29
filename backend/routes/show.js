@@ -34,7 +34,7 @@ router.post('/tt', function(req, res, next) {
     console.log(req.body.ttname);
     var student_id = req.body.student_id;
     var ttname = req.body.ttname;
-    var ttshow_query = `SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`
+    var ttshow_query = `SELECT code, color, course_name, credit, day, k_start, height, professor, size, start, time FROM user WHERE student_id=${student_id} and ttname='${ttname}';`
     console.log(ttshow_query);
     connection.query(ttshow_query, function(err, results, fields) {
         if(err) console.log(err);

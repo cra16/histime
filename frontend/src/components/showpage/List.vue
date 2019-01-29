@@ -19,25 +19,25 @@
     </div>
     <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-            <div v-for="(ttlist,key) in this.ttlists" :key="key">
-                <tr>
-                    <td id="index">{{ key+1 }}</td>
-                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}<button id="modify_name" v-on:click="modify_name(key)"></button></td>
-                    <td id="credit">{{ttlist.total_credit}}</td>
-                    <td id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></td>
-                    <td id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></td>
-                </tr>
+            <tbody>
+                <div v-for="(ttlist,key) in this.ttlists" :key="key">
+                    <tr>
+                        <td id="index">{{ key+1 }}</td>
+                        <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}<button id="modify_name" v-on:click="modify_name(key)"></button></td>
+                        <td id="credit">{{ttlist.total_credit}}</td>
+                        <td id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></td>
+                        <td id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></td>
+                    </tr>
 
-                <hr />
-            </div>
-           
-        </tbody>
+                    <hr />
+                </div> 
+            </tbody>
         </table>
-    </div>
+    </div><!--tbl-content ending tag-->
     <div class="add">
-        <button id="add" v-on:click="go_make()">시간표 추가하기</button>
+            <button id="add" v-on:click="go_make()">시간표 추가하기</button>
     </div>
+  
     </div>
 </template>
 <script>

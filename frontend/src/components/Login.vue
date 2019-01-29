@@ -68,19 +68,23 @@ export default {
       }).then((response) => {
         if (response.status === 200 ) {
               this._response = response;
-              this.$session.start()
-              this.setSession()
-              if(this.isSave){this.setCookies(response)}
-              else{
-                this.$cookies.set('auth_save', false)
-                }
-              
-              console.log(this.$cookies.get('auth_save'))
+              if(response.data.student_id === 'nope'){//로그인이 틀린 경우
+                alert("로그인 정보가 일치하지 않습니다.");
+                this.input.id = '';
+                this.input.password = '';
+                this.isLoad = false;
+                return;
+              }
+              else{//로그인이 틀리지 않은 경우
+                this.setSession()//세션에 정보 저장
+                  if(this.isSave){this.setCookies(response)}//30일 저장한다고 했을 때 =>쿠키에 정보 저장
+                  else{this.$cookies.set('auth_save', false)}//그렇지 않은 경우 -> 쿠키에 저장된 정보 없에기
+              }
               this.$router.replace({ name: "show"}) 
             }
-          }, function (err) {
-            alert("로그인을 틀렸거나 서버가 이상하거나..")
-          })
+          }, function (err) {//서버가 이상한 경우
+            alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+          });
           
     },
     setCookies(){
@@ -131,7 +135,3 @@ export default {
 <style src = '../assets/Login.less' lang='scss' scoped>
 
 </style>
-
-
-
-

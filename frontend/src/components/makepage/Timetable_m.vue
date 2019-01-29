@@ -77,6 +77,7 @@
     </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
+        <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 
     </div>
 </body>
 
@@ -133,18 +134,81 @@
                     this.courses = [[[]]];                    
                     this.courses = this.courses_store ;
                     this.$forceUpdate();
+                },
+                find_course_to_remove_per_day(code){
+                    var courses_per_day = [];
+                    var course_to_send;
+                    for(var i=1;i<=6;i++){
+                        if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                        for(var j=1;j<=10;j++){
+                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                            for(var k=0; k<this.courses_store[i][j].length;k++){
+                                if(this.courses_store[i][j][k].code === code){
+                                    course_to_send = this.courses_store[i][j][k];
+                                    courses_per_day.push(course_to_send);
+                                    break;
+                                }
+                            }
+                            if(course_to_send.day === i)break;
+                                            
+                        }
+                    }
+                    console.log('find course to remove');
+                    console.log(courses_per_day);
+                    return courses_per_day;
+                },
+                rearrange_for_removal(course){
+                    console.log('into rearrange');
+                    console.log(course);
+                    var size =  course.size;
+                    var k_start = course.k_start;
+                    var day_index = course.day;
+                    var time_index = 0; 
+                    console.log('요일');
+                    console.log(day_index);
+                    console.log('현재싸이즈');
+                    console.log(size);
+                    size = size -1 ;
+                    this.prop_update_specific(course.code, size, 'size', day_index);
+                    for(var i = 0; i < course.height; i++){
+                        // console.log(`this.courses_store[course.day][course.start+i]은 [${course.day}][${course.start+i}]`);
+                        time_index = parseInt(course.start) + i;
+                        var dest = this.courses_store[day_index][time_index];
+                        console.log(day_index);
+                        console.log(time_index);
+                        console.log(this.courses_store);
+                        
+                        for(var j = 0; j < dest.length; j++){
+                            if(dest[j].k_start > k_start) dest[j].k_start  = dest[j].k_start -1;
+                        }
+                    }
+                },
+                remove(code){
+                    var courses_to_remove = this.find_course_to_remove_per_day(code);
+                    for(var i = 0; i < courses_to_remove.length; i++)this.rearrange_for_removal(courses_to_remove[i]);
+                    this.remove_course(code);
+                    this.update_table();
+
+                },
+
+                
+                remove_course(code){
+                    console.log('delete');
+                    console.log(code);
+                    //노드 courses_store[[[]]]배열에서 삭제
                     for(var i=1;i<=6;i++){
                             if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
                             for(var j=1;j<=10;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
-                                this.courses.push(this.courses_store[i][j][k]);
+                                if(this.courses_store[i][j][k].code === code){
+                                    this.courses_store[i][j].splice(k,1) 
+                                }
                             }                
                         }
                     }
-
-                    
                 },
+
                 save(){//저장하기, 
                     if(confirm("시간표를 완성하시겠습니까?")){
                         this.$http.post('/api/make/make_tt', {
@@ -153,15 +217,25 @@
                         total_credit : this.total_credit(),
                         data_list : this.courses_for_back,
 
-                        });
+                        }).then((response) => {
+                         if (response.status === 200 ) {
                        
-                        window.location = 'http://localhost:8080/'
-                        // this.$router.replace({name: 'show'});
+                             window.location = 'http://localhost:8080/'
+                             // this.$router.replace({name: 'show'});
+                        }
+                    });
                     }
                 },
-                user_add(){
-                    this.user_add_clicked = !(this.user_add_clicked)
+                 cancel(){//취소하기
+                    if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
+                        window.location = 'http://localhost:8080/'
+                    }else{
+                        return;
+                    }
                 },
+                // user_add(){
+                //     this.user_add_clicked = !(this.user_add_clicked)
+                // },
                 add_a_to(data) {
                     for(var i in data) {
                         var duplication = this.duplication(data[i]);
@@ -234,7 +308,7 @@
                         
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0][1],
-                        long : 1,
+                        height : 1,
 
                         k_start : -1,
                         size : -1,
@@ -244,8 +318,8 @@
                         if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
                             console.log("into comparison");
                             var temp = prepared_data.pop();
-                            console.log(temp.long);
-                            temp.long ++;
+                            console.log(temp.height);
+                            temp.height ++;
 
                             prepared_data.push(temp);
                         } else {
@@ -258,7 +332,7 @@
                                 
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i][1],
-                                long : 1,
+                                height : 1,
 
                                 k_start : -1,
                                 size : -1,
@@ -269,16 +343,29 @@
                     for(var i = 0 ; i < prepared_data.length; i++){
                         console.log( "day :" + prepared_data[i].day);
                         console.log( "start :" + prepared_data[i].start);
-                        console.log( "length :" + prepared_data[i].long);
+                        console.log( "length :" + prepared_data[i].height);
                     }
 
                     return prepared_data;
                 },
                 duplication(raw_data) {
-                    var duplication =   this.courses_for_back.some(function(item, index, array) {
-                                            return (item.code === raw_data.code);
-                                        });
-                    return duplication;
+                    // var duplication =   this.courses_for_back.some(function(item, index, array) {
+                    //                         return (item.code === raw_data.code);
+                    //                     });
+                    // return duplication;
+                    for(var i=1;i<=6;i++){
+                            if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                            for(var j=1;j<=10;j++){
+                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                            for(var k=0; k<this.courses_store[i][j].length;k++){
+                                if(this.courses_store[i][j][k].code === code){
+                                    return true;
+                                }
+                            }                
+                        }
+                    }
+                    return false;
+
                 },
 
                 course_update(parsed_data) {
@@ -296,6 +383,7 @@
                             else if(parsed_data[t].day === '금') day_index = 5;
                             else if(parsed_data[t].day === '토') day_index = 6;
 
+                            parsed_data[t].day = day_index;
                             if(this.courses_store[day_index] === undefined) this.courses_store[day_index] = [];
                             if(this.courses_store[day_index][time_index] === undefined)this.courses_store[day_index][time_index] = [];
 
@@ -312,8 +400,8 @@
                             }
                             console.log('dest의 길이는 '+ dest.length);
                             //연강 똥값 들어갈 곳이 사이즈가 꽉차있다면 return
-                            if(parsed_data[t].long > 1){
-                                for(var i = 1 ; i < parsed_data[t].long; i++){
+                            if(parsed_data[t].height > 1){
+                                for(var i = 1 ; i < parsed_data[t].height; i++){
                                     if(this.courses_store[day_index][time_index + i] != undefined && this.courses_store[day_index][time_index + i].length > 2) {
                                         console.log("full");
                                         alert("어림없다.");
@@ -347,8 +435,8 @@
                                 for(var i = 0; i < dest.length; i++){
                                     console.log('현재 원소갯수는 ' + dest.length);
 
-                                    //연강 시작친구(long = 2)이거나 똥값(long = -1)이거나
-                                    if(dest[i].long === 2 || dest[i].long === -1){
+                                    //연강 시작친구(height = 2)이거나 똥값(height = -1)이거나
+                                    if(dest[i].height === 2 || dest[i].height === -1){
                                         console.log('연강인 친구나 똥값이 있어요 위치 :' + i);
                                         cont_index = i;
                                         break;
@@ -385,16 +473,16 @@
                             }
 
                             //원소가 연강이면
-                            if(parsed_data[t].long != 1){
+                            if(parsed_data[t].height != 1){
                                 //똥값
                                 var poop = {
                                             code : parsed_data[t].code,
-                                            long : -1,
+                                            height : -1,
                                             k_start : k_start,
                                             size : size,
                                         }
                                 //똥값 넣기 프로세스
-                                for(var z = 1; z < parsed_data[t].long; z++){
+                                for(var z = 1; z < parsed_data[t].height; z++){
                                     //dest_cont는 똥값 들어갈 곳
                                     var dest_cont = this.courses_store[day_index][time_index+z];
 
@@ -475,6 +563,23 @@
                         }
                     }
                 },
+                prop_update_specific(code, data, prop, day){
+                    console.log('prop_update_in');
+                    console.log(day);
+                    for(var j=1;j<=10;j++){
+                        if(this.courses_store[day][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                        for(var k=0; k<this.courses_store[day][j].length;k++){
+                            if(this.courses_store[day][j][k].code === code){
+                                for(var m = 0; m < this.courses_store[day][j].length; m++){
+                                    this.$set(this.courses_store[day][j][m], prop, data); 
+                                    console.log('specific update');
+                                    console.log(data);
+                                }
+                                continue;
+                            }
+                        }                
+                    }
+                },
                 set_name(text) {
                     this.tt_name = text;
                 },
@@ -494,7 +599,8 @@
                 },
                 reset() {
                     if(confirm("시간표를 비우시겠습니까?")){
-                        this.courses_for_back = [];
+                        this.courses_store = [[[]]];
+                        this.course_for_back = [];
                         this.courses = [[[]]];
                         this.$forceUpdate();
                     }
