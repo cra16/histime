@@ -109,10 +109,12 @@ export default {
             ttname: this.tt_name
         }).then(response => {
             if (response.status === 200) {
+                this.courses = [[[]]]; 
                 console.log(response.data);
                 for(var i = 0; i < response.data.length; i ++){
                     var time_index = response.data[i].start;
                     var day_index = 0;
+                    console.log(response.data[i].height);
                     if(response.data[i].day === '월') day_index = 1;
                     else if(response.data[i].day === '화') day_index = 2;
                     else if(response.data[i].day === '수') day_index = 3;
@@ -120,18 +122,25 @@ export default {
                     else if(response.data[i].day === '금') day_index = 5;
                     else if(response.data[i].day === '토') day_index = 6;
 
-                    this.courses = [[[]]];
-                    if(courses[day_index] === undefined) courses[day_index] = [];
-                    if(courses[day_index][time_index] === undefined) courses[day_index][time_index] = [];
+                   
+                    if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                    if(this.courses[day_index][time_index] === undefined) this.courses[day_index][time_index] = [];
                     this.courses[day_index][time_index].push(response.data[i]);
                 }
-                
-                
                 this.$forceUpdate();
 
                 
             }
         });
+    },
+    update(data){
+                    console.log(data);
+                    console.log('update function');
+                    if(data == 'remove'){
+                        console.log('remove');
+                        
+                    }
+                
     },
     timetable_s() {
       this.$http.post("/api/show/timetable", {
