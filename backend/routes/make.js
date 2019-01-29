@@ -143,7 +143,7 @@ router.post('/add_fav', function(req, res, next) {
     var time = req.body.time;
     var credit = req.body.credit; 
     
-    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+    var add_fav = `INSERT INTO user(student_id, code, course_name, professor, time, credit, favorited) VALUES (${student_id}, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
     console.log(add_fav);
     connection.query(add_fav, function(err, result, fields) {
         if(err) console.log(err);
@@ -233,7 +233,10 @@ router.post('/make_tt', function(req, res) {
 
     //실제용
     for (var i in data_list) {
-        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, ${total_credit}, '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
+
+
+        var make_tt = `INSERT INTO user(student_id, ttname, total_credit, code, course_name, professor, time, credit, length, start, size, k_start, color) VALUES (${student_id}, '${ttname}', ${total_credit}, '${data_list[i].code}', '${data_list[i].course_name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, ${data_list[i].long}, ${data_list[i].start}, ${data_list[i].size},  ${data_list[i].k_start}, '${data_list[i].color}');`
+
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             console.log(courseList);

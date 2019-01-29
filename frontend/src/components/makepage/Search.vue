@@ -81,15 +81,15 @@
 
             <p>학점&emsp;&ensp;&nbsp;
                     <input type="checkbox" id="credit" value="0.5" checked="false" v-model="filter.credit[0]">
-                    <label for="credit">&ensp;0.5</label>
+                    <label for="credit">&nbsp;0.5</label>
                     <input type="checkbox" id="credit1" value="1" checked="false" v-model="filter.credit[1]">
-                    <label for="credit1">&emsp; 1</label>
+                    <label for="credit1">&ensp;&nbsp;1</label>
                     <input type="checkbox" id="credit2" value="2" checked="false" v-model="filter.credit[2]">
-                    <label for="credit2">&emsp; 2</label>
+                    <label for="credit2">&ensp;&nbsp;2</label>
                     <input type="checkbox" id="credit3" value="3" checked="false" v-model="filter.credit[3]">
-                    <label for="credit3">&emsp; 3</label>
+                    <label for="credit3">&ensp;&nbsp;3</label>
                     <input type="checkbox" id="credit4" value="4" checked="false" v-model="filter.credit[4]">
-                    <label for="credit4">&emsp; 4</label>
+                    <label for="credit4">&ensp;&nbsp;4</label>
             </p>
 
             

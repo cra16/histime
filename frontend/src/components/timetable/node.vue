@@ -39,17 +39,17 @@ export default {
     
     methods : {
         delete_course(){
-            console.log(this.$parent.courses);
+            console.log(this.$parent.courses_store);
             this.$forceUpdate();
-            //노드 courses[[[]]]배열에서 삭제
+            //노드 courses_store[[[]]]배열에서 삭제
             for(var i=1;i<=6;i++){
-                    if(this.$parent.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
+                    if(this.$parent.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
                     for(var j=1;j<=10;j++){
-                    if(this.$parent.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
-                    for(var k=0; k<this.$parent.courses[i][j].length;k++){
-                        if(this.$parent.courses[i][j][k].code == this.data.code){
-                            this.$parent.courses[i][j].splice(k,1) 
-                            this.$emit('update', 'hello!');
+                    if(this.$parent.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                    for(var k=0; k<this.$parent.courses_store[i][j].length;k++){
+                        if(this.$parent.courses_store[i][j][k].code == this.data.code){
+                            this.$parent.courses_store[i][j].splice(k,1) 
+                            this.$emit('update', 'remove');
                         }
                     }                
                 }
@@ -77,7 +77,7 @@ export default {
             for(var i=0; i<10; i++)
                 this.time[i] = false;
             this.time[this.data.start-1] = true;
-            this.$emit('update', 'hello!');                    
+            this.$emit('update', 'add');                    
             return {
                     t1: this.time[0],
                     t2: this.time[1],
