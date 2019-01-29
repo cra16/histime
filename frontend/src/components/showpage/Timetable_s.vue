@@ -4,6 +4,7 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
+    <button v-on:click = "course_copy">과목코드복사</button>
     <!--글자 제한 두기-->
   </div>
 
@@ -99,6 +100,7 @@ export default {
     // }
   },
   methods: {
+    //   course
     get_data(data) {
 
         this.tt_name = data.ttname;
