@@ -77,6 +77,7 @@
     </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
+        <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 
     </div>
 </body>
 
@@ -162,9 +163,16 @@
                     });
                     }
                 },
-                user_add(){
-                    this.user_add_clicked = !(this.user_add_clicked)
+                 cancel(){//취소하기
+                    if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
+                        window.location = 'http://localhost:8080/'
+                    }else{
+                        return;
+                    }
                 },
+                // user_add(){
+                //     this.user_add_clicked = !(this.user_add_clicked)
+                // },
                 add_a_to(data) {
                     for(var i in data) {
                         var duplication = this.duplication(data[i]);

@@ -3,23 +3,12 @@
     <div v-if="data.height!=-1">
         <div class ="box">
             <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
-                <input id="color" type = "color" v-model="mycolor" />
-                <button id = "del" v-on:click="this.delete_course" >x</button>
-
                 <p id = "code" >{{`[${this.data.code}]`}}</p>
                 <p id="course_name">{{ this.data.course_name }}</p>
                 <p id="credit">{{ this.data.credit }}학점</p>
                 <p id="prof">{{ this.data.professor}}</p>   
                 <div ></div> 
-
             </div>
-            <!-- <span v-bind:class="classObject" class = "tooltip">
-                <p>상세정보</p>
-                <p>{{ this.data.code }}  
-                <p>{{ this.data.course_name }}</p>
-                <p>{{ this.data.professor }}</p>
-                <p>{{ this.data.time }}</p>
-            </span> -->
         </div>
     </div>
 </div>
@@ -61,7 +50,7 @@ export default {
                 }
             }
         },
-        classObject() { //
+        classObject() { //여러개의 class를 한번에 만들 수 있음,case를 구분하여 위치와 길이를 만듬
             var start = this.data.k_start;
             var size =this.data.size;
              for(var i=0; i<6; i++)
@@ -103,13 +92,6 @@ export default {
      created(){
         this.mycolor = this.data.color;
 
-        // console.log(color);
-
-        // $(this).css('background-color', 'red');
-
-        //     var div = document.querySelector('#node').style;
-        //      this.mycolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-        //      div.backgroundColor = this.mycolor;
      },
      watch:{
          tooltip :{
@@ -128,6 +110,6 @@ export default {
 
 </script>
 
-<style src = '../../assets/timetable/node.less' lang='scss' scoped>
+<style src = '../../assets/timetable/node_show.less' lang='scss' scoped>
    
 </style>

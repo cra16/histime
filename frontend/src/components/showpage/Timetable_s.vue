@@ -4,7 +4,7 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
-    <button v-on:click = "course_copy">과목코드복사</button>
+    <button>과목코드복사</button>
     <!--글자 제한 두기-->
   </div>
 
@@ -27,7 +27,7 @@
                             <div v-if="courses[i] != undefined">
                                 <div v-if="courses[i][j] != undefined">
                                     <div v-for="course of courses[i][j]" :key="course.code">
-                                            <node @update="update" :data="course"/>
+                                            <nodeShow @update="update" :data="course"/>
                                         
                                     </div>
                                 </div>
@@ -76,11 +76,11 @@
 </template>
 
 <script >
-import node from "../timetable/node";
+import nodeShow from "../timetable/node_show";
 
 export default {
   components: {
-    node
+    nodeShow
   },
   data() {
     return {
