@@ -222,14 +222,18 @@ export default {
 
         },
         search_by_name: function(){
-            console.log(this.$session.get('student_id'));
+            if(this.course_name==""){
+                alert("최소 한글자 이상 입력해주세요");
+                return false;
+            } else{
             this.$http.post('/api/make/search/name', {
                 course_name : this.course_name,
                 }).then((response) => {
                     console.log(response.data);
                     this.search = response.data;
             });
-            this.course_name = '';
+            // this.course_name = '';이게 없는게 일반적인것 같은데..
+            }
         },
         search_by_Filter: function(){
             console.log("학부 "+ this.filter.hakbu);
