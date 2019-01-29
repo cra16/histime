@@ -152,10 +152,14 @@
                         ttname : this.$session.get('to_timetablem'),
                         total_credit : this.total_credit(),
                         data_list : this.courses_for_back,
-                        }).
 
-                        window.location = 'http://localhost:8080/'
-                        // this.$router.replace({name: 'show'});
+                        }).then((response) => {
+                         if (response.status === 200 ) {
+                       
+                             window.location = 'http://localhost:8080/'
+                             // this.$router.replace({name: 'show'});
+                        }
+                    });
                     }
                 },
                 user_add(){
@@ -233,7 +237,7 @@
                         
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0][1],
-                        long : 1,
+                        height : 1,
 
                         k_start : -1,
                         size : -1,
@@ -243,8 +247,8 @@
                         if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
                             console.log("into comparison");
                             var temp = prepared_data.pop();
-                            console.log(temp.long);
-                            temp.long ++;
+                            console.log(temp.height);
+                            temp.height ++;
 
                             prepared_data.push(temp);
                         } else {
@@ -257,7 +261,7 @@
                                 
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i][1],
-                                long : 1,
+                                height : 1,
 
                                 k_start : -1,
                                 size : -1,
@@ -268,7 +272,7 @@
                     for(var i = 0 ; i < prepared_data.length; i++){
                         console.log( "day :" + prepared_data[i].day);
                         console.log( "start :" + prepared_data[i].start);
-                        console.log( "length :" + prepared_data[i].long);
+                        console.log( "length :" + prepared_data[i].height);
                     }
 
                     return prepared_data;
@@ -311,8 +315,8 @@
                             }
                             console.log('dest의 길이는 '+ dest.length);
                             //연강 똥값 들어갈 곳이 사이즈가 꽉차있다면 return
-                            if(parsed_data[t].long > 1){
-                                for(var i = 1 ; i < parsed_data[t].long; i++){
+                            if(parsed_data[t].height > 1){
+                                for(var i = 1 ; i < parsed_data[t].height; i++){
                                     if(this.courses_store[day_index][time_index + i] != undefined && this.courses_store[day_index][time_index + i].length > 2) {
                                         console.log("full");
                                         alert("어림없다.");
@@ -346,8 +350,8 @@
                                 for(var i = 0; i < dest.length; i++){
                                     console.log('현재 원소갯수는 ' + dest.length);
 
-                                    //연강 시작친구(long = 2)이거나 똥값(long = -1)이거나
-                                    if(dest[i].long === 2 || dest[i].long === -1){
+                                    //연강 시작친구(height = 2)이거나 똥값(height = -1)이거나
+                                    if(dest[i].height === 2 || dest[i].height === -1){
                                         console.log('연강인 친구나 똥값이 있어요 위치 :' + i);
                                         cont_index = i;
                                         break;
@@ -384,16 +388,16 @@
                             }
 
                             //원소가 연강이면
-                            if(parsed_data[t].long != 1){
+                            if(parsed_data[t].height != 1){
                                 //똥값
                                 var poop = {
                                             code : parsed_data[t].code,
-                                            long : -1,
+                                            height : -1,
                                             k_start : k_start,
                                             size : size,
                                         }
                                 //똥값 넣기 프로세스
-                                for(var z = 1; z < parsed_data[t].long; z++){
+                                for(var z = 1; z < parsed_data[t].height; z++){
                                     //dest_cont는 똥값 들어갈 곳
                                     var dest_cont = this.courses_store[day_index][time_index+z];
 

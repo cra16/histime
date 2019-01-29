@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div v-if="data.long!=-1">
+    <div v-if="data.height!=-1">
         <div class ="box">
-            <div v-bind:id="long" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
+            <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
                 <!-- <input type = "color" v-model="mycolor" /> -->
                 <button id = "del" v-on:click="this.delete_course" >x</button>
 
@@ -28,11 +28,11 @@
 
 <script>
 export default {
-   props : ['data'],//start, long, name, professor
+   props : ['data'],//start, height, name, professor
    data(){
         return{
             time : [] , case : [], 
-            long : 'long' + this.data.long , //연강
+            height : 'height' + this.data.height , //연강
             mycolor : "",
         };
     },
@@ -101,7 +101,7 @@ export default {
  
     },
      created(){
-        this.mycolor = this.$parent.color;
+        this.mycolor = this.data.color;
 
         // console.log(color);
 
