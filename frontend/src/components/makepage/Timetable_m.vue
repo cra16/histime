@@ -218,17 +218,15 @@
                         data_list : this.courses_for_back,
 
                         }).then((response) => {
-                         if (response.status === 200 ) {
-                       
-                             window.location = 'http://203.252.99.231:3000/'
-                             // this.$router.replace({name: 'show'});
+                         if (response.status === 200 ) {                       
+                             this.$router.replace({name: 'show'});
                         }
                     });
                     }
                 },
                  cancel(){//취소하기
                     if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
-                        window.location = 'http://203.252.99.231:3000/'
+                        this.$router.replace({name: 'show'});
                     }else{
                         return;
                     }
