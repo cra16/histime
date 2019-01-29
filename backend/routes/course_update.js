@@ -226,5 +226,40 @@ function addtoDB(json){
     
 }
 
+router.get('/user', function (req, res, next) {
+    var remove = 'DROP TABLE user;';
+    connection.query(remove , function (error, results, fields) {
+        if (error) {
+            console.log('no table exist');
+        }
+    });
+    var create = `CREATE TABLE user(
+        idx INT PRIMARY KEY AUTO_INCREMENT,
+        student_id INT,
+        ttname VARCHAR(45),
+        ttrank INT,
+        total_credit INT,
+        code VARCHAR(20),
+        course_name VARCHAR(150),
+        professor VARCHAR(20),
+        time VARCHAR(20),
+        credit INT,
+        favorited BOOL,
+        height INT,
+        start INT,
+        size INT,
+        k_start INT,
+        color VARCHAR(20),
+        day INT
+        );`;
+    connection.query(create , function (error, results, fields) {
+        if (error) {
+            console.log('create error');
+            console.log(error);
+            console.log('query문은 다음과 같다.' + insert);
+        }
+    });
+    
+});
 
 module.exports = router;
