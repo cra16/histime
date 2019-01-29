@@ -358,7 +358,7 @@
                             for(var j=1;j<=10;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
-                                if(this.courses_store[i][j][k].code === code){
+                                if(this.courses_store[i][j][k].code === raw_data.code){
                                     return true;
                                 }
                             }                
