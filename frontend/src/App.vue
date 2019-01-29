@@ -12,7 +12,7 @@ import login from './components/Login.vue'
 import make from './components/Make.vue'
 import show from './components/Show.vue'
 import individual from './components/Individual.vue'
-
+import aboutus from'./components/Aboutus.vue'
 export default {
 
   name: 'app',

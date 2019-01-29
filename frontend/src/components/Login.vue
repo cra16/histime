@@ -31,14 +31,20 @@
     </div>
      
   </div>
+ 
+  <center><Footer></Footer></center>
   </div>
 </template>
 
 <script>
+import Footer from '../components/Footer.vue'
 
 
 export default {
   name: 'Login', 
+  components: {
+    Footer
+  },
   data() {
     return{
       name : 'HisTime',

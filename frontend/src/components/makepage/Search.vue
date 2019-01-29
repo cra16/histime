@@ -31,7 +31,7 @@
                             <p>영어 {{course.english}}</p>
                         </span>
                         <span class="section4">
-                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"><img src="../../image/starF.png" width="19" height="20"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
                         </span>

@@ -5,6 +5,7 @@ import Login from '../components/Login'
 import Show from '../components/Show'
 import Make from '../components/Make'
 import Individual from '../components/Individual'
+import Aboutus from '../components/Aboutus'
 
 Vue.use(VueRouter)
 Vue.use(VueSession)
@@ -16,7 +17,8 @@ const router = new VueRouter({
     { path: '/', name: 'show', component: Show   } ,
     { path: '/make', name: 'make', component: Make },
     { path: '/login', name: 'login', component: Login },
-    { path: '/individual', name: 'individual', component: Individual}
+    { path: '/individual', name: 'individual', component: Individual},
+    { path: '/aboutus', name: 'aboutus', component: Aboutus} 
   ]
 })
 
