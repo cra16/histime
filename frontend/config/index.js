@@ -15,7 +15,7 @@ module.exports = {
 
     proxyTable: {
   '/api': {
-      target:  'http://76f4b0d6.ngrok.io/api',
+      target:  'http://d1008d97.ngrok.io/api',
     
     changeOrigin: true,
     pathRewrite: {

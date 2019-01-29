@@ -41,7 +41,7 @@ export default {
   name: 'Login', 
   data() {
     return{
-      name : 'His Time',
+      name : 'HisTime',
       input :  {
           id : "",
           password : "",
