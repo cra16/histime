@@ -3,7 +3,7 @@
     <!--<div class="page"> -->
     <div class = "logo">
       <h1>{{ name }} </h1>
-      <p>이번 학기를 채울 모든 경우의 수, His Time</p>
+      <p>이번 학기를 채울 모든 경우의 수, HisTime</p>
     </div>
 
     <form>
@@ -41,7 +41,7 @@ export default {
   name: 'Login', 
   data() {
     return{
-      name : 'His Time',
+      name : 'HisTime',
       input :  {
           id : "",
           password : "",
