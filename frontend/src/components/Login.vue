@@ -64,7 +64,11 @@ export default {
               this._response = response;
               this.$session.start()
               this.setSession()
-              if(this.isSave){this.setCookies(response)}
+              if(this._response.data.name=="nope"){
+                alert("틀렸어요!")
+                return false;
+              }
+              else if(this.isSave){this.setCookies(response)}
               else{
                 this.$cookies.set('auth_save', false)
                 }
