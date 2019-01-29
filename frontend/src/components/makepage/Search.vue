@@ -4,7 +4,7 @@
        <div>
        <div class="search_field" > 
 
-        <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
+        <input v-model="course_name" type="text" placeholder="   과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
 
