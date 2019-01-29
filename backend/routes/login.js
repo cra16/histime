@@ -47,9 +47,14 @@ router.post('/', function (req, res) {
                 }));
             });
             spooky.then(function () {
-                this.emit('name', {name : this.getElementInfo('td[width="240"]').text, student_id : this.getElementAttribute('input[name="hakbun"]', 'value')});
+                try { // statements to try
+                    this.emit('name', {name : this.getElementInfo('td[width="240"]').text, student_id : this.getElementAttribute('input[name="hakbun"]', 'value')});                  }
+                  catch (e) {
+                    this.emit('name', {name : 'nope', student_id : 'nope'});
+                  }
+                
             }); 
-
+            
             spooky.then(function () {
                 this.exit();
             }); 

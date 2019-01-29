@@ -21,12 +21,13 @@
             </tr>
             <tr>
                 <td id="class_time">1</td>
-                    <td v-for="j in 6" :key="j" rowspan="10"> <!--요일 반복문-->         
-                        <div v-for="i in 10" :key="i"><!--시간반복-->
-                            <div v-if="courses[j] != undefined">
-                                <div v-if="courses[j][i] != undefined">
-                                    <div v-for="course of courses[1][i]" :key="course.code">
-                                            <node :data="course" />
+                    <td v-for="i in 6" :key="i" rowspan="10"><!--요일에 대한 반복문-->
+                        <div v-for="j in 10" :key="j"><!--1교시 to 10교시 반복문-->
+                            <div v-if="courses[i] != undefined">
+                                <div v-if="courses[i][j] != undefined">
+                                    <div v-for="course of courses[i][j]" :key="course.code">
+                                            <node @update="update" :data="course"/>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -83,12 +84,6 @@ export default {
   data() {
     return {
       tt_name: "",
-      nodes: {},
-      node: {
-        start: "1",
-        leng: "2",
-        name: "녹차아이스"
-      },
       courses : [[[]]],
     };
   },
@@ -115,6 +110,26 @@ export default {
         }).then(response => {
             if (response.status === 200) {
                 console.log(response.data);
+                for(var i = 0; i < response.data.length; i ++){
+                    var time_index = response.data[i].start;
+                    var day_index = 0;
+                    if(response.data[i].day === '월') day_index = 1;
+                    else if(response.data[i].day === '화') day_index = 2;
+                    else if(response.data[i].day === '수') day_index = 3;
+                    else if(response.data[i].day === '목') day_index = 4;
+                    else if(response.data[i].day === '금') day_index = 5;
+                    else if(response.data[i].day === '토') day_index = 6;
+
+                    this.courses = [[[]]];
+                    if(courses[day_index] === undefined) courses[day_index] = [];
+                    if(courses[day_index][time_index] === undefined) courses[day_index][time_index] = [];
+                    this.courses[day_index][time_index].push(response.data[i]);
+                }
+                
+                
+                this.$forceUpdate();
+
+                
             }
         });
     },
@@ -128,63 +143,6 @@ export default {
             console.log(response.data);
           }
         });
-    },
-    parsingTime(course) {
-        var course_temp = JSON.parse(JSON.stringify(course));
-        var course_for_use = JSON.parse(JSON.stringify(course));
-        
-        var prepared_data = [];
-
-        if(course_temp.time = '')return prepared_data;
-
-        var sep_time = course_for_use.time.split( ',');
-        // for(var i = 0; i< sep_time.length; i++){
-        //     console.log(sep_time[i]);
-        // }
-        console.log(course.time + '코스타임');
-        console.log(course_temp.time + '타임');
-
-        prepared_data.push({
-            code : course_temp.code,
-            course_name : course_temp.name,
-            professor : course_temp.professor,
-            time : course.time,
-            credit : course_temp.credit,
-            
-            day : sep_time[0].substr(0, 1),
-            start : sep_time[0][1],
-            long : 1,
-        });
-
-        for(var i = 1; i < sep_time.length; i++){
-            if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
-                console.log("into comparison");
-                var temp = prepared_data.pop();
-                console.log(temp.long);
-                temp.long ++;
-                prepared_data.push(temp);
-            } else {
-                prepared_data.push({
-                    code : course_temp.code,
-                    course_name : course_temp.name,
-                    professor : course_temp.professor,
-                    time : course.time,
-                    credit : course_temp.credit,
-                    
-                    day : sep_time[i].substr(0, 1),
-                    start : sep_time[i][1],
-                    long : 1,
-                });
-            }
-        }
-
-        for(var i = 0 ; i < prepared_data.length; i++){
-            console.log( "day :" + prepared_data[i].day);
-            console.log( "start :" + prepared_data[i].start);
-            console.log( "length :" + prepared_data[i].long);
-        }
-
-        return prepared_data;
     },
   }
 };
