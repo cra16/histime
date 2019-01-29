@@ -1,14 +1,14 @@
 <template>
 <div class = 'header'>
-    <span class = 'logo'>HisTime</span>
-    <span class = 'logo'>이번 학기를 채울 모든 경우의 수, HisTime</span>
-
-<div class = 'line'></div>
-    <div class = 'user'>
-        <p><span id="name">{{ this.$session.get('name') }}</span>님, 안녕하세요!</p>
-        
+    <div class = "logo">
+        <h1>HisTime</h1>
+        <span>이번 학기를 채울 모든 경우의 수, HisTime</span>
     </div>
-    <button v-on:click="logout()">Logout</button>
+    <div class = 'line'></div>
+    <div class = 'user'>
+        <span><span id="name">{{ this.$session.get('name') }}</span>님, 안녕하세요!</span>
+        <button v-on:click="logout()">Logout</button>
+    </div>
 </div>
 
  
