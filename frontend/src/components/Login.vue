@@ -1,37 +1,38 @@
 <template>
   <div class="login">
     <!--<div class="page"> -->
-    <div class = "logo">
-      <h1>{{ name }} </h1>
-      <p>이번 학기를 채울 모든 경우의 수, HisTime</p>
-    </div>
-
-    <form>
-      <div class ="login_box">
-         <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
-        <div class="text_box">
-          <input type = "text" placeholder="hisent id" v-model="input.id" v-on:keyup.enter="login()">
-          <br />
-          <input type = "password" placeholder="hisnet password" v-on:keyup.enter="login()" v-model="input.password">
-        </div>
-       
+    <div class="onlylogin">
+      <div class = "logo">
+        <h1>{{ name }} </h1>
+        <p>이번 학기를 채울 모든 경우의 수, HisTime</p>
       </div>
-      <br /><br /><br />
-      <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
-    </form>
-    
-    <!--</div> -->
 
-    <div  v-show="isLoad" id="loading">
-       <div class="container">
-        <div class="item item-1"></div>
-        <div class="item item-2"></div>
-        <div class="item item-3"></div>
-        <div class="item item-4"></div>
-    </div>
-     
-  </div>
- 
+      <form>
+        <div class ="login_box">
+          <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
+          <div class="text_box">
+            <input type = "text" placeholder="hisent id" v-model="input.id" v-on:keyup.enter="login()">
+            <br />
+            <input type = "password" placeholder="hisnet password" v-on:keyup.enter="login()" v-model="input.password">
+          </div>
+        
+        </div>
+        <br /><br /><br />
+        <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
+      </form>
+      
+      <!--</div> -->
+     </div>
+      <div  v-show="isLoad" id="loading">
+        <div class="container">
+          <div class="item item-1"></div>
+          <div class="item item-2"></div>
+          <div class="item item-3"></div>
+          <div class="item item-4"></div>
+      </div>
+      
+      </div>
+  
   <center><Footer></Footer></center>
   </div>
 </template>

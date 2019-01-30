@@ -115,10 +115,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for ="i in 10" :key ="i">
+                                <tr v-for ="i in 11" :key ="i">
                                     <td>{{ i }}</td>
-                                        <td v-bind:class="{checked : checktime[(i+j*10)]}" v-for ="j in 6" :key ="j" > 
-                                        <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 10)]" v-on:click="checktime[(i + j * 10)] != checktime[(i + j * 10)]">
+                                        <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
+                                        <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 11)]" v-on:click="checktime[(i + j * 11)] != checktime[(i + j * 11)]">
                                         <label for="checktime"></label>
                                         
                                         </td>
@@ -183,14 +183,14 @@ export default {
         },
         timebox_chosen: function(){
             this.searchbox=false;
-               for(var i=1;i<61; i++) {
+               for(var i=1;i<67; i++) {
                     if(this.checktime[i] === undefined)continue;
                  if(this.checktime[i]===true) {
                     
                     console.log('j는' + j);
                     var day = '';
-                    var time = i % 10;
-                    var j = (i - time)/10;
+                    var time = i % 11;
+                    var j = (i - time)/11;
                     if(j === 1) day +=  '월';
                     else if(j === 2) day += '화';
                     else if(j === 3) day += '수';
