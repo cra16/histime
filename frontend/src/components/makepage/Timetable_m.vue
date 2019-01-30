@@ -113,6 +113,21 @@
               
           },
             methods : {
+                modify(){
+                    var data = this.$session.get('to_modify');
+                    if(data === undefined) return;
+                    console.log('into')
+                    this.$http.post('/api/make/modify_list', {
+                            code :  data,
+                    }).then((response) => {
+                        for(var i = 0; i < response.data.length; i++){
+                            this.add_to(response.data[i]);
+                            console.log('running');
+                        }
+
+                    });
+                    this.$session.set('to_modify', undefined);
+                },
                 update(data){
                     console.log(data);
                     console.log('update function');
@@ -122,7 +137,6 @@
                     }
                 
                 },
-            
                 update_table(){
                     console.log("yes");
                     this.courses = [[[]]];                    
@@ -132,18 +146,29 @@
                 find_course_to_remove_per_day(code){
                     var courses_per_day = [];
                     var course_to_send;
+                    console.log(this.courses_store);
                     for(var i=1;i<=6;i++){
-                        if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                        if(this.courses_store[i] === undefined)  {
+                            console.log(`건너뛰기 ${i}`)
+                            continue;//다른 요일로 건너뛰기
+                        }
                         for(var j=1;j<=10;j++){
-                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
+                            if(this.courses_store[i][j] === undefined)  {
+                                console.log(`건너뛰기 ${i}, ${j}`)
+                                continue;//다른 시간으로 건너뛰기
+                            }
                             for(var k=0; k<this.courses_store[i][j].length;k++){
+                                console.log(`확인 ${this.courses_store[i][j][k].code} ${code}`)
                                 if(this.courses_store[i][j][k].code === code){
                                     course_to_send = this.courses_store[i][j][k];
                                     courses_per_day.push(course_to_send);
+                                    console.log('into find');
+                                    console.log(course_to_send);
                                     break;
                                 }
                             }
-                            if(course_to_send.day === i)break;
+                            console.log(course_to_send);
+                            if(course_to_send != undefined && course_to_send.day === i)break;
                                             
                         }
                     }
@@ -179,6 +204,8 @@
                 },
                 remove(code){
                     var courses_to_remove = this.find_course_to_remove_per_day(code);
+                    console.log('courses_to_remove');
+                    console.log(courses_to_remove);
                     for(var i = 0; i < courses_to_remove.length; i++)this.rearrange_for_removal(courses_to_remove[i]);
                     this.remove_course(code);
                     this.update_table();
@@ -189,10 +216,11 @@
                 remove_course(code){
                     console.log('delete');
                     console.log(code);
+                    console.log(this.courses_for_back);
                     //노드 courses_store[[[]]]배열에서 삭제
                     for(var i=1;i<=6;i++){
-                            if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
-                            for(var j=1;j<=10;j++){
+                        if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
+                        for(var j=1;j<=10;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
                                 if(this.courses_store[i][j][k].code === code){
@@ -201,24 +229,43 @@
                             }                
                         }
                     }
-                },
-
-                save(){//저장하기, 
-                    if(confirm("시간표를 완성하시겠습니까?")){
-                        this.$http.post('/api/make/make_tt', {
-                        student_id :  this.$session.get('student_id'),
-                        ttname : this.$session.get('to_timetablem'),
-                        total_credit : this.total_credit(),
-                        data_list : this.courses_for_back,
-
-                        }).then((response) => {
-                         if (response.status === 200 ) {                       
-                             this.$router.replace({name: 'show'});
+                    for(var i = 0 ; i < this.courses_for_back.length; i++){
+                        if(code === this.courses_for_back[i].code) {
+                            this.courses_for_back.splice(i,1);
+                            i-=1;
                         }
+                        
+                    }
+                    console.log(this.courses_for_back);
+
+                },
+                save(){//저장하기,
+                    
+                    if(confirm("시간표를 완성하시겠습니까?")){
+                        console.log(this.ttname);
+                        this.$http.post('/api/show/del_tt', {
+                            student_id :  this.$session.get('student_id'),
+                            ttname :  this.$session.get('to_timetablem')
+                        }).then((response) => {
+                            console.log('after remove');
+                            this.$http.post('/api/make/make_tt', {
+                            student_id :  this.$session.get('student_id'),
+                            ttname : this.$session.get('to_timetablem'),
+                            total_credit : this.total_credit(),
+                            data_list : this.courses_for_back,
+
+                            }).then((response) => {
+                            console.log('after save');
+                            if (response.status === 200 ) {                       
+                                this.$router.replace({name: 'show'});
+                        }
+                        });
+
+                        
                     });
                     }
                 },
-                 cancel(){//취소하기
+                cancel(){//취소하기
                     if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
                         this.$router.replace({name: 'show'});
                     }else{
@@ -617,6 +664,7 @@
                 },
             },
             created(){
+                this.modify();
                 this.$EventBus.$on('to_timetablem', function(text){//show 에서 추가하기 했을때 오는 이름
                     this.tt_name = text;
                     this.tt_name = "aa";
@@ -624,7 +672,9 @@
                 }),
                 this.$EventBus.$on('add_a', this.add_a_to),
                 this.$EventBus.$on('courses', this.add_to),
-                this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
+                this.$EventBus.$on('close_user_custom', this.user_add),//user custom 창 종료
+                this.$EventBus.$on('to_modify', this.modify)
+
             }
             
         }
