@@ -9,8 +9,7 @@
         <a href="mailto:21500582@handong.edu" title="email">피드백 보내기</a>
         <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
         <router-link to="/individual" title="law">개인정보처리방침</router-link>
-        <!-- <a v-on:click="individual()">개인정보처리방침</a>
-       -->
+      
        <p>copyright by CRA &emsp;&emsp; Designed by Chung YuJin</p>
        <router-view></router-view>
        </div> 

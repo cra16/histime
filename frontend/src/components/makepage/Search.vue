@@ -42,13 +42,7 @@
       </div>
         
     </div>
-    <div id="foot">
     
-    </div>
-    
-     
-      
-     
       <div v-show="showbox" class="placeholder-box" >
            
             <p>학부&emsp;&ensp;&nbsp;
@@ -138,8 +132,8 @@
                 </p>
             </div>
        </div>
-     
-
+       <h1 id="foot2">
+       </h1>
     </div>
   
 </template>
