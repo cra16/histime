@@ -305,7 +305,7 @@
                         credit : course_temp.credit,
                         
                         day : sep_time[0].substr(0, 1),
-                        start : sep_time[0][1],
+                        start : sep_time[0].match(/\d+/)[0],
                         height : 1,
 
                         k_start : -1,
@@ -313,7 +313,7 @@
                     });
             
                     for(var i = 1; i < sep_time.length; i++){
-                        if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
+                        if(parseInt(sep_time[i-1].match(/\d+/)[0]) + 1 === parseInt(sep_time[i].match(/\d+/)[0])){
                             console.log("into comparison");
                             var temp = prepared_data.pop();
                             console.log(temp.height);
@@ -329,7 +329,7 @@
                                 credit : course_temp.credit,
                                 
                                 day : sep_time[i].substr(0, 1),
-                                start : sep_time[i][1],
+                                start : sep_time[i].match(/\d+/)[0],
                                 height : 1,
 
                                 k_start : -1,
