@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div class="main">
        <h1 id="head">과목찾기</h1>
        <div>
        <div class="search_field" > 
