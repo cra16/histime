@@ -151,5 +151,5 @@
 
 
 
-<style  src = '../../assets/Showpage/list.less' lang ="scss" scoped>
+<style  src = '../../assets/Showpage/list.scss' lang ="scss" scoped>
 </style>

@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style src = '../assets/Individual.less' lang='scss' scoped>
+<style src = '../assets/Individual.scss' lang='scss' scoped>
 
 </style>
 

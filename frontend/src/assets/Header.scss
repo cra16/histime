@@ -5,6 +5,7 @@
 
 }
 .logo{
+    cursor : pointer;
     margin-bottom:0px;
     flex : 1;
     h1{
@@ -49,7 +50,7 @@
     button{
         margin-left : 0.5%;
         margin-top : 3%;
-
+        cursor:pointer;
         text-align: center;
         background-color: #FFCA55;
         font-size: 1em;
@@ -57,6 +58,10 @@
         color : white;
         border-radius: 10px;
         border : 0px;
+    }
+    #update{
+        color : dimgray;
+        font-size : 13px;
     }
     
 }

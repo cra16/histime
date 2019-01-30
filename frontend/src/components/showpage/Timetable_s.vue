@@ -4,9 +4,11 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
-    <button>과목코드복사</button>
     <!--글자 제한 두기-->
-  </div>
+    <button  v-on:click="code_copy_toggle()">과목코드복사</button>
+    <codeCopy v-if="codeCopyShow==true" ></codeCopy>
+
+  </div>      
 
    <div class = "timetable">
      
@@ -22,13 +24,12 @@
             </tr>
             <tr>
                 <td id="class_time">1</td>
-                    <td v-for="i in 6" :key="i" rowspan="10"><!--요일에 대한 반복문-->
-                        <div v-for="j in 10" :key="j"><!--1교시 to 10교시 반복문-->
+                    <td v-for="i in 6" :key="i" rowspan="11"><!--요일에 대한 반복문-->
+                        <div v-for="j in 11" :key="j"><!--1교시 to 10교시 반복문-->
                             <div v-if="courses[i] != undefined">
                                 <div v-if="courses[i][j] != undefined">
                                     <div v-for="course of courses[i][j]" :key="course.code">
                                             <nodeShow @update="update" :data="course"/>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +70,9 @@
              <tr>
                 <td id="class_time">10</td>
             </tr>
+            <tr>
+                <td id="class_time">11</td>
+            </tr>
 
         </table>
     </div><!--timetable ending tag-->
@@ -77,15 +81,17 @@
 
 <script >
 import nodeShow from "../timetable/node_show";
+import codeCopy from "../timetable/code_copy";
 
 export default {
   components: {
-    nodeShow
+    nodeShow, codeCopy
   },
   data() {
     return {
-      tt_name: "",
-      courses : [[[]]],
+        codeCopyShow:false,
+                tt_name: "",
+        courses : [[[]]],
     };
   },
   watch: {
@@ -93,11 +99,8 @@ export default {
   },
 
   created() {
-    this.$EventBus.$on("to_timetables", this.get_data);//중간중간 시간표 클릭시
-    // this.check = new Array(6); // 매개변수는 배열의 크기
-    // for (var i = 0; i < 5; i++) {
-    //      arr[i] = new Array(10); // 매개변수는 배열의 크기
-    // }
+    this.$EventBus.$on('close_code_copy',this.code_copy_toggle)
+    
   },
   methods: {
     //   course
@@ -128,6 +131,10 @@ export default {
             }
         });
     },
+    code_copy_toggle(){
+                this.codeCopyShow = !this.codeCopyShow
+    },
+
     update(data){
                     console.log(data);
                     console.log('update function');
@@ -153,5 +160,5 @@ export default {
 </script>
 
 
-<style  src = '../../assets/Showpage/timetable_s.less' lang="scss" scoped>
+<style  src = '../../assets/Showpage/timetable_s.scss' lang="scss" scoped>
 </style>

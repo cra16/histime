@@ -88,6 +88,6 @@ export default {
 }
 </script>
 
-<style src = '../assets/Aboutus.less' lang='scss' scoped>
+<style src = '../assets/Aboutus.scss' lang='scss' scoped>
 
 </style>

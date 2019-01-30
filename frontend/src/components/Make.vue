@@ -56,6 +56,6 @@ import Footer from '../components/Footer.vue'
 
 
 
-<style src = '../assets/Make.less' lang='scss' scoped>
+<style src = '../assets/Make.scss' lang='scss' scoped>
 
 </style>
