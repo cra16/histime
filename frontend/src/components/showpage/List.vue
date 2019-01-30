@@ -136,8 +136,32 @@
             },
             ttedit(key){//시간표 수정하기
                 if(confirm("시간표를 수정하시겠습니까?")){        
-                    this.$session.set('to_timetablem', this.ttlists[key].ttname)//시간표 이름을 세션으로 보냄
-                    this.$router.replace({ name: "make" });
+                    this.$session.set('to_timetablem', this.ttlists[key].ttname);//시간표 이름을 세션으로 보냄
+                    this.$http.post('/api/show/modify_tt', {
+                            student_id :  this.$session.get('student_id'),
+                            ttname :  this.ttlists[key].ttname
+                    }).then((response) => {
+                        var code = [];
+                        if (response.status === 200 ) {
+                            console.log(response.data);
+                            for(var i = 0; i < response.data.length; i++){
+                                var j = 0;
+                                for(j = 0; j < i; j++){
+                                    if(response.data[i].code === response.data[j].code) break;
+                                }
+                                console.log(response.data[i].code);
+                                if(i === j) code.push(response.data[i].code);
+                            }
+                            this.$session.set('to_modify', code)
+                            this.$router.replace({ name: "make" });
+                            
+                            
+                            
+                            
+
+                        }
+
+                    });
                 }  
             },
             ttselect(key){

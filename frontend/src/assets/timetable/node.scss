@@ -21,11 +21,11 @@ $size5 : 33%;
     display: none; 
 }
 .node{
+    overflow: -moz-scrollbars-none;
     height : $base;
     display : block;
     text-align: center;
     position : absolute;
-    overflow: scroll;
     display : inline-block;
     width : 100%;
     margin : 0;
@@ -159,9 +159,6 @@ $size5 : 33%;
     left : $start5;
     width : $size5;
 }
-
-
-
  
 
 #del{

@@ -12,6 +12,7 @@
        </div>
 
   <div class='contents'>
+      <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p>
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
        
             <div class="content" >
@@ -164,6 +165,7 @@ export default {
                 time:[],
                 credit:[]
             },
+            no_result : true,
         
             
         }
@@ -216,15 +218,19 @@ export default {
 
         },
         search_by_name: function(){
-            if(this.course_name==""){
+            this.no_result = false;
+            if(this.course_name.length==0){
                 alert("최소 한글자 이상 입력해주세요");
                 return false;
             } else{
             this.$http.post('/api/make/search/name', {
                 course_name : this.course_name,
                 }).then((response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     this.search = response.data;
+                    if(response.data.length==0){
+                        this.no_result = true;
+                    }
             });
             // this.course_name = '';이게 없는게 일반적인것 같은데..
             }

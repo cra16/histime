@@ -28,6 +28,21 @@ router.post('/', function(req, res, next) {
     // connection.end();
 });
 
+router.post('/modify_list', function(req, res, next) {
+    var code = '';
+    for(var i = 0; i < req.body.code.length; i++){
+        code += `code='${req.body.code[i]}'`
+        if(i != req.body.code.length - 1) code += ' or '
+    }
+    var modify_query = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE ${code};`;
+    console.log(modify_query);
+    connection.query(modify_query, function (err, result) {
+            res.send(result);
+    });
+
+    // connection.end();
+});
+
 //make page 초기에 즐겨찾기 리스트 생성
 //input : student_id
 //output : list of object(name, code, time, credit, gubun, professor, english)

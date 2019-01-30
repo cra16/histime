@@ -38,6 +38,16 @@
 </template>
 
 <script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
+
+<script>
 import Footer from '../components/Footer.vue'
 
 
