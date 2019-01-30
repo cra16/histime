@@ -64,6 +64,10 @@ hr{
     overflow: scroll;
     position : relative;
     
+    #noResult{
+        color : dimgray
+    }
+    
 
     .section1{
         margin-top : 10px;
@@ -323,7 +327,7 @@ hr{
     top:0px;
     display: block;
     width: 100%;
-    min-height: 400px;
+    min-height: 420px;
     margin-top: 0px;
     padding: 5px;
     left: -1px;
@@ -351,7 +355,7 @@ hr{
     
         .choosedone{
             position:absolute;
-            top:88%;
+            top:90%;
             right: 20%;
             font-size:20px;
             background-color:#FFCA55;
@@ -360,7 +364,7 @@ hr{
         }
         .choosereset{
             position:absolute;
-            top:88%;
+            top:90%;
             left:20%;
             font-size:20px;
             background-color:#FFCA55;
