@@ -8,6 +8,8 @@
     <div class = 'user'>
         <span><span id="name">{{ this.$session.get('name') }}</span>님, 안녕하세요!</span>
         <button v-on:click="logout()">Logout</button>
+        <br />
+        <span id="update">Update : {{ year }}-{{ month }}-{{ date }}</span>
     </div>
 </div>
 
@@ -16,15 +18,23 @@
 
 <script>
 export default {
- methods: {
-    logout: function() {
-      this.$session.destroy()
-      this.$cookies.set('auth_save', false)
-      this.$cookies.remove('name')
-      this.$cookies.remove('student_id',)
-      this.$cookies.remove('auth')
-      this.$router.replace('/login')
+    data() {
+        return{
+            year : '2019',
+            month : '09',
+            date : '17'
+
+        }
     },
+    methods: {
+        logout: function() {
+        this.$session.destroy()
+        this.$cookies.set('auth_save', false)
+        this.$cookies.remove('name')
+        this.$cookies.remove('student_id',)
+        this.$cookies.remove('auth')
+        this.$router.replace('/login')
+        },
      goHome(){//취소하기
         var currentUrl = window.location.pathname;
         if(currentUrl=="/make"){
