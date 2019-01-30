@@ -10,7 +10,8 @@
       font-style : italic;
     }
     p{
-      color : darkgrey;
+      letter-spacing: 5px;
+      font-size : 13px;
       margin-top:1%;
       margin-bottom : 3%
     }
@@ -34,14 +35,18 @@
           float : right;
           margin-right: 3%;
           margin-bottom : 5px;
-          width: 60%;
+          width: 65%;
           padding: 9px;
           font-size: 15pt;
           border : 1.6px solid #225B95;
           color:#225B95
           
         }
-        ::placeholder { color: #225B95; font-size: 15px; } 
+        ::placeholder { 
+          color: #225B95;
+          font-size: 20px;
+          font-weight :150;
+           } 
       }
       .btn{
         width : 90px;
@@ -60,7 +65,7 @@
     }
   .check_box {
     clear: both;
-    margin-left : 19%;
+    margin-left : 11%;
     input{ 
      display : inline
     }

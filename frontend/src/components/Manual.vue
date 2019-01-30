@@ -50,6 +50,6 @@ export default {
 }
 </script>
 
-<style src = '../assets/Manual.less' lang='scss' scoped>
+<style src = '../assets/Manual.scss' lang='scss' scoped>
 
 </style>
