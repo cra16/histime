@@ -236,8 +236,11 @@
                         }
                     }
                     for(var i = 0 ; i < this.courses_for_back.length; i++){
-                        if(code === this.courses_for_back[i].code) this.courses_for_back.splice(i,1);
-                        i-=1;
+                        if(code === this.courses_for_back[i].code) {
+                            this.courses_for_back.splice(i,1);
+                            i-=1;
+                        }
+                        
                     }
                     console.log(this.courses_for_back);
 
