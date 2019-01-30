@@ -527,7 +527,7 @@
 
                                     if(this.courses_store[day_index] === undefined) this.courses_store[day_index] = [];
                                     //연강인데 원소 위치가 정의가 안되있을경우
-                                    if(dest_cont === undefined){
+                                    if(dest_cont === undefined || dest_cont.length === 0){
                                         console.log("똥값 들어갔음");
                                         this.courses_store[day_index][time_index+z] = [];
                                         this.courses_store[day_index][time_index+z].push(poop);
@@ -536,16 +536,21 @@
 
                                     //원소 위치가 정의 되어있다면
                                     else{
-                                        console.log(`size : ${size}, dest_con[0].size = ${dest_cont[0].size}`);
+                                        var dest_index = 0;
+                                        for(var p = 0 ; p < dest_cont.length; p++){
+                                            if(dest_cont[p]!=undefined) dest_index = p;
+                                        }
+                                        console.log(`dest_index = ${dest_index}`);
+                                        console.log(`size : ${size}, dest_con[0].size = ${dest_cont[dest_index].size}`);
                                         //근데 위치가보니까 내 위치 사이즈가 더 크면 업데이트해줘
-                                        if(dest_cont[0].size + 1 < size) {
+                                        if(dest_cont[dest_index].size + 1 < size) {
                                             //size로 연강원소 속해있는 열만 최신화
                                             for(var j = 0 ; j < dest_cont.length; j++) this.$set(dest_cont[j], 'size', size); 
 
                                         }
                                         //내 위치 사이즈가 작으면 해당 위치 사이즈로 바꿔주면 됨
                                         else {
-                                            size = dest_cont[0].size + 1;
+                                            size = dest_cont[dest_index].size + 1;
                                             console.log('내 위치 사이즈가 작으면 해당 위치 사이즈로 바꿔줘라')
                                             for(var j = 0 ; j < dest_cont.length; j++) this.$set(dest_cont[j], 'size', size); 
                                             for(var j = 0 ; j < this.courses_store[day_index][time_index].length; j++) this.$set(this.courses_store[day_index][time_index][j], 'size', size);                                             
