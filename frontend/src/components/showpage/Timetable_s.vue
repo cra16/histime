@@ -4,11 +4,9 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
+    <button>과목코드복사</button>
     <!--글자 제한 두기-->
-    <button  v-on:click="code_copy_toggle()">과목코드복사</button>
-    <codeCopy v-if="codeCopyShow==true" ></codeCopy>
-
-  </div>      
+  </div>
 
    <div class = "timetable">
      
@@ -81,17 +79,15 @@
 
 <script >
 import nodeShow from "../timetable/node_show";
-import codeCopy from "../timetable/code_copy";
 
 export default {
   components: {
-    nodeShow, codeCopy
+    nodeShow
   },
   data() {
     return {
-        codeCopyShow:false,
-                tt_name: "",
-        courses : [[[]]],
+      tt_name: "",
+      courses : [[[]]],
     };
   },
   watch: {
@@ -99,8 +95,11 @@ export default {
   },
 
   created() {
-    this.$EventBus.$on('close_code_copy',this.code_copy_toggle)
-    
+    this.$EventBus.$on("to_timetables", this.get_data);//중간중간 시간표 클릭시
+    // this.check = new Array(6); // 매개변수는 배열의 크기
+    // for (var i = 0; i < 5; i++) {
+    //      arr[i] = new Array(10); // 매개변수는 배열의 크기
+    // }
   },
   methods: {
     //   course
@@ -131,10 +130,6 @@ export default {
             }
         });
     },
-    code_copy_toggle(){
-                this.codeCopyShow = !this.codeCopyShow
-    },
-
     update(data){
                     console.log(data);
                     console.log('update function');
