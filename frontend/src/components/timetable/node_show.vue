@@ -110,6 +110,6 @@ export default {
 
 </script>
 
-<style src = '../../assets/timetable/node_show.less' lang='scss' scoped>
+<style src = '../../assets/timetable/node_show.scss' lang='scss' scoped>
    
 </style>

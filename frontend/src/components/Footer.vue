@@ -31,7 +31,7 @@ export default {
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src = '../assets/Footer.less' lang='scss' scoped>
+<style src = '../assets/Footer.scss' lang='scss' scoped>
 
 </style>
 

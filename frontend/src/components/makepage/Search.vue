@@ -289,7 +289,7 @@ export default {
 }
 
 </script>
-<style   src = '../../assets/Makepage/search.less' lang = "scss" scoped>
+<style   src = '../../assets/Makepage/search.scss' lang = "scss" scoped>
 </style>
 
 

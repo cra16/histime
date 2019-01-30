@@ -18,7 +18,7 @@ hr{
 #add{
   padding: 3px 18px;
   position:relative;
-
+  cursor:pointer;
   background-color:#FFCA55;
   color:white;
   border: none;
@@ -107,6 +107,7 @@ ts{
   font-weight: normal;
   font-size: 15px;
   text-align: left;
+  cursor : pointer;
   width: 340px;
 }
 #edit {
@@ -124,6 +125,10 @@ ts{
 }
 #h_ttname {
   width: 215px;
+}
+
+tr:hover{
+  background: #E6F1FC 
 }
 /* demo styles */
 

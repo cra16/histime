@@ -22,8 +22,8 @@
             <tr>
 
                 <td id="class_time">1</td>
-                    <td v-for="i in 6" :key="i" rowspan="10"><!--요일에 대한 반복문-->
-                        <div v-for="j in 10" :key="j"><!--1교시 to 10교시 반복문-->
+                    <td v-for="i in 6" :key="i" rowspan="11"><!--요일에 대한 반복문-->
+                        <div v-for="j in 11" :key="j"><!--1교시 to 10교시 반복문-->
                             <div v-if="courses[i] != undefined">
                                 <div v-if="courses[i][j] != undefined">
                                     <div v-for="course of courses[i][j]" :key="course.code">
@@ -34,14 +34,9 @@
                             </div>
                         </div> 
                     </td>
-             
-               
             </tr>
-
              <tr>
                 <td id="class_time">2</td>
-                
-                
             </tr>
              <tr>
                <td id="class_time">3</td>
@@ -69,10 +64,9 @@
              <tr>
                 <td id="class_time">10</td>
             </tr>
-            
-            
-
-
+            <tr>
+                <td id="class_time">11</td>
+            </tr>
         </table>
     </div><!--timetable ending tag-->
     <div class="foot">
@@ -639,6 +633,6 @@
 </script>
 
 
-<style  src = '../../assets/Makepage/timetable_m.less' lang="scss" scoped>
+<style  src = '../../assets/Makepage/timetable_m.scss' lang="scss" scoped>
 
 </style>

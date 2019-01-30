@@ -142,6 +142,6 @@ export default{
 </script>
 
 
-<style  lang ="scss" src = '../../assets/Makepage/save.less' scoped>
+<style  lang ="scss" src = '../../assets/Makepage/save.scss' scoped>
 
 </style>

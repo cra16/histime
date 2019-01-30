@@ -132,6 +132,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src = '../assets/Login.less' lang='scss' scoped>
+<style src = '../assets/Login.scss' lang='scss' scoped>
 
 </style>
