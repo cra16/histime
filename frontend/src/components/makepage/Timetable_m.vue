@@ -98,6 +98,7 @@
                   courses : [[[]]],//시간표에 띄워줄 용도
                   courses_store : [[[]]],
                   courses_for_back : [],//백엔드에 넘겨줄 용도
+                  courses_for_conv : [],//쉽게 저장하기 위해서
                   user_add_clicked : false, //user 
                   color : '#000000',
               }
@@ -152,123 +153,18 @@
                         }
                     }
                 },
-                find_course_to_remove_per_day(code){
-                    var courses_per_day = [];
-                    var course_to_send;
-                    console.log(this.courses_store);
-                    for(var i=1;i<=6;i++){
-                        if(this.courses_store[i] === undefined)  {
-                            console.log(`건너뛰기 ${i}`)
-                            continue;//다른 요일로 건너뛰기
-                        }
-                        for(var j=1;j<=10;j++){
-                            if(this.courses_store[i][j] === undefined)  {
-                                console.log(`건너뛰기 ${i}, ${j}`)
-                                continue;//다른 시간으로 건너뛰기
-                            }
-                            for(var k=0; k<this.courses_store[i][j].length;k++){
-                                console.log(`확인 ${this.courses_store[i][j][k].code} ${code}`)
-                                if(this.courses_store[i][j][k].code === code){
-                                    course_to_send = this.courses_store[i][j][k];
-                                    courses_per_day.push(course_to_send);
-                                    console.log('into find');
-                                    console.log(course_to_send);
-                                    break;
-                                }
-                            }
-                            console.log(course_to_send);
-                            if(course_to_send != undefined && course_to_send.day === i)break;
-                                            
-                        }
-                    }
-                    console.log('find course to remove');
-                    console.log(courses_per_day);
-                    return courses_per_day;
-                },
-                rearrange_for_removal(course){
-                    console.log('into rearrange');
-                    console.log(course);
-                    var size =  course.size;
-                    var k_start = course.k_start;
-                    var day_index = course.day;
-                    var time_index = course.start; 
-                    var cont_exist = false;
-                    console.log('요일');
-                    console.log(day_index);
-                    console.log('현재싸이즈');
-                    console.log(size);
-                    
-                    
-                    
-                    for(var i = 0; i < course.height; i++){
-                        // console.log(`this.courses_store[course.day][course.start+i]은 [${course.day}][${course.start+i}]`);
-                        time_index = parseInt(course.start) + i;
-                        var dest = this.courses_store[day_index][time_index];
-                        console.log(day_index);
-                        console.log(time_index);
-                        console.log(this.courses_store);
-                        for(var j = 0; j < dest.length; j++){
-                            console.log(`course_store[${day_index}][${time_index}][${j}].height = ${dest[j].height}`)
-                            if(dest[j].height != 1) cont_exist = true;
-                        }
-                    }
-                    for(var i = 0; i < course.height; i++){
-                        // console.log(`this.courses_store[course.day][course.start+i]은 [${course.day}][${course.start+i}]`);
-                        time_index = parseInt(course.start) + i;
-                        var dest = this.courses_store[day_index][time_index];
-                        console.log(day_index);
-                        console.log(time_index);
-                        console.log(this.courses_store);
-                        if(cont_exist === false){
-                            for(var j = 0; j < dest.length; j++){
-                                if(dest[j].k_start > k_start) dest[j].k_start  = dest[j].k_start -1;
-                            }
-                        }
-                    }
-                    if(cont_exist === false){
-                        size = size -1 ;
-                        this.prop_update_specific(course.code, size, 'size', day_index);
-                    }
-                    
-                    
-                    
-                },
                 remove(code){
-                    var courses_to_remove = this.find_course_to_remove_per_day(code);
-                    console.log('courses_to_remove');
-                    console.log(courses_to_remove);
-                    for(var i = 0; i < courses_to_remove.length; i++)this.rearrange_for_removal(courses_to_remove[i]);
                     this.remove_course(code);
-                    this.update_table();
-
+                    this.courses_store = [[[]]];
+                    this.add_a_to(this.courses_for_conv);
                 },
-
-                
                 remove_course(code){
-                    console.log('delete');
-                    console.log(code);
-                    console.log(this.courses_for_back);
-                    //노드 courses_store[[[]]]배열에서 삭제
-                    for(var i=1;i<=6;i++){
-                        if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
-                        for(var j=1;j<=10;j++){
-                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
-                            for(var k=0; k<this.courses_store[i][j].length;k++){
-                                if(this.courses_store[i][j][k].code === code){
-                                    this.courses_store[i][j].splice(k,1) 
-                                }
-                            }                
-                        }
-                    }
-                    for(var i = 0 ; i < this.courses_for_back.length; i++){
-                        if(code === this.courses_for_back[i].code) {
-                            this.courses_for_back.splice(i,1);
+                    for(var i = 0 ; i < this.courses_for_conv.length; i++){
+                        if(code === this.courses_for_conv[i].code) {
+                            this.courses_for_conv.splice(i,1);
                             i-=1;
-                        }
-                        
+                        }   
                     }
-                    console.log(this.courses_for_back);
-
                 },
                 save(){//저장하기,
                     
@@ -303,9 +199,6 @@
                         return;
                     }
                 },
-                // user_add(){
-                //     this.user_add_clicked = !(this.user_add_clicked)
-                // },
                 add_a_to(data) {
                     for(var i in data) {
                         var duplication = this.duplication(data[i]);
@@ -357,7 +250,7 @@
                 parsingTime(course) {
                     var course_temp = JSON.parse(JSON.stringify(course));
                     var course_for_use = JSON.parse(JSON.stringify(course));
-                    
+                    this.courses_for_conv.push(course);
                     var prepared_data = [];
 
                     if(course_temp.time = '') return prepared_data;
@@ -488,7 +381,6 @@
                     
                     
                 },
-
                 course_update(parsed_data) {
                     this.color = this.set_color();
                     console.log('color : ' + this.color);
