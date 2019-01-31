@@ -124,10 +124,10 @@ export default{
             student_id : this.$session.get('student_id')
         }).then((response) => {
             if (response.status === 200) {
-                if(resonse.data.length == 0){
+                if(response.data.length == 0){
                     this.noResult = true;
                 }else{
-                    
+                    this.noResult = false;
                     this.courses = response.data; //name, code, time, credit, gubun, professor, english
                 }
                
