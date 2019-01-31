@@ -89,12 +89,13 @@ export default{
             console.log("created: " + course);
             
             if(duplication === true) {
-                this.$toasted.show('Already', { 
-                    theme: "bubble", 
-                    position: "top-center", 
-                    duration : 500,
-                    // fullWidth: false,
-                    // fitToScreen: true
+                //popup
+                this.$notify({
+                    group: 'foo',
+                    title: '경고!',
+                    text: '즐겨찾기에 이미 존재하는 과목입니다.',
+                    duration: 400,
+                    type: 'warn'
                 });
             } else {
                 this.$http.post('/api/make/add_fav', {
