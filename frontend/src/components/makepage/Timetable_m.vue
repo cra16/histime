@@ -3,11 +3,10 @@
 <body>
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
-        <span id="credit">학점 : <span id="num">{{ this.total_credit() }}</span>학점</span>
+        <span id="credit">학점 : <span id="num">{{ this.total_credit }}</span>학점</span>
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
         <!-- <button class="btn" id="reset" v-on:click="reset()"></button> -->
     </div>
-    <div>{{total_credit}}</div>
     <add v-if="user_add_clicked" ></add>
     <div class = "timetable">
         <table>
