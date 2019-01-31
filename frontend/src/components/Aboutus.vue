@@ -1,7 +1,7 @@
 <template>
     <div >
        <center><h1>About us</h1></center> 
-       
+       <center><h3>E-mail:histime206@gmail.com</h3></center>
        <hr width="70%"/>
             <p id="category">developers</p>
           
