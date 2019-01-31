@@ -7,6 +7,9 @@
 .logo{
     cursor : pointer;
     margin-bottom:0px;
+    margin-left:2%;
+    width:200px;
+    
     flex : 1;
     h1{
         color : #225B95;
@@ -66,8 +69,21 @@
     
 }
 
+.mainlogo{
+    position:relative;
+    top:27%;
+    left:6%;
+    margin-bottom:0%;
+   
+    padding:0px 0px 0px 0px;
+}
 
-
+.p1{
+    position:relative;
+    top:16%;
+    left:7%;
+    margin-top:0%;
+}
 
 
 

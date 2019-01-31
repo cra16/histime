@@ -1,8 +1,9 @@
 <template>
 <div class = 'header'>
     <div v-on:click ="goHome()" class = "logo">
-        <h1>HisTime</h1>
-        <span>이번 학기를 채울 모든 경우의 수, HisTime</span>
+        <img src="../image/logo_large.png" width="180" class="mainlogo">
+        <br>
+        <span class="p1">이번 학기를 채울 모든 경우의 수, HisTime</span>
     </div>
     <div class = 'line'></div>
     <div class = 'user'>

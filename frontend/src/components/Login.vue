@@ -3,7 +3,8 @@
     <!--<div class="page"> -->
     <div class="onlylogin">
       <div class = "logo">
-        <h1>{{ name }} </h1>
+        <!-- <h1>{{ name }} </h1> -->
+        <img src="../image/logo_large.png" width="700" class="mainlogo1">
         <p>이번 학기를 채울 모든 경우의 수, HisTime</p>
       </div>
 
