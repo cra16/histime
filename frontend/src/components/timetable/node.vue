@@ -19,7 +19,6 @@
                 <p>{{ this.data.time }}</p>
                 <p>{{ this.data.credit }}학점</p>
                 <p>영어 : {{ this.data.english }} &nbsp; {{ this.data.gubun }}</p>
-                
             </span>
            
         </div>
