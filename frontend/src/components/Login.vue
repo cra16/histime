@@ -33,23 +33,22 @@
       </div>
       
       </div>
+      <input type="button" class='help' v-on:click="show" />
+         <div v-show="showbox" class="placeholder-box" >
+           <center><p class="p1"><u><br> N O T I C E </u></p></center>
+           <p class="p2">His Time은<br>한동대학교 학생들의<br>신학기 시간표 작성을 도와주는<br>프로그램입니다.<br>
+           HISNET 아이디로 로그인<br>가능하며,작성된 시간표는<br> 예비수강신청에 도움을 줄 뿐<br>
+           <u>실제로 장바구니에 적용되지는<br>않음을</u> 알려드립니다. 
+           </p>
+          </div>
   <div class = "footer">
   <center><Footer></Footer></center>
   </div>
   </div>
 </template>
 
-<script>
-export default {
 
-}
-</script>
-
-<style>
-
-</style>
-
-<script>
+<script type="text/javascript">
 import Footer from '../components/Footer.vue'
 
 
@@ -67,6 +66,7 @@ export default {
       },
       isLoad: false,
       isSave: false,
+      showbox:false,
       _response : {}
     }
 
@@ -99,6 +99,10 @@ export default {
             alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
           });
           
+    },
+    show: function(){
+        this.showbox=!this.showbox;
+
     },
     setCookies(){
       

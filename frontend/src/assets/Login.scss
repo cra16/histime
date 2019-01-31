@@ -1,6 +1,6 @@
 .logo{
   text-align: center;
-  margin-top : 7%;
+  margin-top : 10%;
   h1{
     font-size : 90pt;
     margin-bottom : 0%;
@@ -23,7 +23,7 @@
 }
 
 .onlylogin{
-  margin-bottom:10%;
+  margin-bottom:0%;
 }
 
 
@@ -178,6 +178,53 @@ left: 0;
 animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 
+.help{
+
+  background: url( "../image/ask.png" ) no-repeat;
+  background-size : cover;
+  border: 0;
+  outline: 0;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  // background-color:white;
+  // border:0px;
+  // border-radius: 5px;
+  position:relative;
+  bottom:60px;
+  left:80%;
+
+  // cursor: pointer;
+}
+.placeholder-box {
+  position: absolute;
+  z-index : 1;
+  
+  top:20%;
+  left:76%;
+  margin:0px 0px 0px 0px;
+  // bottom:00px;
+  border-radius:40px;
+  width:250px;
+  height:340px;  
+  background-color:rgb(214, 223, 233);
+}
+
+.p1{
+  color : #225B95;
+  font-size: 20px;
+  margin-bottom:2%;;
+
+}
+
+.p2{
+  margin-top:6%;
+  line-height:25px;
+  margin-left:14%;
+  font-size: 12px;
+  font-weight:bold;
+  color:dimgrey;
+}
 @keyframes item-1_move {
 0%, 100% {transform: translate(0, 0)} 
 25% {transform: translate(0, 100px)} 
