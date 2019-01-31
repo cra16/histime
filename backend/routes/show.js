@@ -6,8 +6,8 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : 'h010638847',
+    user     : 'tester',
+    password : '1234',
     database : 'histime'
 });
 
@@ -67,6 +67,20 @@ router.post('/del_tt', function(req, res, next) {
         if(err) console.log(err);
         console.log(results);
     });
+});
+
+//copy_code
+router.post('/copy', function(req, res, next) {
+    var student_id = req.body.student_id;
+    var ttname = req.body.ttname;
+
+    console.log('id : ' + student_id);
+    console.log('ttname : ' + ttname);
+
+    connection.query(`SELECT code, course_name, professor FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
+        if(err) console.log(err);
+        res.send(results);
+    })
 });
 
 //시간표 수정
