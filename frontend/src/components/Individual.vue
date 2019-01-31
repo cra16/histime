@@ -71,11 +71,17 @@
             3) 대검찰청 인터넷범죄수사센터 (http://icic.sppo.go.kr/02-3480-3600)<br>
             4) 경찰청 사이버테러대응센터 (www.ctrc.go.kr/02-392-0330)<br>
             </p>  
+
+            <center><button class="back" v-on:click="goBack">뒤로가기</button></center>
     </div>
 </template>
 <script>
 export default {
-    
+      methods:{
+        goBack:function(){
+            window.history.go(-1);
+        }
+    }
 }
 </script>
 
