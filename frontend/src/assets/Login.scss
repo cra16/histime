@@ -1,27 +1,26 @@
-
-  .logo{
-    text-align: center;
-    margin-top : 13%;
-    h1{
-      font-size : 90pt;
-      margin-bottom : 0%;
-      color : #225B95;
-      font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
-      font-style : italic;
-    }
-    p{
-      letter-spacing: 5px;
-      font-size : 13px;
-      margin-bottom : 3%
-    }
+.logo{
+  text-align: center;
+  margin-top : 7%;
+  h1{
+    font-size : 90pt;
+    margin-bottom : 0%;
+    color : #225B95;
+    font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
+    font-style : italic;
   }
+  p{
+    margin-top:0%;
+    letter-spacing: 5px;
+    font-size : 13px;
+    margin-bottom : 3%
+   
+  }
+
+}
+.mainlogo1{
+ margin-bottom:0%;
   
-
-  .onlylogin{
-    margin-bottom:10%;
-  }
-
-
+}
 
 .onlylogin{
   margin-bottom:10%;
@@ -195,6 +194,10 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 50% {transform: translate(100px, -100px)} 
 75% {transform: translate(0, -100px)} 
 }
+
+
+
+
 
 /*
 @keyframes spin {
