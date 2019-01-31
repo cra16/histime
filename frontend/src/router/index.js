@@ -8,9 +8,12 @@ import Copy from '../components/showpage/copy'
 import Individual from '../components/Individual'
 import Manual from '../components/Manual'
 import Aboutus from '../components/Aboutus'
+import Toasted from 'vue-toasted';
 
+Vue.use(Toasted)
 Vue.use(VueRouter)
 Vue.use(VueSession)
+
 const router = new VueRouter({
   mode: 'history',
   

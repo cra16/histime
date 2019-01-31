@@ -110,8 +110,6 @@
                     console.log("changed")
                 }
             },
-            
-              
           },
             methods : {
                 modify(){
@@ -212,8 +210,6 @@
                     this.update_table();
 
                 },
-
-                
                 remove_course(code){
                     console.log('delete');
                     console.log(code);
@@ -241,7 +237,6 @@
 
                 },
                 save(){//저장하기,
-                    
                     if(confirm("시간표를 완성하시겠습니까?")){
                         console.log(this.ttname);
                         this.$http.post('/api/show/del_tt', {
@@ -407,9 +402,7 @@
                         }
                     }
                     return false;
-
                 },
-
                 course_update(parsed_data) {
                     this.color = this.set_color();
                     console.log('color : ' + this.color);
@@ -689,7 +682,6 @@
         
     
 </script>
-
 
 <style  src = '../../assets/Makepage/timetable_m.scss' lang="scss" scoped>
 
