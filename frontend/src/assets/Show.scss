@@ -1,6 +1,5 @@
 //여기에 미세하게.. 리스트랑 시간표랑 높이차이? 위치차이가 있는데 뭐때문인지 모르겠움 ㅠㅠ
 #show{
-	overflow: hidden;
 	height:70%;
 	width:100%;
 	margin: 0px auto;
@@ -16,7 +15,7 @@
 	text-align: center;
 
 }
-	.centered {
+.centered {
 	position: relative;
 	display: inline-block;
 	width: 1230px;//여기를 조정해야 한다.

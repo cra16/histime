@@ -97,6 +97,7 @@
                   },
                   courses : [[[]]],//시간표에 띄워줄 용도
                   courses_store : [[[]]],
+                  courses_for_back : [],
                   courses_for_conv : [],//쉽게 저장하기 위해서
                   user_add_clicked : false, //user 
                   color : '#000000',
@@ -169,6 +170,7 @@
                 save(){//저장하기,
                     if(confirm("시간표를 완성하시겠습니까?")){
                         console.log(this.ttname);
+                        console.log(this.$session.get('to_timetablem'));
                         this.$http.post('/api/show/del_tt', {
                             student_id :  this.$session.get('student_id'),
                             ttname :  this.$session.get('to_timetablem')
@@ -572,7 +574,7 @@
                             console.log('제대로된 친구 넣기');
                             parsed_data[t].color = this.color;
                             this.courses_store[day_index][time_index].push(parsed_data[t]);
-                            // this.courses_for_back.push(parsed_data[t]);
+                            this.courses_for_back.push(parsed_data[t]);
                             this.$forceUpdate();
                         }
                 },
