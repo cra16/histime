@@ -180,6 +180,7 @@ export default {
   
     methods:{
         show: function(){
+            this.course_name = '';//검색창 기록을 지움
             this.showbox=!this.showbox;
             this.filter.credit.splice(false, this.filter.credit.length);        
 
@@ -188,6 +189,7 @@ export default {
         show2: function(){
            
             this.searchbox=!this.searchbox;
+           
             
         },
         timebox_chosen: function(){
@@ -249,6 +251,7 @@ export default {
             }
         },
         search_by_Filter: function(){
+           
             this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
             this.search=''//검색창 초기화
             this.loading = true;//'검색중..'글자 띄워줌
