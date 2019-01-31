@@ -136,7 +136,7 @@ export default{
                 if(response.data.length == 0){
                     this.noResult = true;
                 }else{
-                    
+                    this.noResult = false;
                     this.courses = response.data; //name, code, time, credit, gubun, professor, english
                 }
                
