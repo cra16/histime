@@ -32,8 +32,9 @@
       </div>
       
       </div>
-  
+  <div class = "footer">
   <center><Footer></Footer></center>
+  </div>
   </div>
 </template>
 
