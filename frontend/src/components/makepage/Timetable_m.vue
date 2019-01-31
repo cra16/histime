@@ -266,6 +266,8 @@
                         professor : course_temp.professor,
                         time : course.time,
                         credit : course_temp.credit,
+                        gubun : course_temp.gubun,
+                        english : course_temp.english,
                         
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0].match(/\d+/)[0],
@@ -290,6 +292,8 @@
                                 professor : course_temp.professor,
                                 time : course.time,
                                 credit : course_temp.credit,
+                                gubun : course_temp.gubun,
+                                english : course_temp.english,
                                 
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i].match(/\d+/)[0],
