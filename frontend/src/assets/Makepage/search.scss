@@ -59,7 +59,7 @@ hr{
 .contents{
     font-size : 13px;
     font-weight : 500;
-    height:80%;
+    height:77%;
     width : 100%;
     overflow: scroll;
     position : relative;
@@ -277,7 +277,7 @@ hr{
                 color: #eee;
               }
             .checked{
-                background-color : rgba(243, 217, 162, 0.897);
+                background-color : yellow;
             }
         
 
@@ -389,14 +389,14 @@ p{
 }
 .contents{
    
-    font-size : 13px;
-    font-weight : 500;
-    height:76.5%;
-    overflow: scroll;
-    @media only screen and (min-width : 1824px) {
-        //큰 화면
-        height :86.7%;
-    }
+    // font-size : 13px;
+    // font-weight : 500;
+    // height:76.5%;
+    // overflow: scroll;
+    // @media only screen and (min-width : 1824px) {
+    //     //큰 화면
+    //     height :86.7%;
+    // }
 }
 .section1{
     display : inline-block;
