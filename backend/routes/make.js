@@ -199,6 +199,7 @@ router.post('/del_all_fav', function(req, res) {
 //시간표생성
 //input : array of data(student_id, ttname, total_credit, code, name, professor, time, credit)
 router.post('/make_tt', function(req, res) {
+    console.log('into make_tt');
     //디버깅용
     var student_id = req.body.student_id;
     var ttname = req.body.ttname;
@@ -251,7 +252,7 @@ router.post('/make_tt', function(req, res) {
 
 
         var make_tt = `INSERT INTO user(student_id, ttname, total_credit, code, course_name, professor, time, credit, height, start, size, k_start, color, day) VALUES (${student_id}, '${ttname}', ${total_credit}, '${data_list[i].code}', '${data_list[i].course_name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, ${data_list[i].height}, ${data_list[i].start}, ${data_list[i].size},  ${data_list[i].k_start}, '${data_list[i].color}', '${data_list[i].day}');`
-
+        console.log(make_tt);
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             console.log(courseList);
