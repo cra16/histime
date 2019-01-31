@@ -154,10 +154,6 @@
                             }
                             this.$session.set('to_modify', code)
                             this.$router.replace({ name: "make" });
-                            
-                            
-                            
-                            
 
                         }
 

@@ -4,7 +4,7 @@
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
-        <button class="btn" id="reset" v-on:click="reset()"></button>
+        <!-- <button class="btn" id="reset" v-on:click="reset()"></button> -->
     </div>
 
     <add v-if="user_add_clicked" ></add>
@@ -71,7 +71,8 @@
     </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
-        <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 
+        <!-- <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 어떻게생각하세요..? -->
+        <button class="btn" id="cancel" v-on:click ="reset()">전체삭제</button> 
     </div>
 </body>
 
@@ -651,17 +652,17 @@
                 },
                 set_color() {
                     //hsl color
-                    // var color = 'hsl(';
-                    // color += Math.floor(Math.random() * 360);
-                    // color = color + ', 50%, 80%)';
+                    var color = 'hsl(';
+                    color += Math.floor(Math.random() * 360);
+                    color = color + ', 50%, 60%)';
 
                     //hex
-                    var letters = '0123456789ABCDEF';
-                    var color = '#';
+                    // var letters = '0123456789ABCDEF';
+                    // var color = '#';
 
-                    for (var i = 0; i < 6; i++) {
-                        color += letters[Math.floor(Math.random() * 16)];
-                    }
+                    // for (var i = 0; i < 6; i++) {
+                    //     color += letters[Math.floor(Math.random() * 16)];
+                    // }
 
                     // console.log('color' + color);
 

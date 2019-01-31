@@ -12,9 +12,9 @@
        </div>
 
   <div class='contents'>
-      <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p>
+      <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->
+        <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
-       
             <div class="content" >
                 
                         <div class="section1">
@@ -133,8 +133,9 @@
                 </p>
             </div>
        </div>
-       <h1 id="foot2">
-       </h1>
+       <div id="foot">
+            <span id="update">시간표 정보 업데이트 일시 : {{ update.year }}-{{ update.month }}-{{ update.date }}</span>
+       </div>
     </div>
   
 </template>
@@ -165,7 +166,13 @@ export default {
                 time:[],
                 credit:[]
             },
-            no_result : true,
+            no_result : true,//검색결과가 없음을 나타내는 변수
+            loading : false,//검색결과를 기다리는 중을 나타내는 변수
+            update : {
+                year : '1998',
+                month : '03',
+                date : '02'
+            }
         
             
         }
@@ -217,32 +224,36 @@ export default {
            this.style.background='powderblue';
 
         },
-        search_by_name: function(){
-            this.no_result = false;
-            if(this.course_name.length==0){
-                alert("최소 한글자 이상 입력해주세요");
+        search_by_name: function(){//과목명, 또는 교수님 이름으로 검색버튼
+            if(this.course_name.length==0){//한글자도 입력하지 않은 경우
+                alert("한글자 이상 입력해주세요");
                 return false;
             } else{
-            this.$http.post('/api/make/search/name', {
+                this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
+                this.search=''//검색창 초기화
+                this.loading = true;//'검색중..'글자 띄워줌
+                this.$http.post('/api/make/search/name', {
                 course_name : this.course_name,
                 }).then((response) => {
-                    //console.log(response.data);
-                    this.search = response.data;
-                    if(response.data.length==0){
-                        this.no_result = true;
+                    this.loading = false //'로딩중'글자를 지움
+                    if(response.data.length==0){//데이터 값이 들어오지 않았을때
+                        this.no_result = true;//결과가 없음을 표시
+                    }else{
+                        this.no_result = false;
+                        this.search = response.data;//결과값을 저장함
                     }
-            });
+                },function (err) {//서버가 이상한 경우
+                    
+                    alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+                });
             // this.course_name = '';이게 없는게 일반적인것 같은데..
             }
         },
         search_by_Filter: function(){
-            console.log("학부 "+ this.filter.hakbu);
-            console.log("구분 "+ this.filter.gubun);
-            console.log("교양 "+ this.filter.gyoyang);
-            console.log("학점 "+ this.filter.credit);
-            console.log("영어 "+ this.filter.english);
-            console.log("교수 "+ this.filter.professor);
-            console.log("교시 "+ this.filter.time);
+            this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
+            this.search=''//검색창 초기화
+            this.loading = true;//'검색중..'글자 띄워줌
+            
             this.$http.post('/api/make/search/filter', {
                 hakbu : this.filter.hakbu,
                 gubun : this.filter.gubun,
@@ -251,10 +262,17 @@ export default {
                 english : this.filter.english,
                 professor : this.filter.professor,
                 time : this.filter.time,
-                }).then((response) => {
-                    console.log(response.data);
-                    this.search = response.data;
-            });
+                 }).then((response) => {
+                    this.loading = false //'로딩중'글자를 지움
+                    if(response.data.length==0){//데이터 값이 들어오지 않았을때
+                        this.no_result = true;//결과가 없음을 표시
+                    }else{
+                        this.no_result = false;
+                        this.search = response.data;//결과값을 저장함
+                    }
+                },function (err) {//서버가 이상한 경우
+                    alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+                });
 
             //초기화 작업
             this.filter.hakbu = '';
