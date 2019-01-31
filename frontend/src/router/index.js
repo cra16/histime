@@ -20,7 +20,6 @@ const router = new VueRouter({
     { path: '/make', name: 'make', component: Make },
     { path: '/', name: 'login', component: Login },
     { path: '/show/copy_list', name: 'copy', component: Copy},
-    { path: '/login', name: 'login', component: Login },
     { path: '/individual', name: 'individual', component: Individual},
     { path: '/manual', name: 'manual', component: Manual} ,
     { path: '/aboutus', name: 'aboutus', component: Aboutus} 
