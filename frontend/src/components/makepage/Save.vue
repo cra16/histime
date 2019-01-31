@@ -85,7 +85,7 @@ export default{
         },
         add_to_fav(course) {
             var duplication = false;
-
+            this.noResult = false;
             console.log("created: " + course);
 
             for(var i in this.courses) {
@@ -127,6 +127,7 @@ export default{
                 if(resonse.data.length == 0){
                     this.noResult = true;
                 }else{
+                    
                     this.courses = response.data; //name, code, time, credit, gubun, professor, english
                 }
                

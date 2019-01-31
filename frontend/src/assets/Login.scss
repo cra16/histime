@@ -1,9 +1,9 @@
 
   .logo{
     text-align: center;
+    margin-top : 13%;
     h1{
       font-size : 90pt;
-      margin-top : 7%;
       margin-bottom : 0%;
       color : #225B95;
       font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
@@ -12,14 +12,13 @@
     p{
       letter-spacing: 5px;
       font-size : 13px;
-      margin-top:1%;
       margin-bottom : 3%
     }
   }
   
 
   .onlylogin{
-    margin-bottom:8%;
+    margin-bottom:10%;
   }
 
 
@@ -76,6 +75,10 @@
 }
  
   
+.footer{
+  position: absolute;
+  bottom : 2%;
+}
 
 .yellow {
   text-align: center;

@@ -4,7 +4,6 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
-    <button>과목코드복사</button>
     <!--글자 제한 두기-->
   </div>
 
