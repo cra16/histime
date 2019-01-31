@@ -15,7 +15,7 @@
       <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p>
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
        
-            <div class="content" >
+            <div class="content">
                 
                         <div class="section1">
                             <p>{{`[${course.code}]`}} {{course.name}}</p>
