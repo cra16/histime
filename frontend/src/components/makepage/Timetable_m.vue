@@ -156,6 +156,7 @@
                 remove(code){
                     this.remove_course(code);
                     this.courses_store = [[[]]];
+                    this.update_table();
                     this.add_a_to(this.courses_for_conv);
                 },
                 remove_course(code){
