@@ -610,7 +610,7 @@
                     // hsl color
                     var color = 'hsl(';
                     color += Math.floor(Math.random() * 360);
-                    color = color + ', 50%, 80%)';
+                    color = color + ', 40%, 60%)';
                     // hex
                     // var letters = '0123456789ABCDEF';
                     // var color = '#';
