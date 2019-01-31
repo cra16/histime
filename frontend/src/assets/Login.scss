@@ -192,18 +192,21 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
   position:relative;
   bottom:170px;
   left:88%;
-  
+
   // cursor: pointer;
 }
 .placeholder-box {
-  position: relative;
+  position: absolute;
+  z-index : 1;
+  
+  top:18%;
   left:76%;
   margin:0px 0px 0px 0px;
-  bottom:610px;
-  border-radius:15px;
+  // bottom:00px;
+  border-radius:40px;
   width:250px;
   height:340px;  
-  background-color:#E6F1FC;
+  background-color:rgb(214, 223, 233);
 }
 
 .p1{
@@ -214,7 +217,7 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 
 .p2{
-  margin-top:10%;
+  margin-top:6%;
   line-height:25px;
   margin-left:14%;
   font-size: 12px;
