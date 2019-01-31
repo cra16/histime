@@ -1,6 +1,6 @@
 .logo{
   text-align: center;
-  margin-top : 7%;
+  margin-top : 10%;
   h1{
     font-size : 90pt;
     margin-bottom : 0%;
@@ -23,7 +23,7 @@
 }
 
 .onlylogin{
-  margin-bottom:10%;
+  margin-bottom:0%;
 }
 
 
@@ -181,17 +181,18 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 .help{
 
   background: url( "../image/ask.png" ) no-repeat;
+  background-size : cover;
   border: 0;
   outline: 0;
-  width: 70px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   // background-color:white;
   // border:0px;
   // border-radius: 5px;
   position:relative;
-  bottom:170px;
-  left:88%;
+  bottom:60px;
+  left:80%;
 
   // cursor: pointer;
 }
@@ -199,7 +200,7 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
   position: absolute;
   z-index : 1;
   
-  top:18%;
+  top:20%;
   left:76%;
   margin:0px 0px 0px 0px;
   // bottom:00px;
