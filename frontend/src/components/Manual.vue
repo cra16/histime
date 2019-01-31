@@ -1,13 +1,13 @@
 <template>
     <div>
       <div class = "logo">
-      <h1>{{ name }} </h1>
+       <img src="../image/logo_large.png" width="600" >
       </div>
       <div class="message">
    <hr width="70%"/>
         <h4>Histime은 한동대학교 재학생들이 보다 나은 시간표를 짤 수 있도록 환경을 제공하는 웹 사이트입니다.<br>
         처음 사용하시는 분들은 다음 진행절차를 따라 주세요:)</h4>
-        <p>*Histime은 Chrome에서 제일 잘 작동합니다.</p>
+        <p id="p1"><u>*Histime은 Chrome에서 제일 잘 작동합니다!</u></p>
         <p>1. 로그인을 합니다. (별도의 회원가입 없이 기존의 Hisnet ID/PW를 통해 로그인이 가능합니다.) </p>
         <p><img src="../image/login.png" width="550" height="300"></p>
         <p>2. 기본화면에서 시간표 목록의 하단에 있는 시간표 추가하기 버튼을 누릅니다.(시간표를 먼저 생성해야 합니다.)</p>

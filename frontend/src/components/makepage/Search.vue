@@ -4,7 +4,7 @@
        <div>
        <div class="search_field" > 
 
-        <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
+        <input v-model="course_name" type="text" placeholder="   과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
 
@@ -71,7 +71,7 @@
                 </select>
             </p>
             <p>교수님 &ensp;&nbsp;
-            <input v-model="filter.professor" type="text" class="pfname" placeholder="교수님 이름"/>
+            <input v-model="filter.professor" type="text" class="pfname" placeholder=" 교수님 이름"/>
             </p>     
 
             <p>학점&emsp;&ensp;&nbsp;
@@ -180,6 +180,7 @@ export default {
   
     methods:{
         show: function(){
+            this.course_name = '';//검색창 기록을 지움
             this.showbox=!this.showbox;
             this.filter.credit.splice(false, this.filter.credit.length);        
 
@@ -188,6 +189,7 @@ export default {
         show2: function(){
            
             this.searchbox=!this.searchbox;
+           
             
         },
         timebox_chosen: function(){
@@ -243,12 +245,13 @@ export default {
                     }
                 },function (err) {//서버가 이상한 경우
                     
-                    alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+                    alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
                 });
             // this.course_name = '';이게 없는게 일반적인것 같은데..
             }
         },
         search_by_Filter: function(){
+           
             this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
             this.search=''//검색창 초기화
             this.loading = true;//'검색중..'글자 띄워줌
@@ -270,7 +273,7 @@ export default {
                         this.search = response.data;//결과값을 저장함
                     }
                 },function (err) {//서버가 이상한 경우
-                    alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+                    alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
                 });
 
             //초기화 작업

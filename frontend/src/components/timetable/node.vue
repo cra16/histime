@@ -12,10 +12,11 @@
                 <p id="prof">{{ this.data.professor}}</p> 
 
             </div>
-            <span v-bind:class="classObjectTip()" class = "tooltip">
-                <p>{{ this.data.code }}  
-                <!-- <p>{{ this.data.course_name }}</p> -->
-                <!-- <p>{{ this.data.professor }}</p> -->
+            <span v-bind:style="{ 'background-color': `${mycolor}`}" v-bind:class="classObjectTip()" class = "tooltip">
+                <p id="title">상세정보</p>
+                <p>{{ this.data.code }}</p> 
+                <p>{{ this.data.course_name }}</p>
+                <p>{{ this.data.professor }}</p>
                 <p>{{ this.data.time }}</p>
                 <p>{{ this.data.credit }}학점</p>
                 <p>영어 : {{ this.data.english }} &nbsp; {{ this.data.gubun }}</p>

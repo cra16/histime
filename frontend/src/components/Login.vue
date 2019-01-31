@@ -12,9 +12,9 @@
         <div class ="login_box">
           <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
           <div class="text_box">
-            <input type = "text" placeholder="HISNET ID" v-model="input.id" v-on:keyup.enter="login()">
+            <input type = "text" class="t1" placeholder="HISNET ID" v-model="input.id" v-on:keyup.enter="login()">
             <br />
-            <input type = "password" placeholder="HISNET PASSWORD" v-on:keyup.enter="login()" v-model="input.password">
+            <input type = "password" class="t1" placeholder="HISNET PASSWORD" v-on:keyup.enter="login()" v-model="input.password">
           </div>
         
         </div>

@@ -7,7 +7,7 @@
         </div>
         <router-link to="/aboutus" title="about us">Aboutus</router-link>
         <router-link to="/manual" title="how to use">Manual</router-link>
-        <a href="mailto:21500582@handong.edu" title="email">피드백 보내기</a>
+        <a href="mailto:histime206@gmail.com" title="email">피드백 보내기</a>
         <a href="http://github.com/dlwlgus53/histime" title="github page" id=git>github page</a>
         <router-link to="/individual" title="law">개인정보처리방침</router-link>
       

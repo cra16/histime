@@ -5,14 +5,15 @@
 // }
 .logo{
     text-align: center;
-    h1{
-      font-size : 80pt;
-      margin-top : 8%;
-      margin-bottom : 2%;
-      color : #225B95;
-      font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
-      font-style : italic;
-    }
+    margin-top:3%;
+    // h1{
+    //   font-size : 80pt;
+    //   margin-top : 8%;
+    //   margin-bottom : 2%;
+    //   color : #225B95;
+    //   font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
+    //   font-style : italic;
+    // }
     
   }
 
@@ -22,6 +23,9 @@ p{
    
 }
 
+#p1{
+ color:rgb(35, 127, 212);
+}
 
 h4{  font-style : italic;
     color:dimgrey;
