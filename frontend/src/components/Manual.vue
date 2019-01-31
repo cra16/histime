@@ -26,7 +26,7 @@
         <p>5. 저장하기를 누르면 다시 기본화면으로 돌아가고, 만들어진 시간표 리스트들과 각각의 총 학점을 확인할 수 있습니다.</p>
         <p><img src="../image/final.png" width="700" height="250"></p>
        <br>
-        <h4>자, 이제 여러분들만의 시간표를 마음껏 짜보세요! </h4>
+        <h4>자, 이제 여러분들만의 시간표를 마음껏 짜보세요! <button class="back" v-on:click="goBack">뒤로가기</button></h4>
         </div>
     <hr width="70%"/>
     <center><h5>본 웹사이트의 저작권은 CRA에게 있습니다.</h5></center>
@@ -46,6 +46,11 @@ export default {
      return {
       name : 'HisTime',
      }
+    },
+    methods:{
+        goBack:function(){
+            window.history.go(-1);
+        }
     }
 }
 </script>

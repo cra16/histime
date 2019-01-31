@@ -70,6 +70,20 @@ router.post('/del_tt', function(req, res, next) {
     });
 });
 
+//copy_code
+router.post('/copy', function(req, res, next) {
+    var student_id = req.body.student_id;
+    var ttname = req.body.ttname;
+
+    console.log('id : ' + student_id);
+    console.log('ttname : ' + ttname);
+
+    connection.query(`SELECT code, course_name, professor FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
+        if(err) console.log(err);
+        res.send(results);
+    })
+});
+
 //시간표 수정
 router.post('/modify_tt', function(req, res, next) {
     var student_id = req.body.student_id;

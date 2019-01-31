@@ -19,18 +19,22 @@
         </thead>
         </table>
     </div>
+
     <div class="tbl-content">
         <p v-if="noResult==true" class="noResult">생성된 시간표가 없습니다.<br /> 시간표 추가히기 버튼을 통해 시간표를 생성해 주세요</p>
         <table cellpadding="0" cellspacing="0" border="0">
-            <tbody>
-                <div v-for="(ttlist,key) in this.ttlists" :key="key">
-                    <tr>
-                        <td id="index">{{ key+1 }}</td>
-                        <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}<button id="modify_name" v-on:click="modify_name(key)"></button></td>
-                        <td id="credit">{{ttlist.total_credit}}</td>
-                        <td id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></td>
-                        <td id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></td>
-                    </tr>
+        <tbody>
+            <div v-for="(ttlist,key) in this.ttlists" :key="key">
+                <tr>
+                    <td id="index">{{ key+1 }}</td>
+                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}
+                        <button id="modify_name" v-on:click="modify_name(key)"></button>
+                        <button v-on:click="display_copy(key)"></button>
+                    </td>
+                    <td id="credit">{{ttlist.total_credit}}</td>
+                    <td id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></td>
+                    <td id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></td>
+                </tr>
 
                     <hr />
                 </div> 
@@ -43,10 +47,16 @@
   
     </div>
 </template>
+
 <script>
+import copy from './copy.vue'
+
     export default {
         name: 'ttlist',
         //props :['ttlists'],
+        components : {
+            copy
+        },
         data() {
             return {
                 ttlists:[],
@@ -167,8 +177,15 @@
                 }  
             },
             ttselect(key){
-                console.log(this.ttlists[key].ttname);
+                cur_ttname = this.ttlists[key].ttname;
+                console.log(cur_ttname);
                 this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
+            },
+            display_copy(key) {
+                this.$session.set('ttname', this.ttlists[key].ttname);
+
+                let routeData = this.$router.resolve({name: 'copy'});
+                window.open(routeData.href, '', 'width=700, height=700, left=300').ttname = this.ttlists[key].ttname;                
             }
         },
     }

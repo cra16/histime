@@ -10,8 +10,6 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    
-    
 
     proxyTable: {
   '/api': {

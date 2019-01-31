@@ -22,56 +22,68 @@
   }
 
 
-  form{
-    margin-top : 0;
-    margin-left : 33%;
-    margin-right: 35%;
-    .login_box{
-      display : block;
-      .text_box{
-        width : auto;
-        input{
-          float : right;
-          margin-right: 3%;
-          margin-bottom : 5px;
-          width: 65%;
-          padding: 9px;
-          font-size: 15pt;
-          border : 1.6px solid #225B95;
-          color:#225B95
-          
-        }
-        ::placeholder { 
-          color: #225B95;
-          font-size: 20px;
-          font-weight :150;
-           } 
-      }
-      .btn{
-        width : 90px;
-        height : 90px;
-        border-radius: 25px;
-        padding: 7px 7px;
-        font-size: 22px;
-        text-decoration: none;
-        margin: 0;
-        color: #fff;
-        position: relative;
+
+.onlylogin{
+  margin-bottom:10%;
+}
+
+
+form{
+  margin-top : 0;
+  margin-left : 33%;
+  margin-right: 35%;
+  .login_box{
+    display : block;
+    .text_box{
+      width : auto;
+      input{
         float : right;
-        cursor : pointer;
-        text-align: center;
+        margin-right: 3%;
+        margin-bottom : 5px;
+        width: 65%;
+        padding: 9px;
+        font-size: 15pt;
+        border : 1.6px solid #225B95;
+        color:#225B95
+        
       }
+      ::placeholder { 
+        color: #225B95;
+        font-size: 20px;
+        font-weight :150;
+         } 
     }
-  .check_box {
-    clear: both;
-    margin-left : 11%;
-    input{ 
-     display : inline
-    }
-    p{ 
-      display : inline;
+    .btn{
+      width : 90px;
+      height : 90px;
+      border-radius: 25px;
+      padding: 7px 7px;
+      font-size: 22px;
+      text-decoration: none;
+      margin: 0;
+      color: #fff;
+      position: relative;
+      float : right;
+      cursor : pointer;
+      text-align: center;
     }
   }
+.check_box {
+  clear: both;
+  margin-left : 11%;
+  input{ 
+   display : inline
+  }
+  p{ 
+    display : inline;
+  }
+}
+}
+
+
+.footer{
+position: absolute;
+bottom : 2%;
 }
  
   
@@ -81,14 +93,14 @@
 }
 
 .yellow {
-  text-align: center;
-  background-color: #FFCA55;
-  font-size: 16px;
- 
+text-align: center;
+background-color: #FFCA55;
+font-size: 16px;
+
 }
 
 .yellow:hover {
-  background-color: rgb(192, 152, 65)
+background-color: rgb(192, 152, 65)
 }
 
 
@@ -108,87 +120,86 @@
 
 
 .container {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-   
+position: absolute;
+width: 200px;
+height: 200px;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+ 
 
 }
 
 .item {
-  width: 100px;
-  height: 100px;
-  position: absolute;
+width: 100px;
+height: 100px;
+position: absolute;
 }
 
 .item-1 {
-  background-color: #E6F1FC;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  animation: item-1_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+background-color: #E6F1FC;
+top: 0;
+left: 0;
+z-index: 1;
+animation: item-1_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 
 .item-2 {
-  background-color: #9CBADF;
-  top: 0;
-  right: 0;
-  animation: item-2_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+background-color: #9CBADF;
+top: 0;
+right: 0;
+animation: item-2_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 
 .item-3 {
-  background-color: #225B95;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  animation: item-3_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+background-color: #225B95;
+bottom: 0;
+right: 0;
+z-index: 1;
+animation: item-3_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 
 .item-4 {
-  background-color: #FAC24C;
-  bottom: 0;
-  left: 0;
-  animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+background-color: #FAC24C;
+bottom: 0;
+left: 0;
+animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 
 @keyframes item-1_move {
-  0%, 100% {transform: translate(0, 0)} 
-  25% {transform: translate(0, 100px)} 
-  50% {transform: translate(100px, 100px)} 
-  75% {transform: translate(100px, 0)} 
+0%, 100% {transform: translate(0, 0)} 
+25% {transform: translate(0, 100px)} 
+50% {transform: translate(100px, 100px)} 
+75% {transform: translate(100px, 0)} 
 }
 
 @keyframes item-2_move {
-  0%, 100% {transform: translate(0, 0)} 
-  25% {transform: translate(-100px, 0)} 
-  50% {transform: translate(-100px, 100px)} 
-  75% {transform: translate(0, 100px)} 
+0%, 100% {transform: translate(0, 0)} 
+25% {transform: translate(-100px, 0)} 
+50% {transform: translate(-100px, 100px)} 
+75% {transform: translate(0, 100px)} 
 }
 
 @keyframes item-3_move {
-  0%, 100% {transform: translate(0, 0)} 
-  25% {transform: translate(0, -100px)} 
-  50% {transform: translate(-100px, -100px)} 
-  75% {transform: translate(-100px, 0)} 
+0%, 100% {transform: translate(0, 0)} 
+25% {transform: translate(0, -100px)} 
+50% {transform: translate(-100px, -100px)} 
+75% {transform: translate(-100px, 0)} 
 }
 
 @keyframes item-4_move {
-  0%, 100% {transform: translate(0, 0)} 
-  25% {transform: translate(100px, 0)} 
-  50% {transform: translate(100px, -100px)} 
-  75% {transform: translate(0, -100px)} 
+0%, 100% {transform: translate(0, 0)} 
+25% {transform: translate(100px, 0)} 
+50% {transform: translate(100px, -100px)} 
+75% {transform: translate(0, -100px)} 
 }
 
 /*
 @keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
+to { -webkit-transform: rotate(360deg); }
 }
 @-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
+to { -webkit-transform: rotate(360deg); }
 }*/
-
