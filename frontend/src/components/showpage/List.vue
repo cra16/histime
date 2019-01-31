@@ -29,7 +29,6 @@
                     <td id="index">{{ key+1 }}</td>
                     <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}
                         <button id="modify_name" v-on:click="modify_name(key)"></button>
-                        <button v-on:click="display_copy(key)"></button>
                     </td>
                     <td id="credit">{{ttlist.total_credit}}</td>
                     <td id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></td>
@@ -180,12 +179,6 @@ import copy from './copy.vue'
                 cur_ttname = this.ttlists[key].ttname;
                 console.log(cur_ttname);
                 this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
-            },
-            display_copy(key) {
-                this.$session.set('ttname', this.ttlists[key].ttname);
-
-                let routeData = this.$router.resolve({name: 'copy'});
-                window.open(routeData.href, '', 'width=700, height=700, left=300').ttname = this.ttlists[key].ttname;                
             }
         },
     }

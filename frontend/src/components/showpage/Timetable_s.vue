@@ -4,6 +4,7 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
+    <button v-on:click="display_copy()"></button>
     <!--글자 제한 두기-->
   </div>
 
@@ -149,6 +150,12 @@ export default {
           }
         });
     },
+    display_copy() {
+        this.$session.set('ttname', this.tt_name);
+
+        let routeData = this.$router.resolve({name: 'copy'});
+        window.open(routeData.href, '', 'width=700, height=700, left=300');           
+    }
   }
 };
 </script>
