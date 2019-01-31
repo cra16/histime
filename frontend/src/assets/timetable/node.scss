@@ -31,15 +31,22 @@ $size5 : 33%;
     margin : 0;
     color : white;
     font-weight: 400;
-    font-size : 12px;
-    cursor: pointer;
+    font-size : 13px;
+
     
     p{
-        margin : 2px;
+        margin : 3px;
     }
-    #code{
-        font-size : 10px
+    #course_name{
+        font-size: 12px;
     }
+    #professor{
+        font-size: 10px;
+    }
+  
+}
+.box:hover .node{
+    opacity: 0.6;
 }
 
 .box:hover .tooltip{
@@ -64,6 +71,54 @@ $size5 : 33%;
     }
 
   }
+
+
+button{
+    width : 15px;
+    height : 15px;
+    display:none;
+}
+#del{
+    border : none;
+    background : none;
+    cursor : pointer;
+    color:#225B95 ;
+    font-size : 15px;
+    font-weight: 900
+}
+
+#del:hover{
+    color:black
+}
+
+
+.box:hover #del{
+    display : inline;
+}
+
+#course_name{
+    font-size: 15px;
+}
+#credit{
+    font-size : 10px;
+}
+#prof{
+    font-size : 10px;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    margin-top : 2px;
+	border: none;
+	width: 10px;
+    height: 6px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
 
 
 
@@ -161,36 +216,3 @@ $size5 : 33%;
 }
  
 
-#del{
-    display:none;
-    background : none;
-    border : none;
-    color : white;
-    cursor : pointer
-}
-.box:hover #del{
-    display : inline;
-}
-#course_name{
-    font-size: 15px;
-}
-#credit{
-    font-size : 10px;
-}
-#prof{
-    font-size : 10px;
-}
-
-input[type="color"] {
-    -webkit-appearance: none;
-    margin-top : 2px;
-	border: none;
-	width: 10px;
-    height: 6px;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-	border: none;
-}

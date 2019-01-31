@@ -4,7 +4,7 @@
        <div>
        <div class="search_field" > 
 
-        <input v-model="course_name" type="text" placeholder="   과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
+        <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
 
@@ -225,9 +225,8 @@ export default {
 
         },
         search_by_name: function(){//과목명, 또는 교수님 이름으로 검색버튼
-            if(this.course_name.length==0){//한글자도 입력하지 않은 경우
-                alert("한글자 이상 입력해주세요");
-                return false;
+            if(this.course_name.length==''){
+                return;
             } else{
                 this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
                 this.search=''//검색창 초기화

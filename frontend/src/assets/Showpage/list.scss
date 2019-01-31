@@ -49,6 +49,11 @@ table{
 }
 
 .tbl-content{
+  .noResult{
+    color : grey;
+    font-size : 13px;
+  }
+  
   height:80%;
   width:99.6%;
   overflow-x:auto;
