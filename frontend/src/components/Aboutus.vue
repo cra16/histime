@@ -1,6 +1,7 @@
 <template>
     <div >
-       <center><h1>About us</h1></center>
+       <center><h1>About us</h1></center> 
+       
        <hr width="70%"/>
             <p id="category">developers</p>
           
@@ -73,6 +74,8 @@
                 </div>
             </div>
                 <br>
+                <center><button class="back" v-on:click="goBack">뒤로가기</button></center>
+
                 <br>
               
 <!--            
@@ -91,8 +94,13 @@
 
 <script>
 export default {
-    
+    methods:{
+        goBack: function() {
+             window.history.go(-1);
+        }
+    }
 }
+
 </script>
 
 <style src = '../assets/Aboutus.scss' lang='scss' scoped>
