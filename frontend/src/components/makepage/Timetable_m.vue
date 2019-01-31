@@ -236,15 +236,7 @@
                     // console.log("rc_length: " + this.courses_for_back.length);
 
                     if(duplication) {
-                        // this.$toasted.show('Already', { 
-                        //     theme: "bubble", 
-                        //     position: "top-center", 
-                        //     duration : 500,
-                            
-                        //     // fullWidth: false,
-                        //     // fitToScreen: true
-                        // });
-                        this.$toasted.global.already_add();
+                        //popup
                     } else {
                         var parsed_data = this.parsingTime(raw_data);
 

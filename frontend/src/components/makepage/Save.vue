@@ -89,13 +89,7 @@ export default{
             console.log("created: " + course);
             
             if(duplication === true) {
-                this.$toasted.show('Already', { 
-                    theme: "bubble", 
-                    position: "top-center", 
-                    duration : 500,
-                    // fullWidth: false,
-                    // fitToScreen: true
-                });
+                //popup
             } else {
                 this.$http.post('/api/make/add_fav', {
                     student_id : this.$session.get('student_id'),
