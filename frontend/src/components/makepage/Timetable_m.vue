@@ -242,7 +242,7 @@
                             title: '경고!',
                             text: '이미 추가한 과목입니다.',
                             duration: 400,
-                            type: 'warn'
+                            type: 'warn',
                         });
                     } else {
                         var parsed_data = this.parsingTime(raw_data);

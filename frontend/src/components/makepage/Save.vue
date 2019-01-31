@@ -50,11 +50,9 @@ import subjects from '../timetable.json'
 export default{
     data(){
         return{
-       
             active: false,
             courses : [],
             noResult : true
-            
         }
             
     },
@@ -95,7 +93,7 @@ export default{
                     title: '경고!',
                     text: '즐겨찾기에 이미 존재하는 과목입니다.',
                     duration: 400,
-                    type: 'warn'
+                    type: 'warn',
                 });
             } else {
                 this.$http.post('/api/make/add_fav', {

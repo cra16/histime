@@ -4,7 +4,7 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
-    <button v-on:click="display_copy()"></button>
+    <button id="copy" v-on:click="display_copy()"></button>
     <!--글자 제한 두기-->
   </div>
 
@@ -154,7 +154,7 @@ export default {
         this.$session.set('ttname', this.tt_name);
 
         let routeData = this.$router.resolve({name: 'copy'});
-        window.open(routeData.href, '', 'width=700, height=700, left=300');           
+        window.open(routeData.href, '', 'width=600, height=600, left='+ (window.screen.width - 600)/2 + ', top=' + (window.screen.height - 600)/2);      
     }
   }
 };
