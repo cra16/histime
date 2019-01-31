@@ -1,4 +1,4 @@
-$base: 103px;//기본크기
+$base: 88px;//기본크기
 
 $start0: 0px;
 $start1: 0px;
@@ -22,12 +22,10 @@ $size5 : 33%;
 }
 .node{
     height : $base;
-    float : right;
     display : block;
     text-align: center;
     position : absolute;
     overflow: scroll;
-    // background: olive;
     display : inline-block;
     background: olive;
     width : 100%;

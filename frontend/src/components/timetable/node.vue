@@ -4,21 +4,15 @@
         <div class ="box">
             <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
                 <!-- <input type = "color" v-model="mycolor" /> -->
-                <button id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
-                <p id = "code" >{{`[${this.data.code}]`}}</p>
+              
+                <!-- <p id = "code" >{{`[${this.data.code}]`}}</p> -->
+                <button  id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
                 <p id="course_name">{{ this.data.course_name }}</p>
                 <p id="credit">{{ this.data.credit }}학점</p>
                 <p id="prof">{{ this.data.professor}}</p> 
-                <!-- <p id="prof">{{ this.data.professor}}</p>   
-                <p id="prof">{{ this.data.professor}}</p>     
-                정보를 더 받아오기 -->
-          
-
-                
 
             </div>
             <span v-bind:class="classObjectTip()" class = "tooltip">
-                <p>상세정보</p>
                 <p>{{ this.data.code }}  
                 <p>{{ this.data.course_name }}</p>
                 <p>{{ this.data.professor }}</p>

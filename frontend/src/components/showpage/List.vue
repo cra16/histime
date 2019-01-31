@@ -21,6 +21,7 @@
     </div>
 
     <div class="tbl-content">
+        <p v-if="noResult==true" class="noResult">생성된 시간표가 없습니다.<br /> 시간표 추가히기 버튼을 통해 시간표를 생성해 주세요</p>
         <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <div v-for="(ttlist,key) in this.ttlists" :key="key">
@@ -64,7 +65,8 @@ import copy from './copy.vue'
                     ttrank:"",
                     total_credit:""
                 },
-                cur_ttname: ""
+                ttnames:[],
+                noResult : true,
             };
         },
         
@@ -73,7 +75,11 @@ import copy from './copy.vue'
                 student_id : this.$session.get('student_id')
             }).then((response) => {
                 if (response.status === 200 ) {
-                    if(response.data.length === 0) return;
+                    if(response.data.length === 0){
+                        this.noResult = true;
+                        return;
+                    } 
+                    this.noResult =false;
                     this.ttlists = response.data; //ttname, ttrank, total_credit
                     console.log(this.ttlists);
                     this.$EventBus.$emit('to_timetables',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
