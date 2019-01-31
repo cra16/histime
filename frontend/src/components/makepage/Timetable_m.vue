@@ -3,8 +3,9 @@
 <body>
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
+        <span id="credit">학점 : <span id="num">{{ this.total_credit() }}</span>학점</span>
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
-        <button class="btn" id="reset" v-on:click="reset()"></button>
+        <!-- <button class="btn" id="reset" v-on:click="reset()"></button> -->
     </div>
 
     <add v-if="user_add_clicked" ></add>
@@ -71,7 +72,7 @@
     </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
-        <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 
+        <button class="btn" id="cancel" v-on:click="reset()">비우기</button> 
     </div>
 </body>
 
@@ -610,7 +611,7 @@
                     // hsl color
                     var color = 'hsl(';
                     color += Math.floor(Math.random() * 360);
-                    color = color + ', 50%, 80%)';
+                    color = color + ', 40%, 60%)';
                     // hex
                     // var letters = '0123456789ABCDEF';
                     // var color = '#';

@@ -2,12 +2,16 @@
 //스크롤바 크롬
 ::-webkit-scrollbar {width: 5px; height: 3px; border: 0px solid #fff; }
 ::-webkit-scrollbar-thumb {height: 3px; width: 5px; background: #FFCA55 }
-
+body{
+    position : relative
+}
 .head{
     margin:0;
     background-color:#225B95;
     text-align: center;
+    position: relative;
     h3{
+
         font-size : 24px;
         padding : 0%;
         margin:0px;
@@ -15,19 +19,30 @@
         color:white;
         display: inline-block;
     }
-   
-    #reset{
-        display: inline;
-        position:relative;top:8px;
-        float:right;
-        margin-right :10% ;
-        height:20px;
-        width:20px;
-        border : none;
-        background : url( '../../image/calendar.png') no-repeat;
-        background-size : cover;
-        cursor: pointer;
+    #credit{
+        position: absolute;;
+        bottom: 2px;
+        right : 1%;
+        color:white;
+        margin-left : 10%;
+        font-size : 15px;
+        #num{
+            color : #FF6D00 ;
+        }
     }
+   
+    // #reset{
+    //     display: inline;
+    //     position:relative;top:8px;
+    //     float:right;
+    //     margin-right :10% ;
+    //     height:20px;
+    //     width:20px;
+    //     border : none;
+    //     background : url( '../../image/calendar.png') no-repeat;
+    //     background-size : cover;
+    //     cursor: pointer;
+    // }
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 //스크롤바
@@ -84,10 +99,11 @@
     text-align: center;
     border:2px solid #225B95;
     background-color:#9CBADF;
-    width: 43.4%; 
+    width: 100%; 
     height : 49px;
     position:absolute;
-    bottom:2.0%;    
+    left : -2px;
+   
     
     .btn{
         width : 100px;
