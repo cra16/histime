@@ -110,8 +110,6 @@
                     console.log("changed")
                 }
             },
-            
-              
           },
             methods : {
                 modify(){
@@ -168,7 +166,6 @@
                     }
                 },
                 save(){//저장하기,
-                    
                     if(confirm("시간표를 완성하시겠습니까?")){
                         console.log(this.ttname);
                         this.$http.post('/api/show/del_tt', {
@@ -269,6 +266,8 @@
                         professor : course_temp.professor,
                         time : course.time,
                         credit : course_temp.credit,
+                        gubun : course_temp.gubun,
+                        english : course_temp.english,
                         
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0].match(/\d+/)[0],
@@ -293,6 +292,8 @@
                                 professor : course_temp.professor,
                                 time : course.time,
                                 credit : course_temp.credit,
+                                gubun : course_temp.gubun,
+                                english : course_temp.english,
                                 
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i].match(/\d+/)[0],
@@ -329,7 +330,6 @@
                         }
                     }
                     return false;
-
                 },
                 cont_update(day, time, size){
                     var k_start = -1;
@@ -607,18 +607,17 @@
                     }
                 },
                 set_color() {
-                    //hsl color
-                    // var color = 'hsl(';
-                    // color += Math.floor(Math.random() * 360);
-                    // color = color + ', 50%, 80%)';
+                    // hsl color
+                    var color = 'hsl(';
+                    color += Math.floor(Math.random() * 360);
+                    color = color + ', 50%, 80%)';
+                    // hex
+                    // var letters = '0123456789ABCDEF';
+                    // var color = '#';
 
-                    //hex
-                    var letters = '0123456789ABCDEF';
-                    var color = '#';
-
-                    for (var i = 0; i < 6; i++) {
-                        color += letters[Math.floor(Math.random() * 16)];
-                    }
+                    // for (var i = 0; i < 6; i++) {
+                    //     color += letters[Math.floor(Math.random() * 16)];
+                    // }
 
                     // console.log('color' + color);
 
@@ -643,7 +642,6 @@
         
     
 </script>
-
 
 <style  src = '../../assets/Makepage/timetable_m.scss' lang="scss" scoped>
 

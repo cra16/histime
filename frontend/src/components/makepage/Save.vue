@@ -84,19 +84,22 @@ export default{
             this.$EventBus.$emit('add_a',this.courses);
         },
         add_to_fav(course) {
-            var duplication = false;
+            var duplication = this.duplication(course);
             this.noResult = false;
             console.log("created: " + course);
-
-            for(var i in this.courses) {
-                if(course.code === this.courses[i].code) {
-                    duplication = true;
-                    break;
-                }
-            }
-
+            
             if(duplication === true) {
-                alert("이미 즐겨찾기에 추가된 과목 입니다!");
+                let toast = this.$toasted.error("이미 즐겨찾기에 추가된 과목 입니다!", { 
+                    theme: "outline", 
+                    position: "top-center", 
+                    duration : 500,
+                    fullWidth : false
+                });
+                // this.$toasted.show('이미 즐겨찾기에 추가된 과목 입니다!', { 
+                //     theme: "outline", 
+                //     position: "top-center", 
+                //     duration : 300
+                // });
             } else {
                 this.$http.post('/api/make/add_fav', {
                     student_id : this.$session.get('student_id'),
@@ -117,6 +120,18 @@ export default{
                     english: course.english
                 });
             }
+        },
+        duplication(course) {
+            var duplication = false;
+
+            for(var i in this.courses) {
+                if(course.code === this.courses[i].code) {
+                    duplication = true;
+                    break;
+                }
+            }
+
+            return duplication;
         }
     },
     created(){
