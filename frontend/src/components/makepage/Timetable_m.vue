@@ -141,7 +141,7 @@
                 update_table(){
                     console.log("yes");
                     this.courses = [[[]]];                    
-                    this.courses = this.courses_store ;
+                    this.courses = this.courses_store;
                     this.$forceUpdate();
                 },
                 find_course_to_remove_per_day(code){
@@ -288,8 +288,6 @@
                             // this.courses_for_back.push(data[i]);
                             this.course_update(parsed_data);
                             this.update_table();
-
-                            
                         } else {
                             console.log('duplication!');
                         }
@@ -345,6 +343,8 @@
                         professor : course_temp.professor,
                         time : course.time,
                         credit : course_temp.credit,
+                        gubun : course_temp.gubun,
+                        english : course_temp.english,
                         
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0].match(/\d+/)[0],
@@ -369,6 +369,8 @@
                                 professor : course_temp.professor,
                                 time : course.time,
                                 credit : course_temp.credit,
+                                gubun : course_temp.gubun,
+                                english : course_temp.english,
                                 
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i].match(/\d+/)[0],

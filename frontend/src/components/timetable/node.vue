@@ -23,6 +23,9 @@
                 <p>{{ this.data.course_name }}</p>
                 <p>{{ this.data.professor }}</p>
                 <p>{{ this.data.time }}</p>
+                <p>{{ this.data.credit }}학점</p>
+                <p>{{ this.data.english }}</p>
+                <p>{{ this.data.gubun }}</p>
             </span>
            
         </div>
