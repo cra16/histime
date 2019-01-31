@@ -90,6 +90,13 @@ export default{
             
             if(duplication === true) {
                 //popup
+                this.$notify({
+                    group: 'foo',
+                    title: '경고!',
+                    text: '즐겨찾기에 이미 존재하는 과목입니다.',
+                    duration: 400,
+                    type: 'warn'
+                });
             } else {
                 this.$http.post('/api/make/add_fav', {
                     student_id : this.$session.get('student_id'),

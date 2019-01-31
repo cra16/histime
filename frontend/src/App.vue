@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!--웹이 처음 시작될 때, 사용자가 검증되지 않았다고 초기화 해 줍니다.-->
-   
+      <notifications group="foo" position="top center" style="top: 40px;"/>   
     <router-view/>
   </div>
 </template>
