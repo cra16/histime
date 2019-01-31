@@ -1,0 +1,73 @@
+
+.header{
+    width : 100%;
+    display: flex;
+
+}
+.logo{
+    cursor : pointer;
+    margin-bottom:0px;
+    flex : 1;
+    h1{
+        color : #225B95;
+        font-style : italic;
+        font-size : 2.5em;
+        margin-bottom : 0%;
+        font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
+    }
+    span{
+        color : dimgrey;
+        font-size : 0.8em;
+        margin-top : 0%
+    }
+}
+
+.line{
+    position:relative;
+    margin-left : 0%;
+    border-top  : 1px solid  #225B95;
+    flex : 2;
+    margin-top :4%;
+    
+}
+
+.user{
+    float : left;
+    margin-left : 1%;
+    margin-top : 2.4%;
+    display: inline-block;
+    width : 150px;
+    flex : 1;
+    p{
+        font-size:14px;
+    }
+
+    #name{
+        display : inline;
+        color :#FF6D00; 
+        font-size : 1.0em
+    }
+    button{
+        margin-left : 0.5%;
+        margin-top : 3%;
+        cursor:pointer;
+        text-align: center;
+        background-color: #FFCA55;
+        font-size: 1em;
+        padding: 1.5%;
+        color : white;
+        border-radius: 10px;
+        border : 0px;
+    }
+    // #update{
+    //     color : dimgray;
+    //     font-size : 13px;
+    // }
+    
+}
+
+
+
+
+
+

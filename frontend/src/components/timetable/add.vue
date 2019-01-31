@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style src = '../../assets/timetable/add.less' lang='scss' scoped>
+<style src = '../../assets/timetable/add.scss' lang='scss' scoped>
  
 </style>
 

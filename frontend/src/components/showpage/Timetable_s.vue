@@ -4,6 +4,7 @@
   <div class="head">
     
     <h3>{{ tt_name }}</h3>
+    <button>과목코드복사</button>
     <!--글자 제한 두기-->
   </div>
 
@@ -21,12 +22,12 @@
             </tr>
             <tr>
                 <td id="class_time">1</td>
-                    <td v-for="j in 6" :key="j" rowspan="10"> <!--요일 반복문-->         
-                        <div v-for="i in 10" :key="i"><!--시간반복-->
-                            <div v-if="courses[j] != undefined">
-                                <div v-if="courses[j][i] != undefined">
-                                    <div v-for="course of courses[1][i]" :key="course.code">
-                                            <node :data="course" />
+                    <td v-for="i in 6" :key="i" rowspan="11"><!--요일에 대한 반복문-->
+                        <div v-for="j in 11" :key="j"><!--1교시 to 10교시 반복문-->
+                            <div v-if="courses[i] != undefined">
+                                <div v-if="courses[i][j] != undefined">
+                                    <div v-for="course of courses[i][j]" :key="course.code">
+                                            <nodeShow @update="update" :data="course"/>
                                     </div>
                                 </div>
                             </div>
@@ -67,6 +68,9 @@
              <tr>
                 <td id="class_time">10</td>
             </tr>
+            <tr>
+                <td id="class_time">11</td>
+            </tr>
 
         </table>
     </div><!--timetable ending tag-->
@@ -74,21 +78,15 @@
 </template>
 
 <script >
-import node from "../timetable/node";
+import nodeShow from "../timetable/node_show";
 
 export default {
   components: {
-    node
+    nodeShow
   },
   data() {
     return {
       tt_name: "",
-      nodes: {},
-      node: {
-        start: "1",
-        leng: "2",
-        name: "녹차아이스"
-      },
       courses : [[[]]],
     };
   },
@@ -104,6 +102,7 @@ export default {
     // }
   },
   methods: {
+    //   course
     get_data(data) {
 
         this.tt_name = data.ttname;
@@ -114,9 +113,31 @@ export default {
             ttname: this.tt_name
         }).then(response => {
             if (response.status === 200) {
+                this.courses = [[[]]]; 
                 console.log(response.data);
+                for(var i = 0; i < response.data.length; i ++){
+                    var day_index = response.data[i].day;
+                    var time_index = response.data[i].start;
+                    
+                   
+                    if(this.courses[day_index] === undefined) this.courses[day_index] = [];
+                    if(this.courses[day_index][time_index] === undefined) this.courses[day_index][time_index] = [];
+                    this.courses[day_index][time_index].push(response.data[i]);
+                }
+                this.$forceUpdate();
+
+                
             }
         });
+    },
+    update(data){
+                    console.log(data);
+                    console.log('update function');
+                    if(data == 'remove'){
+                        console.log('remove');
+                        
+                    }
+                
     },
     timetable_s() {
       this.$http.post("/api/show/timetable", {
@@ -129,67 +150,10 @@ export default {
           }
         });
     },
-    parsingTime(course) {
-        var course_temp = JSON.parse(JSON.stringify(course));
-        var course_for_use = JSON.parse(JSON.stringify(course));
-        
-        var prepared_data = [];
-
-        if(course_temp.time = '')return prepared_data;
-
-        var sep_time = course_for_use.time.split( ',');
-        // for(var i = 0; i< sep_time.length; i++){
-        //     console.log(sep_time[i]);
-        // }
-        console.log(course.time + '코스타임');
-        console.log(course_temp.time + '타임');
-
-        prepared_data.push({
-            code : course_temp.code,
-            course_name : course_temp.name,
-            professor : course_temp.professor,
-            time : course.time,
-            credit : course_temp.credit,
-            
-            day : sep_time[0].substr(0, 1),
-            start : sep_time[0][1],
-            long : 1,
-        });
-
-        for(var i = 1; i < sep_time.length; i++){
-            if(parseInt(sep_time[i-1][1]) + 1 === parseInt(sep_time[i][1])){
-                console.log("into comparison");
-                var temp = prepared_data.pop();
-                console.log(temp.long);
-                temp.long ++;
-                prepared_data.push(temp);
-            } else {
-                prepared_data.push({
-                    code : course_temp.code,
-                    course_name : course_temp.name,
-                    professor : course_temp.professor,
-                    time : course.time,
-                    credit : course_temp.credit,
-                    
-                    day : sep_time[i].substr(0, 1),
-                    start : sep_time[i][1],
-                    long : 1,
-                });
-            }
-        }
-
-        for(var i = 0 ; i < prepared_data.length; i++){
-            console.log( "day :" + prepared_data[i].day);
-            console.log( "start :" + prepared_data[i].start);
-            console.log( "length :" + prepared_data[i].long);
-        }
-
-        return prepared_data;
-    },
   }
 };
 </script>
 
 
-<style  src = '../../assets/Showpage/timetable_s.less' lang="scss" scoped>
+<style  src = '../../assets/Showpage/timetable_s.scss' lang="scss" scoped>
 </style>

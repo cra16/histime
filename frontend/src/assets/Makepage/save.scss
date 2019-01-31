@@ -26,10 +26,13 @@ p{
 .contents{
     font-size : 13px;
     font-weight : 500;
-    height:85%;
+    height : 81.5%;
     width : 100%;
     overflow: scroll;
     position : relative;
+    .noResult{
+        color : dimgray
+    }
 
     .section1{
         margin-top : 10px;
@@ -93,7 +96,7 @@ p{
 #foot{
     font-weight : 500;
     text-align: center;
-    margin : 0;
+    
     border:2px solid #225B95;
     background-color:#9CBADF;
     vertical-align: middle;
@@ -111,6 +114,7 @@ p{
         color: white;
         cursor : pointer;
         text-align: center;
+        border-radius:20px;
         background-color:#FFCA55 ;
         position:relative;bottom:5px;
       }

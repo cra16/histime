@@ -2,9 +2,13 @@
 <!-- 시간표 만드는 페이지에서 즐겨찾기 부분 -->
 <div class="save">
     <h1 id="head">즐겨찾는 과목</h1>
-<!-- 여기에 이렇게 많은 정보가 필요한가? -->
     <div class='contents'>
-        
+
+        <div v-if="noResult==true" class="noResult">
+            <br />
+            <p>즐겨찾는 과목이 없습니다.</p><p> 과목 검색결과에서 별 모양을 통해 추가해 주세요</p>
+        </div>
+
         <div v-for="(course, key) in this.courses" :key="key" class="content">
             
              <div class="section1">
@@ -34,7 +38,7 @@
     </div>
     <h1 id="foot">
         <button class="all" v-on:click="add_a()">전체추가</button>
-        <button class="all" v-on:click="del_a()">전체삭제</button>
+        <button class="all" v-on:click="del_a()">비우기</button>
     </h1>    
 </div>
    
@@ -49,15 +53,8 @@ export default{
        
             active: false,
             courses : [],
-            // course : {
-            //     name : "",
-            //     code : "",
-            //     time : "",
-            //     credit : "",
-            //     gubun : "",
-            //     professor : "",
-            //     english : ""
-            // },
+            noResult : true
+            
         }
             
     },
@@ -127,12 +124,15 @@ export default{
             student_id : this.$session.get('student_id')
         }).then((response) => {
             if (response.status === 200) {
-                this.courses = response.data; //name, code, time, credit, gubun, professor, english
-                console.log('즐겨찾기 List : ' + this.courses.length + '개');
-                for(var i = 0; i < this.courses.length; i++) {
-                    console.log('즐겨찾기 ' + (i+1) + '번 과목: ' + this.courses[i].name);
+                if(resonse.data.length == 0){
+                    this.noResult = true;
+                }else{
+                    this.courses = response.data; //name, code, time, credit, gubun, professor, english
                 }
+               
             }
+        },function(err){
+            alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
         });
         this.$EventBus.$on('add_to_fav', this.add_to_fav);
     }
@@ -142,6 +142,6 @@ export default{
 </script>
 
 
-<style  lang ="scss" src = '../../assets/Makepage/save.less' scoped>
+<style  lang ="scss" src = '../../assets/Makepage/save.scss' scoped>
 
 </style>

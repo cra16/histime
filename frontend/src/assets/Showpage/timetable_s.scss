@@ -22,7 +22,7 @@
     height : 93%;
     width : 100%;
     margin :0;
-
+  
    
     table{
         width : 99%;
@@ -37,7 +37,7 @@
         border-bottom : 1px solid #225B95;
         border-top: 1px solid #225B95;
         border-right: 1px solid #225B95;
-        height : 80px;//1교시당 시간 높이
+        height : 100px;//1교시당 시간 높이
     }
     #last{
         border-right : none;
@@ -56,3 +56,16 @@
     }
 }
 
+
+button{
+    background:#FFCA55 ;
+    color:white;
+    border : none;
+    padding:3px;
+    float : right;
+    margin-right : 10px;
+    font-weight: 500;
+    border-radius: 7px;
+    cursor: pointer;
+
+}

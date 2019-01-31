@@ -10,12 +10,10 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    
-    
 
     proxyTable: {
   '/api': {
-      target:  'http://localhost:3000/api',
+      target:  'http://33ec1eb8.ngrok.io/api',
     
     changeOrigin: true,
     pathRewrite: {
@@ -52,11 +50,13 @@ module.exports = {
   },
 
   build: {
+    index: path.resolve(__dirname, '../../backend/public/index.html'),
+    assetsRoot: path.resolve(__dirname, '../../backend/public'),
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    // index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    // assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 

@@ -1,25 +1,30 @@
 <template>
 <div>
-    <div v-if="data.long!=-1">
+    <div v-if="data.height!=-1">
         <div class ="box">
-            <div v-bind:id="long" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
-                <input type = "color" v-model="mycolor" />
-                
-                <button v-on:click="this.delete_course" >x</button>
-
+            <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
+                <!-- <input type = "color" v-model="mycolor" /> -->
+                <button id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
                 <p id = "code" >{{`[${this.data.code}]`}}</p>
-                <p id="course_name">{{ this.data.course_name }}<span>( {{ this.data.credit }} )</span></p>
-                <p id="prof">{{ this.data.professor}}</p>   
-                <div ></div> 
+                <p id="course_name">{{ this.data.course_name }}</p>
+                <p id="credit">{{ this.data.credit }}학점</p>
+                <p id="prof">{{ this.data.professor}}</p> 
+                <!-- <p id="prof">{{ this.data.professor}}</p>   
+                <p id="prof">{{ this.data.professor}}</p>     
+                정보를 더 받아오기 -->
+          
+
+                
 
             </div>
-            <!-- <span v-bind:class="classObject" class = "tooltip">
+            <span v-bind:class="classObjectTip()" class = "tooltip">
                 <p>상세정보</p>
                 <p>{{ this.data.code }}  
                 <p>{{ this.data.course_name }}</p>
                 <p>{{ this.data.professor }}</p>
                 <p>{{ this.data.time }}</p>
-            </span> -->
+            </span>
+           
         </div>
     </div>
 </div>
@@ -28,42 +33,20 @@
 
 <script>
 export default {
-   props : ['data'],//start, long, name, professor
+   props : ['data'],//start, height, name, professor
    data(){
         return{
             time : [] , case : [], 
-            long : 'long' + this.data.long , //연강
+            height : 'height' + this.data.height , //연강
             mycolor : "",
         };
     },
     
     methods : {
-        delete_course(){
-            console.log(this.$parent.courses);
-            this.$forceUpdate();
-            //노드 courses[[[]]]배열에서 삭제
-            for(var i=1;i<=6;i++){
-                    if(this.$parent.courses[i] === undefined)  continue;//다른 요일로 건너뛰기
-                    for(var j=1;j<=10;j++){
-                    if(this.$parent.courses[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
-                    for(var k=0; k<this.$parent.courses[i][j].length;k++){
-                        if(this.$parent.courses[i][j][k].code == this.data.code){
-                            this.$parent.courses[i][j].splice(k,1) 
-                            this.$emit('update', 'hello!');
-                        }
-                    }                
-                }
-            }
-
-            for(var i in this.$parent.raw_courses) {
-                if(this.$parent.raw_courses[i].code === this.data.code) {
-                    this.$parent.raw_courses.splice(i, 1);
-                }
-            }
-        },
+        
         classObject() { //
-            var start = this.data.k_start;
-            var size =this.data.size;
+            var start = this.data.k_start;//한 칸안에서 어디서 시작할지
+            var size =this.data.size;//크기
              for(var i=0; i<6; i++)
                         this.case[i] = false;
             if(start == 0&& size ==1) this.case[0] = true;
@@ -74,10 +57,11 @@ export default {
             else if(start == 2&& size ==3)   this.case[5] = true;
            
 
-            for(var i=0; i<10; i++)
+            for(var i=0; i<10; i++)//몇고시인지
                 this.time[i] = false;
             this.time[this.data.start-1] = true;
-            this.$emit('update', 'hello!');                    
+            this.$emit('update', 'add');        
+            console.log("time" + this.time)            
             return {
                     t1: this.time[0],
                     t2: this.time[1],
@@ -89,6 +73,7 @@ export default {
                     t8: this.time[7],
                     t9: this.time[8],
                     t10: this.time[9],
+                    t11: this.time[10],
                     case0 : this.case[0],
                     case1 : this.case[1],
                     case2 : this.case[2],
@@ -96,12 +81,33 @@ export default {
                     case4 : this.case[4],
                     case5 : this.case[5]   
             }
+        },
+         classObjectTip() { //툴팁용 class bind
+
+           
+
+            for(var i=0; i<10; i++)//몇고시인지
+                this.time[i] = false;
+            this.time[this.data.start-1] = true;      
+            return {
+                    t1: this.time[0],
+                    t2: this.time[1],
+                    t3: this.time[2],
+                    t4: this.time[3],
+                    t5: this.time[4],
+                    t6: this.time[5],
+                    t7: this.time[6],
+                    t8: this.time[7],
+                    t9: this.time[8],
+                    t10: this.time[9],
+                    t11: this.time[10],
+            }
         }
         
  
     },
      created(){
-        this.mycolor = this.$parent.color;
+        this.mycolor = this.data.color;
 
         // console.log(color);
 
@@ -128,6 +134,6 @@ export default {
 
 </script>
 
-<style src = '../../assets/timetable/node.less' lang='scss' scoped>
+<style src = '../../assets/timetable/node.scss' lang='scss' scoped>
    
 </style>

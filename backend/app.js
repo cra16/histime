@@ -34,6 +34,12 @@ app.use('/api/show', show);
 var make = require('./routes/make');
 app.use('/api/make', make);
 
+var aboutus =  require('./routes/aboutus');
+app.use('/api/aboutus', aboutus);
+
+var individual =  require('./routes/individual');
+app.use('/api/individual', individual);
+
 ////////////////////////////////////////
 app.use(logger('dev'));
 app.use(express.json());

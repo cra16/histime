@@ -8,7 +8,7 @@
     background-color:#225B95;
     text-align: center;
     h3{
-        font-size : 10px;
+        font-size : 24px;
         padding : 0%;
         margin:0px;
         // margin-left : 20%;
@@ -16,29 +16,6 @@
         display: inline-block;
     }
    
-   
-    #undo{
-        display: inline;
-        position:relative;top:8px;
-        float: right;
-        margin-right :5% ;
-        border : none;
-        height:20px;
-        width:20px;
-        background : url( '../../image/schedule_left.png') no-repeat;
-        background-size : cover//이미지가 버튼 사이즈에 맞게 조절
-    }
-    #redo{
-        display: inline;
-        position:relative;top:8px;
-        float:right;
-        margin-right :10% ;
-        height:20px;
-        width:20px;
-        border : none;
-        background : url( '../../image/schedule_right.png') no-repeat;
-        background-size : cover
-    }
     #reset{
         display: inline;
         position:relative;top:8px;
@@ -48,7 +25,8 @@
         width:20px;
         border : none;
         background : url( '../../image/calendar.png') no-repeat;
-        background-size : cover
+        background-size : cover;
+        cursor: pointer;
     }
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
@@ -61,7 +39,7 @@
 .timetable{
     position:relative;
     overflow: scroll;
-    height : 86.5%;
+    height : 85.5%;//foot 부분이랑 크기 조절
     width : 100%;
     margin :0;
     display : flex;
@@ -104,13 +82,14 @@
 
 .foot{
     text-align: center;
-    margin : 0;
     border:2px solid #225B95;
     background-color:#9CBADF;
-    width: 99.9%;
+    width: 43.4%; 
     height : 49px;
-    position:relative;right:2px;
-    #save{
+    position:absolute;
+    bottom:2.0%;    
+    
+    .btn{
         width : 100px;
         font-weight : 500;
         border-radius: 5px;
@@ -122,6 +101,7 @@
         cursor : pointer;
         text-align: center;
         background-color:#FFCA55 ;
+        border-radius:20px;
         position:relative;top:8px;
     }
 }

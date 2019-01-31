@@ -28,6 +28,21 @@ router.post('/', function(req, res, next) {
     // connection.end();
 });
 
+router.post('/modify_list', function(req, res, next) {
+    var code = '';
+    for(var i = 0; i < req.body.code.length; i++){
+        code += `code='${req.body.code[i]}'`
+        if(i != req.body.code.length - 1) code += ' or '
+    }
+    var modify_query = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE ${code};`;
+    console.log(modify_query);
+    connection.query(modify_query, function (err, result) {
+            res.send(result);
+    });
+
+    // connection.end();
+});
+
 //make page 초기에 즐겨찾기 리스트 생성
 //input : student_id
 //output : list of object(name, code, time, credit, gubun, professor, english)
@@ -143,7 +158,7 @@ router.post('/add_fav', function(req, res, next) {
     var time = req.body.time;
     var credit = req.body.credit; 
     
-    var add_fav = `INSERT INTO user values(NULL, ${student_id}, NULL, NULL, NULL, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
+    var add_fav = `INSERT INTO user(student_id, code, course_name, professor, time, credit, favorited) VALUES (${student_id}, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
     console.log(add_fav);
     connection.query(add_fav, function(err, result, fields) {
         if(err) console.log(err);
@@ -233,12 +248,16 @@ router.post('/make_tt', function(req, res) {
 
     //실제용
     for (var i in data_list) {
-        var make_tt = `INSERT INTO user values(NULL, ${student_id}, '${ttname}', NULL, ${total_credit}, '${data_list[i].code}', '${data_list[i].name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, false);`
+
+
+        var make_tt = `INSERT INTO user(student_id, ttname, total_credit, code, course_name, professor, time, credit, height, start, size, k_start, color, day) VALUES (${student_id}, '${ttname}', ${total_credit}, '${data_list[i].code}', '${data_list[i].course_name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, ${data_list[i].height}, ${data_list[i].start}, ${data_list[i].size},  ${data_list[i].k_start}, '${data_list[i].color}', '${data_list[i].day}');`
+
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             console.log(courseList);
         });
     }
+    res.send('add');
 });
 
 //다른시간표보기리스트생성(초기)

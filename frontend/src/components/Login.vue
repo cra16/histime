@@ -1,47 +1,65 @@
 <template>
   <div class="login">
     <!--<div class="page"> -->
-    <div class = "logo">
-      <h1>{{ name }} </h1>
-      <p>이번 학기를 채울 모든 경우의 수, His Time</p>
-    </div>
-
-    <form>
-      <div class ="login_box">
-         <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
-        <div class="text_box">
-          <input type = "text" placeholder="hisent id" v-model="input.id" v-on:keyup.enter="login()">
-          <br />
-          <input type = "password" placeholder="hisnet password" v-on:keyup.enter="login()" v-model="input.password">
-        </div>
-       
+    <div class="onlylogin">
+      <div class = "logo">
+        <h1>{{ name }} </h1>
+        <p>이번 학기를 채울 모든 경우의 수, HisTime</p>
       </div>
-      <br /><br /><br />
-      <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
-    </form>
-    
-    <!--</div> -->
 
-    <div  v-show="isLoad" id="loading">
-       <div class="container">
-        <div class="item item-1"></div>
-        <div class="item item-2"></div>
-        <div class="item item-3"></div>
-        <div class="item item-4"></div>
-    </div>
-     
+      <form>
+        <div class ="login_box">
+          <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
+          <div class="text_box">
+            <input type = "text" placeholder="HISNET ID" v-model="input.id" v-on:keyup.enter="login()">
+            <br />
+            <input type = "password" placeholder="HISNET PASSWORD" v-on:keyup.enter="login()" v-model="input.password">
+          </div>
+        
+        </div>
+        <br /><br /><br />
+        <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
+      </form>
+      
+      <!--</div> -->
+     </div>
+      <div  v-show="isLoad" id="loading">
+        <div class="container">
+          <div class="item item-1"></div>
+          <div class="item item-2"></div>
+          <div class="item item-3"></div>
+          <div class="item item-4"></div>
+      </div>
+      
+      </div>
+  <div class = "footer">
+  <center><Footer></Footer></center>
   </div>
   </div>
 </template>
 
 <script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
+
+<script>
+import Footer from '../components/Footer.vue'
 
 
 export default {
   name: 'Login', 
+  components: {
+    Footer
+  },
   data() {
     return{
-      name : 'His Time',
+      name : 'HisTime',
       input :  {
           id : "",
           password : "",
@@ -62,19 +80,23 @@ export default {
       }).then((response) => {
         if (response.status === 200 ) {
               this._response = response;
-              this.$session.start()
-              this.setSession()
-              if(this.isSave){this.setCookies(response)}
-              else{
-                this.$cookies.set('auth_save', false)
-                }
-              
-              console.log(this.$cookies.get('auth_save'))
-              this.$router.replace({ name: "show"}) 
+              if(response.data.student_id === 'nope'){//로그인이 틀린 경우
+                alert("로그인 정보가 일치하지 않습니다.");
+                this.input.id = '';
+                this.input.password = '';
+                this.isLoad = false;
+                return;
+              }
+              else{//로그인이 틀리지 않은 경우
+                this.setSession()//세션에 정보 저장
+                  if(this.isSave){this.setCookies(response)}//30일 저장한다고 했을 때 =>쿠키에 정보 저장
+                  else{this.$cookies.set('auth_save', false)}//그렇지 않은 경우 -> 쿠키에 저장된 정보 없에기
+              }
+              this.$router.replace({ name: "show"});
             }
-          }, function (err) {
-            alert("로그인을 틀렸거나 서버가 이상하거나..")
-          })
+          }, function (err) {//서버가 이상한 경우
+            alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+          });
           
     },
     setCookies(){
@@ -122,10 +144,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src = '../assets/Login.less' lang='scss' scoped>
+<style src = '../assets/Login.scss' lang='scss' scoped>
 
 </style>
-
-
-
-

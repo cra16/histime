@@ -1,10 +1,10 @@
 <template>
- <div>
+ <div class="main">
        <h1 id="head">과목찾기</h1>
        <div>
        <div class="search_field" > 
 
-        <input v-model="course_name" type="text" placeholder="과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
+        <input v-model="course_name" type="text" placeholder="   과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
         <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
         <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
 
@@ -12,8 +12,9 @@
        </div>
 
   <div class='contents'>
+      <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->
+        <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
-       
             <div class="content" >
                 
                         <div class="section1">
@@ -31,7 +32,7 @@
                             <p>영어 {{course.english}}</p>
                         </span>
                         <span class="section4">
-                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"><img src="../../image/starF.png" width="19" height="20"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
                         </span>
@@ -42,13 +43,7 @@
       </div>
         
     </div>
-    <div id="foot">
     
-    </div>
-    
-     
-      
-     
       <div v-show="showbox" class="placeholder-box" >
            
             <p>학부&emsp;&ensp;&nbsp;
@@ -121,10 +116,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for ="i in 10" :key ="i">
+                                <tr v-for ="i in 11" :key ="i">
                                     <td>{{ i }}</td>
-                                        <td v-bind:class="{checked : checktime[(i+j*10)]}" v-for ="j in 6" :key ="j" > 
-                                        <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 10)]" v-on:click="checktime[(i + j * 10)] != checktime[(i + j * 10)]">
+                                        <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
+                                        <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 11)]" v-on:click="checktime[(i + j * 11)] != checktime[(i + j * 11)]">
                                         <label for="checktime"></label>
                                         
                                         </td>
@@ -138,8 +133,9 @@
                 </p>
             </div>
        </div>
-     
-
+       <div id="foot">
+            <span id="update">시간표 정보 업데이트 일시 : {{ update.year }}-{{ update.month }}-{{ update.date }}</span>
+       </div>
     </div>
   
 </template>
@@ -170,6 +166,13 @@ export default {
                 time:[],
                 credit:[]
             },
+            no_result : true,//검색결과가 없음을 나타내는 변수
+            loading : false,//검색결과를 기다리는 중을 나타내는 변수
+            update : {
+                year : '1998',
+                month : '03',
+                date : '02'
+            }
         
             
         }
@@ -189,14 +192,14 @@ export default {
         },
         timebox_chosen: function(){
             this.searchbox=false;
-               for(var i=1;i<61; i++) {
+               for(var i=1;i<67; i++) {
                     if(this.checktime[i] === undefined)continue;
                  if(this.checktime[i]===true) {
                     
                     console.log('j는' + j);
                     var day = '';
-                    var time = i % 10;
-                    var j = (i - time)/10;
+                    var time = i % 11;
+                    var j = (i - time)/11;
                     if(j === 1) day +=  '월';
                     else if(j === 2) day += '화';
                     else if(j === 3) day += '수';
@@ -221,24 +224,36 @@ export default {
            this.style.background='powderblue';
 
         },
-        search_by_name: function(){
-            console.log(this.$session.get('student_id'));
-            this.$http.post('/api/make/search/name', {
+        search_by_name: function(){//과목명, 또는 교수님 이름으로 검색버튼
+            if(this.course_name.length==0){//한글자도 입력하지 않은 경우
+                alert("한글자 이상 입력해주세요");
+                return false;
+            } else{
+                this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
+                this.search=''//검색창 초기화
+                this.loading = true;//'검색중..'글자 띄워줌
+                this.$http.post('/api/make/search/name', {
                 course_name : this.course_name,
                 }).then((response) => {
-                    console.log(response.data);
-                    this.search = response.data;
-            });
-            this.course_name = '';
+                    this.loading = false //'로딩중'글자를 지움
+                    if(response.data.length==0){//데이터 값이 들어오지 않았을때
+                        this.no_result = true;//결과가 없음을 표시
+                    }else{
+                        this.no_result = false;
+                        this.search = response.data;//결과값을 저장함
+                    }
+                },function (err) {//서버가 이상한 경우
+                    
+                    alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+                });
+            // this.course_name = '';이게 없는게 일반적인것 같은데..
+            }
         },
         search_by_Filter: function(){
-            console.log("학부 "+ this.filter.hakbu);
-            console.log("구분 "+ this.filter.gubun);
-            console.log("교양 "+ this.filter.gyoyang);
-            console.log("학점 "+ this.filter.credit);
-            console.log("영어 "+ this.filter.english);
-            console.log("교수 "+ this.filter.professor);
-            console.log("교시 "+ this.filter.time);
+            this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
+            this.search=''//검색창 초기화
+            this.loading = true;//'검색중..'글자 띄워줌
+            
             this.$http.post('/api/make/search/filter', {
                 hakbu : this.filter.hakbu,
                 gubun : this.filter.gubun,
@@ -247,10 +262,17 @@ export default {
                 english : this.filter.english,
                 professor : this.filter.professor,
                 time : this.filter.time,
-                }).then((response) => {
-                    console.log(response.data);
-                    this.search = response.data;
-            });
+                 }).then((response) => {
+                    this.loading = false //'로딩중'글자를 지움
+                    if(response.data.length==0){//데이터 값이 들어오지 않았을때
+                        this.no_result = true;//결과가 없음을 표시
+                    }else{
+                        this.no_result = false;
+                        this.search = response.data;//결과값을 저장함
+                    }
+                },function (err) {//서버가 이상한 경우
+                    alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+                });
 
             //초기화 작업
             this.filter.hakbu = '';
@@ -291,7 +313,7 @@ export default {
 }
 
 </script>
-<style   src = '../../assets/Makepage/search.less' lang = "scss" scoped>
+<style   src = '../../assets/Makepage/search.scss' lang = "scss" scoped>
 </style>
 
 
