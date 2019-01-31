@@ -70,8 +70,6 @@ export default {
         }
     }
 }
-// </script>
+</script>
 
-// <style src = '../../assets/timetable/add.less' lang='scss' scoped>
- 
-// </style>
+<style />
