@@ -4,7 +4,7 @@
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
-        <!-- <button class="btn" id="reset" v-on:click="reset()"></button> -->
+        <button class="btn" id="reset" v-on:click="reset()"></button>
     </div>
 
     <add v-if="user_add_clicked" ></add>
@@ -71,8 +71,7 @@
     </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
-        <!-- <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 어떻게생각하세요..? -->
-        <button class="btn" id="cancel" v-on:click ="reset()">전체삭제</button> 
+        <button class="btn" id="cancel" v-on:click ="cancel()">취소하기</button> 
     </div>
 </body>
 
@@ -142,7 +141,7 @@
                 update_table(){
                     console.log("yes");
                     this.courses = [[[]]];                    
-                    this.courses = this.courses_store;
+                    this.courses = this.courses_store ;
                     this.$forceUpdate();
                     for(var i=1;i<=6;i++){
                             if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
@@ -212,6 +211,8 @@
                             // this.courses_for_back.push(data[i]);
                             this.course_update(parsed_data);
                             this.update_table();
+
+                            
                         } else {
                             console.log('duplication!');
                         }
@@ -267,8 +268,6 @@
                         professor : course_temp.professor,
                         time : course.time,
                         credit : course_temp.credit,
-                        gubun : course_temp.gubun,
-                        english : course_temp.english,
                         
                         day : sep_time[0].substr(0, 1),
                         start : sep_time[0].match(/\d+/)[0],
@@ -293,8 +292,6 @@
                                 professor : course_temp.professor,
                                 time : course.time,
                                 credit : course_temp.credit,
-                                gubun : course_temp.gubun,
-                                english : course_temp.english,
                                 
                                 day : sep_time[i].substr(0, 1),
                                 start : sep_time[i].match(/\d+/)[0],
@@ -610,17 +607,17 @@
                 },
                 set_color() {
                     //hsl color
-                    var color = 'hsl(';
-                    color += Math.floor(Math.random() * 360);
-                    color = color + ', 50%, 60%)';
+                    // var color = 'hsl(';
+                    // color += Math.floor(Math.random() * 360);
+                    // color = color + ', 50%, 80%)';
 
                     //hex
-                    // var letters = '0123456789ABCDEF';
-                    // var color = '#';
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
 
-                    // for (var i = 0; i < 6; i++) {
-                    //     color += letters[Math.floor(Math.random() * 16)];
-                    // }
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
 
                     // console.log('color' + color);
 
