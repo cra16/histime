@@ -61,7 +61,10 @@ form{
       text-decoration: none;
       margin: 0;
       color: #fff;
-      position: relative;
+      position: absolute;
+      margin-top:0%;
+      left:58%;
+      margin-left:0%;
       float : right;
       cursor : pointer;
       text-align: center;
@@ -78,6 +81,12 @@ form{
   }
 }
 }
+
+.t1{
+  position:relative;
+  right:20%;
+}
+    
 
 
 .footer{

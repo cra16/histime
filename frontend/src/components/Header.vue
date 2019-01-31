@@ -1,7 +1,7 @@
 <template>
 <div class = 'header'>
     <div v-on:click ="goHome()" class = "logo">
-        <img src="../image/logo_large.png" width="180" class="mainlogo">
+        <img src="../image/logo_large.png" width="180" class="mainlogo" title="Home" >
         <br>
         <span class="p1">이번 학기를 채울 모든 경우의 수, HisTime</span>
     </div>
