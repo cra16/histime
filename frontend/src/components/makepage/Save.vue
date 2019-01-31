@@ -89,17 +89,13 @@ export default{
             console.log("created: " + course);
             
             if(duplication === true) {
-                let toast = this.$toasted.error("이미 즐겨찾기에 추가된 과목 입니다!", { 
-                    theme: "outline", 
+                this.$toasted.show('Already', { 
+                    theme: "bubble", 
                     position: "top-center", 
                     duration : 500,
-                    fullWidth : false
+                    // fullWidth: false,
+                    // fitToScreen: true
                 });
-                // this.$toasted.show('이미 즐겨찾기에 추가된 과목 입니다!', { 
-                //     theme: "outline", 
-                //     position: "top-center", 
-                //     duration : 300
-                // });
             } else {
                 this.$http.post('/api/make/add_fav', {
                     student_id : this.$session.get('student_id'),

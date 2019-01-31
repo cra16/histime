@@ -233,7 +233,15 @@
                     // console.log("rc_length: " + this.courses_for_back.length);
 
                     if(duplication) {
-                            alert("이미 시간표에 추가한 과목입니다!");
+                        // this.$toasted.show('Already', { 
+                        //     theme: "bubble", 
+                        //     position: "top-center", 
+                        //     duration : 500,
+                            
+                        //     // fullWidth: false,
+                        //     // fitToScreen: true
+                        // });
+                        this.$toasted.global.already_add();
                     } else {
                         var parsed_data = this.parsingTime(raw_data);
 
