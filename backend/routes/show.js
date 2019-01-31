@@ -78,7 +78,7 @@ router.post('/copy', function(req, res, next) {
     console.log('id : ' + student_id);
     console.log('ttname : ' + ttname);
 
-    connection.query(`SELECT code, course_name, professor FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
+    connection.query(`SELECT DISTINCT code, course_name, professor FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
         if(err) console.log(err);
         res.send(results);
     })
