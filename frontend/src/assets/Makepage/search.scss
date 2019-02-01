@@ -12,44 +12,47 @@
     background-color:#225B95;
 }
 
-.search_field{
-    width:96.7%;
+.searchBox{
+    width:100%;
     margin-top:0px;
     margin-bottom:0px;
-    padding:5px;
     background-color:#9CBADF;
     position:relative;
+
+    .input_text{
+        position:relative;
+        top:3px;
+        left:-2px;
+        width: 60%;
+        height: 32px;
+        border: 3px solid #225B95;
+        border-radius:15px;
+        font-size : 15px;
+        padding-left:10px;
+        margin-left : 0px;
+     }
+    .sch_filt {
+        width: 50px; height: 40px;
+        margin: 0; border: 0;
+        left:0px;
+        top:0px;
+        margin-top:1%;
+        vertical-align: top;
+        background: #225B95;
+        color: white;
+        font-weight: bold;
+        border-radius: 15px;
+        cursor: pointer;
+        position:relative;
+    }
+    
+    .sch_filt:hover {
+        opacity:0.6;
+    }
 }
 
-.input_text{
-   position:relative;
-   top:3px;
-   left:-2px;
-   width: 60%;
-   height: 32px;
-   border: 3px solid #225B95;
-   border-radius:15px;
-   font-size : 15px;
-   padding-left:0px;
-}
-.sch_filt {
-    width: 50px; height: 40px;
-    margin: 0; border: 0;
-    left:0px;
-    top:0px;
-    margin-top:1%;
-    vertical-align: top;
-    background: #225B95;
-    color: white;
-    font-weight: bold;
-    border-radius: 15px;
-    cursor: pointer;
-    position:relative;
-}
 
-.sch_filt:hover {
-    opacity:0.6;
-}
+
 
 hr{
     margin : 0px;
@@ -61,11 +64,15 @@ hr{
     font-size : 13px;
     font-weight : 500;
     height:77%;
-    width : 100%;
     overflow: scroll;
-    position : relative;
-
+    width : 100%;
+    .content{
+        position : relative;
+        width : 100%;
+        height: 100%;
+    }
     #noResult{
+        margin-top : 60%;
         color : dimgray
     }
     
@@ -84,35 +91,40 @@ hr{
         display : inline-block;
         position: relative;
         margin-left : 10%;
+
     }
     .section4{
-        width : 100%;
-        position: relative;
-        z-index: 2;
+        right : 3%;
+        position: absolute;
+        z-index: 1;
         display : none;
-        margin-left : 130px;
-        margin-top : -50px;
-      
-     
+        right : 3%;
+        bottom : 10%;
         button{
             width : 34px;
             height : 34px;
             border-radius: 5px;
             cursor : pointer;
+            margin-bottom : 5px;
+       
         }
-        
-        #delete{
-            //margin-top : 13%;
+        button:hover{
+            opacity: 0.6;
+        }
+        #fav{
             background : url( '../../image/starF.png') no-repeat;
+            width : 30px;
+            height : 30px;
             background-size : cover;
-            position:relative;
-            
-           
+            border : none;
         }
+       
         #add{
-            //margin-top : 13%;
+            
+            margin-top : 2px;
             background : url( '../../image/plus.png') no-repeat;
-            background-size : cover//이미지가 버튼 사이즈에 맞게 조절 
+            background-size : cover;//이미지가 버튼 사이즈에 맞게 조절 
+            
         }
     }
     .line{
@@ -123,8 +135,7 @@ hr{
 
 .content:hover .section4 {
     display: inline-block;
-    position: absolute;
-    z-index: 10;
+    z-index: 1;
     
   }
 .content:hover {

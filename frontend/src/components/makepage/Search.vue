@@ -2,12 +2,10 @@
  <div class="main">
        <h1 id="head">과목찾기</h1>
        <div>
-       <div class="search_field" > 
-
-        <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
-        <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
-        <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
-
+       <div class="searchBox" > 
+            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
+            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
+            <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
        </div>
 
@@ -16,7 +14,6 @@
         <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
             <div class="content" >
-                
                         <div class="section1">
                             <p>{{`[${course.code}]`}} {{course.name}}</p>
                         </div>
@@ -32,7 +29,7 @@
                             <p>영어 {{course.english}}</p>
                         </span>
                         <span class="section4">
-                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"><img src="../../image/starF.png" width="19" height="20"></button>
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
                         </span>
