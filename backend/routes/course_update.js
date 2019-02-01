@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
     time += ("0" + newDate.getMinutes()).slice(-2) + ":"; 
     time += ("0" + newDate.getSeconds()).slice(-2);
     console.log(time);
-    connection.query(`UPDATE user set time = '${time}' WHERE ttname = 'update_time';`, function(err, results, fields) {
+    connection.query(`UPDATE user set time = '${time}' WHERE student_id = NULL and ttname = 'update_time';`, function(err, results, fields) {
         if(err) console.log(err);
         console.log(results);
     });

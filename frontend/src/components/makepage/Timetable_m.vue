@@ -260,7 +260,9 @@
                     var course_for_use = JSON.parse(JSON.stringify(course));
                     var _exist = false;
                     for(var i = 0; i < this.courses_for_conv.length; i++){
-                        if(course.code === this.courses_for_conv[i].code) _exist =true;
+                        if(course.code === this.courses_for_conv[i].code){
+                             _exist =true;
+                        }
                     }
                     if(!_exist)this.courses_for_conv.push(course);
                     var prepared_data = [];
