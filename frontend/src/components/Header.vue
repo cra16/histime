@@ -8,7 +8,7 @@
     <div class = 'line'></div>
     <div class = 'user'>
         <span><span id="name">{{ this.$session.get('name') }}</span>님, 안녕하세요!</span>
-        <button v-on:click="logout()">Logout</button>
+        <button class="out" v-on:click="logout()">Logout</button>
         <br />
     </div>
 </div>

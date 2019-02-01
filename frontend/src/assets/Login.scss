@@ -196,6 +196,10 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 
   // cursor: pointer;
 }
+
+.help:hover{
+  opacity: 0.6;
+}
 .placeholder-box {
   position: absolute;
   z-index : 1;
@@ -213,6 +217,7 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 .p1{
   color : #225B95;
   font-size: 20px;
+  margin-top:0%;
   margin-bottom:2%;;
 
 }
