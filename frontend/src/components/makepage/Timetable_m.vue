@@ -652,11 +652,6 @@
             },
             created(){
                 this.modify();
-                this.$EventBus.$on('to_timetablem', function(text){//show 에서 추가하기 했을때 오는 이름
-                    this.tt_name = text;
-                    this.tt_name = "aa";
-                    console.log(this.tt_name);
-                }),
                 this.$EventBus.$on('add_a', this.add_a_to),
                 this.$EventBus.$on('courses', this.add_to),
                 this.$EventBus.$on('close_user_custom', this.user_add),//user custom 창 종료
