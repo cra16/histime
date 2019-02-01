@@ -1,13 +1,13 @@
 <template>
  <div class="main">
        <h1 id="head">과목찾기</h1>
-       <div>
+       
        <div class="searchBox" > 
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
             <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
-       </div>
+ 
 
   <div class='contents'>
       <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->

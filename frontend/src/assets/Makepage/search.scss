@@ -1,6 +1,9 @@
 ::-webkit-scrollbar {width: 5px; height: 3px; border: 0px solid #fff; }
 ::-webkit-scrollbar-thumb {height: 3px; width: 5px; background: #FFCA55 }
-
+main{
+    height : 100%;
+    width : 100%;
+}
 #head{
     font-size: 21px;
     padding : 5px;
@@ -10,14 +13,17 @@
     text-align: center;
     margin : 0;
     background-color:#225B95;
+
 }
 
 .searchBox{
     width:100%;
+    height : 10%;
     margin-top:0px;
     margin-bottom:0px;
     background-color:#9CBADF;
     position:relative;
+
 
     .input_text{
         position:relative;
@@ -28,8 +34,8 @@
         border: 3px solid #225B95;
         border-radius:15px;
         font-size : 15px;
-        padding-left:10px;
-        margin-left : 0px;
+        padding-left:3px;
+        margin-left : 0.5px;
      }
     .sch_filt {
         width: 50px; height: 40px;
