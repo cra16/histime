@@ -19,30 +19,25 @@ body{
         color:white;
         display: inline-block;
     }
-    #credit{
-        position: absolute;;
-        bottom: 2px;
-        right : 1%;
-        color:white;
-        margin-left : 10%;
-        font-size : 15px;
-        #num{
-            color : #FF6D00 ;
-        }
-    }
+ 
    
-    // #reset{
-    //     display: inline;
-    //     position:relative;top:8px;
-    //     float:right;
-    //     margin-right :10% ;
-    //     height:20px;
-    //     width:20px;
-    //     border : none;
-    //     background : url( '../../image/calendar.png') no-repeat;
-    //     background-size : cover;
-    //     cursor: pointer;
-    // }
+    #reset{
+        position: absolute;
+        z-index: 1;
+        top:8px;
+        right : 0;
+        float:right;
+        margin-right :10% ;
+        height:21px;
+        width:21px;
+        border : none;
+        background : url( '../../image/refresh.png') no-repeat;
+        background-size : cover;
+        cursor: pointer;
+    }
+    #reset:hover{
+       opacity: 0.6;
+    }
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 //스크롤바
@@ -120,5 +115,16 @@ body{
         border-radius:20px;
         border:0px solid;
         position:relative;top:8px;
+    }
+    #credit{
+        position: absolute;;
+        bottom: 2px;
+        right : 1%;
+        color:white;
+        margin-left : 10%;
+        font-size : 16px;
+        #num{
+            color : #FF6D00 ;
+        }
     }
 }

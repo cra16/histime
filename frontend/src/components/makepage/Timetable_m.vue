@@ -3,9 +3,8 @@
 <body>
     <div class="head">
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
-        <span id="credit">학점 : <span id="num">{{ this.total_credit }}</span>학점</span>
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
-        <!-- <button class="btn" id="reset" v-on:click="reset()"></button> -->
+        <button title="새로고침" class="btn" id="reset" v-on:click="reset()"></button>
     </div>
     <add v-if="user_add_clicked" ></add>
     <div class = "timetable">
@@ -71,7 +70,8 @@
     </div><!--timetable ending tag-->
     <div class="foot">
         <button class="btn" id="save" v-on:click ="save()">저장하기</button> 
-        <button class="btn" id="cancel" v-on:click="reset()">비우기</button> 
+        <button class="btn" id="cancel" v-on:click="goHome()">돌아가기</button> 
+        <span id="credit">학점 : <span id="num">{{ this.total_credit }}</span>학점</span>
     </div>
 </body>
 
@@ -193,7 +193,7 @@
                     });
                     }
                 },
-                cancel(){//취소하기
+                goHome(){//돌아가기
                     if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
                         this.$router.replace({name: 'show'});
                     }else{
