@@ -1,5 +1,6 @@
 <template>
-    <div id="Make">
+    <div id="Make"> 
+        <!-- v-on:keyup.f5="refresh" -->
         <div class="outer">
             <div class="inner">
                 <Header></Header>
@@ -40,7 +41,15 @@ import Footer from '../components/Footer.vue'
              go() {
                 this.$router.replace({ name: "show" });
             },
-            
+            // refresh:function(){
+            //      if(event.keyCode== 116) {
+            //         event.keyCode = 0;
+            //         event.returnValue = false;
+            //         event.preventDefault();
+            //         alert("새로고침은 불가능합니다!")
+                    
+            //     }
+            // }
         },
    
 

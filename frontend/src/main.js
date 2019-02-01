@@ -15,10 +15,11 @@ Vue.use(VueCookies)
 Vue.use(VueClipboard)
 Vue.use(Notifications)
 
+
 Vue.prototype.$http = axios
 Vue.prototype.$EventBus = new Vue();
 Vue.config.productionTip = false
-
+Vue.config.keyCodes.f5 = 116
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
