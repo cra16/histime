@@ -17,7 +17,7 @@
             <button v-on:click="showpage = !showpage">showpage on/off</button>
             
         </div>
-        <div v-if="this.showpage === true">
+        <div v-if="this.$session.get('student_id') != '21500670' || this.showpage === true">
             <div class="outer">
                 <div class="inner">
                 
