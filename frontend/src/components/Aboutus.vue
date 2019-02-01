@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div class="entire">
        <center><h1>About us</h1></center> 
        <center><h3>E-mail:histime206@gmail.com</h3></center>
        <hr width="70%"/>
@@ -27,7 +27,7 @@
                         &emsp;이름: 김유진<br><br>
                         &emsp;학번: 21700140&emsp;
                         &emsp;학부: 전산전자공학부 <br><br>
-                        &emsp;E-mail:2170140@handong.edu<br><br>
+                        &emsp;E-mail:21700140@handong.edu<br><br>
                         &emsp;Blog:https://github.com/zoomKoding/<br><br>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             &emsp;이름: 이지현<br><br>
                             &emsp;학번: 21700583&emsp;
                             &emsp;학부: 전산전자공학부 <br><br>
-                            &emsp;E-mail:21700583@handong.edu<br><br>
+                            &emsp;E-mail:dlwlgus4553@gmail.com<br><br>
                             &emsp;Blog:https://github.com/dlwlgus53<br><br>
                             </div>
                         </div>

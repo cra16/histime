@@ -96,7 +96,7 @@ export default {
               this.$router.replace({ name: "show"});
             }
           }, function (err) {//서버가 이상한 경우
-            alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+            alert("서버가 이상합니다. histime206@gmail.com 로 메일을 보내주세요 :) ")
           });
           
     },

@@ -30,7 +30,7 @@
    border: 3px solid #225B95;
    border-radius:15px;
    font-size : 15px;
-
+   padding-left:0px;
 }
 .sch_filt {
     width: 50px; height: 40px;
@@ -48,7 +48,7 @@
 }
 
 .sch_filt:hover {
-    background: rgb(66, 173, 206);
+    opacity:0.6;
 }
 
 hr{
@@ -297,7 +297,7 @@ hr{
     background-color:#FFCA55;
     color:white;
     border-radius: 10px;
-   
+    cursor: pointer;
    }
 
   .credit{
@@ -320,7 +320,7 @@ hr{
     background-color:#225B95;
     color:white;
     border-radius: 10px;
- 
+    cursor: pointer;
  
   }
   
