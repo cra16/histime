@@ -2,9 +2,6 @@
 <template>
     <div>
     <!--for demo wrap-->
-    <button v-if="this.$session.get('student_id') === '21500670'" v-on:click="update_course()">수업 업데이트</button>
-    <button v-if="this.$session.get('student_id') === '21500670'" v-on:click="update_user()">유저 테이블 업데이트</button>
-
     <h1>시간표 리스트</h1>
     <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
@@ -43,8 +40,12 @@
     <div class="add">
             <button id="add" v-on:click="go_make()">시간표 추가하기</button>
     </div>
-  
+    
+    
+    
     </div>
+
+    
 </template>
 
 <script>
@@ -66,6 +67,7 @@ import copy from './copy.vue'
                 },
                 ttnames:[],
                 noResult : true,
+                
             };
         },
         
@@ -86,14 +88,7 @@ import copy from './copy.vue'
             });
         },
         methods: {
-            update_course(){
-                console.log('course update in');
-                this.$http.get('api/course_update');
-            },
-            update_user(){
-                console.log('course update in');
-                this.$http.get('api/course_update/user');
-            },
+        
             go_make() { //시간표를 추가하는 웹 페이지로 전환
                 this.$prompt('새로운 시간표의 이름을 입력하세요')
                 .then((new_ttname) => {
