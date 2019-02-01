@@ -299,6 +299,9 @@ hr{
     border-radius: 10px;
     cursor: pointer;
    }
+   .search:hover{
+       opacity:0.6;
+   }
 
   .credit{
    
@@ -322,6 +325,9 @@ hr{
     border-radius: 10px;
     cursor: pointer;
  
+  }
+  .openchoose:hover{
+      opacity:0.6;
   }
   
   .placeholder-box2 {
@@ -364,6 +370,10 @@ hr{
             color:white;
             border-radius: 10px;
         }
+
+        .choosedone:hover{
+            opacity:0.6;
+        }
         .choosereset{
             position:absolute;
             top:90%;
@@ -372,6 +382,9 @@ hr{
             background-color:#FFCA55;
             color:white;
             border-radius: 10px;
+        }
+        .choosereset:hover{
+            opacity:0.6;
         }
   }
   .placeholder-box2 p {
