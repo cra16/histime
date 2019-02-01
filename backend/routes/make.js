@@ -290,4 +290,13 @@ router.get('/show_tt', function(req, res) {
     });
 });
 
+router.get('/update_time', function(req, res) {
+
+    connection.query(`SELECT time FROM user WHERE ttname='update_time';`, function(err, results, fields) {
+        if(err) console.log(err);
+        console.log(results);
+        res.send(results);
+    });
+});
+
 module.exports = router;
