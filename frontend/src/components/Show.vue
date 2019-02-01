@@ -98,7 +98,7 @@ import Footer from '../components/Footer.vue'
                 return;
             }
             this.update_course();
-            this.timer = setInterval(this.update_course, this.interval*1000);
+            this.timer = setInterval(this.update_course, this.interval*60000);
             this.auto_update = true;
             console.log('auto update start');
         },
@@ -115,7 +115,7 @@ import Footer from '../components/Footer.vue'
                 this.time += ("0" + newDate.getSeconds()).slice(-2);
                 console.log(this.time);
                 console.log('course update in');
-                // this.$http.get('api/course_update');
+                this.$http.get('api/course_update');
         },
         cancel_auto_update(){
             clearInterval(this.timer);
