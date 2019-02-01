@@ -2,9 +2,6 @@
 <template>
     <div>
     <!--for demo wrap-->
-    <button v-if="this.$session.get('student_id') === '21500670'" v-on:click="update_course()">수업 업데이트</button>
-    <button v-if="this.$session.get('student_id') === '21500670'" v-on:click="update_user()">유저 테이블 업데이트</button>
-
     <h1>시간표 리스트</h1>
     <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
@@ -43,8 +40,12 @@
     <div class="add">
             <button id="add" v-on:click="go_make()">시간표 추가하기</button>
     </div>
-  
+    
+    
+    
     </div>
+
+    
 </template>
 
 <script>
@@ -66,6 +67,7 @@ import copy from './copy.vue'
                 },
                 ttnames:[],
                 noResult : true,
+                
             };
         },
         
@@ -86,51 +88,89 @@ import copy from './copy.vue'
             });
         },
         methods: {
-            update_course(){
-                console.log('course update in');
-                this.$http.get('api/course_update');
-            },
-            update_user(){
-                console.log('course update in');
-                this.$http.get('api/course_update/user');
-            },
+        
             go_make() { //시간표를 추가하는 웹 페이지로 전환
-                var userInput=prompt(" 시간표 이름을 입력하세요");
-                if(userInput==""){
-                    alert("최소 한글자 이상 입력해주세요");
-                    return false;
-                } else if(userInput==null){
-                    alert("취소되었습니다");
-                    return false;
-                } else if(this.duplication(userInput)){
-                    alert("시간표의 이름이 동일합니다");
-                    return false;
-                } else {
-                 this.$session.set('to_timetablem', userInput)//시간표 이름을 세션으로 보냄
-                }
-                // this.$router.replace({name: 'make'});
-                this.$router.replace({ name: "make" });
+                this.$prompt('새로운 시간표의 이름을 입력하세요')
+                .then((new_ttname) => {
+                    if(new_ttname === '') {
+                        this.$alert({
+                            title: '경고!',
+                            message: '한 글자 이상 입력해주세요.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.go_make();
+                    } else if(new_ttname === null) {
+                        this.$alert({
+                            message: '취소되었습니다!',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                    } else if(this.duplication(new_ttname)){
+                        this.$alert({
+                            title: '경고!',
+                            message: '동일한 이름의 시간표가 존재합니다.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.go_make();
+                    } else {
+                        this.$session.set('to_timetablem', new_ttname);//시간표 이름을 세션으로 보냄
+                        this.$router.replace({ name: "make" });
+                    }
+                });
             },
             modify_name(key) {//시간표 이름 수정(연필모양)-이름수정
-                var modified_name = prompt("수정할 시간표 이름을 입력하세요");
-                if(modified_name === "") {
-                    alert("최소 한 글자 이상 입력해주세요");
-                    return false;
-                } else if(modified_name === null) {
-                    console.log(ttname);
-                    alert("취소되었습니다");
-                    return false;
-                } else if(this.duplication(modified_name)){
-                    alert("시간표의 이름이 동일합니다");
-                    return false;
-                } else {//수정가능
-                    this.$http.post('/api/show/modify_ttname', {
-                        student_id :  this.$session.get('student_id'),
-                        original_ttname :  this.ttlists[key].ttname,
-                        modified_ttname : modified_name 
-                    })
-                    this.ttlists[key].ttname = modified_name 
-                }
+                var original_ttname = this.ttlists[key].ttname;
+
+                this.$prompt('수정할 시간표 이름을 입력하세요')
+                    .then((new_ttname) => {
+                    if(new_ttname === "") {
+                        this.$alert({
+                            title: '경고!',
+                            message: '한 글자 이상 입력해주세요.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.modify_name(key);
+                    } else if(new_ttname === null) {
+                        this.$notify({
+                            group: 'foo',
+                            text: '취소되었습니다!',
+                            duration: 400,
+                            type: 'warn',
+                        });
+                    } else if(original_ttname === new_ttname) {
+                        this.$alert({
+                            title: '경고!',
+                            message: '현재 시간표의 이름과 동일합니다.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.modify_name(key);
+                    } else if(this.duplication(new_ttname)){
+                        this.$alert({
+                            title: '경고!',
+                            message: '동일한 시간표의 이름이 존재합니다.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.modify_name(key);
+                    } else {//수정가능
+                        this.$http.post('/api/show/modify_ttname', {
+                            student_id :  this.$session.get('student_id'),
+                            original_ttname :  original_ttname,
+                            modified_ttname : new_ttname
+                        });
+                        this.ttlists[key].ttname = new_ttname;
+                        this.$notify({
+                            group: 'foo',
+                            text: '시간표의 이름이 수정되었습니다.',
+                            duration: 400,
+                            type: 'success',
+                        });
+                    }
+                });                
             },
             duplication(new_name){//새로 이름만들기, 이름 수정할 때 중복검사
             var duplication =   this.ttlists.some(function(item, index, array) {

@@ -21,6 +21,23 @@ connection.connect(function(err) {
 });
 
 router.get('/', function (req, res, next) {
+    var time = '';
+
+    var newDate = new Date(); 
+
+    //String.slice(-2) : 문자열을 뒤에서 2자리만 출력한다. (문자열 자르기) 
+    time += newDate.getFullYear() + "/"; 
+    time += ("0" + (newDate.getMonth() + 1)).slice(-2) + "/"; //월은 0부터 시작하므로 +1을 해줘야 한다. 
+    time += ("0" + newDate.getDate()).slice(-2) + " "; 
+    time += ("0" + newDate.getHours()).slice(-2) + ":"; 
+    time += ("0" + newDate.getMinutes()).slice(-2) + ":"; 
+    time += ("0" + newDate.getSeconds()).slice(-2);
+    console.log(time);
+    connection.query(`UPDATE user set time = '${time}' WHERE student_id = NULL and ttname = 'update_time';`, function(err, results, fields) {
+        if(err) console.log(err);
+        console.log(results);
+    });
+
     try {
         var Spooky = require('spooky');
     } catch (e) {

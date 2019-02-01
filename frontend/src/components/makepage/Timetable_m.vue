@@ -144,7 +144,7 @@
                     this.$forceUpdate();
                     for(var i=1;i<=6;i++){
                             if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
-                            for(var j=1;j<=10;j++){
+                            for(var j=1;j<=11;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
                                 this.courses.push(this.courses_store[i][j][k]);
@@ -260,7 +260,9 @@
                     var course_for_use = JSON.parse(JSON.stringify(course));
                     var _exist = false;
                     for(var i = 0; i < this.courses_for_conv.length; i++){
-                        if(course.code === this.courses_for_conv[i].code) _exist =true;
+                        if(course.code === this.courses_for_conv[i].code){
+                             _exist =true;
+                        }
                     }
                     if(!_exist)this.courses_for_conv.push(course);
                     var prepared_data = [];
@@ -334,7 +336,7 @@
                     // return duplication;
                     for(var i=1;i<=6;i++){
                             if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
-                            for(var j=1;j<=10;j++){
+                            for(var j=1;j<=11;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
                                 if(this.courses_store[i][j][k].code === raw_data.code){
@@ -424,6 +426,7 @@
                             if(dest.length === 3){
                                 console.log("full!!");
                                 alert("어림없다.");
+                                this.remove_course(parsed_data[t].code);
                                 return;
                             }
                             console.log('dest의 길이는 '+ dest.length);
@@ -433,7 +436,7 @@
                                     if(this.courses_store[day_index][time_index + i] != undefined && this.courses_store[day_index][time_index + i].length > 2) {
                                         console.log("full");
                                         alert("어림없다.");
-
+                                        this.remove_course(parsed_data[t].code);
                                         return;
                                     }
 
@@ -582,7 +585,7 @@
                     //courses_store[[[]]]에서 찾아봐
                     for(var i=1;i<=6;i++){
                             if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
-                            for(var j=1;j<=10;j++){
+                            for(var j=1;j<=11;j++){
                             if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
                             for(var k=0; k<this.courses_store[i][j].length;k++){
                                 if(this.courses_store[i][j][k].code === code){
@@ -598,7 +601,7 @@
                 prop_update_specific(code, data, prop, day){
                     console.log('prop_update_in');
                     console.log(day);
-                    for(var j=1;j<=10;j++){
+                    for(var j=1;j<=11;j++){
                         if(this.courses_store[day][j] === undefined)  continue;//다른 시간으로 건너뛰기
                         for(var k=0; k<this.courses_store[day][j].length;k++){
                             if(this.courses_store[day][j][k].code === code){
@@ -628,8 +631,9 @@
                     if(confirm("시간표를 비우시겠습니까?")){
                         this.courses_store = [[[]]];
                         this.course_for_back = [];
+                        this.courses_for_conv = [];
                         this.courses = [[[]]];
-                        this.$forceUpdate();
+                        this.update_table();
                     }
                 },
                 set_color() {
@@ -652,11 +656,6 @@
             },
             created(){
                 this.modify();
-                this.$EventBus.$on('to_timetablem', function(text){//show 에서 추가하기 했을때 오는 이름
-                    this.tt_name = text;
-                    this.tt_name = "aa";
-                    console.log(this.tt_name);
-                }),
                 this.$EventBus.$on('add_a', this.add_a_to),
                 this.$EventBus.$on('courses', this.add_to),
                 this.$EventBus.$on('close_user_custom', this.user_add),//user custom 창 종료
