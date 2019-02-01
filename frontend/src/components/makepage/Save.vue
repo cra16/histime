@@ -1,7 +1,10 @@
 <template>
 <!-- 시간표 만드는 페이지에서 즐겨찾기 부분 -->
 <div class="save">
-    <h1 id="head">즐겨찾는 과목</h1>
+    <div class ='header'>
+        <h1 id="head">즐겨찾는 과목</h1>
+        <button id="trashcan" v-on:click="del_a"></button>
+    </div>
     <div class='contents'>
 
         <div v-if="noResult==true" class="noResult">
@@ -38,7 +41,7 @@
     </div>
     <h1 id="foot">
         <button class="all" v-on:click="add_a()">전체추가</button>
-        <button class="all" v-on:click="del_a()">비우기</button>
+        <!-- <button class="all" v-on:click="del_a()">비우기</button> -->
     </h1>    
 </div>
    
@@ -143,7 +146,7 @@ export default{
                
             }
         },function(err){
-            alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+            // alert("서버가 이상합니다. histime206@gmail.com 로 메일을 보내주세요 :) ")
         });
         this.$EventBus.$on('add_to_fav', this.add_to_fav);
     }

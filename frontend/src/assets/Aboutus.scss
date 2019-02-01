@@ -1,3 +1,9 @@
+.entire{
+z-index: 2;
+}
+
+
+
 h1{
    
         font-size : 50pt;
@@ -44,4 +50,8 @@ td{
     border:0;
     border-radius:5%;
     font-size:17pt;
+}
+
+.back:hover{
+    opacity:0.6;
 }

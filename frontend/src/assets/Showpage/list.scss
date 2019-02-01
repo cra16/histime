@@ -32,11 +32,16 @@ hr{
 
 }
 
+.add:hover{
+  opacity: 0.6;
+}
+
 .change {
   color: white;
   background-color: #225B95;
   padding: 4px 8px;
   font-size: 11px;
+  font-weight:bold;
   border: none;
   border-radius: 5px;
   width: 38px;
@@ -115,8 +120,13 @@ ts{
   cursor : pointer;
   width: 340px;
 }
+button{
+  cursor: pointer;
+}
+
 #edit {
   padding-right: 5px;
+
 }
 #del {
   padding-left: 5px;

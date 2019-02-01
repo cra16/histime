@@ -50,7 +50,7 @@
         color :#FF6D00; 
         font-size : 1.0em
     }
-    button{
+    .out{
         margin-left : 0.5%;
         margin-top : 3%;
         cursor:pointer;
@@ -61,6 +61,10 @@
         color : white;
         border-radius: 10px;
         border : 0px;
+    }
+
+    .out:hover {
+        opacity:0.6;
     }
     // #update{
     //     color : dimgray;
