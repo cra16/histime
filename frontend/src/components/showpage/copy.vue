@@ -1,39 +1,26 @@
 <template>
     <div>
-        <h1>코드 복사</h1>
-
-        <div class="tbl-header">
-        <table>
-                <tr>  
-                    <th>번호</th>
-                    <th>과목코드-분반</th>
-                    <th>과목명</th>
-                    <th>교수님</th>
-                </tr>
-        </table>
-        </div>
-
-        <div>
+        <center><h1>코<span>드</span> 복<span>사</span></h1>
+        <p>코드복사 버튼을 누르면 클립보드에 자동으로 과목코드가 저장됩니다</p>
         <table class="tbl-body">
-        <tbody>
-            <div v-for="(course, key) in this.list" :key="key">
-                <tr>
-                    <td>{{ key + 1 }}</td>
-                    <td>{{course.code}}</td>
-                    <td>{{course.course_name}}</td>
-                    <td>{{course.professor}}</td>
-                    <td><button @click="copy_code(key)">코드 복사</button> </td>
-                    <!-- <td><button class ="change" v-on:click="ttedit(key)">수정</button></td>
-                    <td><button class ="change" v-on:click="ttdelete(key)">삭제</button></td> -->
+             <tr>  
+                <th>번호</th>
+                <th>과목코드-분반</th>
+                <th>과목명</th>
+                <th>교수님</th>
+                <th>코드복사</th>
+            </tr>
+            
+                <tr v-for="(course, key) in this.list" :key="key">
+                    <td id="num">{{ key + 1 }}</td>
+                    <td id="code">{{course.code}}</td>
+                    <td id="name">{{course.course_name}}</td>
+                    <td id="prof">{{course.professor}}</td>
+                    <td id="btn"><button @click="copy_code(key)">코드 복사</button> </td>
                 </tr>
-                <hr />
-            </div>
-        </tbody>
-        </table>
-            <!-- <input @click="del_data" type="button" value="삭제"> -->
-            <!-- <input @click="$emit('close')" type="button" value="닫기"> -->
-        </div>
 
+        </table>
+        </center>
     </div>
 </template>
 
@@ -72,4 +59,7 @@ export default {
 }
 </script>
 
-<style />
+<style  src = '../../assets/Showpage/copy.scss' lang ="scss" scoped>
+
+
+</style>
