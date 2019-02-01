@@ -154,7 +154,7 @@ export default {
         this.$session.set('ttname', this.tt_name);
 
         let routeData = this.$router.resolve({name: 'copy'});
-        window.open(routeData.href, '', 'width=600, height=600, left='+ (window.screen.width - 600)/2 + ', top=' + (window.screen.height - 600)/2);      
+        window.open(routeData.href, '', 'width=650, height=600, left='+ (window.screen.width - 650)/2 + ', top=' + (window.screen.height - 600)/2);      
     }
   }
 };
