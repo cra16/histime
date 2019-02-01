@@ -63,6 +63,9 @@
     background : url( '../../image/copy.png') no-repeat;
     background-size: contain;
 }
+#copy:hover {
+    opacity: 0.6;
+}
 
 button{
     background:#FFCA55 ;
