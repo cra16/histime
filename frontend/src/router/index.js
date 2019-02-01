@@ -17,9 +17,9 @@ const router = new VueRouter({
   
   routes: [
 
-    { path: '/show', name: 'show', component: Show   } ,
+    { path: '/', name: 'show', component: Show   } ,
     { path: '/make', name: 'make', component: Make },
-    { path: '/', name: 'login', component: Login },
+    { path: '/login', name: 'login', component: Login },
     { path: '/show/copy_list', name: 'copy', component: Copy},
     { path: '/individual', name: 'individual', component: Individual},
     { path: '/manual', name: 'manual', component: Manual} ,

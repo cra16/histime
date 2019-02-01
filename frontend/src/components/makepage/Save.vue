@@ -137,7 +137,7 @@ export default{
                 }
                
             }
-        },function(err){
+         },function(err){
             alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
         });
         this.$EventBus.$on('add_to_fav', this.add_to_fav);

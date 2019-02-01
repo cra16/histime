@@ -130,11 +130,12 @@
                 
                 <p> <input type="button" class="choosedone" value=" done "  v-on:click="timebox_chosen">
                     <input type="button" class="choosereset" value=" reset " v-on:click="timebox_reset" >
+
                 </p>
             </div>
        </div>
        <div id="foot">
-            <span id="update">시간표 정보 업데이트 일시 : {{ update.year }}-{{ update.month }}-{{ update.date }}</span>
+            <span id="update">시간표 정보 업데이트 일시 : {{this.update}}</span>
        </div>
     </div>
   
@@ -168,16 +169,16 @@ export default {
             },
             no_result : true,//검색결과가 없음을 나타내는 변수
             loading : false,//검색결과를 기다리는 중을 나타내는 변수
-            update : {
-                year : '1998',
-                month : '03',
-                date : '02'
-            }
+            update : ''
         
             
         }
     },
-  
+    created(){
+        this.get_update_time();
+    },
+
+    
     methods:{
         show: function(){
             this.course_name = '';//검색창 기록을 지움
@@ -310,7 +311,11 @@ export default {
             //         console.log(response.data);
             //         search = response.data;
             // });
-        }
+        },
+        get_update_time(){
+            this.$http.get('/api/make/update_time').then((response) => {
+                this.update = response.data[0].time;
+        })}
     }
 }
 
