@@ -173,28 +173,6 @@ left: 0;
 animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 }
 .help{
-
-  background: url( "../image/ask.png" ) no-repeat;
-  background-size : cover;
-  border: 0;
-  outline: 0;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  // background-color:white;
-  // border:0px;
-  // border-radius: 5px;
-  position:relative;
-  bottom:60px;
-  left:80%;
-
-  // cursor: pointer;
-}
-
-.help:hover{
-  opacity: 0.6;
-}
-.placeholder-box {
   position: absolute;
   bottom : 4%;
   #btn{
@@ -209,6 +187,9 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
     bottom:60px;
     left:80%;
 
+  }
+  #btn:hover{
+    opacity:0.6;
   }
   #helpMessage{
     position: absolute;
@@ -228,7 +209,6 @@ animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
 .p1{
   color : #225B95;
   font-size: 20px;
-  margin-top:0%;
   margin-bottom:2%;;
 
 }
