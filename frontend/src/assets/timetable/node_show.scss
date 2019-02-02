@@ -21,6 +21,8 @@ $size5 : 33%;
     display: none; 
 }
 .node{
+    overflow: -moz-scrollbars-none;
+    overflow-x:hidden;//영어가 길게 표시되는거 막으려고 한건데 서버가 안되서 되는지 모르겠음-지현
     height : $base;
     display : block;
     text-align: center;
