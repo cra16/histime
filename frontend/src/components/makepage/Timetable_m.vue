@@ -2,12 +2,13 @@
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
     <div class="head">
+        <button title="리스트" class="btn" id="list" v-on:click="show()"></button>
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
         <button title="새로고침" class="btn" id="reset" v-on:click="reset()"></button>
     </div>
-    <add v-if="user_add_clicked" ></add>
-    <div class = "timetable">
+    <listM v-if="listShow==true" @update="update" :data='courses_for_conv'></listM>
+    <div v-show="ttShow==true" class = "timetable">
         <table>
             <tr>
                 <th></th>
@@ -80,11 +81,12 @@
 <script >
     import subjects from '../timetable.json'
     import node from '../timetable/node'
-    import add from "../timetable/add"
+    import listM from '../timetable/List_m'
+    // import add from "../timetable/add"
 
-    export default{
+    export default{ 
         components : {
-            node, add
+            node,listM
         },
           data(){
               return{
@@ -102,6 +104,8 @@
                   user_add_clicked : false, //user 
                   color : '#000000',
                   total_credit : 0,
+                  ttShow : true,
+                  listShow : false
               }
             
           },
@@ -113,6 +117,9 @@
             },
           },
             methods : {
+                showList(){
+                    console.log("showList")
+                },
                 modify(){
                     var data = this.$session.get('to_modify');
                     if(data === undefined) return;
@@ -194,7 +201,7 @@
                     }
                 },
                 goHome(){//돌아가기
-                    if(confirm("취소하면 변동사항이 저장되지 않습니다.")){
+                    if(confirm("홈으로 돌아가면 변동사항이 저장되지 않습니다.")){
                         this.$router.replace({name: 'show'});
                     }else{
                         return;
@@ -425,7 +432,7 @@
                             //꽉 차있으면 return
                             if(dest.length === 3){
                                 console.log("full!!");
-                                alert("어림없다.");
+                                alert("같은 시간대에 더이상 추가할 수 없습니다.");
                                 this.remove_course(parsed_data[t].code);
                                 return;
                             }
@@ -435,7 +442,7 @@
                                 for(var i = 1 ; i < parsed_data[t].height; i++){
                                     if(this.courses_store[day_index][time_index + i] != undefined && this.courses_store[day_index][time_index + i].length > 2) {
                                         console.log("full");
-                                        alert("어림없다.");
+                                        alert("같은 시간대에 더이상 추가할 수 없습니다.");
                                         this.remove_course(parsed_data[t].code);
                                         return;
                                     }
@@ -549,7 +556,7 @@
                                                 if(dest_cont[j].k_start === k_start){
                                                     k_start += 1;
                                                     if(k_start === 3) {
-                                                        alert("어림없다.");
+                                                       //alert("같은 시간대에 더이상 추가할 수 없습니다.");--알람이 두번씩 뜨는..문제가..(지현)
                                                         this.remove(parsed_data[t].code);
                                                         return;
                                                         console.log('사이즈 밖으로 나가서 그려야되서 안됌');
@@ -653,6 +660,10 @@
 
                     return color;
                 },
+                show(){
+                    this.ttShow = !(this.ttShow);
+                    this.listShow =!(this.listShow);
+                }
             },
             created(){
                 this.modify();

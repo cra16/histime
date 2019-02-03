@@ -19,22 +19,33 @@ body{
         color:white;
         display: inline-block;
     }
- 
-   
-    #reset{
+    .btn{  
         position: absolute;
         z-index: 1;
-        top:8px;
-        right : 2%;
         height:21px;
         width:21px;
+        top:8px;
         border : none;
-        background : url( '../../image/refresh.png') no-repeat;
-        background-size : cover;
         cursor: pointer;
     }
+   
+    #reset{
+        right : 2%;
+        background : url( '../../image/refresh.png') no-repeat;
+        background-size : cover;
+  
+    }
+    #list{
+        left : 2%;
+        background : url( '../../image/list.png') no-repeat;
+        background-size : cover;
+    }
+
     #reset:hover{
-       opacity: 0.6;
+        opacity: 0.6;
+    }
+    #list:hover{
+        opacity: 0.6;
     }
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
@@ -96,6 +107,7 @@ body{
     height : 49px;
     position:absolute;
     left : -2px;
+    bottom : 0;
    
     
     .btn{

@@ -24,7 +24,8 @@
             <div v-for="(ttlist,key) in this.ttlists" :key="key">
                 <tr>
                     <td id="index">{{ key+1 }}</td>
-                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}
+                    <td id="namefield">
+                        <span v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}</span>
                         <button id="modify_name" v-on:click="modify_name(key)"></button>
                     </td>
                     <td id="credit">{{ttlist.total_credit}}</td>
