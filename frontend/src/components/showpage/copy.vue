@@ -15,7 +15,6 @@
                     <td id="name">{{course.course_name}}</td>
                     <td id="prof">{{course.professor}}</td>
                     <td id="code">{{course.code}}</td>
-                   
                 </tr>
 
         </table>
