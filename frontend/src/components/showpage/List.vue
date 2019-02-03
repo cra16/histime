@@ -25,7 +25,7 @@
                 <tr>
                     <td id="index">{{ key+1 }}</td>
                     <td id="namefield">
-                        <span v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}</span>
+                        <span v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname">{{ttlist.ttname}}</span>
                         <button id="modify_name" v-on:click="modify_name(key)"></button>
                     </td>
                     <td id="credit">{{ttlist.total_credit}}</td>
@@ -77,13 +77,14 @@ import copy from './copy.vue'
                 student_id : this.$session.get('student_id')
             }).then((response) => {
                 if (response.status === 200 ) {
+                    console.log(response.data);
                     if(response.data.length === 0){
                         this.noResult = true;
                         return;
                     } 
                     this.noResult =false;
                     this.ttlists = response.data; //ttname, ttrank, total_credit
-                    console.log(this.ttlists);
+                    //console.log(this.ttlists);
                     this.$EventBus.$emit('to_timetables',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
                 }
             });
@@ -181,7 +182,7 @@ import copy from './copy.vue'
             },
             ttdelete(key){//시간표 삭제
                 if(confirm("시간표를 삭제하시겠습니까?")){
-                    console.log(this.ttlists[key].ttname);
+                    //console.log(this.ttlists[key].ttname);
 
                         this.$http.post('/api/show/del_tt', {
                             student_id :  this.$session.get('student_id'),
@@ -199,13 +200,13 @@ import copy from './copy.vue'
                     }).then((response) => {
                         var code = [];
                         if (response.status === 200 ) {
-                            console.log(response.data);
+                            //console.log(response.data);
                             for(var i = 0; i < response.data.length; i++){
                                 var j = 0;
                                 for(j = 0; j < i; j++){
                                     if(response.data[i].code === response.data[j].code) break;
                                 }
-                                console.log(response.data[i].code);
+                                //console.log(response.data[i].code);
                                 if(i === j) code.push(response.data[i].code);
                             }
                             this.$session.set('to_modify', code)
@@ -218,7 +219,8 @@ import copy from './copy.vue'
             },
             ttselect(key){
                 cur_ttname = this.ttlists[key].ttname;
-                console.log(cur_ttname);
+                console.log(this.ttnames[key].ttname);
+                //console.log(cur_ttname);
                 this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
             }
         },

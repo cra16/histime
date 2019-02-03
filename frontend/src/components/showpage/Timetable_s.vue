@@ -102,8 +102,8 @@ export default {
   methods: {
     //   course
     get_data(data) {
-
-        this.tt_name = data.ttname;
+        console.log(data);
+        this.tt_name = data;
         console.log(this.tt_name);
 
         this.$http.post("/api/show/tt", {

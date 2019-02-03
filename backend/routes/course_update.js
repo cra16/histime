@@ -255,12 +255,12 @@ router.get('/user', function (req, res, next) {
         student_id INT,
         ttname VARCHAR(45),
         ttrank INT,
-        total_credit INT,
+        total_credit DOUBLE,
         code VARCHAR(20),
         course_name VARCHAR(150),
         professor VARCHAR(20),
         time VARCHAR(20),
-        credit INT,
+        credit DOUBLE,
         favorited BOOL,
         height INT,
         start INT,
@@ -276,6 +276,7 @@ router.get('/user', function (req, res, next) {
             console.log('query문은 다음과 같다.' + insert);
         }
     });
+    connection.query(`insert user(ttname, student_id, time) values('update_time', NULL, 'Not yet');`);
     
 });
 
