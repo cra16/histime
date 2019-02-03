@@ -18,22 +18,21 @@ main{
 
 .searchBox{
     width:100%;
-    height : 10%;
+    height : 8%;
     margin-top:0px;
     margin-bottom:0px;
     background-color:#9CBADF;
     position:relative;
-    
     .input_text{
         position:relative;
         top:3px;
         left:-2px;
-        width: 60%;
+        width: 55%;
         height: 32px;
         border: 3px solid #225B95;
         border-radius:15px;
         font-size : 15px;
-        padding-left:3px;
+        padding-left:10px;
         margin-left : 0.5px;
      }
     .sch_filt {
@@ -121,19 +120,18 @@ hr{
         }
         #fav{
             background : url( '../../image/starF.png') no-repeat;
+            background-position: center;
             width : 30px;
             height : 30px;
-            background-size : cover;
-            background: #225B95;
+            // background-size : cover;
             border : none;
+            background-color : #225B95 
         }
        
         #add{
-            
             margin-top : 2px;
-            background : url( '../../image/plus.png') no-repeat;
+            background : url( '../../image/plus.png') no-repeat center;
             background-size : cover;//이미지가 버튼 사이즈에 맞게 조절 
-            
         }
     }
     .line{

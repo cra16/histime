@@ -3,10 +3,12 @@
 <div class="save">
     <div class ='header'>
         <h1 id="head">즐겨찾는 과목</h1>
-        <button id="trashcan" v-on:click="del_a"></button>
+        <!-- trashcan button: 즐겨찾기에 있는 과목 초기화 시키는 버튼 -->
+        <button id="trashcan" v-on:click="del_a"></button> 
     </div>
-    <div class='contents'>
 
+    <!-- 검색된 과목들을 즐겨찾기 탭으로 보내기 -->
+    <div class='contents'>
         <div v-if="noResult==true" class="noResult">
             <br />
             <p>즐겨찾는 과목이 없습니다.</p><p> 과목 검색결과에서 별 모양을 통해 추가해 주세요</p>
@@ -16,7 +18,7 @@
             
              <div class="section1">
                 <p>{{`[${course.code}]`}} {{course.name}}</p>
-            </div>
+             </div>
 
 
             <span class="section2">
@@ -39,9 +41,11 @@
             <hr />
         </div>
     </div>
+
+    <!-- 즐겨찾기에 있는 모든 과목들을 시간표로 전체추가시켜주기 -->
     <h1 id="foot">
         <button class="all" v-on:click="add_a()">전체추가</button>
-        <!-- <button class="all" v-on:click="del_a()">비우기</button> -->
+     <!-- <button class="all" v-on:click="del_a()">비우기</button> -->
     </h1>    
 </div>
    
@@ -69,9 +73,11 @@ export default{
 
             this.courses.splice(key, 1);
         },
+        //시간표로 과목 추가하기 
         add(key){
             this.$EventBus.$emit('courses',this.courses[key]);
         },
+        //즐겨찾기에 있는 과목들 모두 지우기
         del_a(){
             if(confirm("즐겨찾기에 있는 모든 과목을 삭제하시겠습니까?")) {
                 this.$http.post('/api/make/del_all_fav', {
@@ -81,9 +87,11 @@ export default{
                 this.courses.splice(0, (this.courses.length));
             }
         },
+        //즐겨찾기에 있는 과목들 시간표로 모두 추가
         add_a(){
             this.$EventBus.$emit('add_a',this.courses);
         },
+        //검색 결과를 즐겨찾기로 보내기 
         add_to_fav(course) {
             var duplication = this.duplication(course);
             this.noResult = false;
@@ -119,6 +127,7 @@ export default{
                 });
             }
         },
+        //중복 발생
         duplication(course) {
             var duplication = false;
 
