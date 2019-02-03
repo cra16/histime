@@ -742,7 +742,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue2,Fri2<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">HDH 303A&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">25</td>
-	<td bgcolor="#F9F9F9" align="center">13&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">14&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">제2외국어&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -784,7 +784,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue5,Fri5<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NMH 108&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">25</td>
-	<td bgcolor="#F9F9F9" align="center">10&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">9&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">제2외국어&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -805,7 +805,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Mon3,Thu3<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">HDH 303B&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">25</td>
-	<td bgcolor="#F9F9F9" align="center">25&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">24&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">제2외국어&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -3434,7 +3434,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">950</td>
-	<td bgcolor="#F9F9F9" align="center">49&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">50&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
@@ -3670,7 +3670,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue7<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">35</td>
-	<td bgcolor="#F9F9F9" align="center">15&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">16&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">스포츠&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
@@ -4098,7 +4098,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Mon1,Thu1<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">OH 403&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">60</td>
-	<td bgcolor="#F9F9F9" align="center">23&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">24&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">자연과학&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -5024,7 +5024,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Wed5,Wed6,<br>ed7<br><br></td>
 	<td bgcolor="#F9F9F9" align="center"> &nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">999</td>
-	<td bgcolor="#F9F9F9" align="center">682&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">683&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">신앙1&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
@@ -5068,7 +5068,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">950</td>
-	<td bgcolor="#F9F9F9" align="center">741&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">742&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
@@ -5495,7 +5495,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">900</td>
-	<td bgcolor="#F9F9F9" align="center">241&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">242&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">인성1&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
@@ -5994,7 +5994,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Mon6,Thu6<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">SU 101&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">65</td>
-	<td bgcolor="#F9F9F9" align="center">38&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">39&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">기독교신앙기초2&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">PF&nbsp;</td>	
@@ -7452,7 +7452,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Mon3,Thu3<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">HDH 323C&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
-	<td bgcolor="#F9F9F9" align="center">39&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">40&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -8528,7 +8528,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Mon5,Thu5<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NMH 105&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
-	<td bgcolor="#F9F9F9" align="center">39&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">40&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">전공기초&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -9116,7 +9116,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Wed2,Wed3<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NMH 103A&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
-	<td bgcolor="#F9F9F9" align="center">39&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">40&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -10670,7 +10670,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue4,Fri4<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">HDH 320B&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
-	<td bgcolor="#F9F9F9" align="center">33&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">34&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -11447,7 +11447,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue1,Fri1<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">ANH 313&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
-	<td bgcolor="#F9F9F9" align="center">26&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">25&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">전공기초&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -13340,7 +13340,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue6,Fri6<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NTH 313&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">60</td>
-	<td bgcolor="#F9F9F9" align="center">30&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">31&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -13361,7 +13361,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Mon5,Thu5<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NTH 311&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">40</td>
-	<td bgcolor="#F9F9F9" align="center">22&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">23&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -14621,7 +14621,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Fri5,Fri6<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NMH 208&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">25</td>
-	<td bgcolor="#F9F9F9" align="center">24&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">25&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">100%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	
@@ -15147,7 +15147,7 @@ Warning: ociexecute(): ORA-00923: FROM 키워드가 필요한 위치에 없습니다. in /home
 	Tue2,Tue3<br><br><br></td>
 	<td bgcolor="#F9F9F9" align="center">NMH 309&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">25</td>
-	<td bgcolor="#F9F9F9" align="center">23&nbsp;</td>
+	<td bgcolor="#F9F9F9" align="center">22&nbsp;</td>
     <td bgcolor="#F9F9F9" align="center">0%</td>
     <td bgcolor="#F9F9F9" align="center">&nbsp;</td>	
     <td bgcolor="#F9F9F9" align="center">A+&nbsp;</td>	

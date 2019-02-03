@@ -33,7 +33,9 @@ router.get('/', function (req, res, next) {
     time += ("0" + newDate.getMinutes()).slice(-2) + ":"; 
     time += ("0" + newDate.getSeconds()).slice(-2);
     console.log(time);
-    connection.query(`UPDATE user set time = '${time}' WHERE student_id = NULL and ttname = 'update_time';`, function(err, results, fields) {
+    var time_query = `UPDATE user set time = '${time}' WHERE student_id is NULL and ttname = 'update_time';`;
+    console.log(time_query);
+    connection.query(time_query, function(err, results, fields) {
         if(err) console.log(err);
         console.log(results);
     });
@@ -228,7 +230,6 @@ function addtoDB(json){
         var grade_type = obj[12];
         var pf_avail = obj[13];
         var insert = `INSERT INTO courses VALUES ('${gubun}', '${code}', '${hakbu}', '${name}', '${credit}', '${professor}', '${time}', '${room}', '${max_num}', '${cur_num}', '${english}', '${gyoyang}', '${grade_type}', '${pf_avail}');`;
-        console.log(`asd${time}asd`);
         connection.query(insert , function (error, results, fields) {
             if (error) {
                 console.log('insert Error here');
