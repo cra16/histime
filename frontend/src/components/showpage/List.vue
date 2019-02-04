@@ -24,7 +24,8 @@
             <div v-for="(ttlist,key) in this.ttlists" :key="key">
                 <tr>
                     <td id="index">{{ key+1 }}</td>
-                    <td  v-on:click = " $EventBus.$emit('to_timetables',ttlist)" id = "ttname">{{ttlist.ttname}}
+                    <td id="namefield">
+                        <span v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname">{{ttlist.ttname}}</span>
                         <button id="modify_name" v-on:click="modify_name(key)"></button>
                     </td>
                     <td id="credit">{{ttlist.total_credit}}</td>
@@ -76,13 +77,14 @@ import copy from './copy.vue'
                 student_id : this.$session.get('student_id')
             }).then((response) => {
                 if (response.status === 200 ) {
+                    console.log(response.data);
                     if(response.data.length === 0){
                         this.noResult = true;
                         return;
                     } 
                     this.noResult =false;
                     this.ttlists = response.data; //ttname, ttrank, total_credit
-                    console.log(this.ttlists);
+                    //console.log(this.ttlists);
                     this.$EventBus.$emit('to_timetables',this.ttlists[0].ttname);//처음 show페이지 열었을때 이벤트 버스 default로 첫번째 시간표의 이름을 보냄
                 }
             });
@@ -210,7 +212,8 @@ import copy from './copy.vue'
             },
             ttselect(key){
                 cur_ttname = this.ttlists[key].ttname;
-                console.log(cur_ttname);
+                console.log(this.ttnames[key].ttname);
+                //console.log(cur_ttname);
                 this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
             }
         },

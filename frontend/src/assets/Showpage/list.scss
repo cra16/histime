@@ -27,12 +27,7 @@ hr{
   font-weight:bold;
 }
 
-.add {
-  padding-top: 6px;
-
-}
-
-.add:hover{
+#add:hover{
   opacity: 0.6;
 }
 
@@ -114,12 +109,18 @@ ts{
   font-size: 15px;
   width: 70px;
 }
-#ttname {
-  font-weight: normal;
+#namefield{
+  width : 300px;
+ #ttname{
+  font-weight: 500;
   font-size: 15px;
-  text-align: left;
+  text-align: center;
   cursor : pointer;
-  width: 340px;
+ } 
+ #ttname:hover{
+   color : #225B95 ;
+   opacity : 0.6
+ }
 }
 button{
   cursor: pointer;
@@ -146,6 +147,8 @@ button{
 tr:hover{
   background: #E6F1FC 
 }
+
+
 /* demo styles */
 
 

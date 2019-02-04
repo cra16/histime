@@ -10,7 +10,6 @@
     text-align: left;
     h3{
         font-size : 18px;
-        
         margin:0px;
         color:white;
         display: inline-block;
@@ -28,29 +27,31 @@
     table{
         width : 99%;
         border-collapse: collapse;
-        th{
-            border-bottom : 2px solid #225B95;
-        }   
-        td{
-            position : relative;
-            width : 40px;
-            border-bottom : 1px solid #225B95;
-            border-top: 1px solid #225B95;
-            border-right: 1px solid #225B95;
-            height : 85px;//1교시당 시간 높이
-        }
-        #last{
-            border-right : none;
-        }
-        #class_time{
-        width  : 10%;
-        border-right : 2px solid #225B95;
-        text-align : center;
-        }
-        .course{
-            border : 1px solid orange;
-            display: inline-block;
-        }
+        
+    th{
+        border-bottom : 2px solid #225B95;
+    }   
+    td{
+        position : relative;
+        width : 40px;
+        border-bottom : 1px solid #225B95;
+        border-top: 1px solid #225B95;
+        border-right: 1px solid #225B95;
+        height : 65px;//1교시당 시간 높이
+    }
+    #last{
+        border-right : none;
+    }
+    #class_time{
+       width  : 10%;
+       border-right : 2px solid #225B95;
+       text-align : center;
+    }
+    .course{
+        border : 1px solid orange;
+        display: inline-block;
+        
+    }
     
     }
 }

@@ -11,7 +11,6 @@ var connection = mysql.createConnection({
     database : 'histime'
 });
 
-
 connection.connect(function(err) {
     if(err) console.log(err);
     console.log('You are now connected...');
@@ -20,9 +19,11 @@ connection.connect(function(err) {
 //show list
 router.post('/', function(req, res, next) {
     var student_id = req.body.student_id;
-
-    connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND total_credit IS NOT NULL`, function(err, results, fields) {
+    var show_query = `SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND total_credit IS NOT NULL`;
+    console.log(show_query);
+    connection.query(show_query, function(err, results, fields) {
         if (err) console.log(err);
+        console.log(results);
         res.send(results);
     });
 
@@ -62,10 +63,11 @@ router.post('/modify_ttname', function(req, res, next) {
 router.post('/del_tt', function(req, res, next) {
     var student_id = req.body.student_id;
     var ttname = req.body.ttname;
-
-    connection.query(`DELETE FROM user WHERE student_id = ${student_id} AND ttname = '${ttname}';`, function(err, results, fields) {
+    var delete_query = `DELETE FROM user WHERE student_id = ${student_id} AND ttname = '${ttname}';`;
+    console.log(delete_query);
+    connection.query(delete_query, function(err, results, fields) {
         if(err) console.log(err);
-        console.log(results);
+        // console.log(results);
         res.send('');
     });
 });
