@@ -101,11 +101,7 @@ import copy from './copy.vue'
                         });
                         this.go_make();
                     } else if(new_ttname === null) {
-                        this.$alert({
-                            message: '취소되었습니다!',
-                            duration: 1000,
-                            rbHide: true
-                        });
+                        ;
                     } else if(this.duplication(new_ttname)){
                         this.$alert({
                             title: '경고!',
@@ -124,7 +120,7 @@ import copy from './copy.vue'
                 var original_ttname = this.ttlists[key].ttname;
 
                 this.$prompt('수정할 시간표 이름을 입력하세요')
-                    .then((new_ttname) => {
+                .then((new_ttname) => {
                     if(new_ttname === "") {
                         this.$alert({
                             title: '경고!',
@@ -134,12 +130,7 @@ import copy from './copy.vue'
                         });
                         this.modify_name(key);
                     } else if(new_ttname === null) {
-                        this.$notify({
-                            group: 'foo',
-                            text: '취소되었습니다!',
-                            duration: 400,
-                            type: 'warn',
-                        });
+                        ;
                     } else if(original_ttname === new_ttname) {
                         this.$alert({
                             title: '경고!',
@@ -179,41 +170,43 @@ import copy from './copy.vue'
                 return duplication;
             },
             ttdelete(key){//시간표 삭제
-                if(confirm("시간표를 삭제하시겠습니까?")){
-                    console.log(this.ttlists[key].ttname);
-
+                var del = this.$confirm('선택한 시간표를 삭제하시겠습니까?')
+                .then((del) => {
+                    if(del) {
                         this.$http.post('/api/show/del_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname :  this.ttlists[key].ttname
-                    })
-                    this.ttlists.splice(key,1);
-                }
+                        student_id :  this.$session.get('student_id'),
+                        ttname :  this.ttlists[key].ttname
+                        });
+                        this.ttlists.splice(key,1);
+                    }
+                });                
             },
             ttedit(key){//시간표 수정하기
-                if(confirm("시간표를 수정하시겠습니까?")){        
-                    this.$session.set('to_timetablem', this.ttlists[key].ttname);//시간표 이름을 세션으로 보냄
-                    this.$http.post('/api/show/modify_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname :  this.ttlists[key].ttname
-                    }).then((response) => {
-                        var code = [];
-                        if (response.status === 200 ) {
-                            console.log(response.data);
-                            for(var i = 0; i < response.data.length; i++){
-                                var j = 0;
-                                for(j = 0; j < i; j++){
-                                    if(response.data[i].code === response.data[j].code) break;
+                var edit = this.$confirm('시간표를 수정하시겠습니까?')
+                .then((edit) => {
+                    if(edit) {
+                        this.$session.set('to_timetablem', this.ttlists[key].ttname);//시간표 이름을 세션으로 보냄
+                        this.$http.post('/api/show/modify_tt', {
+                                student_id :  this.$session.get('student_id'),
+                                ttname :  this.ttlists[key].ttname
+                        }).then((response) => {
+                            var code = [];
+                            if (response.status === 200 ) {
+                                console.log(response.data);
+                                for(var i = 0; i < response.data.length; i++){
+                                    var j = 0;
+                                    for(j = 0; j < i; j++){
+                                        if(response.data[i].code === response.data[j].code) break;
+                                    }
+                                    console.log(response.data[i].code);
+                                    if(i === j) code.push(response.data[i].code);
                                 }
-                                console.log(response.data[i].code);
-                                if(i === j) code.push(response.data[i].code);
+                                this.$session.set('to_modify', code)
+                                this.$router.replace({ name: "make" });
                             }
-                            this.$session.set('to_modify', code)
-                            this.$router.replace({ name: "make" });
-
-                        }
-
-                    });
-                }  
+                        });
+                    }
+                });
             },
             ttselect(key){
                 cur_ttname = this.ttlists[key].ttname;

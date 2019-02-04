@@ -163,7 +163,7 @@
                     for(var i = 0 ; i < this.courses_for_conv.length; i++){
                         if(code === this.courses_for_conv[i].code) {
                             this.courses_for_conv.splice(i,1);
-                            i-=1;
+                            i -= 1;
                         }   
                     }
                 },
