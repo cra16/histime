@@ -5,8 +5,9 @@
 
 .head{
     margin:0;
+    // padding-bottom: 10px;
     background-color:#225B95;
-    text-align: center;
+    text-align: left;
     h3{
         font-size : 18px;
         margin:0px;
@@ -55,6 +56,9 @@
     }
 }
 
+#copy_label {
+
+}
 #copy {
     border: none;
     width: 23px;
