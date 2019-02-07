@@ -205,38 +205,7 @@ router.post('/make_tt', function(req, res) {
     var ttname = req.body.ttname;
     var total_credit = req.body.total_credit;
     var data_list = req.body.data_list; // code, name, professor, time, credit
-    // [
-    //     {
-    //         student_id : 21500670,
-    //         ttname : '실험용 시간표',
-    //         total_credit : 9,
-    //         code : 'ITP40001-01',
-    //         course_name : 'Database System(Database System)',
-    //         professor : '남재창',
-    //         time : '월5,목5',
-    //         credit : 3
-    //     },
-    //     {
-    //         student_id : 21500670,
-    //         ttname : '실험용 시간표',
-    //         total_credit : 9,
-    //         code : 'ITP20003-01',
-    //         course_name : 'Java Programming(Java Programming)',
-    //         professor : '남재창',
-    //         time : '화1,화2,금1,금2',
-    //         credit : 3
-    //     },
-    //     {
-    //         student_id : 21500670,
-    //         ttname : '실험용 시간표',
-    //         total_credit : 9,
-    //         code : 'ECE20016-01',
-    //         course_name : '자바프로그래밍언어(Introduction to JAVA Programming)',
-    //         professor : '남재창',
-    //         time : '월6,월7,목6,목7',
-    //         credit : 3
-    //     },
-    // ]
+    
 
     // for(var i = 0 ; i < body.length; i++){
     //     var make_tt = `INSERT INTO user values(NULL, ${body[i].student_id}, '${body[i].ttname}', NULL, '${body[i].total_credit}', '${body[i].code}', '${body[i].course_name}', '${body[i].professor}', '${body[i].time}', ${body[i].credit}, false);`

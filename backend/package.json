@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "artillery": "^1.6.0-26",
     "body-parser": "^1.18.3",
     "casper-nodejs": "^1.0.0",
     "casperjs": "^1.1.4",

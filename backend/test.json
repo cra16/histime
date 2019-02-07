@@ -1,0 +1,44 @@
+{
+    "config": {
+      "target": "http://localhost:3000",
+      "phases": [
+        {"duration": 60, "arrivalRate": 100}
+      ],
+      "defaults": {
+        "headers": {
+          "User-Agent": "Artillery"
+        }
+      }
+    },
+    "scenarios": [
+      {
+        "name": "Joining user",
+        "flow": [
+          {"post":
+            {
+              "url": "/api/login",
+              "json": {"id": "gur5381", "password": "h010638847" }
+            }
+          },
+          {"post":
+            {
+              "url": "/api/show",
+              "json": {"student_id": "21500670" }
+            }
+          },
+          {"post":
+            {
+              "url": "/api/make/fav_list",
+              "json": {"student_id": "21500670" }
+            }
+          },
+          {"post":
+            {
+              "url": "/api/make/search/name",
+              "json": {"course_name": "" }
+            }
+          }
+        ]
+      }
+    ]
+  }
