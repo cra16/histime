@@ -37,11 +37,15 @@
       
       <div class="help">
         <button id='btn' v-on:click="show" />
+        
+
+
         <div v-show="showbox" id="helpMessage" >
-            <center><p class="p1"><u><br> N O T I C E </u></p></center>
+            <center><p class="p1"><u> N O T I C E </u></p></center>
             <p class="p2">His Time은<br>한동대학교 학생들의<br>신학기 시간표 작성을 도와주는<br>프로그램입니다.<br>
             HISNET 아이디로 로그인<br>가능하며,작성된 시간표는<br> 예비수강신청에 도움을 줄 뿐<br>
-            <u>실제로 장바구니에 적용되지는<br>않음을</u> 알려드립니다. 
+            <u>실제로 장바구니에 적용되지는<br>않음을</u> 알려드립니다.<br>더 자세한 메뉴얼은 
+            <a href="/manual" target="_blank">여기</a>를 눌러주세요.
             </p>
         </div>
       </div>
