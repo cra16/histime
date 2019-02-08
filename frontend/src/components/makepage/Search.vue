@@ -1,52 +1,46 @@
 <template>
  <div class="main">
-       <!--과목찾기 메뉴 -->
        <h1 id="head">과목찾기</h1>
-       <div>
-        <div class="search_field" > 
-
+       
+       <div class="searchBox" > 
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
             <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
-
-        </div>
        </div>
-       <!--검색 결과를 출력-->
-        <div class='contents'>
-            <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->
-                <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
-                <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
-                    <div class="content" >
+ 
 
-                                <div class="section1">
-                                    <p>{{`[${course.code}]`}} {{course.name}}</p>
-                                </div>
+  <div class='contents'>
+      <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->
+        <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
+        <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
+            <div class="content" >
+                        <div class="section1">
+                            <p>{{`[${course.code}]`}} {{course.name}}</p>
+                        </div>
 
-                                <span class="section2">
-                                    <p>{{course.gubun}}</p>
-                                    <p>{{course.time}}</p>
-                                    <p>{{course.credit}}학점</p>
-                                </span>
+                        <span class="section2">
+                            <p>{{course.gubun}}</p>
+                            <p>{{course.time}}</p>
+                            <p>{{course.credit}}학점</p>
+                        </span>
 
-                                <span class="section3">
-                                    <p>{{course.professor}}</p>
-                                    <p>영어 {{course.english}}</p>
-                                </span>
-                                <span class="section4">
-                                    <!--클릭시 즐겨찾기로 추가 -->
-                                    <button id="fav" v-on:click="(event) => { add_to_fav(key) }"><img src="../../image/starF.png" width="19" height="20"></button>
-                                    <br/>
-                                    <!--클릭시 시간표로 바로 추가 -->
-                                    <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
-                                </span>
-                                <hr />
-                            
-                    </div>
-                    
-            </div>
-                
-            </div>
-      <!--필터창 나타내기 -->
+                        <span class="section3">
+                            <p>{{course.professor}}</p>
+                            <p>영어 {{course.english}}</p>
+                        </span>
+                        <span class="section4">
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <br/>
+                            <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
+                        </span>
+                        <hr />
+                       
+             </div>
+               
+      </div>
+        
+    </div>
+    
       <div v-show="showbox" class="placeholder-box" >
            
             <p>학부&emsp;&ensp;&nbsp;
@@ -100,16 +94,16 @@
             </select>
             </p>
 
-            <!-- 시간대별 검색이 가능한 탭 버튼  -->
-            <p>시간대 &nbsp;&ensp;
+        
+                <p>시간대 &nbsp;&ensp;
                
-            <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/>
+                <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/>
                  
-            </p>
+                </p>
 
          
            <center><input type="button"  class="search" value="검색하기" v-on:click="search_by_Filter"></center>
-            <!-- 시간대별 검색이 가능한 탭 -->
+
             <div v-show="searchbox" class="placeholder-box2">
                 <p>검색하고자 하는 시간대를 모두 클릭해주세요</p>
                          <table>
@@ -137,7 +131,6 @@
                 </p>
             </div>
        </div>
-       <!--시간표 업데이트 일시 표시 -->
        <div id="foot">
             <span id="update">시간표 정보 업데이트 일시 : {{this.update}}</span>
        </div>
@@ -184,7 +177,6 @@ export default {
 
     
     methods:{
-        //검색함수, 검색버튼 누를시 검색결과 보여줌
         show: function(){
             this.course_name = '';//검색창 기록을 지움
             this.showbox=!this.showbox;
@@ -192,14 +184,12 @@ export default {
 
 
         },
-        //필터에서 검색했을때 검색함수
         show2: function(){
            
             this.searchbox=!this.searchbox;
            
             
         },
-        //시간대 선택 탭에서 시간대 체크했을 경우 함수
         timebox_chosen: function(){
             this.searchbox=false;
                for(var i=1;i<67; i++) {
@@ -329,5 +319,3 @@ export default {
 </script>
 <style   src = '../../assets/Makepage/search.scss' lang = "scss" scoped>
 </style>
-
-
