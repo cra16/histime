@@ -2,7 +2,7 @@
 <!-- show page에서 시간표를 보여주는 부분 -->
 <body>
     <div class="head">
-        <button title="리스트" class="btn" id="list" v-on:click="show()"></button>
+        <button title="리스트" class="btn" id="list" v-on:click="show()" value='timetable'></button>
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
         <button title="새로고침" class="btn" id="reset" v-on:click="reset()"></button>
@@ -446,7 +446,13 @@
                             //꽉 차있으면 return
                             if(dest.length === 3){
                                 //console.log("full!!");
-                                alert("같은 시간대에 더이상 추가할 수 없습니다.");
+                                this.$notify({
+                                    group: 'foo',
+                                    text: '같은 시간대에 더이상 추가할 수 없습니다!',
+                                    duration: 400,
+                                    type: 'error',
+                                });
+                                // alert("같은 시간대에 더이상 추가할 수 없습니다.");
                                 this.remove_course(parsed_data[t].code);
                                 return;
                             }
@@ -456,7 +462,13 @@
                                 for(var i = 1 ; i < parsed_data[t].height; i++){
                                     if(this.courses_store[day_index][time_index + i] != undefined && this.courses_store[day_index][time_index + i].length > 2) {
                                         //console.log("full");
-                                        alert("같은 시간대에 더이상 추가할 수 없습니다.");
+                                        this.$notify({
+                                            group: 'foo',
+                                            text: '같은 시간대에 더이상 추가할 수 없습니다!',
+                                            duration: 400,
+                                            type: 'error',
+                                        });
+                                        // alert("같은 시간대에 더이상 추가할 수 없습니다.");
                                         this.remove_course(parsed_data[t].code);
                                         return;
                                     }
@@ -682,8 +694,18 @@
                     return color;
                 },
                 show(){
+                    // var list = document.getElementById('list');
+
                     this.ttShow = !(this.ttShow);
-                    this.listShow =!(this.listShow);
+                    this.listShow = !(this.listShow);
+
+                    // if(list.value === 'timetable') {
+                    //     list.style.background = "url('../../image/timetable.png')";
+                    //     list.value = 'list';
+                    // } else if(list.value === 'list') {
+                    //     list.style.background = "url('../../image/list.png')";
+                    //     list.value = 'timetable';
+                    // }
                 }
             },
             created(){
