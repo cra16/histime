@@ -121,7 +121,10 @@ import copy from './copy.vue'
             modify_name(key) {//시간표 이름 수정(연필모양)-이름수정
                 var original_ttname = this.ttlists[key].ttname;
 
-                this.$prompt('수정할 시간표 이름을 입력하세요')
+                this.$prompt({
+                    title : '수정할 시간표 이름을 입력하세요',
+                    message : 'Original name : ' + original_ttname,
+                })
                 .then((new_ttname) => {
                     if(new_ttname === "") {
                         this.$alert({
