@@ -1,8 +1,8 @@
 {
     "config": {
-      "target": "http://localhost:3000",
+      "target": "http://203.252.99.231",
       "phases": [
-        {"duration": 60, "arrivalRate": 100}
+        {"duration": 60, "arrivalRate": 3}
       ],
       "defaults": {
         "headers": {
