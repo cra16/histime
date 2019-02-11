@@ -36,7 +36,7 @@
             
                     <div style="display:block;text-align:left" class="d1">
                             <div style="display:block;text-align:left" class="p1">
-                            <img align="left" src="../image/ji.png" width="200" height="230" id="i1">
+                            <img align="left" src="../image/ji2.png" width="200" height="230" id="i1" >
                            <br>
                             &emsp;이름: 이지현<br><br>
                             &emsp;학번: 21700583&emsp;
