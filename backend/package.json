@@ -10,6 +10,7 @@
     "body-parser": "^1.18.3",
     "casper-nodejs": "^1.0.0",
     "casperjs": "^1.1.4",
+    "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "detect-character-encoding": "^0.7.0",

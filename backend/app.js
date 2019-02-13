@@ -9,12 +9,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 var bodyParser = require('body-parser');
+var history = require('connect-history-api-fallback');
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-
+app.use(history());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
