@@ -1,6 +1,6 @@
 <template>
  <div class="main">
-       <h1 id="head">과목찾기</h1>
+       <h1 id="head">과목찾기</h1> <!--과목찾기 메뉴-->
        
        <div class="searchBox" > 
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
@@ -14,21 +14,25 @@
         <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
             <div class="content" >
-                        <div class="section1">
+                        <div class="section1"> 
+                            <!-- 과목이름이랑 코드 -->
                             <p>{{`[${course.code}]`}} {{course.name}}</p>
                         </div>
 
                         <span class="section2">
-                            <p>{{course.gubun}}</p>
+                            <p>{{course.gubun}}</p> 
+                            <!-- 과목 종류 (전선 교선등등),시간,학점-->
                             <p>{{course.time}}</p>
                             <p>{{course.credit}}학점</p>
                         </span>
 
                         <span class="section3">
+                            <!-- 교수님 이름,영어비율 -->
                             <p>{{course.professor}}</p>
                             <p>영어 {{course.english}}</p>
                         </span>
-                        <span class="section4">
+                        <span class="section4"> 
+                            <!-- 즐겨찾기 또는 시간표로 과목 보내기 -->
                             <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
@@ -41,17 +45,16 @@
         
     </div>
     
-      <div v-show="showbox" class="placeholder-box" >
-           
-            <p>학부&emsp;&ensp;&nbsp;
+      <div v-show="showbox" class="placeholder-box" >  <!-- 필터 박스 생성하기 -->
+            <p>학부&emsp;&ensp;&nbsp;  <!--selectbox로 학부선택  -->
                 <select v-model="filter.hakbu">
                     <option value="">전체</option>
                     <option v-for="course_name in course_names" :key="course_name" > 
-                        {{course_name}}
+                        {{course_name}} 
                     </option>
                 </select>
             </p>
-            <p>이수구분 
+            <p>이수구분  <!--selectbox로 이수구분선택  -->
                 <select v-model="filter.gubun">
                     <option value="">전체</option>
                     <option  v-for=" gubun in gubuns " :key="gubun">
@@ -59,7 +62,7 @@
                     </option>
                 </select>
             </p>
-            <p>교양영역
+            <p>교양영역 <!--selectbox로 교양영역선택  -->
                 <select v-model="filter.gyoyang">
                         <option value="">전체</option>
                         <option v-for=" gyoyang in gyoyangs" :key="gyoyang">
@@ -67,11 +70,11 @@
                         </option>
                 </select>
             </p>
-            <p>교수님 &ensp;&nbsp;
+            <p>교수님 &ensp;&nbsp; <!--selectbox로 교수님선택  -->
             <input v-model="filter.professor" type="text" class="pfname" placeholder=" 교수님 이름"/>
             </p>     
 
-            <p>학점&emsp;&ensp;&nbsp;
+            <p>학점&emsp;&ensp;&nbsp;<!--selectbox로 학점선택  -->
                     <input type="checkbox" id="credit" value="0.5" checked="false" v-model="filter.credit[0]">
                     <label for="credit">&nbsp;0.5</label>
                     <input type="checkbox" id="credit1" value="1" checked="false" v-model="filter.credit[1]">
@@ -85,7 +88,7 @@
             </p>
 
             
-            <p>영어비율
+            <p>영어비율 <!--selectbox로 영어비율선택  -->
             <select v-model="filter.english">
                         <option value="">전체</option>
                         <option v-for=" english in englishs" :key="english">
@@ -95,9 +98,10 @@
             </p>
 
         
-                <p>시간대 &nbsp;&ensp;
+                <p>시간대 &nbsp;&ensp;  <!--selectbox로 시간대선택  -->
                
-                <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/>
+                <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/> 
+                <!--선택창열기를 누르면 또다른 placeholderbox 생성 -->
                  
                 </p>
 
@@ -105,14 +109,15 @@
            <center><input type="button"  class="search" value="검색하기" v-on:click="search_by_Filter"></center>
 
             <div v-show="searchbox" class="placeholder-box2">
-                <p>검색하고자 하는 시간대를 모두 클릭해주세요</p>
+                <p>검색하고자 하는 시간대를 모두 클릭해주세요</p> 
+                <!-- Database에 저장된 자료들과 매치되어 클릭한 시간에 따라서 검색 가능 -->
                          <table>
                             <thead>
                                 <tr>
                                  <th></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody> <!--클릭박스 반복문-->
                                 <tr v-for ="i in 11" :key ="i">
                                     <td>{{ i }}</td>
                                         <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
@@ -126,12 +131,14 @@
                      
                 
                 <p> <input type="button" class="choosedone" value=" done "  v-on:click="timebox_chosen">
+                    <!--선택 후 완료 버튼 -->
                     <input type="button" class="choosereset" value=" reset " v-on:click="timebox_reset" >
-
+                    <!--선택 후 리셋 버튼  -->
                 </p>
             </div>
        </div>
        <div id="foot">
+           <!-- user가 시간표 작성 시 최신 버전 확인할 수 있도록 업데이트 일시 기록 -->
             <span id="update">시간표 정보 업데이트 일시 : {{this.update}}</span>
        </div>
     </div>
@@ -142,6 +149,7 @@
 export default {
     data(){
         return{
+            // frontend로 전달되는 목록
             course_names:['글로벌','기계제어','경영경제','공간환경','국제어문','법학부','상담복지','생명과학','언론정보','전산전자',
             '창의융합(인문사회)','창의융합(자연과학)','창의융합(공학)','콘텐츠융합디자인','ICT창업'],
             gubuns: ['전선','전필','자선','교선','교선필','교필','공선'],
@@ -179,13 +187,13 @@ export default {
     methods:{
         show: function(){
             this.course_name = '';//검색창 기록을 지움
-            this.showbox=!this.showbox;
+            this.showbox=!this.showbox; // showbox 1번클릭-생성 2번클릭-제거  
             this.filter.credit.splice(false, this.filter.credit.length);        
 
 
         },
         show2: function(){
-           
+        //searchbox 1번클릭-생성 2번클릭-제거
             this.searchbox=!this.searchbox;
            
             
@@ -195,9 +203,9 @@ export default {
                for(var i=1;i<67; i++) {
                     if(this.checktime[i] === undefined)continue;
                  if(this.checktime[i]===true) {
-                    
+                    // selectbox2에서 날짜 시간 테이블 생성시 반복문 
                     console.log('j는' + j);
-                    var day = '';
+                    var day = ''; 
                     var time = i % 11;
                     var j = (i - time)/11;
                     if(j === 1) day +=  '월';

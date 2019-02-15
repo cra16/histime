@@ -9,6 +9,7 @@
       </div>
 
       <form>
+        <!-- 로그인 박스  -->
         <div class ="login_box">
           <button type="button" class="btn yellow" v-on:click="login()">LOGIN</button>
           <div class="text_box">
@@ -45,6 +46,7 @@
             <p class="p2">His Time은<br>한동대학교 학생들의<br>신학기 시간표 작성을 도와주는<br>프로그램입니다.<br>
             HISNET 아이디로 로그인<br>가능하며,작성된 시간표는<br> 예비수강신청에 도움을 줄 뿐<br>
             <u>실제로 장바구니에 적용되지는<br>않음을</u> 알려드립니다.<br>더 자세한 메뉴얼은 
+            <!-- 메뉴얼 페이지로 이동 -->
             <a href="/manual" target="_blank">여기</a>를 눌러주세요.
             </p>
         </div>
@@ -106,7 +108,7 @@ export default {
               this.$router.replace({ name: "show"});
             }
           }, function (err) {//서버가 이상한 경우
-            alert("서버가 이상합니다. 21500582@handong.edu 로 메일을 보내주세요 :) ")
+            alert("서버가 이상합니다.  histime206@gmail.com 로 메일을 보내주세요 :) ")
           });
           
     },

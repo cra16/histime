@@ -1,5 +1,6 @@
 <template>
 <div class = 'header'>
+    <!-- 로고  -->
     <div v-on:click ="goHome()" class = "logo">
         <img src="../image/logo_large.png" width="180" class="mainlogo" title="Home" >
         <br>

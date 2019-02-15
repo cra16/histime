@@ -32,7 +32,7 @@
     <center><h5>본 웹사이트의 저작권은 CRA에게 있습니다.</h5></center>
     <center><h6>Related Sites</h6></center>
     <center>
-    
+    <!-- CRA 사이트 링크 -->
     <a href="http://itaxi.handong.edu" target="_blank">i-taxi</a>
     <a href="http://i7.handong.edu" target="_blank">i7</a>
     <a href="http://seal.handong.edu" target="_blank">SEAL</a>
@@ -48,6 +48,7 @@ export default {
      }
     },
     methods:{
+        // 뒤로가기
         goBack:function(){
             window.history.go(-1);
         }

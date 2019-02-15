@@ -5,6 +5,7 @@
         <div>
         <hr width="70%"/>
         </div>
+        <!-- router 링크를 통해 사이트 이동 -->
         <router-link to="/aboutus" title="about us">Aboutus</router-link>
         <!-- <router-link to="/manual" title="how to use">Manual</router-link> -->
         <a href="mailto:histime206@gmail.com" title="email">피드백 보내기</a>
