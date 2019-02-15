@@ -1,6 +1,10 @@
 <template>
  <div class="main">
+<<<<<<< HEAD
        <h1 id="head">과목찾기</h1> <!--과목찾기 메뉴-->
+=======
+       <h1 id="head">과목찾기</h1>
+>>>>>>> 14232520a446102d2972aa473a034251618454d3
        
        <div class="searchBox" > 
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
@@ -14,25 +18,40 @@
         <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
         <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
             <div class="content" >
+<<<<<<< HEAD
                         <div class="section1"> 
                             <!-- 과목이름이랑 코드 -->
+=======
+                        <div class="section1">
+>>>>>>> 14232520a446102d2972aa473a034251618454d3
                             <p>{{`[${course.code}]`}} {{course.name}}</p>
                         </div>
 
                         <span class="section2">
+<<<<<<< HEAD
                             <p>{{course.gubun}}</p> 
                             <!-- 과목 종류 (전선 교선등등),시간,학점-->
+=======
+                            <p>{{course.gubun}}</p>
+>>>>>>> 14232520a446102d2972aa473a034251618454d3
                             <p>{{course.time}}</p>
                             <p>{{course.credit}}학점</p>
                         </span>
 
                         <span class="section3">
+<<<<<<< HEAD
                             <!-- 교수님 이름,영어비율 -->
                             <p>{{course.professor}}</p>
                             <p>영어 {{course.english}}</p>
                         </span>
                         <span class="section4"> 
                             <!-- 즐겨찾기 또는 시간표로 과목 보내기 -->
+=======
+                            <p>{{course.professor}}</p>
+                            <p>영어 {{course.english}}</p>
+                        </span>
+                        <span class="section4">
+>>>>>>> 14232520a446102d2972aa473a034251618454d3
                             <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
@@ -45,8 +64,14 @@
         
     </div>
     
+<<<<<<< HEAD
       <div v-show="showbox" class="placeholder-box" >  <!-- 필터 박스 생성하기 -->
             <p>학부&emsp;&ensp;&nbsp;  <!--selectbox로 학부선택  -->
+=======
+      <div v-show="showbox" class="placeholder-box" >
+           
+            <p>학부&emsp;&ensp;&nbsp;
+>>>>>>> 14232520a446102d2972aa473a034251618454d3
                 <select v-model="filter.hakbu">
                     <option value="">전체</option>
                     <option v-for="course_name in course_names" :key="course_name" > 
@@ -98,10 +123,16 @@
             </p>
 
         
+<<<<<<< HEAD
                 <p>시간대 &nbsp;&ensp;  <!--selectbox로 시간대선택  -->
                
                 <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/> 
                 <!--선택창열기를 누르면 또다른 placeholderbox 생성 -->
+=======
+                <p>시간대 &nbsp;&ensp;
+               
+                <input type="button" class='openchoose' value="선택창 열기" v-on:click="show2"/>
+>>>>>>> 14232520a446102d2972aa473a034251618454d3
                  
                 </p>
 
