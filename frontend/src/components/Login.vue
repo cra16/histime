@@ -112,10 +112,8 @@ export default {
     },
     show: function(){
         this.showbox=!this.showbox;
-
     },
     setCookies(){
-      
       this.$cookies.set('auth_save', true)
       this.$cookies.set('name', this._response.data.name)
       this.$cookies.set('student_id', this._response.data.student_id)
@@ -129,14 +127,9 @@ export default {
       console.log("login studentid : " +this._response.data.student_id )
       this.$session.set('auth', true)
       console.log("set session")
-
     }
-
-  },
-
+  }
 }
-
-
     // login(){
     //   this.$http.get('/api/login').then((response) => {
     //     console.log(response.data);
