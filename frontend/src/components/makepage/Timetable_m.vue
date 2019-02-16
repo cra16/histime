@@ -219,12 +219,17 @@
                             this.color = this.set_color();
                             this.course_update(parsed_data);
                             this.update_table();
-
-                            
                         } else {
                             //console.log('duplication!');
                         }
                     }
+
+                    this.$notify({
+                        group: 'foo',
+                        text: '모두 추가되었습니다!',
+                        duration: 400,
+                        // type: 'success',
+                    });
                 },
                 add_to(raw_data){
                     var duplication = this.duplication(raw_data);

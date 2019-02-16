@@ -91,7 +91,7 @@ export default{
         add_a(){
             this.$EventBus.$emit('add_a',this.courses);
         },
-        //검색 결과를 즐겨찾기로 보내기 
+        //검색 결과를 즐겨찾기에 넣기 
         add_to_fav(course) {
             var duplication = this.duplication(course);
             this.noResult = false;
