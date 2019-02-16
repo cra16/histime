@@ -52,7 +52,6 @@
 <script>
 import copy from './copy.vue'
 
-Vue.use(Buefy.default);
 
     export default {
         name: 'ttlist',

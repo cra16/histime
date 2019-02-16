@@ -494,10 +494,15 @@
 
                             //만약에 원소가 존재한다면 해당 원소가 들어갈 위치를 찾아서 알려주세요.
                             else if(dest.length != 0){
+                                var count = 0;
+                                for(var i = 0; i < dest.length; i++){
+                                    if(dest[i] != undefined){
+                                        count += 1;
+                                        size = dest[i].size;
+                                    }
+                                }
                                 //console.log('원소가 있어요');
-                                //사이즈는 length+1
-                                size = dest.length + 1;
-
+                                if(count + 1 > size) size = count + 1;
                                 this.cont_update(day_index, time_index, size);
                                 
                                 
@@ -596,6 +601,7 @@
                                                     poop.k_start = k_start;
                                                 }
                                             }
+                                            poop.size = size;
                                             this.courses_store[day_index][time_index+z].push(poop);
                                             //console.log(this.courses);
 
