@@ -4,14 +4,14 @@
        <!--과목찾기 메뉴-->
        
        <div class="searchBox" > 
-           <span v-if ="this.showbox">
+            <span v-if ="this.showbox">
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  disabled="disabled" v-on:keydown.enter="search_by_name" />
             </span>
-              <span v-if ="!this.showbox">
+            <span v-if ="!this.showbox">
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  v-on:keydown.enter="search_by_name" />
             </span>
 
-            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
+            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name" />
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
  
@@ -326,7 +326,8 @@ export default {
         get_update_time(){
             this.$http.get('/api/make/update_time').then((response) => {
                 this.update = response.data[0].time;
-        })}
+        });
+        }
     }
 }
 
