@@ -4,7 +4,13 @@
        <!--과목찾기 메뉴-->
        
        <div class="searchBox" > 
-            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
+           <span v-if ="this.showbox">
+            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  disabled="disabled" v-on:keydown.enter="search_by_name" />
+            </span>
+              <span v-if ="!this.showbox">
+            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  v-on:keydown.enter="search_by_name" />
+            </span>
+
             <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
@@ -13,23 +19,23 @@
   <div class='contents'>
       <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->
         <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
-        <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
+        <div  v-for="(course, key) in search" :key= "key">
             <div class="content" >
                         <div class="section1"> 
                             <!-- 과목이름이랑 코드 -->
-                            <p>{{`[${course.code}]`}} {{course.name}}</p>
+                            <p>{{course.name}}{{`  [${course.professor}]`}} </p>
+                            <p class = "code"> {{course.code}}</p>
                         </div>
 
                         <span class="section2">
                             <p>{{course.gubun}}</p> 
                             <!-- 과목 종류 (전선 교선등등),시간,학점-->
-                            <p>{{course.time}}</p>
                             <p>{{course.credit}}학점</p>
                         </span>
 
                         <span class="section3">
                             <!-- 교수님 이름,영어비율 -->
-                            <p>{{course.professor}}</p>
+                            <p>{{course.time}}</p>
                             <p>영어 {{course.english}}</p>
                         </span>
                         <span class="section4"> 

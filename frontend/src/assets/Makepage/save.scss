@@ -49,6 +49,7 @@ p{
 
 
 .contents{
+    margin : 0;
     font-size : 13px;
     font-weight : 500;
     height : 81.5%;
@@ -61,13 +62,15 @@ p{
     }
 
     .section1{
+        margin : 0;
         margin-top : 10px;
         color: #FF6D00 ;
-        float: left;
         position: relative;
     }
     .section2{
+        margin-bottom :10px;
         display : inline-block;
+        top : 20px;
         position: relative;
     }
     .section3{
@@ -79,7 +82,7 @@ p{
     .section4{
         right : 3%;
         position: absolute;
-        z-index: 2;
+        z-index: 1;
         display : none;
         button{
             width : 34px;
@@ -99,9 +102,7 @@ p{
            
         }
     }
-    .line{
-        margin : 0
-    }
+  
 }
 
 .content:hover .section4 {
