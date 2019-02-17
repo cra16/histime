@@ -127,11 +127,10 @@
                             <tbody> <!--클릭박스 반복문-->
                                 <tr v-for ="i in 11" :key ="i">
                                     <td>{{ i }}</td>
-                                        <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
+                                    <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
                                         <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 11)]" v-on:click="checktime[(i + j * 11)] != checktime[(i + j * 11)]">
                                         <label for="checktime"></label>
-                                        
-                                        </td>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -207,7 +206,7 @@ export default {
         },
         timebox_chosen: function(){
             this.searchbox=false;
-               for(var i=1;i<67; i++) {
+               for(var i=1;i<78; i++) {
                     if(this.checktime[i] === undefined)continue;
                  if(this.checktime[i]===true) {
                     // selectbox2에서 날짜 시간 테이블 생성시 반복문 

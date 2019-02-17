@@ -158,11 +158,17 @@
                     this.set_total_credit();
                 },
                 remove(code){
+                    this.$notify({
+                        group: 'foo',
+                        text: '과목이 삭제 되었습니다.',
+                        duration: 400,
+                        // type: 'success',
+                    });
                     this.remove_course(code);
                     this.courses_store = [[[]]];
                     this.courses_for_back = [];
                     this.update_table();
-                    this.add_a_to(this.courses_for_conv);
+                    this.re_add(this.courses_for_conv);
                 },
                 remove_course(code){
                     for(var i = 0 ; i < this.courses_for_conv.length; i++){
@@ -223,13 +229,28 @@
                             //console.log('duplication!');
                         }
                     }
-
                     this.$notify({
                         group: 'foo',
                         text: '모두 추가되었습니다!',
                         duration: 400,
                         // type: 'success',
                     });
+                },
+                re_add(data) {
+                    for(var i in data) {
+                        var duplication = this.duplication(data[i]);
+
+                        if(!duplication) {
+                            //console.log('not duplication!! : ' + data[i]);
+                            var parsed_data = this.parsingTime(data[i]);
+
+                            this.color = this.set_color();
+                            this.course_update(parsed_data);
+                            this.update_table();
+                        } else {
+                            //console.log('duplication!');
+                        }
+                    }
                 },
                 add_to(raw_data){
                     var duplication = this.duplication(raw_data);
