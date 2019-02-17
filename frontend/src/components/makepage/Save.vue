@@ -14,31 +14,33 @@
             <p>즐겨찾는 과목이 없습니다.</p><p> 과목 검색결과에서 별 모양을 통해 추가해 주세요</p>
         </div>
 
-        <div v-for="(course, key) in this.courses" :key="key" class="content">
-            
-             <div class="section1">
-                <p>{{`[${course.code}]`}} {{course.name}}</p>
-             </div>
+        <div v-for="(course, key) in this.courses" :key="key" >
+            <div class="content" >
+                        <div class="section1"> 
+                            <!-- 과목이름이랑 코드 -->
+                            <p>{{course.name}}{{`  [${course.professor}]`}} </p>
+                            <p class = "code"> {{course.code}}</p>
+                        </div>
 
+                        <span class="section2">
+                            <p>{{course.gubun}}</p> 
+                            <!-- 과목 종류 (전선 교선등등),시간,학점-->
+                            <p>{{course.credit}}학점</p>
+                        </span>
 
-            <span class="section2">
-                <p>{{course.gubun}}</p>
-                <p>{{course.time}}</p>
-                <p>{{course.credit}}학점</p>
-            </span>
-
-            <span class="section3">
-                <p>{{course.professor}}</p>
-                <p>영어 {{course.english}}</p>
-            </span>
-
-            <span  class="section4">
-                <button id="delete" v-on:click="del(key)"></button>
-                <br/>
-                <button id="add" v-on:click="add(key)"></button>
-            </span>
-
-            <hr />
+                        <span class="section3">
+                            <!-- 교수님 이름,영어비율 -->
+                            <p>{{course.time}}</p>
+                            <p>영어 {{course.english}}</p>
+                        </span>
+                        <span class="section4"> 
+                            <!-- 즐겨찾기 또는 시간표로 과목 보내기 -->
+                            <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
+                            <br/>
+                            <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
+                        </span>
+                        <hr />
+            </div>
         </div>
     </div>
 

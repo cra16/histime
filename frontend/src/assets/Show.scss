@@ -19,7 +19,7 @@
 	position: relative;
 	display: inline-block;
 	width: 1230px;//여기를 조정해야 한다.
-	padding: 1em;
+	// padding: 1em;
 	height : 600px;
 
 }
@@ -29,15 +29,21 @@
 	
  }
  #list{
+	
 	display : inline-block;
+	position: relative;
 	height : 540px;
 	border : 2px solid #225B95;
 	width : 540px;
-	margin-right : 4%;
+	margin-right : 2%;
 }
 #timetable{
+	
 	display : inline-block;
+	position: relative;
 	width : 530px;
 	height : 540px;
 	border : 2px solid #225B95;
+	top : 10px;
+	margin-top : 1%;
 }
