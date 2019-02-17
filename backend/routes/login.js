@@ -46,6 +46,7 @@ router.post('/', function (req, res) {
             const element2 = await page.$('td[width="240"]');
             name = await page.evaluate(element2 => element2.textContent, element2);
         }
+        if(student_id != 'nope') console.log(`${student_id}님이 로그인하셨습니다.`);
         res.send({ student_id : student_id, name : name });
         //브라우저 꺼라
         await browser.close();        
