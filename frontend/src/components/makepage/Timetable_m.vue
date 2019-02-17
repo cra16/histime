@@ -7,8 +7,8 @@
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
         <button title="새로고침" class="btn" id="reset" v-on:click="reset()"></button>
     </div>
-    <listM v-if="listShow==true" @update="update" :data='courses_for_conv'></listM>
-    <div v-show="ttShow==true" class = "timetable">
+    <listM v-if="listShow" @update="update" :data='courses_for_conv'></listM>
+    <div v-show="ttShow" class = "timetable">
         <table>
             <tr>
                 <th></th>
@@ -158,12 +158,6 @@
                     this.set_total_credit();
                 },
                 remove(code){
-                    this.$notify({
-                        group: 'foo',
-                        text: '과목이 삭제 되었습니다.',
-                        duration: 400,
-                        // type: 'success',
-                    });
                     this.remove_course(code);
                     this.courses_store = [[[]]];
                     this.courses_for_back = [];
@@ -179,40 +173,45 @@
                     }
                 },
                 save(){//저장하기,
-                    if(confirm("시간표를 완성하시겠습니까?")){
-                        console.log(this.ttname);
-                        console.log(this.$session.get('to_timetablem'));
-                        // console.log(this.courses_store);
-                        // console.log(this.courses_for_conv);
-                        console.log(this.courses_for_back);
-                        this.$http.post('/api/show/del_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname :  this.$session.get('to_timetablem')
-                        }).then((response) => {
-                            console.log('after remove');
-                            this.$http.post('/api/make/make_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname : this.$session.get('to_timetablem'),
-                            total_credit : this.total_credit,
-                            data_list : this.courses_for_back,
+                    var complete = this.$confirm('시간표를 완성하시겠습니까?')
+                    .then((complete) => {
+                        if(complete) {
+                            console.log(this.ttname);
+                            console.log(this.$session.get('to_timetablem'));
+                            // console.log(this.courses_store);
+                            // console.log(this.courses_for_conv);
+                            console.log(this.courses_for_back);
 
+                            this.$http.post('/api/show/del_tt', {
+                                student_id :  this.$session.get('student_id'),
+                                ttname :  this.$session.get('to_timetablem')
                             }).then((response) => {
-                            console.log('after save');
-                            if (response.status === 200 ) {                       
-                                this.$router.replace({name: 'show'});
-                        }
-                        });
+                                console.log('after remove');
 
-                        
+                                this.$http.post('/api/make/make_tt', {
+                                    student_id :  this.$session.get('student_id'),
+                                    ttname : this.$session.get('to_timetablem'),
+                                    total_credit : this.total_credit,
+                                    data_list : this.courses_for_back,
+                                }).then((response) => {
+                                    console.log('after save');
+                                    if (response.status === 200 ) {                       
+                                        this.$router.replace({name: 'show'});
+                                    }
+                                });
+                            });
+                        }
                     });
-                    }
                 },
                 goHome(){//돌아가기
-                    if(confirm("홈으로 돌아가면 변동사항이 저장되지 않습니다.")){
-                        this.$router.replace({name: 'show'});
-                    }else{
-                        return;
-                    }
+                    var backHome = this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
+                    .then((backHome) => {
+                        if(backHome) {
+                            this.$router.replace({name: 'show'});
+                        }
+                    });
+
+                    return;
                 },
                 add_a_to(data) {
                     for(var i in data) {
@@ -233,7 +232,7 @@
                         group: 'foo',
                         text: '모두 추가되었습니다!',
                         duration: 400,
-                        // type: 'success',
+                        type: 'success',
                     });
                 },
                 re_add(data) {
@@ -290,6 +289,12 @@
                     console.log(course_temp.time);
 
                     if(course_temp.time === '') {
+                        // this.$notify({
+                        //     group: 'foo',
+                        //     text: '선택한 과목이 리스트에 추가되었습니다!',
+                        //     duration: 400,
+                        //     type: 'success',
+                        // });
                         console.log(course_temp.name);
                         prepared_data.push({
                                 code : course_temp.code,
@@ -478,7 +483,6 @@
                                     duration: 400,
                                     type: 'error',
                                 });
-                                // alert("같은 시간대에 더이상 추가할 수 없습니다.");
                                 this.remove_course(parsed_data[t].code);
                                 return;
                             }
@@ -494,7 +498,6 @@
                                             duration: 400,
                                             type: 'error',
                                         });
-                                        // alert("같은 시간대에 더이상 추가할 수 없습니다.");
                                         this.remove_course(parsed_data[t].code);
                                         return;
                                     }
@@ -700,13 +703,16 @@
                     this.total_credit = credit;
                 },
                 reset() {
-                    if(confirm("시간표를 비우시겠습니까?")){
-                        this.courses_store = [[[]]];
-                        this.courses_for_back = [];
-                        this.courses_for_conv = [];
-                        this.courses = [[[]]];
-                        this.update_table();
-                    }
+                    var empty = this.$confirm('시간표를 비우시겠습니까?')
+                    .then((empty) => {
+                        if(empty) {
+                            this.courses_store = [[[]]];
+                            this.courses_for_back = [];
+                            this.courses_for_conv = [];
+                            this.courses = [[[]]];
+                            this.update_table();
+                        }
+                    });
                 },
                 set_color() {
                     // hsl color
@@ -749,8 +755,8 @@
                 this.courses_for_conv = [];
                 this.courses = [[[]]];
                 this.modify();
-                this.$EventBus.$on('add_a', this.add_a_to),
-                this.$EventBus.$on('courses', this.add_to),
+                this.$EventBus.$on('add_a', this.add_a_to), // 장바구니 - 전체 추가
+                this.$EventBus.$on('courses', this.add_to), // 과목 한 개씩 추가
                 this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
                 // this.$EventBus.$on('to_modify', this.modify)
 

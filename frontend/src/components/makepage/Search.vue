@@ -4,8 +4,15 @@
        <!--과목찾기 메뉴-->
        
        <div class="searchBox" > 
+<<<<<<< HEAD
              <!--필터가 닫혀있을때-->
               <span v-if ="!this.showbox">
+=======
+            <span v-if ="this.showbox">
+            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  disabled="disabled" v-on:keydown.enter="search_by_name" />
+            </span>
+            <span v-if ="!this.showbox">
+>>>>>>> 26b88d31d9026af85c511b00eb80d3e960d26c4c
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  v-on:keydown.enter="search_by_name" />
             <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>            
             </span>
@@ -17,6 +24,10 @@
             </span>
           
 
+<<<<<<< HEAD
+=======
+            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name" />
+>>>>>>> 26b88d31d9026af85c511b00eb80d3e960d26c4c
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
  
@@ -210,30 +221,8 @@ export default {
             
         },
         timebox_chosen: function(){
+            // console.log(this.checktime);
             this.searchbox=false;
-               for(var i=1;i<78; i++) {
-                    if(this.checktime[i] === undefined)continue;
-                 if(this.checktime[i]===true) {
-                    // selectbox2에서 날짜 시간 테이블 생성시 반복문 
-                    console.log('j는' + j);
-                    var day = ''; 
-                    var time = i % 11;
-                    var j = (i - time)/11;
-                    if(j === 1) day +=  '월';
-                    else if(j === 2) day += '화';
-                    else if(j === 3) day += '수';
-                    else if(j === 4) day += '목';
-                    else if(j === 5) day += '금';
-                    else if(j === 6) day += '토';
-                    console.log(`${day}${time}`);
-
-                    this.filter.time.push(`${day}${time}`);
-                    
-                         //this.checktime[i][j]===false 체크 후 done 하고 초기화
-                }
-
-            }
-          
         },
         timebox_reset:function(){
             console.log('into timebox reset');
@@ -268,7 +257,26 @@ export default {
             }
         },
         search_by_Filter: function(){
-           
+            for(var i=1;i<78; i++) {
+                    if(this.checktime[i] === undefined)continue;
+                 if(this.checktime[i]===true) {
+                    // selectbox2에서 날짜 시간 테이블 생성시 반복문 
+                    console.log('j는' + j);
+                    var day = ''; 
+                    var time = i % 11;
+                    var j = (i - time)/11;
+                    if(j === 1) day +=  '월';
+                    else if(j === 2) day += '화';
+                    else if(j === 3) day += '수';
+                    else if(j === 4) day += '목';
+                    else if(j === 5) day += '금';
+                    else if(j === 6) day += '토';
+                    console.log(`${day}${time}`);
+
+                    this.filter.time.push(`${day}${time}`);
+                    
+                }         //this.checktime[i][j]===false 체크 후 done 하고 초기화
+            }
             this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
             this.search=''//검색창 초기화
             this.loading = true;//'검색중..'글자 띄워줌
@@ -331,7 +339,8 @@ export default {
         get_update_time(){
             this.$http.get('/api/make/update_time').then((response) => {
                 this.update = response.data[0].time;
-        })}
+        });
+        }
     }
 }
 
