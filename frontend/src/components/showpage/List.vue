@@ -115,7 +115,10 @@ import copy from './copy.vue'
                         this.go_make();
                     } else {
                         this.$session.set('to_timetablem', new_ttname);//시간표 이름을 세션으로 보냄
-                        this.$router.replace({ name: "make" });
+                        
+                        let routeData = this.$router.resolve({name: 'make'});
+                        window.location.href = routeData.href;
+                        // this.$router.replace({ name: "make" });
                     }
                 });
             },
