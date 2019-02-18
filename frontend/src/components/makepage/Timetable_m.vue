@@ -207,7 +207,9 @@
                     var backHome = this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
                     .then((backHome) => {
                         if(backHome) {
-                            this.$router.replace({name: 'show'});
+                            let routeData = this.$router.resolve({name: 'show'});
+                            window.location.href = routeData.href;
+                            // this.$router.replace({name: 'show'});
                         }
                     });
 
@@ -262,7 +264,7 @@
                             title: '경고!',
                             text: '이미 추가한 과목입니다.',
                             duration: 400,
-                            type: 'warn',
+                            type: 'error',
                         });
                     } else {
                         var parsed_data = this.parsingTime(raw_data);

@@ -4,15 +4,8 @@
        <!--과목찾기 메뉴-->
        
        <div class="searchBox" > 
-<<<<<<< HEAD
              <!--필터가 닫혀있을때-->
               <span v-if ="!this.showbox">
-=======
-            <span v-if ="this.showbox">
-            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  disabled="disabled" v-on:keydown.enter="search_by_name" />
-            </span>
-            <span v-if ="!this.showbox">
->>>>>>> 26b88d31d9026af85c511b00eb80d3e960d26c4c
             <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  v-on:keydown.enter="search_by_name" />
             <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>            
             </span>
@@ -24,10 +17,6 @@
             </span>
           
 
-<<<<<<< HEAD
-=======
-            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name" />
->>>>>>> 26b88d31d9026af85c511b00eb80d3e960d26c4c
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
  
