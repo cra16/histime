@@ -1,9 +1,13 @@
 //여기에 미세하게.. 리스트랑 시간표랑 높이차이? 위치차이가 있는데 뭐때문인지 모르겠움 ㅠㅠ
 #show{
-	height:70%;
+	overflow: scroll;
+	height:100%;
 	width:100%;
 	margin: 0px auto;
  }
+ .header {
+	width : 100%;
+  }
 .outer{
 	display: table;
 	width: 100%;
@@ -18,32 +22,28 @@
 .centered {
 	position: relative;
 	display: inline-block;
-	width: 1230px;//여기를 조정해야 한다.
-	// padding: 1em;
-	height : 600px;
+	width: 1210px;//여기를 조정해야 한다.
+	 padding: 1em;
+	 height : 100%
 
 }
 	   
 #container {	
-	height : 540px;
+	display: flex;
+	height : 100%;
+	width : 100%;
 	
  }
  #list{
-	
-	display : inline-block;
-	position: relative;
+	flex :1;
 	height : 540px;
 	border : 2px solid #225B95;
-	width : 540px;
-	margin-right : 2%;
+	 margin-right : 2%;
 }
 #timetable{
-	
-	display : inline-block;
-	position: relative;
-	width : 530px;
+	flex :1;
 	height : 540px;
 	border : 2px solid #225B95;
 	top : 10px;
-	margin-top : 1%;
+
 }
