@@ -202,7 +202,7 @@
                             if (response.status === 200 ) {   
                                 this.courses_for_conv = [];
                                 this.courses_parsed = [];
-                                this.courses_store = [];                    
+                                this.courses_store = [[[]]];                    
                                 this.$router.replace({name: 'show'});
                         }
                         });
@@ -211,14 +211,19 @@
                     });
                     }
                 },
-
-                //홈으로 돌아갈 때 호출
-                goHome(){
-                    if(confirm("홈으로 돌아가면 변동사항이 저장되지 않습니다.")){
-                        this.$router.replace({name: 'show'});
-                    }else{
-                        return;
-                    }
+                goHome(){//돌아가기
+                    var backHome = this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
+                    .then((backHome) => {
+                        if(backHome) {
+                            this.courses_for_conv = [];
+                            this.courses_parsed = [];
+                            this.courses_store = [[[]]];   
+                            let routeData = this.$router.resolve({name: 'show'});
+                            window.location.href = routeData.href;
+                            
+                            // this.$router.replace({name: 'show'});
+                        }
+                    });
                 },
 
                 //즐겨찾기 전체 추가 버튼 클릭시 호출
@@ -257,7 +262,7 @@
                             title: '경고!',
                             text: '이미 추가한 과목입니다.',
                             duration: 400,
-                            type: 'warn',
+                            type: 'error',
                         });
                     } else {
                         var parsed_data = this.parsingTime(raw_data);
@@ -597,10 +602,6 @@
                                             poop.size = size;
                                             this.courses_store[day_index][time_index+z].push(poop);
                                             //console.log(this.courses);
-
-
-                                        
-
                                     }
                                 }
                             }
