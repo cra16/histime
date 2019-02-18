@@ -36,14 +36,17 @@ export default {
               console.log("쿠키나 세션이 없음")
                 this.$router.push('/login')
             }
-             else if(!this.$session.exists()&&(this.$cookies.get('auth_save')=='true')){
-                console.log("세션이 없음, 쿠키있음")
-                this.$session.start()
-                this.$session.set('name', this.$cookies.get('name') )
-                this.$session.set('student_id', this.$cookies.get('student_id'))
-                this.$session.set('auth', true)
-                }
-                
+            else if(!this.$session.exists()&&(this.$cookies.get('auth_save')=='true')){
+              console.log("세션이 없음, 쿠키있음")
+              this.$session.start()
+              this.$session.set('name', this.$cookies.get('name') )
+              this.$session.set('student_id', this.$cookies.get('student_id'))
+              this.$session.set('auth', true)
+            }
+            else{
+              console.log('이건 무슨 상황?')
+            }  
+            
             }
 }
 </script>

@@ -57,7 +57,6 @@ export default {
             for(var i=0; i<10; i++)//몇고시인지
                 this.time[i] = false;
             this.time[this.data.start-1] = true;
-            this.$emit('update', 'add');        
             // console.log("time" + this.time)            
             return {
                     t1: this.time[0],
