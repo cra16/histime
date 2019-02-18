@@ -86,6 +86,15 @@ export default {
   methods: {
     login(){
       this.$cookies.config('30d')
+
+      if(this.input.id === '' || this.input.password === '') {
+        this.$alert({
+          title: '아이디와 패스워드를 모두 입력해주세요.'
+        });
+
+        return;
+      }
+
       this.isLoad = true;
       this.$http.post('/api/login', {
         id : this.input.id,
@@ -94,9 +103,11 @@ export default {
         if (response.status === 200 ) {
               this._response = response;
               if(response.data.student_id === 'nope'){//로그인이 틀린 경우
-                alert("로그인 정보가 일치하지 않습니다.");
-                this.input.id = '';
-                this.input.password = '';
+                this.$alert({
+                  title: '아이디와 패스워드를 다시 확인해주세요.'
+                });
+                // this.input.id = '';
+                // this.input.password = '';
                 this.isLoad = false;
                 return;
               }

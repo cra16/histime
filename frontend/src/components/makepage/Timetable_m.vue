@@ -628,10 +628,6 @@
                                             poop.size = size;
                                             this.courses_store[day_index][time_index+z].push(poop);
                                             //console.log(this.courses);
-
-
-                                        
-
                                     }
                                 }
                             }
