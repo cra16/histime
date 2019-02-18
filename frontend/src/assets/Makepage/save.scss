@@ -36,69 +36,47 @@
        opacity: 0.6;
     }
 }
+
 hr{
     margin : 0px;
-    margin-top : 10px;
+    margin-top : 24px;
     border:1px solid #225B95;
 }
+p{
+    margin : 0.5px;
+    font-weight : 700;
+}
+
 
 .contents{
-    font-size : 13px;
     margin : 0;
-    height:81.5%;
-    overflow: scroll;
+    font-size : 13px;
+    font-weight : 500;
+    height : 81.5%;
     width : 100%;
-    .content{
-        position : relative;
-        width : 100%;
-        //height: 100%;
-    }
-    #noResult{
+    overflow: scroll;
+    position : relative;
+    .noResult{
+        color : dimgray;
         margin-top : 60%;
-        color : dimgray
     }
-    
+
     .section1{
         margin : 0;
         margin-top : 10px;
         color: #FF6D00 ;
-        float: left;
         position: relative;
-       
-        .code{
-            color: rgb(231, 100, 0) ;
-            opacity : 0.6;
-            font-size : 11px;
-
-        }
-        p{
-            font-weight : 600;
-            margin : 0;
-        }
     }
     .section2{
-        margin :0;
-        margin-top :3%;
+        margin-bottom :10px;
         display : inline-block;
+        top : 20px;
         position: relative;
-        top : 10%;
-        p{
-            font-size : 12px;
-            font-weight: 450;
-            margin : 0;
-        }
     }
     .section3{
-        margin :0;
-        margin-top :3%;
         display : inline-block;
         position: relative;
         margin-left : 10%;
-        p{  
-            font-size : 12px;
-            font-weight: 450;
-            margin : 0;
-        }
        
     }
     .section4{
@@ -106,37 +84,27 @@ hr{
         position: absolute;
         z-index: 1;
         display : none;
-        right : 3%;
-        bottom : 10%;
         button{
             width : 34px;
             height : 34px;
             border-radius: 5px;
             cursor : pointer;
-            margin-bottom : 5px;
-       
         }
-        button:hover{
-            opacity: 0.6;
+        #delete{
+            background : url( '../../image/cancle.png') no-repeat;
+            background-size : cover;
+            position: relative;
         }
-        #fav{
-            background : url( '../../image/starF.png') no-repeat;
-            background-position: center;
-            width : 30px;
-            height : 30px;
-            // background-size : cover;
-            border : none;
-            background-color : #225B95 
-        }
-       
         #add{
-            margin-top : 2px;
-            background : url( '../../image/plus.png') no-repeat center;
-            background-size : cover;//이미지가 버튼 사이즈에 맞게 조절 
+         
+            background : url( '../../image/plus.png') no-repeat;
+            background-size : cover;//이미지가 버튼 사이즈에 맞게 조절
+           
         }
     }
-   
+  
 }
+
 .content:hover .section4 {
     display: inline-block;
     z-index: 1;
@@ -145,7 +113,6 @@ hr{
 .content:hover {
     background-color : rgb(193, 213, 236) ;
   }
-
 
 
 #foot{
