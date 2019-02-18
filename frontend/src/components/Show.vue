@@ -18,33 +18,27 @@
             
         </div>
         <div v-if="this.$session.get('student_id') != '' || this.showpage === true">
-            <div class="outer">
-                <div class="inner">
-                
+           <div class="outer">
+            <div class="inner">
                 <Header></Header>
-                <div class="centered">
-                    <div class="container">
+                <div class="centered"> 
+                    <div id='container'>
                             <!--시간표 리스트-->
                             <!-- <List id = "list" :val="this.ttlist" /> -->
-                            
-                                <List id ="list" /> 
+                            <List id ="list"> </List>
                             <!--시간표  내용-->
-                                <timetable_s id ="timetable"/>
-                            
+                            <timetableS id ="timetable"></timetableS>
+                        </div>
                     </div>
-                    </div>
-                <Footer></Footer>
-
+                    <Footer></Footer>
                 </div>
             </div>
         </div>
-        
-      
     </div>
 </template>
 
 <script>
-import Timetable_s from '../components/showpage/Timetable_s.vue'
+import TimetableS from '../components/showpage/Timetable_s.vue'
 import List from '../components/showpage/List.vue'
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
@@ -63,7 +57,7 @@ import Footer from '../components/Footer.vue'
         name: 'show',
         auth : false,
         components: {
-           Timetable_s,
+           TimetableS,
            List,
            Header,
            Footer
