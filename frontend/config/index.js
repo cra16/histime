@@ -13,13 +13,8 @@ module.exports = {
 
     proxyTable: {
   '/api': {
-<<<<<<< HEAD
       // target:  'http://c5c9c8ca.ngrok.io/api',
       target:  'http://localhost:3000/api',
-=======
-      target: 'http://1cc74946.ngrok.io/api',
-      // target:  'http://localhost:3000/api',
->>>>>>> 349edf6b9db8e33b105fc5ead32a56c1f5fef26d
     
     changeOrigin: true,
     pathRewrite: {
