@@ -107,7 +107,6 @@
                   ttShow : true,
                   listShow : false
               }
-            
           },
           watch: {
             tt_name : {
@@ -757,8 +756,8 @@
                 this.$EventBus.$on('courses', this.add_to), // 과목 한 개씩 추가
                 this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
                 // this.$EventBus.$on('to_modify', this.modify)
+            },
 
-            }
             
         }
         
