@@ -32,12 +32,12 @@ export default {
     
   },
   beforeCreate: function () {
-            console.log(this.$session.exists());
-            if(this.$session.exists()){
-              console.log(this.$session.get('auth_save'));
-              console.log(this.$session.get('name'));
-              console.log(this.$session.get('student_id'));
-            }
+            // console.log(this.$session.exists());
+            // if(this.$session.exists()){
+            //   console.log(this.$session.get('auth_save'));
+            //   console.log(this.$session.get('name'));
+            //   console.log(this.$session.get('student_id'));
+            // }
             
             if(this.$cookies.get('student_id') != null){
               this.$session.start()

@@ -102,7 +102,7 @@ export default {
      watch:{
          tooltip :{
              handler(){
-                console.log(this.tooltip)
+                // console.log(this.tooltip)
              }
             
          }

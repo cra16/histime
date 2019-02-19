@@ -136,10 +136,10 @@ export default {
       this.$session.start()
       this.$session.set('name', this._response.data.name)
       this.$session.set('student_id', this._response.data.student_id)
-      console.log("login name : " + this._response.data.name)
-      console.log("login studentid : " +this._response.data.student_id )
+      // console.log("login name : " + this._response.data.name)
+      // console.log("login studentid : " +this._response.data.student_id )
       this.$session.set('auth', true)
-      console.log("set session")
+      // console.log("set session")
     }
   }
 }
