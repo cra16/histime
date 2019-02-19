@@ -105,7 +105,8 @@
                   color : '#000000',
                   total_credit : 0.0,
                   ttShow : true,
-                  listShow : false
+                  listShow : false,
+                  backHome : false
               }
           },
           watch: {
@@ -181,48 +182,63 @@
                 //저장버튼 클릭시 호출
                 //시간표 정보 /api/show/del_tt로 전달 data_list는 courses_parsed로 해서 보내줌
                 save(){
-                    if(confirm("시간표를 완성하시겠습니까?")){
-                        console.log(this.ttname);
-                        console.log(this.$session.get('to_timetablem'));
-                        // console.log(this.courses_store);
-                        // console.log(this.courses_for_conv);
-                        
-
-                        this.$http.post('/api/show/del_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname :  this.$session.get('to_timetablem')
-                        }).then((response) => {
-                            console.log('after remove');
-                            this.$http.post('/api/make/make_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname : this.$session.get('to_timetablem'),
-                            total_credit : this.total_credit,
-                            data_list : this.courses_parsed,
-
-                            }).then((response) => {
-                            console.log('after save');
-                            if (response.status === 200 ) {   
-                                this.courses_for_conv = [];
-                                this.courses_parsed = [];
-                                this.courses_store = [[[]]];                    
-                                this.$router.replace({name: 'show'});
-                        }
+                    if(!(this.courses_for_conv.length)) {
+                        this.$confirm({
+                            title : '시간표가 비었습니다.\n홈 화면으로 돌아가시겠습니까?',
+                            message : '홈 화면으로 돌아갈 경우 현재 시간표는 저장되지 않습니다.'
+                        }).then((backHome) => {
+                            if(backHome) {
+                                this.backHome = true;
+                                let routeData = this.$router.resolve({name: 'show'});
+                                window.location.href = routeData.href;
+                            }
                         });
-
-                        
-                    });
+                    } else {
+                        this.$confirm('시간표를 완성하시겠습니까?')
+                        .then((complete) => {
+                            if(complete) {
+                                this.backHome = true;
+                                console.log(this.ttname);
+                                console.log(this.$session.get('to_timetablem'));
+                                // console.log(this.courses_store);
+                                // console.log(this.courses_for_conv);
+                                this.$http.post('/api/show/del_tt', {
+                                    student_id :  this.$session.get('student_id'),
+                                    ttname :  this.$session.get('to_timetablem')
+                                }).then((response) => {
+                                    console.log('after remove');
+                                    this.$http.post('/api/make/make_tt', {
+                                        student_id :  this.$session.get('student_id'),
+                                        ttname : this.$session.get('to_timetablem'),
+                                        total_credit : this.total_credit,
+                                        data_list : this.courses_parsed
+                                    }).then((response) => {
+                                        console.log('after save');
+                                        if (response.status === 200 ) {   
+                                            this.courses_for_conv = [];
+                                            this.courses_parsed = [];
+                                            this.courses_store = [[[]]];
+                                            
+                                            let routeData = this.$router.resolve({name: 'show'});
+                                            window.location.href = routeData.href;
+                                            // this.$router.replace({name: 'show'});
+                                        }
+                                    });
+                                });
+                            }
+                        });
                     }
                 },
                 goHome(){//돌아가기
-                    var backHome = this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
+                    this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
                     .then((backHome) => {
+                        this.backHome = backHome;
                         if(backHome) {
                             this.courses_for_conv = [];
                             this.courses_parsed = [];
-                            this.courses_store = [[[]]];   
+                            this.courses_store = [[[]]];
                             let routeData = this.$router.resolve({name: 'show'});
                             window.location.href = routeData.href;
-                            
                             // this.$router.replace({name: 'show'});
                         }
                     });
@@ -672,12 +688,15 @@
                     this.total_credit = credit;
                 },
                 reset() {
-                    if(confirm("시간표를 비우시겠습니까?")){
-                        this.courses_store = [[[]]];
-                        this.courses_parsed = [];
-                        this.courses_for_conv = [];
-                        this.update_table();
-                    }
+                    this.$confirm('시간표를 비우시겠습니까?')
+                    .then((empty) => {
+                        if(empty) {
+                            this.courses_store = [[[]]];
+                            this.courses_parsed = [];
+                            this.courses_for_conv = [];
+                            this.update_table();
+                        }
+                    });
                 },
                 update_table(){
                     console.log('update_table')
@@ -706,6 +725,16 @@
                     //     list.style.background = "url('../../image/list.png')";
                     //     list.value = 'timetable';
                     // }
+                },
+                before_reload(event) {
+                    if(!this.backHome) {
+                        // Cancel the event
+                        event.preventDefault();
+                        // Chrome requires returnValue to be set
+                        event.returnValue = '';
+                    } else {
+                        this.backHome = false;
+                    }
                 }
             },
             created(){
@@ -717,13 +746,12 @@
                 this.courses_for_conv = [];
                 this.courses = [[[]]];
                 this.modify();
-                this.$EventBus.$on('add_a', this.add_a_to),
-                this.$EventBus.$on('courses', this.add_to),
-                this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
+                this.$EventBus.$on('add_a', this.add_a_to);
+                this.$EventBus.$on('courses', this.add_to);
+                this.$EventBus.$on('close_user_custom', this.user_add);//user custom 창 종료
+                window.addEventListener('beforeunload', this.before_reload);
                 // this.$EventBus.$on('to_modify', this.modify)
-            },
-
-            
+            }
         }
         
     
