@@ -28,7 +28,7 @@
                     &emsp;학번: 21700140&emsp;
                     &emsp;학부: 전산전자공학부 <br><br>
                     &emsp;E-mail: 21700140@handong.edu<br><br>
-                    &emsp;Blog: <link href='https://github.com/YuJin-Kim' target='_blank'>https://github.com/YuJin-Kim<br><br>
+                    &emsp;Blog: <a href='https://github.com/YuJin-Kim' target='_blank'>https://github.com/YuJin-Kim</a><br><br>
                     </div>
                 </div>
             
@@ -42,7 +42,7 @@
                         &emsp;학번: 21700583&emsp;
                         &emsp;학부: 전산전자공학부 <br><br>
                         &emsp;E-mail: dlwlgus4553@gmail.com<br><br>
-                        &emsp;Blog: https://github.com/dlwlgus53<br><br>
+                        &emsp;Blog: <a href='https://github.com/dlwlgus53' target='_blank'>https://github.com/dlwlgus53</a><br><br>
                         </div>
                 </div>
 
@@ -56,7 +56,7 @@
                         &emsp;학번: 21500582&emsp;
                         &emsp;학부: 전산전자공학부 <br><br>
                         &emsp;E-mail: 21500582@handong.edu<br><br>
-                        &emsp;Blog: https://github.com/HyeokIn<br><br>
+                        &emsp;Blog: <a href='https://github.com/HyeokIn' target='_blank'>https://github.com/HyeokIn</a><br><br>
                         </div>
                  </div>
                 <br>
