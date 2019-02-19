@@ -7,7 +7,7 @@
           
                 <div style="display:block;text-align:left" class="d1">
                     <div style="display:block;text-align:left" class="p1">
-                    <img align="left" src="../image/lama2.jpg" width="200" height="230" id="i1">
+                    <img align="left" src="../image/jinhyeok.png" width="200" height="230" id="i1">
                     <br>
                     &emsp;이름: 정진혁<br><br>
                     &emsp;학번: 21500670&emsp;
@@ -28,7 +28,7 @@
                     &emsp;학번: 21700140&emsp;
                     &emsp;학부: 전산전자공학부 <br><br>
                     &emsp;E-mail: 21700140@handong.edu<br><br>
-                    &emsp;Blog:<br><br>
+                    &emsp;Blog: <a href='https://github.com/YuJin-Kim' target='_blank'>https://github.com/YuJin-Kim</a><br><br>
                     </div>
                 </div>
             
