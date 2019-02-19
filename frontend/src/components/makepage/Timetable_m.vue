@@ -144,6 +144,8 @@
                 //과목 지울 때 호출
                 //remove_courses로 과목을 삭제하고 courses_store과 for_back을 비우고 courses_for_conv로 re_add
                 remove(code){
+                    console.log('remove')
+
                     this.$notify({
                         group: 'foo',
                         text: '과목이 삭제 되었습니다.',
@@ -153,12 +155,13 @@
                     this.remove_course(code);
                     this.courses_store = [[[]]];
                     this.courses_parsed = [];
-                    this.update_table();
                     this.re_add();
+                    // console.log('re_add 끝!');
+                    this.update_table();
                 },
                 //courses_for_conv에서 해당 과목을 지움
                 remove_course(code){
-                    for(var i = 0 ; i < this.courses_for_conv.length; i++){
+                    for(var i = 0; i < this.courses_for_conv.length; i++){
                         if(code === this.courses_for_conv[i].code) {
                             this.courses_for_conv.splice(i,1);
                             i -= 1;
@@ -168,11 +171,11 @@
                 //삭제하고 남은 과목으로 repaint함
                 //courses_for_conv를 파싱해서 course_update에 넣어줌
                 re_add() {
-                    for(var i in this.courses_for_conv.length) {
+                    for(var i = 0 ; i < this.courses_for_conv.length; i++) {
                         //console.log('not duplication!! : ' + data[i]);
-                        var parsed_data = this.parsingTime(courses_for_conv[i]);
+                        var parsed_data = this.parsingTime(this.courses_for_conv[i]);
+                        // console.log(parsed_data);
                         this.course_update(parsed_data);
-                        this.update_table();
                     }
                 },
 
@@ -235,6 +238,7 @@
                         if(!duplication) {
                             //console.log('not duplication!! : ' + data[i]);
                             var parsed_data = this.parsingTime(data[i]);
+                            this.courses_for_conv.push(data[i]);
                             this.course_update(parsed_data);
                             this.update_table();
                         } else {
@@ -252,6 +256,7 @@
                 //과목 하나씩 추가할 때 호출
                 //duplication을 확인하고 파씽을 진행하고 update_table하기
                 add_to(raw_data){
+                    console.log('add_to');
                     var duplication = this.duplication(raw_data);
                     // //console.log("rc_length: " + this.courses_parsed.length);
 
@@ -275,6 +280,7 @@
                                 type: 'warn',
                             });
                         }else{
+                            this.courses_for_conv.push(raw_data);
                             this.course_update(parsed_data);
                             this.update_table();
                         }
@@ -299,8 +305,9 @@
 
                 //월3,목3의 object를 월3, 목3의 두개의 object로 만들어줌
                 parsingTime(course) {
+                    console.log('parsingTime')
+
                     var course_temp = JSON.parse(JSON.stringify(course));
-                    this.courses_for_conv.push(course);
                     var data_array = [];
                     var parsed_data = {
                         code : course_temp.code,
@@ -321,7 +328,7 @@
 
                     //시간이 없는 과목은 그냥 시간 파씽 안하고 data_array에 넣고 리턴
                     if(course_temp.time === '') {
-                        console.log(course_temp.name);
+                        // console.log(course_temp.name);
                         data_array.push(parsed_data);
                         return data_array;
                     }
@@ -343,10 +350,10 @@
                         var current_day = this.alterDay(sep_time[i].substr(0, 1));
                         var current_start = parseInt(sep_time[i].match(/\d+/)[0]);
 
-                        console.log(previous_day);
-                        console.log(previous_start);
-                        console.log(current_day);
-                        console.log(current_start);
+                        // console.log(previous_day);
+                        // console.log(previous_start);
+                        // console.log(current_day);
+                        // console.log(current_start);
                         
                         //연강원소일때
                         if(previous_day === this.alterDay(sep_time[0].substr(0, 1)) && parseInt(previous_start) + 1 === parseInt(sep_time[i].match(/\d+/)[0])){
@@ -459,6 +466,7 @@
 
                 //course 
                 course_update(parsed_data) {
+                    console.log('course_update')
                     this.color = this.set_color();
                     //console.log('color : ' + this.color);
                     for(var t = 0; t < parsed_data.length; t++){
@@ -613,16 +621,14 @@
 
                             //courses에 푸쉬
                             //console.log('제대로된 친구 넣기');
-                            console.log(this.courses_parsed);
+                            // console.log(this.courses_parsed);
 
                             parsed_data[t].color = this.color;
                             this.courses_store[day_index][time_index].push(parsed_data[t]);
-                            console.log('푸쉬');
-                            console.log(parsed_data[t]);
+                            // console.log('푸쉬');
+                            // console.log(parsed_data[t]);
                             this.courses_parsed.push(parsed_data[t]);
-                            console.log(this.courses_parsed);
-                            
-                            this.$forceUpdate();
+                            // console.log(this.courses_parsed);
                         }
                 },
                 prop_update(code, data, prop){
@@ -675,6 +681,7 @@
                     }
                 },
                 update_table(){
+                    console.log('update_table')
                     this.courses = [[[]]];                    
                     this.courses = this.courses_store ;
                     this.$forceUpdate();

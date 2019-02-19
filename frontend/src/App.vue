@@ -32,22 +32,25 @@ export default {
     
   },
   beforeCreate: function () {
-            if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
-              console.log("쿠키나 세션이 없음")
-                this.$router.push('/login')
+            console.log(this.$session.exists());
+            if(this.$session.exists()){
+              console.log(this.$session.get('auth_save'));
+              console.log(this.$session.get('name'));
+              console.log(this.$session.get('student_id'));
             }
-            else if(!this.$session.exists()&&(this.$cookies.get('auth_save')=='true')){
-              console.log("세션이 없음, 쿠키있음")
+            
+            if(this.$cookies.get('student_id') != null){
               this.$session.start()
               this.$session.set('name', this.$cookies.get('name') )
               this.$session.set('student_id', this.$cookies.get('student_id'))
               this.$session.set('auth', true)
             }
-            else{
-              console.log('이건 무슨 상황?')
-            }  
-            
+            else if(this.$session.get('student_id')== null){
+              this.$router.push('/login')
             }
+            
+            
+  }
 }
 </script>
 
