@@ -6,8 +6,8 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 connection.connect(function(err) {
@@ -121,7 +121,7 @@ router.post('/search/filter', function(req, res, next) {
     }
     for(var i = 0 ; i < time.length; i++){
         // console.log(`time ${i}`);
-        time_query += `time like '%${time[i]}%' `;
+        time_query += `time like '%${time[i]},%' or time like '%${time[i]}' `;
         if(i != time.length -1) time_query += 'or ';
     }
 
