@@ -214,7 +214,7 @@ export default {
             this.searchbox=false;
         },
         timebox_reset:function(){
-            console.log('into timebox reset');
+            // console.log('into timebox reset');
             this.checktime.splice(0, this.checktime.length);        
         },
         creditslt:function(){
@@ -250,7 +250,7 @@ export default {
                     if(this.checktime[i] === undefined)continue;
                  if(this.checktime[i]===true) {
                     // selectbox2에서 날짜 시간 테이블 생성시 반복문 
-                    console.log('j는' + j);
+                    // console.log('j는' + j);
                     var day = ''; 
                     var time = i % 11;
                     var j = (i - time)/11;
@@ -260,7 +260,7 @@ export default {
                     else if(j === 4) day += '목';
                     else if(j === 5) day += '금';
                     else if(j === 6) day += '토';
-                    console.log(`${day}${time}`);
+                    // console.log(`${day}${time}`);
 
                     this.filter.time.push(`${day}${time}`);
                     
@@ -306,7 +306,7 @@ export default {
         },
          add_to_fav: function(key){
             // console.log(key);
-            console.log(this.search[key].name);
+            // console.log(this.search[key].name);
             this.$EventBus.$emit('add_to_fav',this.search[key]);
         },
         add_to_tt: function(key){

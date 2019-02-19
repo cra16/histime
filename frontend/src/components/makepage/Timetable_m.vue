@@ -188,6 +188,9 @@
                             message : '홈 화면으로 돌아갈 경우 현재 시간표는 저장되지 않습니다.'
                         }).then((backHome) => {
                             if(backHome) {
+                                this.courses_for_conv = [];
+                                this.courses_parsed = [];
+                                this.courses_store = [[[]]];
                                 this.backHome = true;
                                 let routeData = this.$router.resolve({name: 'show'});
                                 window.location.href = routeData.href;

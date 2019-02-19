@@ -97,7 +97,7 @@ export default{
         add_to_fav(course) {
             var duplication = this.duplication(course);
             this.noResult = false;
-            console.log("created: " + course);
+            // console.log("created: " + course);
             
             if(duplication === true) {
                 //popup

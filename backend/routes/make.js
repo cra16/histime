@@ -6,8 +6,8 @@ var mysql = require('mysql');
 // 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
+    user     : 'root',
+    password : 'h010638847',
     database : 'histime'
 });
 connection.connect(function(err) {
@@ -16,7 +16,7 @@ connection.connect(function(err) {
 });
 
 router.post('/', function(req, res, next) {
-    console.log(req.body.id);
+    // console.log(req.body.id);
     var student_id = req.body.id;
 
     connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND ttrank IS NOT NULL ORDER BY ttrank ASC`, function(err, results, fields) {
@@ -34,7 +34,7 @@ router.post('/modify_list', function(req, res, next) {
         if(i != req.body.code.length - 1) code += ' or '
     }
     var modify_query = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE ${code};`;
-    console.log(modify_query);
+    // console.log(modify_query);
     connection.query(modify_query, function (err, result) {
             res.send(result);
     });
@@ -73,7 +73,7 @@ router.post('/search/name', function(req, res, next) {
     var search_by_name = `SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE name like '%${req.body.course_name}%' OR professor like '%${req.body.course_name}%';`;
     connection.query(search_by_name, function(err, courseList, fields) {
         if(err) console.log(err);
-        console.log(courseList);
+        // console.log(courseList);
         res.send(courseList);
     });
 });
@@ -100,7 +100,7 @@ router.post('/search/filter', function(req, res, next) {
     }
     for(var i = 0 ; i < credit.length; i++){
         var credit_each = '';
-        console.log(`credit ${i}`);
+        // console.log(`credit ${i}`);
         if(credit[i] === true){
             if(i === 0) credit_each = '.5';
             else if(i === 1) credit_each = '1';
@@ -120,8 +120,8 @@ router.post('/search/filter', function(req, res, next) {
         time_query += ' and (';
     }
     for(var i = 0 ; i < time.length; i++){
-        console.log(`time ${i}`);
-        time_query += `time like '%${time[i]}%' `;
+        // console.log(`time ${i}`);
+        time_query += `time like '%${time[i]},%' or time like '%${time[i]}' `;
         if(i != time.length -1) time_query += 'or ';
     }
 
@@ -138,10 +138,10 @@ router.post('/search/filter', function(req, res, next) {
     // //debugging용
     var search =`SELECT name, code, time, credit, gubun, professor, english FROM courses WHERE hakbu like '%${hakbu}%' and gubun like '%${gubun}%' and gyoyang like '%${gyoyang}%' and english like '%${english}%' and professor like '%${professor}%'${credit_query}${time_query}`;
  
-    console.log(search);
+    // console.log(search);
     connection.query(search, function(err, courseList, fields) {
         if(err) console.log(err);
-        console.log(courseList);
+        // console.log(courseList);
         res.send(courseList);
     });
 });
@@ -158,7 +158,7 @@ router.post('/add_fav', function(req, res, next) {
     var credit = req.body.credit; 
     
     var add_fav = `INSERT INTO user(student_id, code, course_name, professor, time, credit, favorited) VALUES (${student_id}, '${code}', '${course_name}', '${professor}', '${time}', ${credit}, true);`
-    console.log(add_fav);
+    // console.log(add_fav);
     connection.query(add_fav, function(err, result, fields) {
         if(err) console.log(err);
     });
@@ -170,13 +170,13 @@ router.post('/add_fav', function(req, res, next) {
 router.post('/del_fav', function(req, res) {
     var student_id = req.body.student_id;
     var code = req.body.code;
-    console.log(student_id);
-    console.log(code);
+    // console.log(student_id);
+    // console.log(code);
     var _delete = `DELETE FROM user WHERE code = '${code}' and student_id = '${student_id}' and favorited = TRUE;`;
     // var _delete = `DELETE FROM user WHERE code = '%${req.body.code}%' and student_id = '${req.body.user}' and favorited = TRUE;`;
     connection.query(_delete, function(err, courseList, fields) {
         if(err) console.log(err);
-        console.log(courseList);
+        // console.log(courseList);
         // res.send(courseList);
     });
 });
@@ -190,7 +190,7 @@ router.post('/del_all_fav', function(req, res) {
     // var delete_all = `DELETE FROM user WHERE student_id = '${req.body.student_id}' and favorited = TRUE;`;
     connection.query(delete_all, function(err, courseList, fields) {
         if(err) console.log(err);
-        console.log(courseList);
+        // console.log(courseList);
         // res.send(courseList);
     });
 });
@@ -198,7 +198,7 @@ router.post('/del_all_fav', function(req, res) {
 //시간표생성
 //input : array of data(student_id, ttname, total_credit, code, name, professor, time, credit)
 router.post('/make_tt', function(req, res) {
-    console.log('into make_tt');
+    // console.log('into make_tt');
     //디버깅용
     var student_id = req.body.student_id;
     var ttname = req.body.ttname;
@@ -223,7 +223,7 @@ router.post('/make_tt', function(req, res) {
         console.log(make_tt);
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
-            console.log(courseList);
+            // console.log(courseList);
         });
     }
     res.send('add');
@@ -238,7 +238,7 @@ router.get('/tt_list', function(req, res) {
     // var delete_all = `DELETE FROM user WHERE student_id = '${req.body.student_id}' and favorited = TRUE;`;
     connection.query(search_tt, function(err, courseList, fields) {
         if(err) console.log(err);
-        console.log(courseList);
+        // console.log(courseList);
         // res.send(courseList);
     });
     
@@ -253,7 +253,7 @@ router.get('/show_tt', function(req, res) {
 
     connection.query(`SELECT course_name, professor, time, credit FROM user WHERE student_id=${student_id} and ttname='${ttname}';`, function(err, results, fields) {
         if(err) console.log(err);
-        console.log(results);
+        // console.log(results);
         res.send(results);
     });
 });
@@ -262,7 +262,7 @@ router.get('/update_time', function(req, res) {
 
     connection.query(`SELECT time FROM user WHERE ttname='update_time';`, function(err, results, fields) {
         if(err) console.log(err);
-        console.log(results);
+        // console.log(results);
         res.send(results);
     });
 });
