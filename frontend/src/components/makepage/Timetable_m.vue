@@ -200,7 +200,6 @@
                         this.$confirm('시간표를 완성하시겠습니까?')
                         .then((complete) => {
                             if(complete) {
-                                this.backHome = true;
                                 // console.log(this.ttname);
                                 // console.log(this.$session.get('to_timetablem'));
                                 // console.log(this.courses_store);
@@ -217,7 +216,8 @@
                                         data_list : this.courses_parsed
                                     }).then((response) => {
                                         // console.log('after save');
-                                        if (response.status === 200 ) {   
+                                        if (response.status === 200 ) {
+                                            this.backHome = true;
                                             this.courses_for_conv = [];
                                             this.courses_parsed = [];
                                             this.courses_store = [[[]]];
