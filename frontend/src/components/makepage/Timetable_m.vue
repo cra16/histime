@@ -323,7 +323,7 @@
 
                 //월3,목3의 object를 월3, 목3의 두개의 object로 만들어줌
                 parsingTime(course) {
-                    console.log('parsingTime')
+                    // console.log('parsingTime')
 
                     var course_temp = JSON.parse(JSON.stringify(course));
                     var data_array = [];
@@ -354,37 +354,36 @@
 
                     //시간 파씽
                     var sep_time = course_temp.time.split( ',');
-                    var data_copy_first = JSON.parse(JSON.stringify(parsed_data));
-
+                    var data_copy = JSON.parse(JSON.stringify(parsed_data));
                     //첫번째 시간에 해당하는 object 넣어주고
-                    data_copy_first.day = this.alterDay(sep_time[0].substr(0, 1));
-                    data_copy_first.start = parseInt(sep_time[0].match(/\d+/)[0]);
-                    data_array.push(data_copy_first);
-                    previous_day = data_copy_first.day;
-                    previous_start = data_copy_first.start;
+                    data_copy.day = this.alterDay(sep_time[0].substr(0, 1));
+                    data_copy.start = parseInt(sep_time[0].match(/\d+/)[0]);
+                    data_array.push(data_copy);
+                    previous_day = data_copy.day;
+                    previous_start = data_copy.start;
                     
                     //두번째부터는 앞에 object랑 비교해서 연강원소이면 앞에 object height ++ 아니면 새로운 원소로 추가
                     for(var i = 1; i < sep_time.length; i++){
                         //parsing data copy만들어서 거기의 day, start만 바꿔줌
-                        var data_copy = JSON.parse(JSON.stringify(parsed_data));
+                        data_copy = JSON.parse(JSON.stringify(parsed_data));
                         var current_day = this.alterDay(sep_time[i].substr(0, 1));
                         var current_start = parseInt(sep_time[i].match(/\d+/)[0]);
 
-                        console.log(previous_day);
-                        console.log(previous_start);
-                        console.log(current_day);
-                        console.log(current_start);
+                        // console.log(previous_day);
+                        // console.log(previous_start);
+                        // console.log(current_day);
+                        // console.log(current_start);
                         
                         //연강원소일때
                         if(previous_day === current_day && previous_start + 1 === current_start){
-                            console.log('연강원소');
+                            // console.log('연강원소');
                             var temp = data_array.pop();
                             temp.height ++;
                             data_array.push(temp);
 
                         //연강원소가 아닐때
                         } else {
-                            console.log('연강원소 아님');
+                            // console.log('연강원소 아님');
                             data_copy.day = current_day;
                             data_copy.start = current_start;
                             data_array.push(data_copy);
@@ -392,7 +391,7 @@
                         previous_day = current_day;
                         previous_start = current_start;
                     }
-                    console.log(data_array);
+                    // console.log(data_array);
                     return data_array;
                 },
 
