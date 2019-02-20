@@ -188,10 +188,10 @@
                             message : '홈 화면으로 돌아갈 경우 현재 시간표는 저장되지 않습니다.'
                         }).then((backHome) => {
                             if(backHome) {
+                                this.backHome = true;
                                 this.courses_for_conv = [];
                                 this.courses_parsed = [];
                                 this.courses_store = [[[]]];
-                                this.backHome = true;
                                 let routeData = this.$router.resolve({name: 'show'});
                                 window.location.href = routeData.href;
                             }
@@ -732,14 +732,14 @@
                     // }
                 },
                 before_reload(event) {
+                    console.log('this.backHome : ' + this.backHome);
                     if(!this.backHome) {
                         // Cancel the event
                         event.preventDefault();
                         // Chrome requires returnValue to be set
                         event.returnValue = '';
-                    } else {
-                        this.backHome = false;
                     }
+                    this.backHome = false;
                 }
             },
             created(){

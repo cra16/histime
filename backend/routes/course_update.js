@@ -2,23 +2,11 @@ var express = require('express');
 var router = express.Router();
 // var iconv = require('iconv').Iconv;
 var fs = require('fs');
-var mysql = require('mysql');
+// var mysql = require('mysql');
 var tabletojson = require('tabletojson');
 var jschardet   = require('jschardet');
-var html; 
-
-// 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
-    database : 'histime'
-});
-
-connection.connect(function(err) {
-    if(err) console.log(err);
-    console.log('You are now connected...');
-});
+var html;
+var connection = require('./myMysql');
 
 router.get('/', function (req, res, next) {
     var time = '';
