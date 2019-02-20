@@ -31,6 +31,7 @@
                             <p>{{course.name}}{{`  [${course.professor}]`}} </p>
                             <p class = "code"> {{course.code}}</p>
                         </div>
+                       
 
                         <span class="section2">
                             <p>{{course.gubun}}</p> 
@@ -43,12 +44,13 @@
                             <p>{{course.time}}</p>
                             <p>영어 {{course.english}}</p>
                         </span>
-                        <span class="section4"> 
+                         <span class="section4"> 
                             <!-- 즐겨찾기 또는 시간표로 과목 보내기 -->
                             <button id="fav" v-on:click="(event) => { add_to_fav(key) }"></button>
                             <br/>
                             <button id="add" v-on:click="(event) => { add_to_tt(key) }"></button>
                         </span>
+                        
                         <hr />
                        
              </div>

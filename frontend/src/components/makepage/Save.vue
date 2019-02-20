@@ -70,7 +70,6 @@ export default{
                 student_id : this.$session.get('student_id'),
                 code : this.courses[key].code
             })
-
             this.courses.splice(key, 1);
         },
         //시간표로 과목 추가하기 
@@ -117,7 +116,6 @@ export default{
                     time : course.time,
                     credit : course.credit
                 });
-
                 this.courses.push({
                     name: course.name,
                     code: course.code,
@@ -132,14 +130,12 @@ export default{
         //중복 발생
         duplication(course) {
             var duplication = false;
-
             for(var i in this.courses) {
                 if(course.code === this.courses[i].code) {
                     duplication = true;
                     break;
                 }
             }
-
             return duplication;
         }
     },
@@ -168,5 +164,4 @@ export default{
 
 
 <style  lang ="scss" src = '../../assets/Makepage/save.scss' scoped>
-
 </style>
