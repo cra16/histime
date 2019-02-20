@@ -1,12 +1,11 @@
 var mysql = require('mysql');
+var connection;
 var db_config = {
     host: 'localhost',
     user: 'tester',
     password: '1234',
     database: 'histime'
 };
-
-var connection;
 
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
@@ -30,6 +29,5 @@ function handleDisconnect() {
   });
   return connection;
 }
-
 
 module.exports = handleDisconnect();
