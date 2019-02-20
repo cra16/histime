@@ -120,7 +120,7 @@
          
            <center><input type="button"  class="search" value="검색하기" v-on:click="search_by_Filter"></center>
 
-            <div v-show="searchbox" class="placeholder-box2">
+            <div v-show="searchbox" class="timesearchBox">
                 <p>검색하고자 하는 시간대를 모두 클릭해주세요</p> 
                 <!-- Database에 저장된 자료들과 매치되어 클릭한 시간에 따라서 검색 가능 -->
                          <table>
@@ -132,9 +132,9 @@
                             <tbody> <!--클릭박스 반복문-->
                                 <tr v-for ="i in 11" :key ="i">
                                     <td>{{ i }}</td>
-                                    <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
-                                        <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 11)]" v-on:click="checktime[(i + j * 11)] != checktime[(i + j * 11)]">
-                                        <label for="checktime"></label>
+                                    <td  v-for ="j in 6" :key ="j" > 
+                                        <input type="checkbox" id="checktime" value="">
+                                        <label for="checktime"  v-on:click="checktimef(i,j)" v-bind:class="{checked : checktime[(i+j*11)]} " ></label>
                                     </td>
                                 </tr>
                             </tbody>
@@ -193,6 +193,7 @@ export default {
     created(){
         this.get_update_time();
     },
+  
 
     
     methods:{
@@ -240,11 +241,18 @@ export default {
                     }
                 },function (err) {//서버가 이상한 경우
                     
-                    // alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
+                    alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
                 });
-            // this.course_name = '';이게 없는게 일반적인것 같은데..
             }
         },
+        //시간대 검색 선택시, 데이터베이스로 넘어갈 배열을 업데이트 하고,
+        //화면에 선택한 부분이 색칠되어 나타나게 해 주는 함수
+        checktimef:function(i,j){
+            this.checktime[(i + j * 11)] = !this.checktime[(i + j * 11)];
+            this.$forceUpdate()
+
+        },
+       
         search_by_Filter: function(){
             for(var i=1;i<78; i++) {
                     if(this.checktime[i] === undefined)continue;
@@ -287,7 +295,7 @@ export default {
                         this.search = response.data;//결과값을 저장함
                     }
                 },function (err) {//서버가 이상한 경우
-                    // alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
+                    alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
                 });
 
             //초기화 작업
