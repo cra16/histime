@@ -341,6 +341,7 @@
                         k_start : -1,
                         size : -1,
                     }
+
                     var previous_day = 0;
                     var previous_start = 0;
 
@@ -353,13 +354,14 @@
 
                     //시간 파씽
                     var sep_time = course_temp.time.split( ',');
+                    var data_copy_first = JSON.parse(JSON.stringify(parsed_data));
 
                     //첫번째 시간에 해당하는 object 넣어주고
-                    parsed_data.day = this.alterDay(sep_time[0].substr(0, 1));
-                    parsed_data.start = parseInt(sep_time[0].match(/\d+/)[0]);
-                    data_array.push(parsed_data);
-                    previous_day = parsed_data.day;
-                    previous_start = parsed_data.start;
+                    data_copy_first.day = this.alterDay(sep_time[0].substr(0, 1));
+                    data_copy_first.start = parseInt(sep_time[0].match(/\d+/)[0]);
+                    data_array.push(data_copy_first);
+                    previous_day = data_copy_first.day;
+                    previous_start = data_copy_first.start;
                     
                     var data_copy = JSON.parse(JSON.stringify(parsed_data));
                     //두번째부터는 앞에 object랑 비교해서 연강원소이면 앞에 object height ++ 아니면 새로운 원소로 추가
@@ -368,10 +370,10 @@
                         var current_day = this.alterDay(sep_time[i].substr(0, 1));
                         var current_start = parseInt(sep_time[i].match(/\d+/)[0]);
 
-                        // console.log(previous_day);
-                        // console.log(previous_start);
-                        // console.log(current_day);
-                        // console.log(current_start);
+                        console.log(previous_day);
+                        console.log(previous_start);
+                        console.log(current_day);
+                        console.log(current_start);
                         
                         //연강원소일때
                         if(previous_day === current_day && previous_start + 1 === current_start){
@@ -380,6 +382,7 @@
                             data_array.push(temp);
                         //연강원소가 아닐때
                         } else {
+                            console.log('연강원소 아님');
                             data_copy.day = current_day;
                             data_copy.start = current_start;
                             data_array.push(data_copy);
@@ -387,6 +390,7 @@
                         previous_day = current_day;
                         previous_start = current_start;
                     }
+                    console.log(data_array);
                     return data_array;
                 },
 
