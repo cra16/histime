@@ -235,8 +235,8 @@
                 goHome(){//돌아가기
                     this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
                     .then((backHome) => {
-                        this.backHome = backHome;
                         if(backHome) {
+                            this.backHome = true;
                             this.courses_for_conv = [];
                             this.courses_parsed = [];
                             this.courses_store = [[[]]];
@@ -362,6 +362,7 @@
                     previous_day = data_copy.day;
                     previous_start = data_copy.start;
                     
+                    var data_copy = JSON.parse(JSON.stringify(parsed_data));
                     //두번째부터는 앞에 object랑 비교해서 연강원소이면 앞에 object height ++ 아니면 새로운 원소로 추가
                     for(var i = 1; i < sep_time.length; i++){
                         //parsing data copy만들어서 거기의 day, start만 바꿔줌
@@ -380,7 +381,6 @@
                             var temp = data_array.pop();
                             temp.height ++;
                             data_array.push(temp);
-
                         //연강원소가 아닐때
                         } else {
                             // console.log('연강원소 아님');
