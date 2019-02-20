@@ -31,26 +31,43 @@ export default {
 
     
   },
+<<<<<<< HEAD
   beforeCreate: function () {
-            // console.log(this.$session.exists());
-            // if(this.$session.exists()){
-            //   console.log(this.$session.get('auth_save'));
-            //   console.log(this.$session.get('name'));
-            //   console.log(this.$session.get('student_id'));
-            // }
-            
-            if(this.$cookies.get('student_id') != null){
-              this.$session.start()
-              this.$session.set('name', this.$cookies.get('name') )
-              this.$session.set('student_id', this.$cookies.get('student_id'))
-              this.$session.set('auth', true)
+            if (!this.$session.exists()&&(this.$cookies.get('auth_save')=='false')) {
+              console.log("쿠키나 세션이 없음")
+                this.$router.push('/login')
             }
-            else if(this.$session.get('student_id')== null){
-              this.$router.push('/login')
+             else if(!this.$session.exists()&&(this.$cookies.get('auth_save')=='true')){
+                console.log("세션이 없음, 쿠키있음")
+                this.$session.start()
+                this.$session.set('name', this.$cookies.get('name') )
+                this.$session.set('student_id', this.$cookies.get('student_id'))
+                this.$session.set('auth', true)
+                }
+                
             }
+=======
+  // beforeCreate: function () {
+  //           // console.log(this.$session.exists());
+  //           // if(this.$session.exists()){
+  //           //   console.log(this.$session.get('auth_save'));
+  //           //   console.log(this.$session.get('name'));
+  //           //   console.log(this.$session.get('student_id'));
+  //           // }
+            
+  //           if(this.$cookies.get('student_id') != null){
+  //             this.$session.start()
+  //             this.$session.set('name', this.$cookies.get('name') )
+  //             this.$session.set('student_id', this.$cookies.get('student_id'))
+  //             this.$session.set('auth', true)
+  //           }
+  //           else if(this.$session.get('student_id')== null){
+  //             this.$router.push('/login')
+  //           }
             
             
-  }
+  // }
+>>>>>>> f5c4cf7a0bb3a84f76bab5a389fb19456c153e6f
 }
 </script>
 
