@@ -47,7 +47,9 @@
             HISNET 아이디로 로그인<br>가능하며,작성된 시간표는<br> 예비수강신청에 도움을 줄 뿐<br>
             <u>실제로 장바구니에 적용되지는<br>않음을</u> 알려드립니다.<br>더 자세한 메뉴얼은 
             <!-- 메뉴얼 페이지로 이동 -->
-            <a href="/manual" target="_blank">여기</a>를 눌러주세요.
+          <router-link to="/manual">여기</router-link>를 눌러주세요.
+             <!-- <router-link to="/manual" target="_blank">여기</router-link>를 눌러주세요. -->
+            <!-- <a href="/manual" target="_blank">여기</a> -->
             </p>
         </div>
       </div>
