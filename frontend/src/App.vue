@@ -31,26 +31,26 @@ export default {
 
     
   },
-  beforeCreate: function () {
-            // console.log(this.$session.exists());
-            // if(this.$session.exists()){
-            //   console.log(this.$session.get('auth_save'));
-            //   console.log(this.$session.get('name'));
-            //   console.log(this.$session.get('student_id'));
-            // }
+  // beforeCreate: function () {
+  //           // console.log(this.$session.exists());
+  //           // if(this.$session.exists()){
+  //           //   console.log(this.$session.get('auth_save'));
+  //           //   console.log(this.$session.get('name'));
+  //           //   console.log(this.$session.get('student_id'));
+  //           // }
             
-            if(this.$cookies.get('student_id') != null){
-              this.$session.start()
-              this.$session.set('name', this.$cookies.get('name') )
-              this.$session.set('student_id', this.$cookies.get('student_id'))
-              this.$session.set('auth', true)
-            }
-            else if(this.$session.get('student_id')== null){
-              this.$router.push('/login')
-            }
+  //           if(this.$cookies.get('student_id') != null){
+  //             this.$session.start()
+  //             this.$session.set('name', this.$cookies.get('name') )
+  //             this.$session.set('student_id', this.$cookies.get('student_id'))
+  //             this.$session.set('auth', true)
+  //           }
+  //           else if(this.$session.get('student_id')== null){
+  //             this.$router.push('/login')
+  //           }
             
             
-  }
+  // }
 }
 </script>
 
