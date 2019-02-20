@@ -1,4 +1,4 @@
-$base: 103px;//기본크기
+$base: 90px;//기본크기
 
 $start0: 0px;
 $start1: 0px;
@@ -36,13 +36,16 @@ $size5 : 33%;
 
     
     p{
-        margin : 3px;
+        margin : 1px;
     }
     #course_name{
         font-size: 12px;
     }
+    #credit{
+        font-size: 9px;
+    }
     #professor{
-        font-size: 10px;
+        font-size: 9px;
     }
   
 }
