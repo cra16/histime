@@ -36,14 +36,19 @@ router.post('/', function (req, res) {
         }
         //로그인 성공시
         else{
-            //학사 페이지로 가서
-            await page.goto('https://hisnet.handong.edu/haksa/hakjuk/HHAK110M.php');
-            //학번을 가져오고
-            const element1 = await page.$('input[name="hakbun"]');
-            student_id = await page.evaluate(element1 => element1.value, element1);
-            //이름을 가져와라
-            const element2 = await page.$('td[width="240"]');
-            name = await page.evaluate(element2 => element2.textContent, element2);
+            try{
+                //학사 페이지로 가서
+                await page.goto('https://hisnet.handong.edu/haksa/hakjuk/HHAK110M.php');
+                //학번을 가져오고
+                const element1 = await page.$('input[name="hakbun"]');
+                student_id = await page.evaluate(element1 => element1.value, element1);
+                //이름을 가져와라
+                const element2 = await page.$('td[width="240"]');
+                name = await page.evaluate(element2 => element2.textContent, element2);
+            }catch(e){
+                student_id = '000000';
+                name = '교직원';
+            }
         }
         if(student_id != 'nope') console.log(`${name}님이 로그인하셨습니다.`);
         res.send({ student_id : student_id, name : name });
