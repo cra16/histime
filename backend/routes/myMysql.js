@@ -1,23 +1,4 @@
 var mysql = require('mysql');
-// var database;
-
-// function connectDatabase() {
-//     if (!database) {
-//         database = mysql.createConnection({
-//             host     : 'localhost',
-//             user     : 'tester',
-//             password : '1234',
-//             database : 'histime'
-//         });
-
-//         database.connect(function(err) {
-//             if(err) console.log(err);
-//             console.log('You are now connected...');
-//         });
-//     }
-//     return database;
-// }
-
 var db_config = {
     host: 'localhost',
     user: 'root',
@@ -35,7 +16,8 @@ function handleDisconnect() {
     if(err) {                                     // or restarting (takes a while sometimes).
       console.log('error when connecting to db:', err);
       setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
-    }                                     // to avoid a hot loop, and to allow our node script to
+    }
+    console.log('connection created');                              // to avoid a hot loop, and to allow our node script to
   });                                     // process asynchronous requests in the meantime.
                                           // If you're also serving http, display a 503 error.
   connection.on('error', function(err) {
