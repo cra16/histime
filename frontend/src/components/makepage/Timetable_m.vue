@@ -135,7 +135,7 @@
                             //console.log('running');
                         }
                         this.$session.set('to_modify', undefined);
-                        console.log(this.courses_parsed);
+                        // console.log(this.courses_parsed);
 
                     });
                     
@@ -144,7 +144,7 @@
                 //과목 지울 때 호출
                 //remove_courses로 과목을 삭제하고 courses_store과 for_back을 비우고 courses_for_conv로 re_add
                 remove(code){
-                    console.log('remove')
+                    // console.log('remove')
 
                     this.$notify({
                         group: 'foo',
@@ -201,22 +201,22 @@
                         .then((complete) => {
                             if(complete) {
                                 this.backHome = true;
-                                console.log(this.ttname);
-                                console.log(this.$session.get('to_timetablem'));
+                                // console.log(this.ttname);
+                                // console.log(this.$session.get('to_timetablem'));
                                 // console.log(this.courses_store);
                                 // console.log(this.courses_for_conv);
                                 this.$http.post('/api/show/del_tt', {
                                     student_id :  this.$session.get('student_id'),
                                     ttname :  this.$session.get('to_timetablem')
                                 }).then((response) => {
-                                    console.log('after remove');
+                                    // console.log('after remove');
                                     this.$http.post('/api/make/make_tt', {
                                         student_id :  this.$session.get('student_id'),
                                         ttname : this.$session.get('to_timetablem'),
                                         total_credit : this.total_credit,
                                         data_list : this.courses_parsed
                                     }).then((response) => {
-                                        console.log('after save');
+                                        // console.log('after save');
                                         if (response.status === 200 ) {   
                                             this.courses_for_conv = [];
                                             this.courses_parsed = [];
@@ -274,7 +274,7 @@
                 //과목 하나씩 추가할 때 호출
                 //duplication을 확인하고 파씽을 진행하고 update_table하기
                 add_to(raw_data){
-                    console.log('add_to');
+                    // console.log('add_to');
                     var duplication = this.duplication(raw_data);
                     // //console.log("rc_length: " + this.courses_parsed.length);
 
@@ -487,7 +487,7 @@
 
                 //course 
                 course_update(parsed_data) {
-                    console.log('course_update')
+                    // console.log('course_update')
                     this.color = this.set_color();
                     //console.log('color : ' + this.color);
                     for(var t = 0; t < parsed_data.length; t++){
@@ -705,7 +705,7 @@
                     });
                 },
                 update_table(){
-                    console.log('update_table')
+                    // console.log('update_table')
                     this.courses = [[[]]];                    
                     this.courses = this.courses_store ;
                     this.$forceUpdate();
@@ -744,9 +744,9 @@
                 }
             },
             created(){
-                console.log(this.courses_store);
-                console.log(this.courses_for_conv);
-                console.log(this.courses_parsed);
+                // console.log(this.courses_store);
+                // console.log(this.courses_for_conv);
+                // console.log(this.courses_parsed);
                 this.courses_store = [[[]]];
                 this.courses_parsed = [];
                 this.courses_for_conv = [];
