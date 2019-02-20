@@ -4,8 +4,19 @@
        <!--과목찾기 메뉴-->
        
        <div class="searchBox" > 
-            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search" v-on:keydown.enter="search_by_name" />
-            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>
+             <!--필터가 닫혀있을때-->
+              <span v-if ="!this.showbox">
+            <input v-model="course_name" type="text" placeholder="  과목명 혹은 교수님명" class='input_text' name="search"  v-on:keydown.enter="search_by_name" />
+            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_name"/>            
+            </span>
+
+           <!--필터가 열려있을때-->
+           <span v-if ="this.showbox">
+            <input v-model="course_name" type="text" placeholder=" 필터를 이용한 검색만 가능" class='input_text' name="search"  disabled="disabled" v-on:keydown.enter="search_by_name" />
+            <input type="button" class='sch_filt' value="검색" v-on:click="search_by_Filter"/>
+            </span>
+          
+
             <input type="button" class='sch_filt' value="필터" v-on:click="show"/>
        </div>
  
@@ -13,23 +24,23 @@
   <div class='contents'>
       <p id="noResult" v-if='no_result === true'>검색결과가 없습니다.</p><!--검색결과가 없을때만 표시-->
         <p id="loading" v-if='loading=== true'>검색중...</p><!--검색결과가 없을때만 표시-->
-        <div v-show="!showbox" v-for="(course, key) in search" :key= "key">
+        <div  v-for="(course, key) in search" :key= "key">
             <div class="content" >
                         <div class="section1"> 
                             <!-- 과목이름이랑 코드 -->
-                            <p>{{`[${course.code}]`}} {{course.name}}</p>
+                            <p>{{course.name}}{{`  [${course.professor}]`}} </p>
+                            <p class = "code"> {{course.code}}</p>
                         </div>
 
                         <span class="section2">
                             <p>{{course.gubun}}</p> 
                             <!-- 과목 종류 (전선 교선등등),시간,학점-->
-                            <p>{{course.time}}</p>
                             <p>{{course.credit}}학점</p>
                         </span>
 
                         <span class="section3">
                             <!-- 교수님 이름,영어비율 -->
-                            <p>{{course.professor}}</p>
+                            <p>{{course.time}}</p>
                             <p>영어 {{course.english}}</p>
                         </span>
                         <span class="section4"> 
@@ -109,7 +120,7 @@
          
            <center><input type="button"  class="search" value="검색하기" v-on:click="search_by_Filter"></center>
 
-            <div v-show="searchbox" class="placeholder-box2">
+            <div v-show="searchbox" class="timesearchBox">
                 <p>검색하고자 하는 시간대를 모두 클릭해주세요</p> 
                 <!-- Database에 저장된 자료들과 매치되어 클릭한 시간에 따라서 검색 가능 -->
                          <table>
@@ -121,11 +132,10 @@
                             <tbody> <!--클릭박스 반복문-->
                                 <tr v-for ="i in 11" :key ="i">
                                     <td>{{ i }}</td>
-                                        <td v-bind:class="{checked : checktime[(i+j*11)]}" v-for ="j in 6" :key ="j" > 
-                                        <input type="checkbox" id="checktime" value="" checked="false" v-model="checktime[(i + j * 11)]" v-on:click="checktime[(i + j * 11)] != checktime[(i + j * 11)]">
-                                        <label for="checktime"></label>
-                                        
-                                        </td>
+                                    <td  v-for ="j in 6" :key ="j" > 
+                                        <input type="checkbox" id="checktime" value="">
+                                        <label for="checktime"  v-on:click="checktimef(i,j)" v-bind:class="{checked : checktime[(i+j*11)]} " ></label>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -183,6 +193,7 @@ export default {
     created(){
         this.get_update_time();
     },
+  
 
     
     methods:{
@@ -200,33 +211,11 @@ export default {
             
         },
         timebox_chosen: function(){
+            // console.log(this.checktime);
             this.searchbox=false;
-               for(var i=1;i<67; i++) {
-                    if(this.checktime[i] === undefined)continue;
-                 if(this.checktime[i]===true) {
-                    // selectbox2에서 날짜 시간 테이블 생성시 반복문 
-                    console.log('j는' + j);
-                    var day = ''; 
-                    var time = i % 11;
-                    var j = (i - time)/11;
-                    if(j === 1) day +=  '월';
-                    else if(j === 2) day += '화';
-                    else if(j === 3) day += '수';
-                    else if(j === 4) day += '목';
-                    else if(j === 5) day += '금';
-                    else if(j === 6) day += '토';
-                    console.log(`${day}${time}`);
-
-                    this.filter.time.push(`${day}${time}`);
-                    
-                         //this.checktime[i][j]===false 체크 후 done 하고 초기화
-                }
-
-            }
-          
         },
         timebox_reset:function(){
-            console.log('into timebox reset');
+            // console.log('into timebox reset');
             this.checktime.splice(0, this.checktime.length);        
         },
         creditslt:function(){
@@ -252,13 +241,39 @@ export default {
                     }
                 },function (err) {//서버가 이상한 경우
                     
-                    // alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
+                    alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
                 });
-            // this.course_name = '';이게 없는게 일반적인것 같은데..
             }
         },
+        //시간대 검색 선택시, 데이터베이스로 넘어갈 배열을 업데이트 하고,
+        //화면에 선택한 부분이 색칠되어 나타나게 해 주는 함수
+        checktimef:function(i,j){
+            this.checktime[(i + j * 11)] = !this.checktime[(i + j * 11)];
+            this.$forceUpdate()
+
+        },
+       
         search_by_Filter: function(){
-           
+            for(var i=1;i<78; i++) {
+                    if(this.checktime[i] === undefined)continue;
+                 if(this.checktime[i]===true) {
+                    // selectbox2에서 날짜 시간 테이블 생성시 반복문 
+                    // console.log('j는' + j);
+                    var day = ''; 
+                    var time = i % 11;
+                    var j = (i - time)/11;
+                    if(j === 1) day +=  '월';
+                    else if(j === 2) day += '화';
+                    else if(j === 3) day += '수';
+                    else if(j === 4) day += '목';
+                    else if(j === 5) day += '금';
+                    else if(j === 6) day += '토';
+                    // console.log(`${day}${time}`);
+
+                    this.filter.time.push(`${day}${time}`);
+                    
+                }         //this.checktime[i][j]===false 체크 후 done 하고 초기화
+            }
             this.no_result = false;//'결과가 없습니다' 글씨를 잠시 지워줌
             this.search=''//검색창 초기화
             this.loading = true;//'검색중..'글자 띄워줌
@@ -280,7 +295,7 @@ export default {
                         this.search = response.data;//결과값을 저장함
                     }
                 },function (err) {//서버가 이상한 경우
-                    // alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
+                    alert("서버가 이상합니다. histime206@gmail.com 으로 메일을 보내주세요 :) ")
                 });
 
             //초기화 작업
@@ -299,7 +314,7 @@ export default {
         },
          add_to_fav: function(key){
             // console.log(key);
-            console.log(this.search[key].name);
+            // console.log(this.search[key].name);
             this.$EventBus.$emit('add_to_fav',this.search[key]);
         },
         add_to_tt: function(key){
@@ -321,7 +336,8 @@ export default {
         get_update_time(){
             this.$http.get('/api/make/update_time').then((response) => {
                 this.update = response.data[0].time;
-        })}
+        });
+        }
     }
 }
 

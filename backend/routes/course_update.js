@@ -2,23 +2,13 @@ var express = require('express');
 var router = express.Router();
 // var iconv = require('iconv').Iconv;
 var fs = require('fs');
-var mysql = require('mysql');
+// var mysql = require('mysql');
 var tabletojson = require('tabletojson');
 var jschardet   = require('jschardet');
 var html; 
+var connection = require('./myMysql');
 
-// 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'tester',
-    password : '1234',
-    database : 'histime'
-});
 
-connection.connect(function(err) {
-    if(err) console.log(err);
-    console.log('You are now connected...');
-});
 
 router.get('/', function (req, res, next) {
     var time = '';
@@ -32,12 +22,12 @@ router.get('/', function (req, res, next) {
     time += ("0" + newDate.getHours()).slice(-2) + ":"; 
     time += ("0" + newDate.getMinutes()).slice(-2) + ":"; 
     time += ("0" + newDate.getSeconds()).slice(-2);
-    console.log(time);
+    // console.log(time);
     var time_query = `UPDATE user set time = '${time}' WHERE student_id is NULL and ttname = 'update_time';`;
-    console.log(time_query);
+    // console.log(time_query);
     connection.query(time_query, function(err, results, fields) {
         if(err) console.log(err);
-        console.log(results);
+        // console.log(results);
     });
 
     try {
@@ -89,7 +79,7 @@ router.get('/', function (req, res, next) {
         console.error(e);
     
         if (stack) {
-            console.log(stack);
+            // console.log(stack);
         }
         return;
     });
@@ -108,7 +98,7 @@ router.get('/', function (req, res, next) {
     
     spooky.on('sendtoDB', function (input) {
         'use strict';
-        console.log('into sendtoDB');
+        // console.log('into sendtoDB');
 
         
         
@@ -131,13 +121,13 @@ function conv_encoding(){
         .pipe(iconv.encodeStream('utf-8')).collect(function(err, body){
             // console.log(body.toString('utf-8'));
             html = body.toString('utf-8');
-            console.log(html);
+            // console.log(html);
             //자동으로 파씽된 데이터를 json형식으로 저장        
             var converted = tabletojson.convert(html);
 
-            console.log('after json');
+            // console.log('after json');
 
-            console.log(converted);
+            // console.log(converted);
 
             //디비 넣기 
             addtoDB(converted);
@@ -186,7 +176,7 @@ function conv_encoding(){
 
 
 function addtoDB(json){
-    console.log('into addtoDB');
+    // console.log('into addtoDB');
     var create = 'create table courses( gubun VARCHAR(5), code VARCHAR(40) PRIMARY KEY, hakbu VARCHAR(100), name VARCHAR(150), credit VARCHAR(5), professor VARCHAR(40), time VARCHAR(40), room VARCHAR(40), max_num VARCHAR(10), cur_num VARCHAR(10), english VARCHAR(10), gyoyang VARCHAR(10), grade_type VARCHAR(10), pf_avail VARCHAR(10) );';
     var remove = 'DROP TABLE courses;';
     connection.query(remove , function (error, results, fields) {

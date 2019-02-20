@@ -18,33 +18,27 @@
             
         </div>
         <div v-if="this.$session.get('student_id') != '' || this.showpage === true">
-            <div class="outer">
-                <div class="inner">
-                
+           <div class="outer">
+            <div class="inner">
                 <Header></Header>
-                <div class="centered">
-                    <div class="container">
+                <div class="centered"> 
+                    <div id='container'>
                             <!--시간표 리스트-->
                             <!-- <List id = "list" :val="this.ttlist" /> -->
-                            
-                                <List id ="list" /> 
+                            <List id ="list"> </List>
                             <!--시간표  내용-->
-                                <timetable_s id ="timetable"/>
-                            
+                            <timetableS id ="timetable"></timetableS>
+                        </div>
                     </div>
-                    </div>
-                <Footer></Footer>
-
+                    <Footer></Footer>
                 </div>
             </div>
         </div>
-        
-      
     </div>
 </template>
 
 <script>
-import Timetable_s from '../components/showpage/Timetable_s.vue'
+import TimetableS from '../components/showpage/Timetable_s.vue'
 import List from '../components/showpage/List.vue'
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
@@ -63,7 +57,7 @@ import Footer from '../components/Footer.vue'
         name: 'show',
         auth : false,
         components: {
-           Timetable_s,
+           TimetableS,
            List,
            Header,
            Footer
@@ -100,7 +94,7 @@ import Footer from '../components/Footer.vue'
             this.update_course();
             this.timer = setInterval(this.update_course, this.interval*60000);
             this.auto_update = true;
-            console.log('auto update start');
+            // console.log('auto update start');
         },
         update_course(){
 
@@ -113,8 +107,8 @@ import Footer from '../components/Footer.vue'
                 this.time += ("0" + newDate.getHours()).slice(-2) + ":"; 
                 this.time += ("0" + newDate.getMinutes()).slice(-2) + ":"; 
                 this.time += ("0" + newDate.getSeconds()).slice(-2);
-                console.log(this.time);
-                console.log('course update in');
+                // console.log(this.time);
+                // console.log('course update in');
                 this.$http.get('api/course_update');
         },
         cancel_auto_update(){
@@ -122,11 +116,11 @@ import Footer from '../components/Footer.vue'
             this.auto_update = false;
             this.interval = 0;
 
-            console.log('auto update stop');
+            // console.log('auto update stop');
 
         },
         update_user(){
-            console.log('course update in');
+            // console.log('course update in');
             this.$http.get('api/course_update/user');
         },
     }

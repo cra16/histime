@@ -52,6 +52,7 @@
 <script>
 import copy from './copy.vue'
 
+
     export default {
         name: 'ttlist',
         //props :['ttlists'],
@@ -77,7 +78,7 @@ import copy from './copy.vue'
                 student_id : this.$session.get('student_id')
             }).then((response) => {
                 if (response.status === 200 ) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     if(response.data.length === 0){
                         this.noResult = true;
                         return;
@@ -114,7 +115,10 @@ import copy from './copy.vue'
                         this.go_make();
                     } else {
                         this.$session.set('to_timetablem', new_ttname);//시간표 이름을 세션으로 보냄
-                        this.$router.replace({ name: "make" });
+                        
+                        let routeData = this.$router.resolve({name: 'make'});
+                        window.location.href = routeData.href;
+                        // this.$router.replace({ name: "make" });
                     }
                 });
             },
@@ -197,13 +201,13 @@ import copy from './copy.vue'
                         }).then((response) => {
                             var code = [];
                             if (response.status === 200 ) {
-                                console.log(response.data);
+                                // console.log(response.data);
                                 for(var i = 0; i < response.data.length; i++){
                                     var j = 0;
                                     for(j = 0; j < i; j++){
                                         if(response.data[i].code === response.data[j].code) break;
                                     }
-                                    console.log(response.data[i].code);
+                                    // console.log(response.data[i].code);
                                     if(i === j) code.push(response.data[i].code);
                                 }
                                 this.$session.set('to_modify', code)
@@ -215,7 +219,7 @@ import copy from './copy.vue'
             },
             ttselect(key){
                 cur_ttname = this.ttlists[key].ttname;
-                console.log(this.ttnames[key].ttname);
+                // console.log(this.ttnames[key].ttname);
                 //console.log(cur_ttname);
                 this.$EventBus.$emit('to_timetables',this.ttlists[key].ttname);
             }

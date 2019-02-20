@@ -102,9 +102,9 @@ export default {
   methods: {
     //   course
     get_data(data) {
-        console.log(data);
+        // console.log(data);
         this.tt_name = data;
-        console.log(this.tt_name);
+        // console.log(this.tt_name);
 
         this.$http.post("/api/show/tt", {
             student_id: this.$session.get("student_id"),
@@ -112,7 +112,7 @@ export default {
         }).then(response => {
             if (response.status === 200) {
                 this.courses = [[[]]]; 
-                console.log(response.data);
+                // console.log(response.data);
                 for(var i = 0; i < response.data.length; i ++){
                     var day_index = response.data[i].day;
                     var time_index = response.data[i].start;
@@ -129,10 +129,10 @@ export default {
         });
     },
     update(data){
-                    console.log(data);
-                    console.log('update function');
+                    // console.log(data);
+                    // console.log('update function');
                     if(data == 'remove'){
-                        console.log('remove');
+                        // console.log('remove');
                         
                     }
                 
@@ -144,7 +144,7 @@ export default {
         })
         .then(response => {
           if (response.status === 200) {
-            console.log(response.data);
+            // console.log(response.data);
           }
         });
     },

@@ -79,23 +79,25 @@ export default{
         },
         //즐겨찾기에 있는 과목들 모두 지우기
         del_a(){
-            if(confirm("즐겨찾기에 있는 모든 과목을 삭제하시겠습니까?")) {
-                this.$http.post('/api/make/del_all_fav', {
+            var empty = this.$confirm('즐겨찾기에 있는 모든 과목을 삭제하시겠습니까?')
+            .then((empty) => {
+                if(empty) {
+                    this.$http.post('/api/make/del_all_fav', {
                     student_id : this.$session.get('student_id'),
-                })
-
+                    });
                 this.courses.splice(0, (this.courses.length));
-            }
+                }
+            });
         },
         //즐겨찾기에 있는 과목들 시간표로 모두 추가
         add_a(){
             this.$EventBus.$emit('add_a',this.courses);
         },
-        //검색 결과를 즐겨찾기로 보내기 
+        //검색 결과를 즐겨찾기에 넣기 
         add_to_fav(course) {
             var duplication = this.duplication(course);
             this.noResult = false;
-            console.log("created: " + course);
+            // console.log("created: " + course);
             
             if(duplication === true) {
                 //popup

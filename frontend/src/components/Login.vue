@@ -86,6 +86,15 @@ export default {
   methods: {
     login(){
       this.$cookies.config('30d')
+
+      if(this.input.id === '' || this.input.password === '') {
+        this.$alert({
+          title: '아이디와 패스워드를 모두 입력해주세요.'
+        });
+
+        return;
+      }
+
       this.isLoad = true;
       this.$http.post('/api/login', {
         id : this.input.id,
@@ -94,9 +103,11 @@ export default {
         if (response.status === 200 ) {
               this._response = response;
               if(response.data.student_id === 'nope'){//로그인이 틀린 경우
-                alert("로그인 정보가 일치하지 않습니다.");
-                this.input.id = '';
-                this.input.password = '';
+                this.$alert({
+                  title: '아이디와 패스워드를 다시 확인해주세요.'
+                });
+                // this.input.id = '';
+                // this.input.password = '';
                 this.isLoad = false;
                 return;
               }
@@ -114,10 +125,8 @@ export default {
     },
     show: function(){
         this.showbox=!this.showbox;
-
     },
     setCookies(){
-      
       this.$cookies.set('auth_save', true)
       this.$cookies.set('name', this._response.data.name)
       this.$cookies.set('student_id', this._response.data.student_id)
@@ -127,37 +136,14 @@ export default {
       this.$session.start()
       this.$session.set('name', this._response.data.name)
       this.$session.set('student_id', this._response.data.student_id)
-      console.log("login name : " + this._response.data.name)
-      console.log("login studentid : " +this._response.data.student_id )
+      // console.log("login name : " + this._response.data.name)
+      // console.log("login studentid : " +this._response.data.student_id )
       this.$session.set('auth', true)
-      console.log("set session")
-
+      // console.log("set session")
     }
-
-  },
-
+  }
 }
 
-
-    // login(){
-    //   this.$http.get('/api/login').then((response) => {
-    //     console.log(response.data);
-    // })}
-    
-
-    // login() {
-    //     if(this.input.username != "" && this.input.password != "") {//no space
-    //         if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {//correct
-    //             this.$emit("authenticated", true);
-    //             this.$router.replace({ name: "show" });
-    //         } else {
-    //             console.log("The username and / or password is incorrect");//incorrect-error
-    //         }
-    //     } else {
-    //         console.log("A username and password must be present");//space-error
-            
-    //     }
-    // }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

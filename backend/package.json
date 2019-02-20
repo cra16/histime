@@ -25,6 +25,7 @@
     "path": "^0.12.7",
     "phantomjs": "^2.1.7",
     "phantomjs-prebuilt": "^2.1.16",
+    "puppeteer": "^1.12.2",
     "spooky": "^0.2.5",
     "spooky2": "^2.0.0",
     "tabletojson": "^1.0.1",

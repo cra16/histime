@@ -7,7 +7,7 @@
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
         <button title="새로고침" class="btn" id="reset" v-on:click="reset()"></button>
     </div>
-    <listM v-if="listShow==true" @update="update" :data='courses_for_conv'></listM>
+    <listM v-if="listShow==true" :data='courses_for_conv'></listM>
     <div v-show="ttShow==true" class = "timetable">
         <table>
             <tr>
@@ -27,7 +27,7 @@
                             <div v-if="courses[i] != undefined">
                                 <div v-if="courses[i][j] != undefined">
                                     <div v-for="course of courses[i][j]" :key="course.code">
-                                            <node @update="update" :data="course"/>
+                                            <node  :data="course"/>
                                         
                                     </div>
                                 </div>
@@ -99,15 +99,15 @@
                   },
                   courses : [[[]]],//시간표에 띄워줄 용도
                   courses_store : [[[]]],
-                  courses_for_back : [],
+                  courses_parsed : [],
                   courses_for_conv : [],//쉽게 저장하기 위해서
                   user_add_clicked : false, //user 
                   color : '#000000',
                   total_credit : 0.0,
                   ttShow : true,
-                  listShow : false
+                  listShow : false,
+                  backHome : false
               }
-            
           },
           watch: {
             tt_name : {
@@ -117,11 +117,10 @@
             },
           },
             methods : {
-                showList(){
-                    //console.log("showList")
-                },
+                //시간표 수정 후 make page 입장을 위한 것으로 매 입장 마다 호출
+                //this.$session.get('to_modify')에 있는 과목을 add_to 함
                 modify(){
-                    this.courses_for_back= [];
+                    this.courses_parsed= [];
                     var data = this.$session.get('to_modify');
                     // console.log(data);
                     if(data === undefined) return;
@@ -136,78 +135,120 @@
                             //console.log('running');
                         }
                         this.$session.set('to_modify', undefined);
-                        console.log(this.courses_for_back);
+                        // console.log(this.courses_parsed);
 
                     });
                     
                 },
-                update(data){
-                    //console.log(data);
-                    //console.log('update function');
-                    if(data == 'remove'){
-                        //console.log('remove');
-                        this.update_table();
-                    }
                 
-                },
-                update_table(){
-                    //console.log("yes");
-                    this.courses = [[[]]];                    
-                    this.courses = this.courses_store ;
-                    this.$forceUpdate();
-                    this.set_total_credit();
-                },
+                //과목 지울 때 호출
+                //remove_courses로 과목을 삭제하고 courses_store과 for_back을 비우고 courses_for_conv로 re_add
                 remove(code){
+                    // console.log('remove')
+
+                    this.$notify({
+                        group: 'foo',
+                        text: '과목이 삭제 되었습니다.',
+                        duration: 400,
+                        // type: 'success',
+                    });
                     this.remove_course(code);
                     this.courses_store = [[[]]];
-                    this.courses_for_back = [];
+                    this.courses_parsed = [];
+                    this.re_add();
+                    // console.log('re_add 끝!');
                     this.update_table();
-                    this.add_a_to(this.courses_for_conv);
                 },
+                //courses_for_conv에서 해당 과목을 지움
                 remove_course(code){
-                    for(var i = 0 ; i < this.courses_for_conv.length; i++){
+                    for(var i = 0; i < this.courses_for_conv.length; i++){
                         if(code === this.courses_for_conv[i].code) {
                             this.courses_for_conv.splice(i,1);
                             i -= 1;
                         }   
                     }
                 },
-                save(){//저장하기,
-                    if(confirm("시간표를 완성하시겠습니까?")){
-                        console.log(this.ttname);
-                        console.log(this.$session.get('to_timetablem'));
-                        // console.log(this.courses_store);
-                        // console.log(this.courses_for_conv);
-                        console.log(this.courses_for_back);
-                        this.$http.post('/api/show/del_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname :  this.$session.get('to_timetablem')
-                        }).then((response) => {
-                            console.log('after remove');
-                            this.$http.post('/api/make/make_tt', {
-                            student_id :  this.$session.get('student_id'),
-                            ttname : this.$session.get('to_timetablem'),
-                            total_credit : this.total_credit,
-                            data_list : this.courses_for_back,
+                //삭제하고 남은 과목으로 repaint함
+                //courses_for_conv를 파싱해서 course_update에 넣어줌
+                re_add() {
+                    for(var i = 0 ; i < this.courses_for_conv.length; i++) {
+                        //console.log('not duplication!! : ' + data[i]);
+                        var parsed_data = this.parsingTime(this.courses_for_conv[i]);
+                        // console.log(parsed_data);
+                        this.course_update(parsed_data);
+                    }
+                },
 
-                            }).then((response) => {
-                            console.log('after save');
-                            if (response.status === 200 ) {                       
-                                this.$router.replace({name: 'show'});
-                        }
+                //저장버튼 클릭시 호출
+                //시간표 정보 /api/show/del_tt로 전달 data_list는 courses_parsed로 해서 보내줌
+                save(){
+                    if(!(this.courses_for_conv.length)) {
+                        this.$confirm({
+                            title : '시간표가 비었습니다.\n홈 화면으로 돌아가시겠습니까?',
+                            message : '홈 화면으로 돌아갈 경우 현재 시간표는 저장되지 않습니다.'
+                        }).then((backHome) => {
+                            if(backHome) {
+                                this.backHome = true;
+                                this.courses_for_conv = [];
+                                this.courses_parsed = [];
+                                this.courses_store = [[[]]];
+                                let routeData = this.$router.resolve({name: 'show'});
+                                window.location.href = routeData.href;
+                            }
                         });
-
-                        
-                    });
+                    } else {
+                        this.$confirm('시간표를 완성하시겠습니까?')
+                        .then((complete) => {
+                            if(complete) {
+                                // console.log(this.ttname);
+                                // console.log(this.$session.get('to_timetablem'));
+                                // console.log(this.courses_store);
+                                // console.log(this.courses_for_conv);
+                                this.$http.post('/api/show/del_tt', {
+                                    student_id :  this.$session.get('student_id'),
+                                    ttname :  this.$session.get('to_timetablem')
+                                }).then((response) => {
+                                    // console.log('after remove');
+                                    this.$http.post('/api/make/make_tt', {
+                                        student_id :  this.$session.get('student_id'),
+                                        ttname : this.$session.get('to_timetablem'),
+                                        total_credit : this.total_credit,
+                                        data_list : this.courses_parsed
+                                    }).then((response) => {
+                                        // console.log('after save');
+                                        if (response.status === 200 ) {
+                                            this.backHome = true;
+                                            this.courses_for_conv = [];
+                                            this.courses_parsed = [];
+                                            this.courses_store = [[[]]];
+                                            
+                                            let routeData = this.$router.resolve({name: 'show'});
+                                            window.location.href = routeData.href;
+                                            // this.$router.replace({name: 'show'});
+                                        }
+                                    });
+                                });
+                            }
+                        });
                     }
                 },
                 goHome(){//돌아가기
-                    if(confirm("홈으로 돌아가면 변동사항이 저장되지 않습니다.")){
-                        this.$router.replace({name: 'show'});
-                    }else{
-                        return;
-                    }
+                    this.$confirm('홈으로 돌아가면 변동사항이 저장되지 않습니다.')
+                    .then((backHome) => {
+                        if(backHome) {
+                            this.backHome = true;
+                            this.courses_for_conv = [];
+                            this.courses_parsed = [];
+                            this.courses_store = [[[]]];
+                            let routeData = this.$router.resolve({name: 'show'});
+                            window.location.href = routeData.href;
+                            // this.$router.replace({name: 'show'});
+                        }
+                    });
                 },
+
+                //즐겨찾기 전체 추가 버튼 클릭시 호출
+                //전체 추가 시에 사용함
                 add_a_to(data) {
                     for(var i in data) {
                         var duplication = this.duplication(data[i]);
@@ -215,20 +256,27 @@
                         if(!duplication) {
                             //console.log('not duplication!! : ' + data[i]);
                             var parsed_data = this.parsingTime(data[i]);
-
-                            this.color = this.set_color();
+                            this.courses_for_conv.push(data[i]);
                             this.course_update(parsed_data);
                             this.update_table();
-
-                            
                         } else {
                             //console.log('duplication!');
                         }
                     }
+                    this.$notify({
+                        group: 'foo',
+                        text: '모두 추가되었습니다!',
+                        duration: 400,
+                        // type: 'success',
+                    });
                 },
+                
+                //과목 하나씩 추가할 때 호출
+                //duplication을 확인하고 파씽을 진행하고 update_table하기
                 add_to(raw_data){
+                    // console.log('add_to');
                     var duplication = this.duplication(raw_data);
-                    // //console.log("rc_length: " + this.courses_for_back.length);
+                    // //console.log("rc_length: " + this.courses_parsed.length);
 
                     if(duplication) {
                         //popup
@@ -237,61 +285,49 @@
                             title: '경고!',
                             text: '이미 추가한 과목입니다.',
                             duration: 400,
-                            type: 'warn',
+                            type: 'error',
                         });
                     } else {
                         var parsed_data = this.parsingTime(raw_data);
-
-                        // this.courses_for_back.push(raw_data)
-                        this.course_update(parsed_data);
-                        this.update_table();
+                        if(this.overflow(parsed_data)){
+                            this.$notify({
+                                group: 'foo',
+                                title: '경고!',
+                                text: '더 이상 추가할 수 없습니다.',
+                                duration: 400,
+                                type: 'warn',
+                            });
+                        }else{
+                            this.courses_for_conv.push(raw_data);
+                            this.course_update(parsed_data);
+                            this.update_table();
+                        }
+                        // this.courses_parsed.push(raw_data)
+                        
 
                         //console.log(this.courses);
                     }
-                    this.$forceUpdate();
                 },
+
+                //날짜 숫자로 바꿔주는 곳!
+                alterDay(day){
+                    var day_index = 0;
+                    if(day === '월') day_index = 1;
+                    else if(day === '화') day_index = 2;
+                    else if(day === '수') day_index = 3;
+                    else if(day === '목') day_index = 4;
+                    else if(day === '금') day_index = 5;
+                    else if(day === '토') day_index = 6;
+                    return day_index;
+                }, 
+
+                //월3,목3의 object를 월3, 목3의 두개의 object로 만들어줌
                 parsingTime(course) {
+                    // console.log('parsingTime')
+
                     var course_temp = JSON.parse(JSON.stringify(course));
-                    var course_for_use = JSON.parse(JSON.stringify(course));
-                    var _exist = false;
-                    for(var i = 0; i < this.courses_for_conv.length; i++){
-                        if(course.code === this.courses_for_conv[i].code){
-                             _exist =true;
-                        }
-                    }
-                    if(!_exist)this.courses_for_conv.push(course);
-                    var prepared_data = [];
-                    console.log(course_temp.time);
-
-                    if(course_temp.time === '') {
-                        console.log(course_temp.name);
-                        prepared_data.push({
-                                code : course_temp.code,
-                                course_name : course_temp.name,
-                                professor : course_temp.professor,
-                                time : course.time,
-                                credit : course_temp.credit,
-                                gubun : course_temp.gubun,
-                                english : course_temp.english,
-                                
-                                day : -1,
-                                start : -1,
-                                height : 1,
-
-                                k_start : -1,
-                                size : -1,
-                        });
-                        return prepared_data;
-                    }
-
-                    var sep_time = course_for_use.time.split( ',');
-                    // for(var i = 0; i< sep_time.length; i++){
-                    //     //console.log(sep_time[i]);
-                    // }
-                    //console.log(course.time + '코스타임');
-                    //console.log(course_temp.time + '타임');
-
-                    prepared_data.push({
+                    var data_array = [];
+                    var parsed_data = {
                         code : course_temp.code,
                         course_name : course_temp.name,
                         professor : course_temp.professor,
@@ -299,77 +335,112 @@
                         credit : course_temp.credit,
                         gubun : course_temp.gubun,
                         english : course_temp.english,
-                        
-                        day : sep_time[0].substr(0, 1),
-                        start : sep_time[0].match(/\d+/)[0],
+                        day : -1,
+                        start : -1,
                         height : 1,
-
                         k_start : -1,
                         size : -1,
-                    });
-            
+                    }
+
+                    var previous_day = 0;
+                    var previous_start = 0;
+
+                    //시간이 없는 과목은 그냥 시간 파씽 안하고 data_array에 넣고 리턴
+                    if(course_temp.time === '') {
+                        // console.log(course_temp.name);
+                        data_array.push(parsed_data);
+                        return data_array;
+                    }
+
+                    //시간 파씽
+                    var sep_time = course_temp.time.split( ',');
+                    var data_copy = JSON.parse(JSON.stringify(parsed_data));
+                    //첫번째 시간에 해당하는 object 넣어주고
+                    data_copy.day = this.alterDay(sep_time[0].substr(0, 1));
+                    data_copy.start = parseInt(sep_time[0].match(/\d+/)[0]);
+                    data_array.push(data_copy);
+                    previous_day = data_copy.day;
+                    previous_start = data_copy.start;
+                    
+                    var data_copy = JSON.parse(JSON.stringify(parsed_data));
+                    //두번째부터는 앞에 object랑 비교해서 연강원소이면 앞에 object height ++ 아니면 새로운 원소로 추가
                     for(var i = 1; i < sep_time.length; i++){
-                        if(parseInt(sep_time[i-1].match(/\d+/)[0]) + 1 === parseInt(sep_time[i].match(/\d+/)[0])){
-                            //console.log("into comparison");
-                            var temp = prepared_data.pop();
-                            //console.log(temp.height);
+                        //parsing data copy만들어서 거기의 day, start만 바꿔줌
+                        data_copy = JSON.parse(JSON.stringify(parsed_data));
+                        var current_day = this.alterDay(sep_time[i].substr(0, 1));
+                        var current_start = parseInt(sep_time[i].match(/\d+/)[0]);
+
+                        // console.log(previous_day);
+                        // console.log(previous_start);
+                        // console.log(current_day);
+                        // console.log(current_start);
+                        
+                        //연강원소일때
+                        if(previous_day === current_day && previous_start + 1 === current_start){
+                            // console.log('연강원소');
+                            var temp = data_array.pop();
                             temp.height ++;
-
-                            prepared_data.push(temp);
+                            data_array.push(temp);
+                        //연강원소가 아닐때
                         } else {
-                            prepared_data.push({
-                                code : course_temp.code,
-                                course_name : course_temp.name,
-                                professor : course_temp.professor,
-                                time : course.time,
-                                credit : course_temp.credit,
-                                gubun : course_temp.gubun,
-                                english : course_temp.english,
-                                
-                                day : sep_time[i].substr(0, 1),
-                                start : sep_time[i].match(/\d+/)[0],
-                                height : 1,
-
-                                k_start : -1,
-                                size : -1,
-                            });
+                            // console.log('연강원소 아님');
+                            data_copy.day = current_day;
+                            data_copy.start = current_start;
+                            data_array.push(data_copy);
                         }
+                        previous_day = current_day;
+                        previous_start = current_start;
                     }
-
-                    for(var i = 0 ; i < prepared_data.length; i++){
-                        //console.log( "day :" + prepared_data[i].day);
-                        //console.log( "start :" + prepared_data[i].start);
-                        //console.log( "length :" + prepared_data[i].height);
-                    }
-
-                    return prepared_data;
+                    // console.log(data_array);
+                    return data_array;
                 },
+
+                //중복확인용 courses_conv에서 확인
                 duplication(raw_data) {
-                    // var duplication =   this.courses_for_back.some(function(item, index, array) {
-                    //                         return (item.code === raw_data.code);
-                    //                     });
-                    // return duplication;
-                    for(var i=1;i<=6;i++){
-                            if(this.courses_store[i] === undefined)  continue;//다른 요일로 건너뛰기
-                            for(var j=1;j<=11;j++){
-                            if(this.courses_store[i][j] === undefined)  continue;//다른 시간으로 건너뛰기
-                            for(var k=0; k<this.courses_store[i][j].length;k++){
-                                if(this.courses_store[i][j][k].code === raw_data.code){
-                                    return true;
+                    var duplication =   this.courses_for_conv.some(function(item, index, array) {
+                                            return (item.code === raw_data.code);
+                                        });
+                    return duplication;
+                },
+
+                //overflow 확인
+                //overflow 됐을 시에는 courses_for_conv에서 뺴고 return false
+                overflow(parsed_data){
+                    var overflow = false;
+                    for(var i = 0; i < parsed_data.length; i++){
+                        var day_index = parsed_data[i].day;
+                        var time_index = parsed_data[i].start;
+                        
+                        //과목에 시간이 없으면 그냥 다 넣어
+                        if(day_index === -1) return false;
+                        
+                        if(this.courses_store[day_index] === undefined)continue;
+
+                        if(this.courses_store[day_index][time_index] === undefined)continue;
+
+                        //시작해봅시다
+                        var dest = this.courses_store[day_index][time_index];
+                        //꽉 차있으면 return
+                        if(dest.length === 3) overflow = true;
+                        //연강 똥값 들어갈 곳이 사이즈가 꽉차있다면 return
+                        else if(parsed_data[i].height > 1){
+                            for(var j = 1 ; j < parsed_data[i].height; j++){
+                                if(this.courses_store[day_index][time_index + j] != undefined && this.courses_store[day_index][time_index + j].length > 2) {
+                                    overflow = true;
                                 }
-                            }                
+                            }
                         }
                     }
-                    return false;
+                    if(overflow)this.remove_course(parsed_data[0].code);
+                    return overflow;
                 },
+
+                //recursive하게 다 업데이트하기 
                 cont_update(day, time, size){
                     var k_start = -1;
                     var cont_index = -1;
                     var height = 0;
                     for(var i = 0; i < this.courses_store[day][time].length; i++){
-                        //console.log('현재 원소갯수는 ' + this.courses_store[day][time].length);
-
-                        //연강 시작친구(height = 2)이거나 똥값(height = -1)이거나
                         if(this.courses_store[day][time][i].height != 1){
                             //console.log('연강인 친구나 똥값이 있어요 위치 :' + i);
                             cont_index = i;
@@ -413,22 +484,18 @@
                     
                     
                 },
+
+                //course 
                 course_update(parsed_data) {
+                    // console.log('course_update')
                     this.color = this.set_color();
                     //console.log('color : ' + this.color);
                     for(var t = 0; t < parsed_data.length; t++){
-                            var day_index = 0;
+                            var day_index = parseInt(parsed_data[t].day);
                             var time_index = parseInt(parsed_data[t].start);
                             //console.log('into course_update' + parsed_data[t]);
                             //console.log(parseInt(parsed_data[t].start));
-                            if(parsed_data[t].day === '월') day_index = 1;
-                            else if(parsed_data[t].day === '화') day_index = 2;
-                            else if(parsed_data[t].day === '수') day_index = 3;
-                            else if(parsed_data[t].day === '목') day_index = 4;
-                            else if(parsed_data[t].day === '금') day_index = 5;
-                            else if(parsed_data[t].day === '토') day_index = 6;
-
-                            parsed_data[t].day = day_index;
+                            
                             if(this.courses_store[day_index] === undefined) this.courses_store[day_index] = [];
                             if(this.courses_store[day_index][time_index] === undefined)this.courses_store[day_index][time_index] = [];
 
@@ -440,44 +507,9 @@
                                 parsed_data[t].size = size;
                                 parsed_data[t].k_start = k_start;
                                 this.courses_store[day_index][time_index].push(parsed_data[t]);
-                                this.courses_for_back.push(parsed_data[t]);
+                                this.courses_parsed.push(parsed_data[t]);
                                 return;
                             }
-                            //꽉 차있으면 return
-                            if(dest.length === 3){
-                                //console.log("full!!");
-                                this.$notify({
-                                    group: 'foo',
-                                    text: '같은 시간대에 더이상 추가할 수 없습니다!',
-                                    duration: 400,
-                                    type: 'error',
-                                });
-                                // alert("같은 시간대에 더이상 추가할 수 없습니다.");
-                                this.remove_course(parsed_data[t].code);
-                                return;
-                            }
-                            //console.log('dest의 길이는 '+ dest.length);
-                            //연강 똥값 들어갈 곳이 사이즈가 꽉차있다면 return
-                            if(parsed_data[t].height > 1){
-                                for(var i = 1 ; i < parsed_data[t].height; i++){
-                                    if(this.courses_store[day_index][time_index + i] != undefined && this.courses_store[day_index][time_index + i].length > 2) {
-                                        //console.log("full");
-                                        this.$notify({
-                                            group: 'foo',
-                                            text: '같은 시간대에 더이상 추가할 수 없습니다!',
-                                            duration: 400,
-                                            type: 'error',
-                                        });
-                                        // alert("같은 시간대에 더이상 추가할 수 없습니다.");
-                                        this.remove_course(parsed_data[t].code);
-                                        return;
-                                    }
-
-                                }
-                            }
-
-                            //일단 다 차있으면 더 못들어간다고 말해주자
-                            if(dest.length === 3)console.log("full!!");
 
                             //만약에 이게 들어가는 첫 원소라면 그냥 넣어주세요(만약에 this.course[day_index][time_index]이 없다면)
                             else if(dest.length === 0 || dest === undefined){
@@ -489,10 +521,15 @@
 
                             //만약에 원소가 존재한다면 해당 원소가 들어갈 위치를 찾아서 알려주세요.
                             else if(dest.length != 0){
+                                var count = 0;
+                                for(var i = 0; i < dest.length; i++){
+                                    if(dest[i] != undefined){
+                                        count += 1;
+                                        size = dest[i].size;
+                                    }
+                                }
                                 //console.log('원소가 있어요');
-                                //사이즈는 length+1
-                                size = dest.length + 1;
-
+                                if(count + 1 > size) size = count + 1;
                                 this.cont_update(day_index, time_index, size);
                                 
                                 
@@ -591,12 +628,9 @@
                                                     poop.k_start = k_start;
                                                 }
                                             }
+                                            poop.size = size;
                                             this.courses_store[day_index][time_index+z].push(poop);
                                             //console.log(this.courses);
-
-
-                                        
-
                                     }
                                 }
                             }
@@ -608,16 +642,14 @@
 
                             //courses에 푸쉬
                             //console.log('제대로된 친구 넣기');
-                            console.log(this.courses_for_back);
+                            // console.log(this.courses_parsed);
 
                             parsed_data[t].color = this.color;
                             this.courses_store[day_index][time_index].push(parsed_data[t]);
-                            console.log('푸쉬');
-                            console.log(parsed_data[t]);
-                            this.courses_for_back.push(parsed_data[t]);
-                            console.log(this.courses_for_back);
-                            
-                            this.$forceUpdate();
+                            // console.log('푸쉬');
+                            // console.log(parsed_data[t]);
+                            this.courses_parsed.push(parsed_data[t]);
+                            // console.log(this.courses_parsed);
                         }
                 },
                 prop_update(code, data, prop){
@@ -654,43 +686,36 @@
                         }                
                     }
                 },
-                set_name(text) {
-                    this.tt_name = text;
-                },
                 set_total_credit(){
-                    //console.log('into set_total_credit');
                     var credit = 0;
                     for(var i = 0; i < this.courses_for_conv.length; i++){
-                        //console.log(`${this.courses_for_conv[i].name} ${this.courses_for_conv[i].credit}`);
                         credit += parseFloat(this.courses_for_conv[i].credit);
-                        
                     }
                     this.total_credit = credit;
                 },
                 reset() {
-                    if(confirm("시간표를 비우시겠습니까?")){
-                        this.courses_store = [[[]]];
-                        this.courses_for_back = [];
-                        this.courses_for_conv = [];
-                        this.courses = [[[]]];
-                        this.update_table();
-                    }
+                    this.$confirm('시간표를 비우시겠습니까?')
+                    .then((empty) => {
+                        if(empty) {
+                            this.courses_store = [[[]]];
+                            this.courses_parsed = [];
+                            this.courses_for_conv = [];
+                            this.update_table();
+                        }
+                    });
+                },
+                update_table(){
+                    // console.log('update_table')
+                    this.courses = [[[]]];                    
+                    this.courses = this.courses_store ;
+                    this.$forceUpdate();
+                    this.set_total_credit();
                 },
                 set_color() {
                     // hsl color
                     var color = 'hsl(';
                     color += Math.floor(Math.random() * 360);
                     color = color + ', 40%, 60%)';
-                    // hex
-                    // var letters = '0123456789ABCDEF';
-                    // var color = '#';
-
-                    // for (var i = 0; i < 6; i++) {
-                    //     color += letters[Math.floor(Math.random() * 16)];
-                    // }
-
-                    // //console.log('color' + color);
-
                     return color;
                 },
                 show(){
@@ -706,24 +731,33 @@
                     //     list.style.background = "url('../../image/list.png')";
                     //     list.value = 'timetable';
                     // }
+                },
+                before_reload(event) {
+                    console.log('this.backHome : ' + this.backHome);
+                    if(!this.backHome) {
+                        // Cancel the event
+                        event.preventDefault();
+                        // Chrome requires returnValue to be set
+                        event.returnValue = '';
+                    }
+                    this.backHome = false;
                 }
             },
             created(){
-                console.log(this.courses_store);
-                console.log(this.courses_for_conv);
-                console.log(this.courses_for_back);
+                // console.log(this.courses_store);
+                // console.log(this.courses_for_conv);
+                // console.log(this.courses_parsed);
                 this.courses_store = [[[]]];
-                this.courses_for_back = [];
+                this.courses_parsed = [];
                 this.courses_for_conv = [];
                 this.courses = [[[]]];
                 this.modify();
-                this.$EventBus.$on('add_a', this.add_a_to),
-                this.$EventBus.$on('courses', this.add_to),
-                this.$EventBus.$on('close_user_custom', this.user_add)//user custom 창 종료
+                this.$EventBus.$on('add_a', this.add_a_to);
+                this.$EventBus.$on('courses', this.add_to);
+                this.$EventBus.$on('close_user_custom', this.user_add);//user custom 창 종료
+                window.addEventListener('beforeunload', this.before_reload);
                 // this.$EventBus.$on('to_modify', this.modify)
-
             }
-            
         }
         
     
