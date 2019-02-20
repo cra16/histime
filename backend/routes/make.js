@@ -1,19 +1,7 @@
 //mysql module
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
-
-// 비밀번호는 별도의 파일로 분리해서 버전관리에 포함시키지 않아야 합니다. 
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'h010638847',
-    database : 'histime'
-});
-connection.connect(function(err) {
-    if(err) console.log(err);
-    console.log('You are now connected...');
-});
+var connection = require('./myMysql');
 
 router.post('/', function(req, res, next) {
     // console.log(req.body.id);
