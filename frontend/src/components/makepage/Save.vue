@@ -17,18 +17,18 @@
         <div v-for="(course, key) in this.courses" :key="key" class="content">
             
              <div class="section1">
-                <p>{{`[${course.code}]`}} {{course.name}}</p>
+                <p>{{course.name}}{{`[${course.professor}]`}} </p>
+                <p class="code">{{course.code}} </p>
              </div>
 
 
             <span class="section2">
                 <p>{{course.gubun}}</p>
-                <p>{{course.time}}</p>
                 <p>{{course.credit}}학점</p>
             </span>
 
             <span class="section3">
-                <p>{{course.professor}}</p>
+                <p>{{course.time}}</p>
                 <p>영어 {{course.english}}</p>
             </span>
 
@@ -153,7 +153,7 @@ export default{
                
             }
         },function(err){
-            // alert("서버가 이상합니다. histime206@gmail.com 로 메일을 보내주세요 :) ")
+            alert("서버가 이상합니다. histime206@gmail.com 로 메일을 보내주세요 :) ")
         });
         this.$EventBus.$on('add_to_fav', this.add_to_fav);
     }
