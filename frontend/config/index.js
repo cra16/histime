@@ -13,7 +13,7 @@ module.exports = {
 
     proxyTable: {
   '/api': {
-      target: 'http://histime.handong.edu/api',
+      target: 'http://3161c5b6.ngrok.io/api',
       // target:  'http://localhost:3000/api',
     
     changeOrigin: true,
