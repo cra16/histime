@@ -9,41 +9,29 @@ h1{
   background-color:#225B95;
 }
 
-table{
-  width:100%;
-  height : 100%;
-
-}
-thead{
-  
-  color:#E6F1FC;
-  font-weight: 500;
-  font-size: 12px;
-  text-transform: uppercase;
-  background-color: #9CBADF;
-  #h_credit {
-    height : 30px;//head부분 높이 지정
-    text-align: center;
-  }
-  #h_index {
-    
-
-    align-content: center;
-  }
-  #h_ttname {
-    width: 200px;
-    text-align: center;
-    align-content: center;
-  }
-
+hr{
+  border: 1px solid;
+  color: #225B95;
+  margin: 0px;
 }
 
+#add{
+  padding: 3px 18px;
+  position:relative;
+  cursor:pointer;
+  background-color:#FFCA55;
+  color:white;
+  border: none;
+  border-radius: 7px;
+  font-size:15px;
+  font-weight:bold;
+}
 
-
-
+#add:hover{
+  opacity: 0.6;
+}
 
 .change {
-  cursor: pointer;
   color: white;
   background-color: #225B95;
   padding: 4px 8px;
@@ -53,50 +41,70 @@ thead{
   border-radius: 5px;
   width: 43px;
 }
-.change:hover{
-  opacity: 0.6;
-}
-.line{
-  height: 50;
+
+table{
+  width:100%;
+  height : 100%;
+  table-layout: fixed;
 }
 
 .tbl-content{
   text-align: center;
-  width : 100%;
-  
   .noResult{
-    width : 100%;
     color : grey;
     font-size : 13px;
     margin-top : 30%;
   }
-
   #index{
+
+    width :11%;
     text-align: center;
   }
-
   #namefield{
+    width :39%;
     text-align: center;
-    width: 400px;
   }
   #credit{
+    width :10%;
     text-align: center;
     color: #FF6D00;
-
+    font-size: 15px;
     font-weight: bold;
   }
   #edit {
     align-content: right;
+    width : 5%;
+    padding : 0;
+    padding-left : 6%;
+
+
   }
   #del {
     align-content: left;
+    width : 5%;
+    padding : 0;
+    padding-right : 6%;
+
   }
-  height:480px;
+  
+ 
+  height:80%;
   width:99.6%;
   overflow-x:auto;
   margin-top: 0px;
-}
+ 
 
+}
+th{
+  
+  padding: 10px 15px;
+  text-align: center;
+  color:#E6F1FC;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: #9CBADF;
+}
 td{
   width: 100%;
   padding: 15px;
@@ -104,7 +112,7 @@ td{
   vertical-align:middle;
   font-weight: 300;
   font-size: 12px;
-  border-bottom : 2px solid #225B95;
+
   // border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 ts{
@@ -145,26 +153,29 @@ ts{
 }
 
 
-.content{
-  
-  
+
+#h_credit {
+  width: 13%;
+  padding-left : 5%;
+  padding-right : 0;
 }
 
-.content:hover{
+#h_ttname {
+  width: 48%;
+}
+
+#h_change {
+  width: 37%;
+}
+
+#h_index {
+  width: 12%;
+}
+
+
+
+tr:hover{
   background: #E6F1FC 
-}
-
-
-.ttadd button{
-  padding: 3px 18px;
-  position:relative;
-  cursor: pointer;
-  background-color:#FFCA55;
-  color:white;
-  border: none;
-  border-radius: 7px;
-  font-size:15px;
-  font-weight:bold;
 }
 
 
