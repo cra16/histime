@@ -33,8 +33,6 @@
             <button  v-on:click="go_make()">시간표 추가하기</button>
     </div>
     
-    
-    
     </div>
 
     
