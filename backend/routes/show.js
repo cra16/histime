@@ -8,7 +8,7 @@ var connection = require('./myMysql');
 router.post('/', function(req, res, next) {
     var student_id = req.body.student_id;
     var show_query = `SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND total_credit IS NOT NULL`;
-    // console.log(show_query);
+    // console.log(`${student_id}님이 접속하셨습니다.`);
     connection.query(show_query, function(err, results, fields) {
         if (err) console.log(err);
         // console.log(results);

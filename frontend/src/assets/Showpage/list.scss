@@ -9,159 +9,173 @@ h1{
   background-color:#225B95;
 }
 
-.tbl-content{
-  text-align: center;
-  height:480px;
-  width:99.6%;
-  overflow-x:auto;
-  margin-top: 0px;
-
-.head{
-  color:#E6F1FC;
-  font-weight: 500;
-  font-size: 15px;
-  text-transform: uppercase;
-  background-color: #9CBADF;
-  height : 30px;//head부분 높이 지정
-  padding-top : 6px;
-  #h_index {
-    margin-left : 10px;
-    align-content: center;
-    float : left;
-  }
-  #h_ttname {
-    float : left;
-    width: 300px;
-    text-align: center;
-    align-content: center;
-  }
-
-  #h_credit {
-    width: 40px;
-    text-align: center;
-    float : left;
-  }
-  #h_change {
-    margin-right : 40px;
-    text-align: center;
-    float : right;
-  }
- 
+hr{
+  border: 1px solid;
+  color: #225B95;
+  margin: 0px;
 }
 
-  .noResult{
-    width : 100%;
-    color : grey;
-    font-size : 13px;
-    margin-top : 30%;
-    text-align: center;
-  }
-.body{
-  .content{
-    border-bottom : 2px solid #225B95;
-    padding-top : 15px;
-    vertical-align:middle;
-    vertical-align: -webkit-baseline-middle;
-   
-
-    
-    #index{
-
-  
-      margin-left : 15px;
-      float: left;
-       text-align: center;
-     }
-     #namefield{
-      float: left;
-      width: 300px;
-      margin-left : 10px;
-     #ttname{
-      font-weight: 500;
-      font-size: 15px;
-      text-align: center;
-      cursor : pointer;
-     } 
-     #ttname:hover{
-       color : #225B95 ;
-       opacity : 0.6
-     }
-    }
-      #credit{
-      float: left;
-      margin-left : 10px;
-      text-align: center;
-      color: #FF6D00;
-      font-weight: bold;
-    }
-    #edit {
-      float: left;
-      margin-left : 75px;
-      
-  
-    }
-    #del {
-      float: left;
-      margin-left : 10px;
-     
-    }
-    .change {
-      cursor: pointer;
-      color: white;
-      background-color: #225B95;
-      padding: 4px 8px;
-      font-size: 11px;
-      font-weight:bold;
-      border: none;
-      border-radius: 5px;
-      width: 43px;
-    }
-    .change:hover{
-      opacity: 0.6;
-    }
-    #modify_name{
-      border: none;
-      width: 12px;
-      height: 12px;
-      background : url( '../../image/edit_name.png') no-repeat;
-      background-size: contain;
-      margin-left: 5px;
-    }
-  }
-  
-  
-
-}
- 
-}
-
-
-
-
-
-
-
-
-.content{
-  height : 40px;
-  
-}
-
-.content:hover{
-  background: #E6F1FC 
-}
-
-
-.ttadd button{
+#add{
   padding: 3px 18px;
   position:relative;
-  cursor: pointer;
+  cursor:pointer;
   background-color:#FFCA55;
   color:white;
   border: none;
   border-radius: 7px;
   font-size:15px;
   font-weight:bold;
+}
+
+#add:hover{
+  opacity: 0.6;
+}
+
+.change {
+  color: white;
+  background-color: #225B95;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight:bold;
+  border: none;
+  border-radius: 5px;
+  width: 43px;
+}
+
+table{
+  width:100%;
+  height : 100%;
+  table-layout: fixed;
+}
+
+.tbl-content{
+  text-align: center;
+  .noResult{
+    color : grey;
+    font-size : 13px;
+    margin-top : 30%;
+  }
+  #index{
+
+    width :11%;
+    text-align: center;
+  }
+  #namefield{
+    width :39%;
+    text-align: center;
+  }
+  #credit{
+    width :10%;
+    text-align: center;
+    color: #FF6D00;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  #edit {
+    align-content: right;
+    width : 5%;
+    padding : 0;
+    padding-left : 6%;
+
+
+  }
+  #del {
+    align-content: left;
+    width : 5%;
+    padding : 0;
+    padding-right : 6%;
+
+  }
+  
+ 
+  height:80%;
+  width:99.6%;
+  overflow-x:auto;
+  margin-top: 0px;
+ 
+
+}
+th{
+  
+  padding: 10px 15px;
+  text-align: center;
+  color:#E6F1FC;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: #9CBADF;
+}
+td{
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+
+  // border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+ts{
+  padding: 15px;
+  text-align: center;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: rgb(223, 119, 78);
+  // border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+#modify_name{
+  border: none;
+  width: 12px;
+  height: 12px;
+  background : url( '../../image/edit_name.png') no-repeat;
+  background-size: contain;
+  margin-left: 5px;
+}
+
+#index {
+  font-weight: normal;
+  font-size: 15px;
+  width: 70px;
+}
+#namefield{
+  width : 210px;
+ #ttname{
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  cursor : pointer;
+ } 
+ #ttname:hover{
+   color : #225B95 ;
+   opacity : 0.6
+ }
+}
+
+
+
+#h_credit {
+  width: 13%;
+  padding-left : 5%;
+  padding-right : 0;
+}
+
+#h_ttname {
+  width: 48%;
+}
+
+#h_change {
+  width: 37%;
+}
+
+#h_index {
+  width: 12%;
+}
+
+
+
+tr:hover{
+  background: #E6F1FC 
 }
 
 
