@@ -1,22 +1,18 @@
 .logo{
   text-align: center;
   margin-top : 10%;
-  h1{
-    font-size : 90pt;
-    margin-bottom : 0%;
-    color : #225B95;
-    font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
-    font-style : italic;
-  }
+  
   p{
     margin-top:3%;
     letter-spacing: 5px;
     font-size : 13px;
-    margin-bottom : 3%
-   
+    margin-bottom : 3%;
   }
+  
+ 
 
 }
+
 .mainlogo1{
  margin-bottom:0%;
   
@@ -25,6 +21,7 @@
 .onlylogin{
   margin-bottom:0%;
 }
+
 
 
 form{
@@ -74,15 +71,39 @@ form{
   
 .check_box {
   clear: both;
-  margin-left : 11%;
+  margin-left : 6%;
   input{ 
    display : inline
   }
   p{ 
     display : inline;
+    font-size : 12px;
   }
 }
 }
+
+.responsibility{
+  width : 100%;
+  p{
+    text-align: center;
+    margin-top:1%;
+    letter-spacing: 1px;
+    font-size : 11px;
+    color : grey;
+  }
+}
+
+.warn{
+  width : 100%;
+  p{
+    text-align: center;
+    margin-top:1%;
+    letter-spacing: 1px;
+    font-size : 11px;
+    color:red;
+  }
+}
+  
 
 .t1{
   position:relative;

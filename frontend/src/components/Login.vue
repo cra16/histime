@@ -6,7 +6,9 @@
         <!-- <h1>{{ name }} </h1> -->
         <img src="../image/Logo_image.png" width="700" class="mainlogo1">
         <p>이번 학기를 채울 모든 경우의 수, HisTime</p>
+          
       </div>
+      
 
       <form>
         <!-- 로그인 박스  -->
@@ -21,7 +23,15 @@
         </div>
         <br /><br /><br />
         <div class="check_box"><input type="checkbox" v-model="isSave" /> <p>로그인 상태 30일 유지</p> </div>
-      </form>
+      </form> 
+      <div class="responsibility"><p>이 서비스는 CRA에서 배포한 것이며, 책임 또한 학교가 아닌 CRA에게 있음을 알려드립니다.</p></div>
+      
+      <div class="warn">
+        <br />
+            <p>지금은 histime 테스트 기간입니다.</p>
+            <p>테스트 기간동안 histime은 교내에서만 접근이 가능합니다.</p>
+            <p>생성된 시간표는 만일을 대비해 캡쳐를 해 두시길 바랍니다.</p>
+        </div>
       
       <!--</div> -->
      </div>
