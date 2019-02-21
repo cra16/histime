@@ -39,7 +39,7 @@
 
 hr{
     margin : 0px;
-    margin-top : 24px;
+    margin-top : 5%;
     border:1px solid #225B95;
 }
 p{
@@ -63,24 +63,41 @@ p{
 
     .section1{
         margin : 0;
-        margin-top : 10px;
+       padding-top:6px;
         color: #FF6D00 ;
         position: relative;
+        .code{
+            color: rgb(231, 100, 0) ;
+            opacity : 0.6;
+            font-size : 11px;
+        }
     }
     .section2{
-        margin-bottom :10px;
+    
+        margin :0;
+        margin-top :3%;
         display : inline-block;
-        top : 20px;
         position: relative;
+        top : 10%;
+        p{
+            font-size : 12px;
+            font-weight: 450;
+        }
     }
     .section3{
+        margin :0;
+        margin-top :3%;
         display : inline-block;
         position: relative;
         margin-left : 10%;
+        p{  font-size : 12px;
+            font-weight: 450;
+        }
        
     }
     .section4{
         right : 3%;
+        height: 20%;
         position: absolute;
         z-index: 1;
         display : none;
@@ -91,15 +108,17 @@ p{
             cursor : pointer;
         }
         #delete{
+            bottom : 20px;
             background : url( '../../image/cancle.png') no-repeat;
             background-size : cover;
             position: relative;
         }
         #add{
-         
+            bottom : 17px;
+            right : 1px;
             background : url( '../../image/plus.png') no-repeat;
             background-size : cover;//이미지가 버튼 사이즈에 맞게 조절
-           
+            position: relative;
         }
     }
   

@@ -17,18 +17,18 @@
         <div v-for="(course, key) in this.courses" :key="key" class="content">
             
              <div class="section1">
-                <p>{{`[${course.code}]`}} {{course.name}}</p>
+                <p>{{course.name}}{{`[${course.professor}]`}} </p>
+                <p class="code">{{course.code}} </p>
              </div>
 
 
             <span class="section2">
                 <p>{{course.gubun}}</p>
-                <p>{{course.time}}</p>
                 <p>{{course.credit}}학점</p>
             </span>
 
             <span class="section3">
-                <p>{{course.professor}}</p>
+                <p>{{course.time}}</p>
                 <p>영어 {{course.english}}</p>
             </span>
 
@@ -70,7 +70,6 @@ export default{
                 student_id : this.$session.get('student_id'),
                 code : this.courses[key].code
             })
-
             this.courses.splice(key, 1);
         },
         //시간표로 과목 추가하기 
@@ -117,7 +116,6 @@ export default{
                     time : course.time,
                     credit : course.credit
                 });
-
                 this.courses.push({
                     name: course.name,
                     code: course.code,
@@ -132,14 +130,12 @@ export default{
         //중복 발생
         duplication(course) {
             var duplication = false;
-
             for(var i in this.courses) {
                 if(course.code === this.courses[i].code) {
                     duplication = true;
                     break;
                 }
             }
-
             return duplication;
         }
     },
@@ -157,7 +153,7 @@ export default{
                
             }
         },function(err){
-            // alert("서버가 이상합니다. histime206@gmail.com 로 메일을 보내주세요 :) ")
+            alert("서버가 이상합니다. histime206@gmail.com 로 메일을 보내주세요 :) ")
         });
         this.$EventBus.$on('add_to_fav', this.add_to_fav);
     }
@@ -168,5 +164,4 @@ export default{
 
 
 <style  lang ="scss" src = '../../assets/Makepage/save.scss' scoped>
-
 </style>

@@ -78,7 +78,7 @@ body{
         border-bottom : 1px solid #225B95;
         border-top: 1px solid #225B95;
         border-right: 1px solid #225B95;
-        height : 100px;//1교시당 시간 높이
+        height : 87px;//1교시당 시간 높이(node높이에서 3을빼줘야함)
     }
     #last{
         border-right : none;

@@ -1,4 +1,4 @@
-$base: 103px;//기본크기
+$base: 90px;//기본크기
 
 $start0: 0px;
 $start1: 0px;
@@ -36,13 +36,16 @@ $size5 : 33%;
 
     
     p{
-        margin : 3px;
+        margin : 1px;
     }
     #course_name{
         font-size: 12px;
     }
+    #credit{
+        font-size: 9px;
+    }
     #professor{
-        font-size: 10px;
+        font-size: 9px;
     }
   
 }
@@ -51,6 +54,10 @@ $size5 : 33%;
 }
 
 .box:hover .tooltip{
+    display : inline;
+}
+
+.box:hover .tooltipsix{
     display : inline;
 }
 
@@ -71,11 +78,35 @@ $size5 : 33%;
         margin : 0;
     }
      #title{
+        font-size : 12px;
+        font-weight: 400
+    }
+
+}
+
+.tooltipsix {
+    display : none;
+    width: 100px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    right : 90%;
+    height : auto;
+    /* Position the tooltip */
+    position : absolute;
+    z-index: 6;
+    font-size : 10px;
+    p{
+        margin : 0;
+    }
+     #title{
          font-size : 12px;
          font-weight: 400
     }
 
-  }
+}
+
 
 
 button{
@@ -83,6 +114,7 @@ button{
     height : 15px;
     display:none;
 }
+
 #del{
     border : none;
     background : none;

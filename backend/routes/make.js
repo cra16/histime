@@ -4,9 +4,10 @@ var router = express.Router();
 var connection = require('./myMysql');
 
 router.post('/', function(req, res, next) {
+
     // console.log(req.body.id);
     var student_id = req.body.id;
-
+    console.log(`${student_id}님이 makepage로 이동하셨습니다.`);
     connection.query(`SELECT DISTINCT ttname, ttrank, total_credit FROM user WHERE student_id=${student_id} AND ttrank IS NOT NULL ORDER BY ttrank ASC`, function(err, results, fields) {
         if (err) console.log(err);
         res.send(results);
@@ -186,13 +187,14 @@ router.post('/del_all_fav', function(req, res) {
 //시간표생성
 //input : array of data(student_id, ttname, total_credit, code, name, professor, time, credit)
 router.post('/make_tt', function(req, res) {
-    // console.log('into make_tt');
     //디버깅용
     var student_id = req.body.student_id;
+
     var ttname = req.body.ttname;
     var total_credit = req.body.total_credit;
     var data_list = req.body.data_list; // code, name, professor, time, credit
     
+    console.log(`${student_id}님이 '${ttname}'의 시간표를 생성하셨습니다.`);    
 
     // for(var i = 0 ; i < body.length; i++){
     //     var make_tt = `INSERT INTO user values(NULL, ${body[i].student_id}, '${body[i].ttname}', NULL, '${body[i].total_credit}', '${body[i].code}', '${body[i].course_name}', '${body[i].professor}', '${body[i].time}', ${body[i].credit}, false);`
@@ -208,7 +210,7 @@ router.post('/make_tt', function(req, res) {
 
 
         var make_tt = `INSERT INTO user(student_id, ttname, total_credit, code, course_name, professor, time, credit, height, start, size, k_start, color, day) VALUES (${student_id}, '${ttname}', ${total_credit}, '${data_list[i].code}', '${data_list[i].course_name}', '${data_list[i].professor}', '${data_list[i].time}', ${data_list[i].credit}, ${data_list[i].height}, ${data_list[i].start}, ${data_list[i].size},  ${data_list[i].k_start}, '${data_list[i].color}', '${data_list[i].day}');`
-        console.log(make_tt);
+        // console.log(make_tt);
         connection.query(make_tt, function(err, courseList, fields) {
             if(err) console.log(err);
             // console.log(courseList);

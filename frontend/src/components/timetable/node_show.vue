@@ -7,19 +7,32 @@
                 <p id="prof">{{ this.data.professor}}</p>   
                 <div ></div> 
             </div>
-            <span v-bind:style="{ 'background-color': `${mycolor}`}" v-bind:class="classObjectTip()" class = "tooltip">
-            <p id="title">상세정보</p>
-            <p>{{ this.data.code }}</p> 
-            <p>{{ this.data.course_name }}</p>
-            <p>{{ this.data.professor }}</p>
-            <p>{{ this.data.time }}</p>
-            <p>{{ this.data.credit }}학점</p>
-            <p>영어 : {{ this.data.english }} &nbsp; {{ this.data.gubun }}</p>
-        </span>
+            <div v-if="this.data.day != 6">
+                <span v-bind:style="{ 'background-color': `${mycolor}`}" v-bind:class="classObjectTip()" class = "tooltip">
+                    <p id="title">상세정보</p>
+                    <p>{{ this.data.code }}</p> 
+                    <p>{{ this.data.course_name }}</p>
+                    <p>{{ this.data.professor }}</p>
+                    <p>{{ this.data.time }}</p>
+                    <p>{{ this.data.credit }}학점</p>
+                    <p>{{ this.data.gubun }}</p>
+                </span>
+            </div>
+            <div v-else>
+                <span v-bind:style="{ 'background-color': `${mycolor}`}" v-bind:class="classObjectTip()" class = "tooltipsix">
+                    <p id="title">상세정보</p>
+                    <p>{{ this.data.code }}</p> 
+                    <p>{{ this.data.course_name }}</p>
+                    <p>{{ this.data.professor }}</p>
+                    <p>{{ this.data.time }}</p>
+                    <p>{{ this.data.credit }}학점</p>
+                    <p>{{ this.data.gubun }}</p>
+                </span>
+            </div>
         </div>
     </div>
 </div>
-    
+
 </template>
 
 <script>
