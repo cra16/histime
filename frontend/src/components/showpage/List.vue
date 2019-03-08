@@ -21,10 +21,10 @@
                         <span id="credit">{{ttlist.total_credit}}</span>
                         <span id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></span>
                         <span id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></span> 
-            </div>
-            </div>
+                </div>
+            </div></div>
         
-    </div><!--tbl-content ending tag-->
+
 
     <div class="ttadd">
             <button  v-on:click="go_make()">시간표 추가하기</button>
