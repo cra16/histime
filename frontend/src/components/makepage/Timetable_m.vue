@@ -1,14 +1,17 @@
 <template>
-<!-- show page에서 시간표를 보여주는 부분 -->
+<!-- make page에서 시간표를 보여주는 부분 -->
 <body>
     <div class="head">
-        <button title="리스트" class="btn" id="list" v-on:click="show()" value='timetable'></button>
+        <button title="시간표" class="btn" id="tt" v-on:click="tt_show()" value='tt'></button>
+        <button title="리스트" class="btn" id="list" v-on:click="list_show()" value='timetable'></button>
+        <button title="경쟁률" class="btn" id="pre" v-on:click="pre_show()" value='pre'></button>
         <h3>{{ this.$session.get('to_timetablem') }}</h3><!--글자 제한 두기-->
         <!-- <button class="btn" id="redo" v-on:click="user_add()"></button> -->
         <button title="새로고침" class="btn" id="reset" v-on:click="reset()"></button>
     </div>
     <listM v-if="listShow==true" :data='courses_for_conv'></listM>
-    <div v-show="ttShow==true" class = "timetable">
+    <preList v-if="preShow==true" :data='courses_for_conv' ><p>why</p></preList>
+    <div v-if="ttShow==true" v-show="ttShow==true" class = "timetable">
         <table>
             <tr>
                 <th></th>
@@ -82,11 +85,12 @@
     import subjects from '../timetable.json'
     import node from '../timetable/node'
     import listM from '../timetable/List_m'
+    import preList from '../timetable/pre'
     // import add from "../timetable/add"
 
     export default{ 
         components : {
-            node,listM
+            node,listM,preList
         },
           data(){
               return{
@@ -107,8 +111,9 @@
                   color : '#000000',
                   total_credit : 0.0,
                   color_index : 0,
-                  ttShow : true,
-                  listShow : false,
+                  ttShow : true,//기본 시간표 보이기
+                  listShow : false,//리스트 보이기
+                  preShow : false,//경쟁률 보이기
                   backHome : false
               }
           },
@@ -715,19 +720,30 @@
                     this.$forceUpdate();
                     this.set_total_credit();
                 },
-                show(){
-                    // var list = document.getElementById('list');
-
-                    this.ttShow = !(this.ttShow);
-                    this.listShow = !(this.listShow);
-
-                    // if(list.value === 'timetable') {
-                    //     list.style.background = "url('../../image/timetable.png')";
-                    //     list.value = 'list';
-                    // } else if(list.value === 'list') {
-                    //     list.style.background = "url('../../image/list.png')";
-                    //     list.value = 'timetable';
-                    // }
+                set_color() {
+                    // hsl color
+                    var color = 'hsl(';
+                    color += Math.floor(Math.random() * 360);
+                    color = color + ', 40%, 60%)';
+                    return color;
+                },
+                //상단버튼, 리스트 보이기
+                list_show(){
+                    this.ttShow = false;
+                    this.preShow = false;
+                    this.listShow = true;
+                },
+                // 상단버튼, 경쟁률 보이기
+                pre_show(){
+                    this.ttShow = false;
+                    this.preShow = true;
+                    this.listShow = false;
+                },
+                //디폴트, 시간표 보이기
+                tt_show(){
+                    this.ttShow = true;
+                    this.preShow = false;
+                    this.listShow = false;
                 },
                 before_reload(event) {
                     console.log('this.backHome : ' + this.backHome);
