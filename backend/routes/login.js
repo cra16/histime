@@ -13,7 +13,10 @@ router.post('/', function (req, res) {
         const page = await browser.newPage();
         const hisnet_id = req.body.id
         const hisnet_pw = req.body.password;
-    
+        var student_id = '';
+        var name = '';
+        var year = '';
+        var major = '';
         //페이지로 가라
         await page.goto('https://hisnet.handong.edu/login/login.php');
     
@@ -45,13 +48,29 @@ router.post('/', function (req, res) {
                 //이름을 가져와라
                 const element2 = await page.$('td[width="240"]');
                 name = await page.evaluate(element2 => element2.textContent, element2);
+                //학년을 가져오고
+                const element3 = await page.$('td[style="padding-left:5px;"]');
+                year = await page.evaluate(element3 => element3.textContent, element3);
+                //젼공 가져와라
+                const element4 = await page.$$('td[colspan="2"]');
+                major = await page.evaluate(element4 => element4.textContent, element4[5]);
+                
             }catch(e){
                 student_id = '00000000';
                 name = '교직원';
+                major = '교직원';
+                year = 0;
+                major = '교직원';
+
             }
             console.log(`${name}(${student_id})님이 로그인하셨습니다.`);
         }
-        res.send({ student_id : student_id, name : name });
+        console.log(student_id);
+        console.log(name);
+        console.log(year);
+        console.log(major);
+        
+        res.send({ student_id : student_id, name : name, year : year[0], major : major });
         //브라우저 꺼라
         await browser.close();        
     })();

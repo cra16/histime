@@ -16,7 +16,6 @@
         </thead>
         </table>
     </div>
-
     <div class="tbl-content">
         <p v-if="noResult==true" class="noResult">생성된 시간표가 없습니다.<br /> 시간표 추가히기 버튼을 통해 시간표를 생성해 주세요</p>
         <table cellpadding="0" cellspacing="0" border="0">
@@ -215,7 +214,12 @@ import copy from './copy.vue'
                                 student_id :  this.$session.get('student_id'),
                                 ttname :  this.ttlists[key].ttname
                         }).then((response) => {
+                            var data = {
+                                code : [],
+                                color : [],
+                            }
                             var code = [];
+                            var color = [];
                             if (response.status === 200 ) {
                                 // console.log(response.data);
                                 for(var i = 0; i < response.data.length; i++){
@@ -224,9 +228,13 @@ import copy from './copy.vue'
                                         if(response.data[i].code === response.data[j].code) break;
                                     }
                                     // console.log(response.data[i].code);
-                                    if(i === j) code.push(response.data[i].code);
+                                    if(i === j) {
+                                        data.code.push(response.data[i].code);
+                                        console.log(response.data[i].color);
+                                        data.color.push(response.data[i].color);
+                                    }
                                 }
-                                this.$session.set('to_modify', code)
+                                this.$session.set('to_modify', data)
                                 this.$router.replace({ name: "make" });
                             }
                         });

@@ -122,22 +122,24 @@
                 modify(){
                     this.courses_parsed= [];
                     var data = this.$session.get('to_modify');
+                    console.log(data.color);
                     // console.log(data);
                     if(data === undefined) return;
-                    //console.log('into')
+                    console.log('into')
                     this.$http.post('/api/make/modify_list', {
-                            code :  data,
+                            code :  data.code,
                     }).then((response) => {
                         // console.log(response.data);
                         for(var i = 0; i < response.data.length; i++){
                             // console.log(response.data[i]);
-                            this.add_to(response.data[i]);
+                            this.add_to_for_mod(response.data[i], data.color[i]);
                             //console.log('running');
                         }
                         this.$session.set('to_modify', undefined);
                         // console.log(this.courses_parsed);
 
                     });
+                    
                     
                 },
                 
@@ -175,7 +177,7 @@
                         //console.log('not duplication!! : ' + data[i]);
                         var parsed_data = this.parsingTime(this.courses_for_conv[i]);
                         // console.log(parsed_data);
-                        this.course_update(parsed_data);
+                        this.course_update(parsed_data, 'null');
                     }
                 },
 
@@ -257,7 +259,7 @@
                             //console.log('not duplication!! : ' + data[i]);
                             var parsed_data = this.parsingTime(data[i]);
                             this.courses_for_conv.push(data[i]);
-                            this.course_update(parsed_data);
+                            this.course_update(parsed_data, 'null');
                             this.update_table();
                         } else {
                             //console.log('duplication!');
@@ -299,7 +301,7 @@
                             });
                         }else{
                             this.courses_for_conv.push(raw_data);
-                            this.course_update(parsed_data);
+                            this.course_update(parsed_data, 'null');
                             this.update_table();
                         }
                         // this.courses_parsed.push(raw_data)
@@ -307,6 +309,13 @@
 
                         //console.log(this.courses);
                     }
+                },
+
+                add_to_for_mod(raw_data, color){
+                    var parsed_data = this.parsingTime(raw_data);
+                    this.courses_for_conv.push(raw_data);
+                    this.course_update(parsed_data, color);
+                    this.update_table();
                 },
 
                 //날짜 숫자로 바꿔주는 곳!
@@ -486,7 +495,7 @@
                 },
 
                 //course 
-                course_update(parsed_data) {
+                course_update(parsed_data, color) {
                     // console.log('course_update')
                     this.color = this.set_color();
                     //console.log('color : ' + this.color);
@@ -644,7 +653,8 @@
                             //console.log('제대로된 친구 넣기');
                             // console.log(this.courses_parsed);
 
-                            parsed_data[t].color = this.color;
+                            if(color === 'null')parsed_data[t].color = this.color;
+                            else parsed_data[t].color = color;
                             this.courses_store[day_index][time_index].push(parsed_data[t]);
                             // console.log('푸쉬');
                             // console.log(parsed_data[t]);

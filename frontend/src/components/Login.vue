@@ -129,6 +129,7 @@ export default {
       }).then((response) => {
         if (response.status === 200 ) {
               this._response = response;
+              console.log(response.data);
               if(response.data.student_id === 'nope'){//로그인이 틀린 경우
                 this.$alert({
                   title: '아이디와 패스워드를 다시 확인해주세요.'
@@ -142,8 +143,15 @@ export default {
                 this.setSession()//세션에 정보 저장
                   if(this.isSave){this.setCookies(response)}//30일 저장한다고 했을 때 =>쿠키에 정보 저장
                   else{this.$cookies.set('auth_save', false)}//그렇지 않은 경우 -> 쿠키에 저장된 정보 없에기
+                  console.log('success');
               }
-              this.$router.replace({ name: "show"});
+              console.log('this place');
+              this.$http.post('/api/course_update/add_userlist', {
+                user_data : response.data
+              }).then((response) =>{
+                console.log(response);
+                this.$router.replace({ name: "show"});
+              });
             }
           }, function (err) {//서버가 이상한 경우
             alert("서버가 이상합니다.  histime206@gmail.com 로 메일을 보내주세요 :) ")

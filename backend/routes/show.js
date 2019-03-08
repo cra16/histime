@@ -78,7 +78,7 @@ router.post('/copy', function(req, res, next) {
 router.post('/modify_tt', function(req, res, next) {
     var student_id = req.body.student_id;
     var ttname = req.body.ttname;
-    var ttshow_query = `SELECT code FROM user WHERE student_id=${student_id} and ttname='${ttname}';`
+    var ttshow_query = `SELECT code, color FROM user WHERE student_id=${student_id} and ttname='${ttname}';`
     console.log(ttshow_query);
     connection.query(ttshow_query, function(err, results, fields) {
         res.send(results);

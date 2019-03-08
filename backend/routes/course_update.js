@@ -271,4 +271,45 @@ router.get('/user', function (req, res, next) {
     
 });
 
+router.post('/yebi', function(req, res, next) {
+    var filename = req.body.filename;
+    console.log(ttshow_query);
+    fs.readFile(filename, function(err, data){
+        console.log(data); 
+    })
+    
+});
+router.post('/add_userlist', function(req, res, next) {
+    var student_id = parseInt(req.body.user_data.student_id);
+    var name = req.body.user_data.name;
+    var year = parseInt(req.body.user_data.year);
+    var major = req.body.user_data.major;
+
+    connection.query(`select * from userlist where student_id = ${student_id}`, function(err, result, fields){
+        if(err){
+            console.log(err);
+        }
+        if(result.length === 0){
+            var userlist_add = `insert userlist(student_id, name, year, major) values(${student_id}, '${name}', '${year}', '${major}');`
+            console.log(userlist_add);
+            connection.query(userlist_add, function(err){
+                if(err){
+                    console.log(err);
+                }
+            });
+        }
+    })
+    res.send('yes'); 
+});
+
+router.get('/make_userlist', function(req, res, next){
+    var create = `CREATE TABLE userlist(idx INT PRIMARY KEY AUTO_INCREMENT, student_id INT, name VARCHAR(20), year INT, major VARCHAR(30));`;
+     connection.query(create, function(err, result, feild){
+        if(err){
+            console.log(err);
+            console.log('userlist table 존재')
+        }
+    });
+})
+
 module.exports = router;
