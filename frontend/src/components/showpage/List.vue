@@ -1,33 +1,45 @@
 
 <template>
     <div>
-
+    <!--for demo wrap-->
     <h1>시간표 리스트</h1>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+                <tr>  
+                    <th id="h_index">번호</th>
+                    <th id="h_ttname">시간표 이름</th>
+                    <th id="h_credit">학점</th>
+                    <th id="h_change">변경</th>
+                </tr>
+                
+        </thead>
+        </table>
+    </div>
+
     <div class="tbl-content">
-           <div class= "head"> 
-                <span id="h_index">번호</span>
-                <span id="h_ttname">시간표 이름</span>
-                <span id="h_credit">학점</span>
-                <span  id="h_change">변경</span>
-           </div>
-             <p v-if="noResult==true" class="noResult">생성된 시간표가 없습니다.<br /> 시간표 추가히기 버튼을 통해 시간표를 생성해 주세요</p>
-            <div class ="body">
-                <div class="content" v-for="(ttlist,key) in this.ttlists" :key="key">
-                        <span id="index">{{ key+1 }}</span>
-                        <span id="namefield">
-                            <span v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname">{{ttlist.ttname}}</span>
-                            <button id="modify_name" v-on:click="modify_name(key)"></button>
-                        </span>
-                        <span id="credit">{{ttlist.total_credit}}</span>
-                        <span id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></span>
-                        <span id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></span> 
-                </div>
-            </div></div>
-        
+        <p v-if="noResult==true" class="noResult">생성된 시간표가 없습니다.<br /> 시간표 추가히기 버튼을 통해 시간표를 생성해 주세요</p>
+        <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <div v-for="(ttlist,key) in this.ttlists" :key="key">
+                <tr>
+                    <td id="index">{{ key+1 }}</td>
+                    <td id="namefield">
+                        <span v-on:click = " $EventBus.$emit('to_timetables',ttlist.ttname)" id = "ttname">{{ttlist.ttname}}</span>
+                        <button id="modify_name" v-on:click="modify_name(key)"></button>
+                    </td>
+                    <td id="credit">{{ttlist.total_credit}}</td>
+                    <td id="edit"><button class ="change" v-on:click="ttedit(key)">수정</button></td>
+                    <td id="del"><button class ="change" v-on:click="ttdelete(key)">삭제</button></td>
+                </tr>
 
-
-    <div class="ttadd">
-            <button  v-on:click="go_make()">시간표 추가하기</button>
+                    <hr />
+                </div> 
+            </tbody>
+        </table>
+    </div><!--tbl-content ending tag-->
+    <div class="add">
+            <button id="add" v-on:click="go_make()">시간표 추가하기</button>
     </div>
     
     
@@ -81,7 +93,7 @@ import copy from './copy.vue'
         methods: {
         
             go_make() { //시간표를 추가하는 웹 페이지로 전환
-                this.$prompt('새로운 시간표의 이름을 입력하세요')
+                this.$prompt('새로운 시간표의 이름을 입력하세요(최대10자)')
                 .then((new_ttname) => {
                     if(new_ttname === '') {
                         this.$alert({
@@ -93,6 +105,14 @@ import copy from './copy.vue'
                         this.go_make();
                     } else if(new_ttname === null) {
                         ;
+                    }else if(new_ttname.length > 10){
+                        this.$alert({
+                            title: '경고!',
+                            message: '시간표 이름이 너무 깁니다.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.go_make();
                     } else if(this.duplication(new_ttname)){
                         this.$alert({
                             title: '경고!',
@@ -128,7 +148,15 @@ import copy from './copy.vue'
                         this.modify_name(key);
                     } else if(new_ttname === null) {
                         ;
-                    } else if(original_ttname === new_ttname) {
+                    } else if(new_ttname.length > 10){
+                        this.$alert({
+                            title: '경고!',
+                            message: '시간표 이름이 너무 깁니다.',
+                            duration: 1000,
+                            rbHide: true
+                        });
+                        this.modify_name(key);
+                    }else if(original_ttname === new_ttname) {
                         this.$alert({
                             title: '경고!',
                             message: '현재 시간표의 이름과 동일합니다.',

@@ -2,21 +2,6 @@
 <template>
 
     <div id="show">
-        <div v-if="this.$session.get('student_id') === '21500670'">
-            <!-- <Header></Header> -->
-            <h1>관리자 모드</h1>
-            <input v-model="interval" type="text" placeholder="업데이트 주기 입력" class='input_text' name="interval"/>
-            <button v-on:click="auto_update_course()">수업 업데이트 시작</button>
-            <button v-on:click="cancel_auto_update()">수업 업데이트 중지</button>
-            <div v-if="this.auto_update === true">{{this.interval}}분 주기로 자동 업데이트중...</div>
-            <div v-if="this.time === ''">업데이트 없음...</div>
-            <div v-else>최근 수업 업데이트 시간 {{this.time}}</div>
-
-            <button v-on:click="update_course()">수업 업데이트</button>
-            <button v-on:click="update_user()">유저 테이블 업데이트</button>
-            <button v-on:click="showpage = !showpage">showpage on/off</button>
-            
-        </div>
         <div v-if="this.$session.get('student_id') != '' || this.showpage === true">
            <div class="outer">
             <div class="inner">

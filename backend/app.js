@@ -10,6 +10,9 @@ var usersRouter = require('./routes/users');
 var app = express();
 var bodyParser = require('body-parser');
 var history = require('connect-history-api-fallback');
+var helmet = require('helmet');
+
+app.use(helmet());
 
 app.use(bodyParser.urlencoded({
   extended: true
