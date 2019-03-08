@@ -11,14 +11,7 @@
                   
                   </div>
                 <!-- <p id = "code" >{{`[${this.data.code}]`}}</p> -->
-<<<<<<< HEAD
                 <button  id = "del" v-on:click="(event) => { this.remove() }" >x</button>
-=======
-                
-                <button class="mod" id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
-              
-                
->>>>>>> 6020db00629458b27c9a70caa850c215e199ca79
                 <p id="course_name">{{ this.data.course_name }}</p>
                 <p id="credit">{{ this.data.credit }}학점</p>
                 <p id="prof">{{ this.data.professor}}</p> 
