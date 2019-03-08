@@ -48,9 +48,6 @@
       
       <div class="help">
         <button id='btn' v-on:click="show" />
-        
-
-
         <div v-show="showbox" id="helpMessage" >
             <center><p class="p1"><u> N O T I C E </u></p></center>
             <p class="p2">His Time은<br>한동대학교 학생들의<br>신학기 시간표 작성을 도와주는<br>프로그램입니다.<br>
