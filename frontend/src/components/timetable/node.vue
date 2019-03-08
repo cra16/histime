@@ -5,9 +5,20 @@
             <!-- 노드 -->
             <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
                 <!-- <input type = "color" v-model="mycolor" /> -->
-              
+                <input type="button" id="col" value="c" v-on:click="show"/>
+                  <div v-show="showbox" class="placeholder-box" > 
+                  <p>color choose</p>
+                  
+                  </div>
                 <!-- <p id = "code" >{{`[${this.data.code}]`}}</p> -->
+<<<<<<< HEAD
                 <button  id = "del" v-on:click="(event) => { this.remove() }" >x</button>
+=======
+                
+                <button class="mod" id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
+              
+                
+>>>>>>> 6020db00629458b27c9a70caa850c215e199ca79
                 <p id="course_name">{{ this.data.course_name }}</p>
                 <p id="credit">{{ this.data.credit }}학점</p>
                 <p id="prof">{{ this.data.professor}}</p> 
@@ -50,6 +61,7 @@ export default {
    props : ['data'],//start, height, name, professor
    data(){
         return{
+            showbox: false,
             time : [] , case : [], 
             height : 'height' + this.data.height , //연강
             mycolor : "",
@@ -120,8 +132,12 @@ export default {
             }
             this.$parent.color_index--;
             this.$parent.remove(this.data.code);
+        },
+        show: function(){
+        this.showbox=!this.showbox;
         }
     },
+  
      created(){
         this.mycolor = this.data.color;
 
