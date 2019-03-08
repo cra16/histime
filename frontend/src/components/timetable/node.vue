@@ -2,16 +2,18 @@
 <div>
     <div v-if="data.height!=-1">
         <div class ="box">
+            <!-- 노드 -->
             <div v-bind:id="height" v-bind:class="classObject()" v-bind:style="{ 'background-color': `${mycolor}`}" class = "node" >
                 <!-- <input type = "color" v-model="mycolor" /> -->
               
                 <!-- <p id = "code" >{{`[${this.data.code}]`}}</p> -->
-                <button  id = "del" v-on:click="(event) => { this.$parent.remove(this.data.code) }" >x</button>
+                <button  id = "del" v-on:click="(event) => { this.remove() }" >x</button>
                 <p id="course_name">{{ this.data.course_name }}</p>
                 <p id="credit">{{ this.data.credit }}학점</p>
                 <p id="prof">{{ this.data.professor}}</p> 
 
             </div>
+            <!-- 툴팁 박스 -->
             <div v-if="data.day != 6">
                 <span v-bind:style="{ 'background-color': `${mycolor}`}" v-bind:class="classObjectTip()" class = "tooltip">
                 <p id="title">상세정보</p>
@@ -23,6 +25,7 @@
                 <p>영어 : {{ this.data.english }} &nbsp; {{ this.data.gubun }}</p>
             </span>
             </div>
+            <!-- 토요일 툴팁 박스 -->
             <div v-else>
                 <span v-bind:style="{ 'background-color': `${mycolor}`}" v-bind:class="classObjectTip()" class="tooltipsix">
                 <p id="title">상세정보</p>
@@ -54,7 +57,6 @@ export default {
     },
     
     methods : {
-        
         classObject() { //
             var start = this.data.k_start;//한 칸안에서 어디서 시작할지
             var size =this.data.size;//크기
@@ -67,8 +69,6 @@ export default {
             else if(start == 1&& size ==3)   this.case[4] = true;
             else if(start == 2&& size ==3)   this.case[5] = true;
             
-           
-
             for(var i=0; i<10; i++)//몇고시인지
                 this.time[i] = false;
             this.time[this.data.start-1] = true;
@@ -94,9 +94,6 @@ export default {
             }
         },
          classObjectTip() { //툴팁용 class bind
-
-           
-
             for(var i=0; i<10; i++)//몇고시인지
                 this.time[i] = false;
             this.time[this.data.start-1] = true;      
@@ -113,9 +110,17 @@ export default {
                     t10: this.time[9],
                     t11: this.time[10],
             }
+        },
+        remove() {
+            for(var i = 0; i < this.$parent.color_list.length; i++) {
+                if (this.mycolor === this.$parent.color_list[i]) {
+                    this.$parent.color_list.splice(i, 1);
+                    this.$parent.color_list.push(this.mycolor);
+                }
+            }
+            this.$parent.color_index--;
+            this.$parent.remove(this.data.code);
         }
-        
- 
     },
      created(){
         this.mycolor = this.data.color;

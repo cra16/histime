@@ -101,9 +101,12 @@
                   courses_store : [[[]]],
                   courses_parsed : [],
                   courses_for_conv : [],//쉽게 저장하기 위해서
+                  color_list : ['#D4937D', '#D2CF79', '#9AD788', '#6B3600', '#81D5C1', '#39AC80', '#85BAD6', '#A788D7', '#B5C200', '#D788A0',
+                  '#B84E3D', '#C9775E', '#C49B4F', '#697728', '#909130', '#6ABF40', '#FFC42E', '#888BD7', '#2F5A8E', '#703DB8'],
                   user_add_clicked : false, //user 
                   color : '#000000',
                   total_credit : 0.0,
+                  color_index : 0,
                   ttShow : true,
                   listShow : false,
                   backHome : false
@@ -298,6 +301,9 @@
                                 type: 'warn',
                             });
                         }else{
+                            this.color = this.color_list[(this.color_index)%20];
+                            console.log('color : ' + this.color);
+                            this.color_index++;
                             this.courses_for_conv.push(raw_data);
                             this.course_update(parsed_data);
                             this.update_table();
@@ -488,8 +494,6 @@
                 //course 
                 course_update(parsed_data) {
                     // console.log('course_update')
-                    this.color = this.set_color();
-                    //console.log('color : ' + this.color);
                     for(var t = 0; t < parsed_data.length; t++){
                             var day_index = parseInt(parsed_data[t].day);
                             var time_index = parseInt(parsed_data[t].start);
@@ -643,7 +647,7 @@
                             //courses에 푸쉬
                             //console.log('제대로된 친구 넣기');
                             // console.log(this.courses_parsed);
-
+                            
                             parsed_data[t].color = this.color;
                             this.courses_store[day_index][time_index].push(parsed_data[t]);
                             // console.log('푸쉬');
@@ -710,13 +714,6 @@
                     this.courses = this.courses_store ;
                     this.$forceUpdate();
                     this.set_total_credit();
-                },
-                set_color() {
-                    // hsl color
-                    var color = 'hsl(';
-                    color += Math.floor(Math.random() * 360);
-                    color = color + ', 40%, 60%)';
-                    return color;
                 },
                 show(){
                     // var list = document.getElementById('list');
