@@ -35,11 +35,22 @@ body{
         background-size : cover;
   
     }
-    #list{
+    #tt{
         left : 2%;
+        background : url( '../../image/calendar2.png');
+        background-size : cover;
+    }
+    #list{
+        left : 8%;
         background : url( '../../image/list.png');
         background-size : cover;
     }
+    #pre{
+        left : 14%;
+        background : url( '../../image/running.png');
+        background-size : cover;
+    }
+
 
     #reset:hover{
         opacity: 0.6;
