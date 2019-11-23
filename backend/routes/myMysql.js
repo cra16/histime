@@ -1,9 +1,10 @@
+require('dotenv').config();
 var mysql = require('mysql');
 var connection;
 var db_config = {
-    host: 'localhost',
-    user: 'root',
-    password: '*****',
+    host: process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     database: 'histime'
 };
 
