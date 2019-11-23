@@ -1,13 +1,9 @@
 # frontend
 
-> A Vue.js project
->npm run dev로 렌더링..? 컴파일 가능
-
-## Build Setup
-
 ``` bash
 # install dependencies
 npm install
+sudo npm install --save-dev  --unsafe-perm node-sass
 
 # serve with hot reload at localhost:8080
 npm run dev

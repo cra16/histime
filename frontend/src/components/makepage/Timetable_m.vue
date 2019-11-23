@@ -284,7 +284,7 @@
                 //과목 하나씩 추가할 때 호출
                 //duplication을 확인하고 파씽을 진행하고 update_table하기
                 add_to(raw_data){
-                    // console.log('add_to');
+                    console.log('add_to');
                     var duplication = this.duplication(raw_data);
                     // //console.log("rc_length: " + this.courses_parsed.length);
 

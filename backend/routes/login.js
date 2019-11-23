@@ -5,13 +5,13 @@ var router = express.Router();
 
 
 router.post('/', function (req, res) {
+    console.log("login 시작");
     
-
     (async () => {
-    
+ 
         const browser = await puppeteer.launch({headless: true, args:['--no-sandbox']});
         const page = await browser.newPage();
-        const hisnet_id = req.body.id
+        const hisnet_id = req.body.id;
         const hisnet_pw = req.body.password;
         var student_id = '';
         var name = '';

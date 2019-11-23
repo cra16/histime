@@ -12,24 +12,6 @@ var bodyParser = require('body-parser');
 var history = require('connect-history-api-fallback');
 var helmet = require('helmet');
 
-const https = require('https');
-const http = require('http');
-
-const options = {
-  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
-  cert: fs.readFileSync('test/fixtures/keys/agent2-cert.cert')
-};
-
-// Create a service (the app object is just a callback).
-const app = express();
-
-// Create an HTTP service.
-http.createServer(app).listen(80);
-// Create an HTTPS service identical to the HTTP service.
-https.createServer(options, app).listen(443);
-
-
-
 app.use(helmet());
 
 app.use(bodyParser.urlencoded({

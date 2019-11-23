@@ -3,7 +3,7 @@ var connection;
 var db_config = {
     host: 'localhost',
     user: 'root',
-    password: 'h010638847',
+    password: '*h010638847',
     database: 'histime'
 };
 
